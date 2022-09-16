@@ -9,6 +9,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { FaTrophy, FaChartPie, FaMoneyBillAlt } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const Testimonial = ({ children }) => {
   return <Box>{children}</Box>;
@@ -82,12 +83,14 @@ const TestimonialAvatar = ({ src, name, title, component }) => {
 };
 
 export default function SellingPoints() {
+  const { t } = useTranslation();
+
   return (
     <Box bg={useColorModeValue("gray.100", "gray.700")}>
       <Container maxW={"7xl"} pt={16} pb={24} as={Stack} spacing={12}>
         <Stack spacing={0} align={"center"}>
-          <Heading>Benefits</Heading>
-          <Text>Let's move away from manual work</Text>
+          <Heading>{t("sellingPoints.benefits")}</Heading>
+          <Text>{t("sellingPoints.subSlogan")}</Text>
         </Stack>
         <Stack
           direction={{ base: "column", md: "row" }}
@@ -95,34 +98,33 @@ export default function SellingPoints() {
         >
           <Testimonial>
             <TestimonialContent>
-              <TestimonialHeading>Customer Loyalty</TestimonialHeading>
+              <TestimonialHeading>
+                {t("sellingPoints.right.header")}
+              </TestimonialHeading>
               <TestimonialText>
-                Reward your loyal lunch guests with the opportunity to buy a
-                lunch-card that gives them a discounted price while you benefit
-                from increased and steady revenue.
+                {t("sellingPoints.right.content")}
               </TestimonialText>
             </TestimonialContent>
             <TestimonialAvatar component={<FaTrophy size={"52"} />} />
           </Testimonial>
           <Testimonial>
             <TestimonialContent>
-              <TestimonialHeading>Build on your reputation</TestimonialHeading>
+              <TestimonialHeading>
+                {t("sellingPoints.middle.header")}
+              </TestimonialHeading>
               <TestimonialText>
-                It takes time to build a loyal customer base. As a restaurateur,
-                you know this very well. Your creativity and hard work in the
-                kitchen, together with the service your restaurant offers, lays
-                the foundation for satisfied and returning guests.
+                {t("sellingPoints.middle.content")}
               </TestimonialText>
             </TestimonialContent>
             <TestimonialAvatar component={<FaChartPie size={"52"} />} />
           </Testimonial>
           <Testimonial>
             <TestimonialContent>
-              <TestimonialHeading>Financial control</TestimonialHeading>
+              <TestimonialHeading>
+                {t("sellingPoints.left.header")}
+              </TestimonialHeading>
               <TestimonialText>
-                With Pranzo, your reporting and financial control becomes more
-                managable, giving you an easy overview of sales and insights
-                into effectivnes of your outreach and marketing.
+                {t("sellingPoints.left.content")}
               </TestimonialText>
             </TestimonialContent>
             <TestimonialAvatar component={<FaMoneyBillAlt size={"52"} />} />

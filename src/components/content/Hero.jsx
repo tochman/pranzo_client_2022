@@ -1,7 +1,11 @@
 import { Flex, Heading, Image, Stack, Text } from "@chakra-ui/react";
 import Logo from "./Logo";
+import { useTranslation } from 'react-i18next'
+
 
 const Hero = () => {
+  const { t } = useTranslation();
+
   return (
     <Stack
       data-cy="hero-section"
@@ -19,19 +23,17 @@ const Hero = () => {
           <Logo width={"250px"} />
           <Heading fontSize={{ base: "3xl", md: "2xl", lg: "3xl" }}>
             <Text as={"span"} position={"relative"}>
-              Simplify your sales - Increase your revenue
+              {t('hero.mainSlogan')}
             </Text>
           </Heading>
           <Text fontSize={{ base: "md", lg: "lg" }} color={"gray.500"}>
-            Making voucher and gift card management easy. Pranzo offers a
-            simple and easy-to-use solution for creating, selling and
-            administering lunch cards.
+            {t('hero.promoText')}
 
           </Text>
 
           <Heading fontSize={{ base: "1xl", md: "1xl", lg: "1xl" }}>
             <Text as={"span"} position={"relative"}>
-            Low start-up fee and no subscriptions costs. Pay as you go!
+            {t('hero.subSlogan')}
             </Text>
           </Heading>
         </Stack>

@@ -8,35 +8,14 @@ import {
   VisuallyHidden,
   useColorMode,
 } from "@chakra-ui/react";
-import Logo from '../content/Logo'
+import Logo from "../content/Logo";
+import { FlagIcon } from "react-flag-kit";
 import { FaInstagram, FaTwitter, FaYoutube, FaMoon } from "react-icons/fa";
-
-const SocialButton = ({ children, label, href }) => {
-  return (
-    <chakra.button
-      bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
-      rounded={"full"}
-      w={8}
-      h={8}
-      cursor={"pointer"}
-      as={"a"}
-      href={href}
-      display={"inline-flex"}
-      alignItems={"center"}
-      justifyContent={"center"}
-      transition={"background 0.3s ease"}
-      _hover={{
-        bg: useColorModeValue("blackAlpha.200", "whiteAlpha.200"),
-      }}
-    >
-      <VisuallyHidden>{label}</VisuallyHidden>
-      {children}
-    </chakra.button>
-  );
-};
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { t, i18n } = useTranslation();
+  const {  toggleColorMode } = useColorMode();
   return (
     <Box
       data-cy="footer"
@@ -57,21 +36,33 @@ const Footer = () => {
         align={{ base: "center", md: "center" }}
       >
         <Logo />
-        <Text fontSize='sm'>Voucher And Gift Card Management Made Easy</Text>
-        <Stack direction={"row"} spacing={6}>
-          <FaMoon
-            style={{ marginTop: "8", cursor: "pointer" }}
-            onClick={toggleColorMode}
-          />
-          <SocialButton label={"Twitter"} href={"#"}>
-            <FaTwitter />
-          </SocialButton>
-          <SocialButton label={"YouTube"} href={"#"}>
-            <FaYoutube />
-          </SocialButton>
-          <SocialButton label={"Instagram"} href={"#"}>
-            <FaInstagram />
-          </SocialButton>
+        <Text fontSize="sm">{t("footer.slogan")}</Text>
+        {/* <Text fontSize='sm'>Voucher And Gift Card Management Made Easy</Text> */}
+
+        <Stack direction={"row"} spacing={3}>
+          <Box h="24px">
+            {i18n.language === "GB" ? (
+              <FlagIcon
+                code="SE"
+                style={{ cursor: "pointer" }}
+                size={20}
+                onClick={() => i18n.changeLanguage("SE")}
+              />
+            ) : (
+              <FlagIcon
+                code="GB"
+                style={{ cursor: "pointer" }}
+                size={20}
+                onClick={() => i18n.changeLanguage("GB")}
+              />
+            )}
+          </Box>
+          <Box h="24px">
+            <FaMoon
+              style={{cursor: "pointer" }}
+              onClick={toggleColorMode}
+            />
+          </Box>
         </Stack>
       </Container>
     </Box>
