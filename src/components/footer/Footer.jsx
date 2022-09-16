@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import Logo from '../content/Logo'
 import { FaInstagram, FaTwitter, FaYoutube, FaMoon } from "react-icons/fa";
+import { useTranslation } from 'react-i18next'
 
 const SocialButton = ({ children, label, href }) => {
   return (
@@ -36,6 +37,7 @@ const SocialButton = ({ children, label, href }) => {
 };
 
 const Footer = () => {
+  const { t } = useTranslation();
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Box
@@ -57,7 +59,8 @@ const Footer = () => {
         align={{ base: "center", md: "center" }}
       >
         <Logo />
-        <Text fontSize='sm'>Voucher And Gift Card Management Made Easy</Text>
+        <Text fontSize='sm'>{t('footer.slogan')}</Text>
+        {/* <Text fontSize='sm'>Voucher And Gift Card Management Made Easy</Text> */}
         <Stack direction={"row"} spacing={6}>
           <FaMoon
             style={{ marginTop: "8", cursor: "pointer" }}

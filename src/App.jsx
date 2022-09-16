@@ -1,11 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/app_bar/Navigation";
-// import Project from "./components/project/Project";
-// import ProjectCreate from "./components/project/ProjectCreate";
 import Landing from "./components/content/Landing";
 import ProtectedRoute from "./ProtectedRoute";
 import SignUp from "./components/auth/SignUp";
-// import Toast from "./components/app_bar/Toast";
 import Footer from "./components/footer/Footer";
 import { Box } from "@chakra-ui/react";
 
