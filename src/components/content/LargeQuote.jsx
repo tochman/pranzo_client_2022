@@ -1,6 +1,9 @@
 import { Avatar, Box, Stack, Text, useColorModeValue } from '@chakra-ui/react';
+import { useTranslation } from "react-i18next";
 
 const LargeQuote = () => {
+  const { t } = useTranslation();
+
   return (
     <Stack
       bg={useColorModeValue('gray.50', 'gray.800')}
@@ -14,10 +17,7 @@ const LargeQuote = () => {
         textAlign={'center'}
         maxW={'3xl'}
         as={'i'}>
-        "We had an incredible experience working with Pranzo and were
-        impressed they made such a big difference in only three weeks. Our team
-        is so grateful for the wonderful improvements they made and their
-        ability to get familiar with the product concept so quickly.""
+        {`"${t('testimonials.1.content')}"`}
       </Text>
       <Box textAlign={'center'}>
         <Avatar
@@ -28,9 +28,9 @@ const LargeQuote = () => {
           mb={2}
         />
 
-        <Text fontWeight={600}>John Doe</Text>
+        <Text fontWeight={600}>{t('testimonials.1.sender.name')}</Text>
         <Text fontSize={'sm'} color={useColorModeValue('gray.400', 'gray.400')}>
-          Owner - The Other Place, Lerum
+        {t('testimonials.1.sender.title')}
         </Text>
       </Box>
     </Stack>

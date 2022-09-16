@@ -7,6 +7,7 @@ import {
   Stack,
   Collapse,
   Image,
+  useColorMode,
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
@@ -17,6 +18,7 @@ import MobileNav from "./MobileNav";
 import colorLogo from "../../assets/pranzo_color.png";
 import whiteLogo from "../../assets/pranzo_white.png";
 import { FlagIcon } from "react-flag-kit";
+import { FaMoon } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
 // import { useSelector } from "react-redux";
@@ -24,6 +26,8 @@ import { useTranslation } from "react-i18next";
 const Navigation = () => {
   const { i18n } = useTranslation();
   const { isOpen, onToggle } = useDisclosure();
+  const { toggleColorMode } = useColorMode();
+
   // const { currentUser } = useSelector((state) => state.user);
   const currentUser = {};
   return (
@@ -78,24 +82,26 @@ const Navigation = () => {
           direction={"row"}
           spacing={6}
         >
-          {i18n.language === "GB" ? (
-            <FlagIcon
-              code="SE"
-              size={24}
-              data-cy="flag"
-              style={{cursor: 'pointer'}}
-              onClick={() => i18n.changeLanguage("SE")}
-            />
-          ) : (
-            <FlagIcon
-              code="GB"
-              size={24}
-              data-cy="flag"
-              style={{cursor: 'pointer'}}
-              onClick={() => i18n.changeLanguage("GB")}
-            />
-          )}
-          <Box />
+            {i18n.language === "GB" ? (
+              <FlagIcon
+                code="SE"
+                size={24}
+                data-cy="flag"
+                style={{ cursor: "pointer" }}
+                onClick={() => i18n.changeLanguage("SE")}
+              />
+            ) : (
+              <FlagIcon
+                code="GB"
+                size={24}
+                data-cy="flag"
+                style={{ cursor: "pointer" }}
+                onClick={() => i18n.changeLanguage("GB")}
+              />
+            )}
+          <Box >
+            <FaMoon style={{ cursor: "pointer" }} onClick={toggleColorMode} />
+          </Box>
 
           {!currentUser && (
             <>
