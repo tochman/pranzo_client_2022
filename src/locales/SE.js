@@ -1,5 +1,9 @@
 export const SE = {
   translation: {
+    appBar: {
+      signIn: 'Logga in',
+      signUp: 'Registrera'
+    },
     footer: { slogan: "Lunchkort och presentkort på ett enklare sätt" },
     hero: {
       mainSlogan: "Förenkla din försäljning – Öka dina intäkter",

@@ -8,7 +8,8 @@ import {
   Avatar,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { FaTrophy, FaChartPie, FaMoneyBillAlt } from "react-icons/fa";
+import { FiActivity, FiUsers, FiThumbsUp } from "react-icons/fi";
+
 import { useTranslation } from "react-i18next";
 
 const Testimonial = ({ children }) => {
@@ -105,7 +106,7 @@ export default function SellingPoints() {
                 {t("sellingPoints.right.content")}
               </TestimonialText>
             </TestimonialContent>
-            <TestimonialAvatar component={<FaTrophy size={"52"} />} />
+            <TestimonialAvatar component={<FiThumbsUp size={"52"} />} />
           </Testimonial>
           <Testimonial>
             <TestimonialContent>
@@ -116,7 +117,7 @@ export default function SellingPoints() {
                 {t("sellingPoints.middle.content")}
               </TestimonialText>
             </TestimonialContent>
-            <TestimonialAvatar component={<FaChartPie size={"52"} />} />
+            <TestimonialAvatar component={<FiUsers size={"52"} />} />
           </Testimonial>
           <Testimonial>
             <TestimonialContent>
@@ -127,7 +128,7 @@ export default function SellingPoints() {
                 {t("sellingPoints.left.content")}
               </TestimonialText>
             </TestimonialContent>
-            <TestimonialAvatar component={<FaMoneyBillAlt size={"52"} />} />
+            <TestimonialAvatar component={<FiActivity size={"52"} />} />
           </Testimonial>
         </Stack>
       </Container>

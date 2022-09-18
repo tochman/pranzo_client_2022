@@ -1,5 +1,9 @@
 export const GB = {
   translation: {
+    appBar: {
+      signIn: 'Sign In',
+      signUp: 'Sign Up'
+    },
     footer: { slogan: "Voucher And Gift Card Management Made Easy" },
     hero: {
       mainSlogan: "Simplify your sales - Increase your revenue",

@@ -7,6 +7,12 @@ import {
   Stack,
   Collapse,
   Image,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuDivider,
+  Avatar,
   useColorMode,
   useColorModeValue,
   useBreakpointValue,
@@ -21,15 +27,14 @@ import { FlagIcon } from "react-flag-kit";
 import { FaMoon } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Navigation = () => {
-  const { i18n } = useTranslation();
   const { isOpen, onToggle } = useDisclosure();
+  const { i18n, t } = useTranslation();
   const { toggleColorMode } = useColorMode();
 
-  // const { currentUser } = useSelector((state) => state.user);
-  const currentUser = {};
+  const { currentUser } = useSelector((state) => state.user);
   return (
     <Box data-cy="navigation-bar">
       <Flex
@@ -58,30 +63,19 @@ const Navigation = () => {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Text
-            textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontFamily={"heading"}
-            color={useColorModeValue("gray.800", "white")}
-          >
-            <Image
-              htmlWidth={"120px"}
-              htmlHeight={"auto"}
-              objectFit="fit"
-              src={useColorModeValue(colorLogo, whiteLogo)}
-            />
-          </Text>
-
+          <Image
+            htmlWidth={"120px"}
+            htmlHeight={"auto"}
+            objectFit="fit"
+            src={useColorModeValue(colorLogo, whiteLogo)}
+          />
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
         </Flex>
 
-        <Stack
-          flex={{ base: 1, md: 0 }}
-          justify={"flex-end"}
-          direction={"row"}
-          spacing={6}
-        >
+        <Flex alignItems={"center"}>
+          <Box mr={4}>
             {i18n.language === "GB" ? (
               <FlagIcon
                 code="SE"
@@ -99,37 +93,63 @@ const Navigation = () => {
                 onClick={() => i18n.changeLanguage("GB")}
               />
             )}
-          <Box >
+          </Box>
+          <Box mr={4}>
             <FaMoon style={{ cursor: "pointer" }} onClick={toggleColorMode} />
           </Box>
-
-          {!currentUser && (
+          {!currentUser ? (
             <>
-              <Button
-                as={"a"}
-                fontSize={"sm"}
-                fontWeight={400}
-                variant={"link"}
-                href={"#"}
-              >
-                Sign In
-              </Button>
-              <Button
-                display={{ base: "none", md: "inline-flex" }}
-                fontSize={"sm"}
-                fontWeight={600}
-                color={"white"}
-                bg={"pink.400"}
-                href={"#"}
-                _hover={{
-                  bg: "pink.300",
-                }}
-              >
-                Sign Up
-              </Button>
+              <Box mr={4}>
+                <Button
+                  as={"a"}
+                  fontSize={"sm"}
+                  fontWeight={400}
+                  variant={"link"}
+                  href={"#"}
+                  data-cy="sign-in-button"
+                >
+                  {t('appBar.signIn')}
+                </Button>
+              </Box>
+              <Box mr={4}>
+                <Button
+                  display={{ base: "none", md: "inline-flex" }}
+                  fontSize={"sm"}
+                  fontWeight={600}
+                  colorScheme="pink"
+                  href={"#"}
+                  data-cy="sign-up-button"
+                >
+                  {t('appBar.signUp')}
+                </Button>
+              </Box>
             </>
+          ) : (
+            <Menu>
+              <MenuButton
+                as={Button}
+                rounded={"full"}
+                variant={"link"}
+                cursor={"pointer"}
+                minW={0}
+              >
+                <Avatar
+                  size={"sm"}
+                  src={"https://source.unsplash.com/random/?avatar"}
+                />
+              </MenuButton>
+              <MenuList>
+                <MenuItem style={{ outline: "none", borderColor: 'transparent' }}>
+                  {currentUser.name}
+                </MenuItem>
+
+                <MenuDivider />
+                <MenuItem style={{ outline: "none", borderColor: 'transparent' }}>More content...</MenuItem>
+              </MenuList>
+            </Menu>
           )}
-        </Stack>
+        </Flex>
+        {/* </Stack> */}
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>

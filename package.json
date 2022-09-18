@@ -17,6 +17,7 @@
     "@chakra-ui/react": "^2.3.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@reduxjs/toolkit": "^1.8.5",
     "framer-motion": "^6",
     "i18next": "^21.9.1",
     "react": "^18.2.0",

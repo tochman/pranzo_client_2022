@@ -12,7 +12,7 @@ const Landing = () => {
       <Hero />
       <Box bg={useColorModeValue("white", "gray.700")}>
         <Stack pt={30} pb={10} align={"center"} ml={48} mr={48}>
-          <Button colorScheme="pink" size={"lg"}>
+          <Button colorScheme="pink" size={"lg"} style={{ outline: "none", borderColor: 'transparent' }}>
             {t("hero.buttonText")}
           </Button>
           <Stack mt={20}>
