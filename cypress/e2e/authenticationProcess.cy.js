@@ -77,7 +77,7 @@ describe("Authentication:", () => {
           .and("be.an", "object");
       });
 
-      it("is expected to redirect user to main view", () => {
+      it.only("is expected to redirect user to main view", () => {
         cy.location("pathname").should("eq", "/");
       });
     });

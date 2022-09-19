@@ -14,6 +14,7 @@ import {
   useColorMode,
   useColorModeValue,
   useDisclosure,
+  HStack,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import DesktopNav from "./DesktopNav";
@@ -21,7 +22,7 @@ import MobileNav from "./MobileNav";
 import colorLogo from "../../assets/pranzo_color.png";
 import whiteLogo from "../../assets/pranzo_white.png";
 import { FlagIcon } from "react-flag-kit";
-import { FaMoon } from "react-icons/fa";
+import { FiMoon, FiUser, FiLogOut } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -93,7 +94,7 @@ const Navigation = () => {
             )}
           </Box>
           <Box mr={4}>
-            <FaMoon style={{ cursor: "pointer" }} onClick={toggleColorMode} />
+            <FiMoon style={{ cursor: "pointer" }} onClick={toggleColorMode} />
           </Box>
           {!currentUser ? (
             <>
@@ -138,19 +139,30 @@ const Navigation = () => {
                 />
               </MenuButton>
               <MenuList>
-                <MenuItem
-                  data-cy="user-name"
-                  style={{ outline: "none", borderColor: "transparent" }}
-                >
-                  {currentUser.name}
-                </MenuItem>
+                <HStack>
+                  <MenuItem
+                    data-cy="user-name"
+                    style={{ outline: "none", borderColor: "transparent" }}
+                  >
+                    <FiUser />
+                    <Box pl={2}>{currentUser.name}</Box>
+                  </MenuItem>
+                </HStack>
 
                 <MenuDivider />
-                <MenuItem
-                  style={{ outline: "none", borderColor: "transparent" }}
-                >
-                  More content...
-                </MenuItem>
+
+                  <HStack>
+                    <MenuItem
+                      onClick={() => {
+                        debugger;
+                      }}
+                      data-cy="user-name"
+                      style={{ outline: "none", borderColor: "transparent" }}
+                    >
+                      <FiLogOut />
+                      <Box pl={2}>Log out</Box>
+                    </MenuItem>
+                  </HStack>
               </MenuList>
             </Menu>
           )}

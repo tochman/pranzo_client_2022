@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import Logo from "../content/Logo";
 import { FlagIcon } from "react-flag-kit";
-import { FaInstagram, FaTwitter, FaYoutube, FaMoon } from "react-icons/fa";
+import { FiMoon } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 
 const Footer = () => {
@@ -58,7 +58,7 @@ const Footer = () => {
             )}
           </Box>
           <Box h="24px">
-            <FaMoon
+            <FiMoon
               style={{cursor: "pointer" }}
               onClick={toggleColorMode}
             />
