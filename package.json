@@ -17,8 +17,10 @@
     "@chakra-ui/react": "^2.3.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@reduxjs/toolkit": "^1.8.5",
     "framer-motion": "^6",
     "i18next": "^21.9.1",
+    "j-tockauth": "^1.2.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-flag-kit": "^1.1.1",
@@ -33,6 +35,7 @@
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.1.0",
     "cypress": "^10.8.0",
+    "cypress-pipe": "^2.0.0",
     "start-server-and-test": "^1.14.0",
     "vite": "^3.1.0"
   }

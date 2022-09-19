@@ -1,0 +1,19 @@
+{
+  "status": "error",
+  "data": {
+    "id": null,
+    "provider": "email",
+    "uid": "",
+    "allow_password_change": true,
+    "name": null,
+    "email": "",
+    "role": "vendor",
+    "created_at": null,
+    "updated_at": null,
+    "vendor_id": null
+  },
+  "errors": {
+    "email": [ "can't be blank" ],
+    "full_messages": [ "Email can't be blank" ]
+  }
+}

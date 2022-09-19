@@ -1,16 +1,20 @@
 import {
   Box,
   Flex,
-  Text,
   IconButton,
   Button,
-  Stack,
   Collapse,
   Image,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuDivider,
+  Avatar,
   useColorMode,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
+  HStack,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import DesktopNav from "./DesktopNav";
@@ -18,18 +22,18 @@ import MobileNav from "./MobileNav";
 import colorLogo from "../../assets/pranzo_color.png";
 import whiteLogo from "../../assets/pranzo_white.png";
 import { FlagIcon } from "react-flag-kit";
-import { FaMoon } from "react-icons/fa";
+import { FiMoon, FiUser, FiLogOut } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
-
-// import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navigation = () => {
-  const { i18n } = useTranslation();
   const { isOpen, onToggle } = useDisclosure();
+  const { i18n, t } = useTranslation();
   const { toggleColorMode } = useColorMode();
+  const navigate = useNavigate();
 
-  // const { currentUser } = useSelector((state) => state.user);
-  const currentUser = {};
+  const { currentUser } = useSelector((state) => state.user);
   return (
     <Box data-cy="navigation-bar">
       <Flex
@@ -58,34 +62,23 @@ const Navigation = () => {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Text
-            textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontFamily={"heading"}
-            color={useColorModeValue("gray.800", "white")}
-          >
-            <Image
-              htmlWidth={"120px"}
-              htmlHeight={"auto"}
-              objectFit="fit"
-              src={useColorModeValue(colorLogo, whiteLogo)}
-            />
-          </Text>
-
+          <Image
+            htmlWidth={"120px"}
+            htmlHeight={"auto"}
+            objectFit="fit"
+            src={useColorModeValue(colorLogo, whiteLogo)}
+          />
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
         </Flex>
 
-        <Stack
-          flex={{ base: 1, md: 0 }}
-          justify={"flex-end"}
-          direction={"row"}
-          spacing={6}
-        >
+        <Flex alignItems={"center"}>
+          <Box mr={4}>
             {i18n.language === "GB" ? (
               <FlagIcon
                 code="SE"
-                size={24}
+                size={20}
                 data-cy="flag"
                 style={{ cursor: "pointer" }}
                 onClick={() => i18n.changeLanguage("SE")}
@@ -93,43 +86,88 @@ const Navigation = () => {
             ) : (
               <FlagIcon
                 code="GB"
-                size={24}
+                size={20}
                 data-cy="flag"
                 style={{ cursor: "pointer" }}
                 onClick={() => i18n.changeLanguage("GB")}
               />
             )}
-          <Box >
-            <FaMoon style={{ cursor: "pointer" }} onClick={toggleColorMode} />
           </Box>
-
-          {!currentUser && (
+          <Box mr={4}>
+            <FiMoon style={{ cursor: "pointer" }} onClick={toggleColorMode} />
+          </Box>
+          {!currentUser ? (
             <>
-              <Button
-                as={"a"}
-                fontSize={"sm"}
-                fontWeight={400}
-                variant={"link"}
-                href={"#"}
-              >
-                Sign In
-              </Button>
-              <Button
-                display={{ base: "none", md: "inline-flex" }}
-                fontSize={"sm"}
-                fontWeight={600}
-                color={"white"}
-                bg={"pink.400"}
-                href={"#"}
-                _hover={{
-                  bg: "pink.300",
-                }}
-              >
-                Sign Up
-              </Button>
+              <Box mr={4}>
+                <Button
+                  as={"a"}
+                  fontSize={"sm"}
+                  fontWeight={400}
+                  variant={"link"}
+                  onClick={() => navigate("/auth/sign-in")}
+                  data-cy="sign-in-button"
+                >
+                  {t("appBar.signIn")}
+                </Button>
+              </Box>
+              <Box mr={4}>
+                <Button
+                  display={{ base: "none", md: "inline-flex" }}
+                  fontSize={"sm"}
+                  fontWeight={600}
+                  colorScheme="pink"
+                  onClick={() => navigate("/auth/sign-up")}
+                  data-cy="sign-up-button"
+                >
+                  {t("appBar.signUp")}
+                </Button>
+              </Box>
             </>
+          ) : (
+            <Menu>
+              <MenuButton
+                as={Button}
+                rounded={"full"}
+                variant={"link"}
+                cursor={"pointer"}
+                minW={0}
+                data-cy="user-avatar"
+              >
+                <Avatar
+                  size={"sm"}
+                  src={"https://source.unsplash.com/random/?avatar"}
+                />
+              </MenuButton>
+              <MenuList>
+                <HStack>
+                  <MenuItem
+                    data-cy="user-name"
+                    style={{ outline: "none", borderColor: "transparent" }}
+                  >
+                    <FiUser />
+                    <Box pl={2}>{currentUser.name}</Box>
+                  </MenuItem>
+                </HStack>
+
+                <MenuDivider />
+
+                  <HStack>
+                    <MenuItem
+                      onClick={() => {
+                        debugger;
+                      }}
+                      data-cy="user-name"
+                      style={{ outline: "none", borderColor: "transparent" }}
+                    >
+                      <FiLogOut />
+                      <Box pl={2}>Log out</Box>
+                    </MenuItem>
+                  </HStack>
+              </MenuList>
+            </Menu>
           )}
-        </Stack>
+        </Flex>
+        {/* </Stack> */}
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>

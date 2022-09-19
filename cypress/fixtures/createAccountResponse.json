@@ -1,0 +1,11 @@
+{
+  "status": "success",
+  "data": {
+    "id": 1,
+    "name": "Random Guy",
+    "email": "random.guy@mail.com",
+    "provider": "email",
+    "uid": "random.guy@mail.com",
+    "allow_password_change": false
+  }
+}
