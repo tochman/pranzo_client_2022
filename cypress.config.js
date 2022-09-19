@@ -11,5 +11,7 @@ export default defineConfig({
       apiUrl: "http://localhost:3001",
     },
     screenshotOnRunFailure: false,
+    supportFile: 'cypress/support/e2e.js'
+
   },
 });

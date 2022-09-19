@@ -78,7 +78,7 @@ const Navigation = () => {
             {i18n.language === "GB" ? (
               <FlagIcon
                 code="SE"
-                size={24}
+                size={20}
                 data-cy="flag"
                 style={{ cursor: "pointer" }}
                 onClick={() => i18n.changeLanguage("SE")}
@@ -86,7 +86,7 @@ const Navigation = () => {
             ) : (
               <FlagIcon
                 code="GB"
-                size={24}
+                size={20}
                 data-cy="flag"
                 style={{ cursor: "pointer" }}
                 onClick={() => i18n.changeLanguage("GB")}
@@ -104,7 +104,7 @@ const Navigation = () => {
                   fontSize={"sm"}
                   fontWeight={400}
                   variant={"link"}
-                  onClick={() => navigate("/auth")}
+                  onClick={() => navigate("/auth/sign-in")}
                   data-cy="sign-in-button"
                 >
                   {t("appBar.signIn")}
@@ -116,7 +116,7 @@ const Navigation = () => {
                   fontSize={"sm"}
                   fontWeight={600}
                   colorScheme="pink"
-                  onClick={() => navigate("/auth")}
+                  onClick={() => navigate("/auth/sign-up")}
                   data-cy="sign-up-button"
                 >
                   {t("appBar.signUp")}

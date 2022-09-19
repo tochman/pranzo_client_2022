@@ -15,12 +15,12 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { registerUser } from "../../state/features/authentication";
+import { signInUser } from "../../state/features/authentication";
 
-const SignUp = () => {
+const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { authenticated } = useSelector((state) => state.user);
+  const { authenticated, currentUser } = useSelector((state) => state.user);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -29,17 +29,11 @@ const SignUp = () => {
 
   const handleFormSubmission = (event) => {
     event.preventDefault();
-    const name = event.target["name"].value;
     const email = event.target["email"].value;
     const password = event.target["password"].value;
-    const passwordConf = event.target["password-conf"].value;
-    const params = {
-      name: name,
-      email: email,
-      password: password,
-      passwordConf: passwordConf,
-    };
-    dispatch(registerUser(params));
+
+    dispatch(signInUser({ email: email, password: password }));
+
   };
 
   return (
@@ -47,37 +41,22 @@ const SignUp = () => {
       <Flex p={8} flex={1} align={"center"} justify={"center"}>
         <Stack spacing={4} w={"full"} maxW={"md"}>
           <Heading fontSize={"2xl"}>
-            {t("authentication.registerNewAccount.header")}
+            {t("authentication.signIn.header")}
           </Heading>
-          <form data-cy="create-account-form" onSubmit={handleFormSubmission}>
+          <form data-cy="sign-in-form" onSubmit={handleFormSubmission}>
             <FormControl>
               <FormLabel>
-                {t("authentication.registerNewAccount.name")}
-              </FormLabel>
-              <Input name="name" data-cy="name" type="text" />
-            </FormControl>
-            <FormControl>
-              <FormLabel>
-                {t("authentication.registerNewAccount.email")}
+                {t("authentication.signIn.email")}
               </FormLabel>
               <Input name="email" data-cy="email" type="email" />
             </FormControl>
             <FormControl>
               <FormLabel>
-                {t("authentication.registerNewAccount.password")}
+                {t("authentication.signIn.password")}
               </FormLabel>
               <Input name="password" data-cy="password" type="password" />
             </FormControl>
-            <FormControl>
-              <FormLabel>
-                {t("authentication.registerNewAccount.passwordConfirmation")}
-              </FormLabel>
-              <Input
-                name="password-conf"
-                data-cy="password-conf"
-                type="password"
-              />
-            </FormControl>
+
             <Stack spacing={6}>
               <Button
                 data-cy="submit"
@@ -85,7 +64,7 @@ const SignUp = () => {
                 variant={"solid"}
                 type="submit"
               >
-                 {t("authentication.submit")}
+                {t("authentication.submit")}
               </Button>
             </Stack>
           </form>
@@ -102,4 +81,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignIn;

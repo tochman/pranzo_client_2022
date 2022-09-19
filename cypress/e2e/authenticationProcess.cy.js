@@ -31,11 +31,11 @@ describe("Authentication:", () => {
     });
   });
 
-  describe("by navigating to, ", () => {
+  describe("by navigating to SINGN-UP, ", () => {
     beforeEach("- ACTIONS intercept calls, navigate --", () => {
       cy.getCy("sign-up-button").click();
     });
-    context("and submitting the registration form", () => {
+    context("and submitting an VALID registration form", () => {
       beforeEach("- ACTIONS fill in form --", () => {
         cy.intercept("POST", "**/auth", {
           fixture: "authenticatedUser.json",
@@ -70,15 +70,140 @@ describe("Authentication:", () => {
 
       it("is expected to store currentUser in application state", () => {
         cy.wait("@signUp");
-        cy.applicationState()
-          .invoke("getState")
-          .its("user.currentUser")
+        cy.window()
+          .pipe((window) => window.store.getState().user.currentUser)
           .should("not.be", "undefined")
           .and("be.an", "object");
       });
 
-      it.only("is expected to redirect user to main view", () => {
+      it("is expected to redirect user to main view", () => {
         cy.location("pathname").should("eq", "/");
+      });
+    });
+
+    context("and submitting an INVALID registration form", () => {
+      beforeEach("- ACTIONS fill in form --", () => {
+        cy.intercept("POST", "**/auth", {
+          fixture: "authenticationError.json",
+          statusCode: 422,
+        }).as("failedSignUp");
+
+        cy.getCy("create-account-form").within(() => {
+          cy.getCy("name").type("Random Guy");
+          cy.getCy("password").type("password");
+          cy.getCy("password-conf").type("password");
+          cy.get("[data-cy=submit]").click();
+        });
+      });
+
+      it("is expected to make a network call on submit", () => {
+        cy.wait("@failedSignUp").its("request.method").should("eql", "POST");
+      });
+
+      it("is expected to include form data as params", () => {
+        cy.wait("@failedSignUp").then(({ request }) => {
+          expect(request.body.name).to.eql("Random Guy");
+          expect(request.body.email).to.eql("");
+          expect(request.body.password).to.eql("password");
+          expect(request.body.passwordConf).to.eql("password");
+        });
+      });
+
+      it("is expected to redirect user to main view", () => {
+        cy.location("pathname").should("eq", "/auth/sign-up");
+      });
+
+      it("is expected to display an error message", () => {
+        cy.get("body").should("contain.text", "Email can't be blank");
+      });
+    });
+  });
+
+  describe("by navigating to SINGN-IN, ", () => {
+    beforeEach("- ACTIONS intercept calls, navigate --", () => {
+      cy.getCy("sign-in-button").click();
+    });
+    context("and submitting an VALID registration form", () => {
+      beforeEach("- ACTIONS fill in form --", () => {
+        cy.intercept("POST", "**/auth/sign_in", {
+          fixture: "authenticatedUser.json",
+        }).as("signIn");
+        cy.intercept("GET", "**/auth/validate_token", {
+          fixture: "authenticatedUser.json",
+          headers: { uid: "random.guy@mail.com" },
+        });
+        cy.getCy("sign-in-form").within(() => {
+          cy.getCy("email").type("random.guy@email.com");
+          cy.getCy("password").type("password");
+          cy.get("[data-cy=submit]").click();
+        });
+      });
+      it("is expected to make a network call on submit", () => {
+        cy.wait("@signIn").its("request.method").should("eql", "POST");
+      });
+
+      it("is expected to include form data as params", () => {
+        cy.wait("@signIn").then(({ request }) => {
+          expect(request.body.email).to.eql("random.guy@email.com");
+          expect(request.body.password).to.eql("password");
+        });
+      });
+
+      it("is expected to store currentUser in application state", () => {
+        cy.wait("@signIn");
+        // using cypress-pipe
+        // const getUser = (window) => window.store.getState().user.currentUser;
+        cy.window()
+          .pipe((window) => window.store.getState().user.currentUser)
+          .should("not.be", "undefined")
+          .and("be.an", "object");
+        //   default way failing
+        // cy.applicationState()
+        //   .invoke("getState")
+        //   .its("user.currentUser")
+        //   .should("not.be", "undefined")
+        //   .and("be.an", "object");
+      });
+
+      it("is expected to redirect user to main view", () => {
+        cy.location("pathname").should("eq", "/");
+      });
+    });
+
+    context("and submitting an INVALID sign in form", () => {
+      beforeEach("- ACTIONS fill in form --", () => {
+        cy.intercept("POST", "**/auth/sign_in", {
+          fixture: "signUpAuthenticationError.json",
+          statusCode: 422,
+        }).as("failedSignIn");
+
+        cy.getCy("sign-in-form").within(() => {
+          cy.getCy("email").type("random.guy@mail.com");
+          cy.getCy("password").type("WRONG-PASSWORD");
+          cy.get("[data-cy=submit]").click();
+        });
+      });
+
+      it("is expected to make a network call on submit", () => {
+        cy.wait("@failedSignIn").its("request.method").should("eql", "POST");
+      });
+
+      it("is expected to include form data as params", () => {
+        cy.wait("@failedSignIn").then(({ request }) => {
+          expect(request.body.email).to.eql("random.guy@mail.com");
+          expect(request.body.password).to.eql("WRONG-PASSWORD");
+        });
+      });
+
+      it("is expected to display sign in form", () => {
+        cy.location("pathname").should("eq", "/auth/sign-in");
+      });
+
+      it("is expected to display an error message", () => {
+        cy.get("body").should(
+          "contain.text",
+          "Invalid login credentials. Please try again."
+        );
       });
     });
   });

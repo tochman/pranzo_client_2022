@@ -1,11 +1,15 @@
 {
   "status": "success",
   "data": {
-    "id": 1,
-    "name": "Random Guy",
-    "email": "random.guy@mail.com",
+    "id": 895,
     "provider": "email",
-    "uid": "random.guy@mail.com",
-    "allow_password_change": false
+    "uid": "user@mail.com",
+    "allow_password_change": true,
+    "name": "Kalle",
+    "email": "user@mail.com",
+    "role": "vendor",
+    "created_at": "2022-09-19T19:31:32.780Z",
+    "updated_at": "2022-09-19T19:31:32.800Z",
+    "vendor_id": null
   }
 }

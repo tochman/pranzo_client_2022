@@ -1,8 +1,24 @@
 export const GB = {
   translation: {
+    authentication: {
+      submit: "Submit",
+      signIn: {
+        header: "Sign in to your account",
+        email: "Your email",
+        password: "Password",
+      },
+
+      registerNewAccount: {
+        header: "Register a new account",
+        name: "Your name",
+        email: "Your email",
+        password: "Password",
+        passwordConfirmation: "Confirm your password",
+      },
+    },
     appBar: {
-      signIn: 'Sign In',
-      signUp: 'Sign Up'
+      signIn: "Sign In",
+      signUp: "Sign Up",
     },
     footer: { slogan: "Voucher And Gift Card Management Made Easy" },
     hero: {
@@ -11,7 +27,8 @@ export const GB = {
         "Making voucher and gift card management easy. Pranzo offers a simple and easy-to-use solution for creating, selling and administering pre-paid lunch or gift cards",
       subSlogan: "Low start-up fee and no subscriptions costs. Pay as you go!",
       buttonText: "Get started",
-      ctaText: "There's no upfront fee to register. We will charge you only if you actually benefit from the Pranzo plattform with a one time set-up fee of €45 and €1 per issued voucher."
+      ctaText:
+        "There's no upfront fee to register. We will charge you only if you actually benefit from the Pranzo plattform with a one time set-up fee of €45 and €1 per issued voucher.",
     },
     sellingPoints: {
       benefits: "Benefits",

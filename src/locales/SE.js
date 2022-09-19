@@ -1,5 +1,20 @@
 export const SE = {
   translation: {
+    authentication: {
+      submit: "Skicka",
+      signIn: {
+        header: "Logga in på ditt konto",
+        email: "Din mailadress",
+        password: "Lösenord",
+      },
+      registerNewAccount: {
+        header: "Skapa ett nytt konto",
+        name: "Ditt namn",
+        email: "Din mailadress",
+        password: "Lösenord",
+        passwordConfirmation: "Bekräfta ditt lösenord",
+      },
+    },
     appBar: {
       signIn: 'Logga in',
       signUp: 'Registrera'
