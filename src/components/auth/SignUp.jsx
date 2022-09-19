@@ -10,12 +10,28 @@ import {
   Stack,
   Image,
 } from "@chakra-ui/react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { registerUser } from "../../state/features/userSlice";
 
 const SignUp = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleFormSubmission = (event) => {
-    event.preventDefault()
-    debugger
-  }
+    event.preventDefault();
+    const name = event.target["name"].value;
+    const email = event.target["email"].value;
+    const password = event.target["password"].value;
+    const passwordConf = event.target["password-conf"].value;
+    const params = {
+      name: name,
+      email: email,
+      password: password,
+      passwordConf: passwordConf,
+    }
+    dispatch(registerUser(params));
+    navigate("/");
+  };
 
   return (
     <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
@@ -44,7 +60,12 @@ const SignUp = () => {
               />
             </FormControl>
             <Stack spacing={6}>
-              <Button data-cy="submit" colorScheme={"pink"} variant={"solid"} type="submit">
+              <Button
+                data-cy="submit"
+                colorScheme={"pink"}
+                variant={"solid"}
+                type="submit"
+              >
                 Submit
               </Button>
             </Stack>

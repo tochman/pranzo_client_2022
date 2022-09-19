@@ -32,7 +32,6 @@ const Navigation = () => {
   const { toggleColorMode } = useColorMode();
   const navigate = useNavigate();
 
-
   const { currentUser } = useSelector((state) => state.user);
   return (
     <Box data-cy="navigation-bar">
@@ -104,10 +103,10 @@ const Navigation = () => {
                   fontSize={"sm"}
                   fontWeight={400}
                   variant={"link"}
-                  onClick={()=> navigate('/auth')}
+                  onClick={() => navigate("/auth")}
                   data-cy="sign-in-button"
                 >
-                  {t('appBar.signIn')}
+                  {t("appBar.signIn")}
                 </Button>
               </Box>
               <Box mr={4}>
@@ -116,10 +115,10 @@ const Navigation = () => {
                   fontSize={"sm"}
                   fontWeight={600}
                   colorScheme="pink"
-                  onClick={()=> navigate('/auth')}
+                  onClick={() => navigate("/auth")}
                   data-cy="sign-up-button"
                 >
-                  {t('appBar.signUp')}
+                  {t("appBar.signUp")}
                 </Button>
               </Box>
             </>
@@ -131,6 +130,7 @@ const Navigation = () => {
                 variant={"link"}
                 cursor={"pointer"}
                 minW={0}
+                data-cy="user-avatar"
               >
                 <Avatar
                   size={"sm"}
@@ -138,12 +138,19 @@ const Navigation = () => {
                 />
               </MenuButton>
               <MenuList>
-                <MenuItem style={{ outline: "none", borderColor: 'transparent' }}>
+                <MenuItem
+                  data-cy="user-name"
+                  style={{ outline: "none", borderColor: "transparent" }}
+                >
                   {currentUser.name}
                 </MenuItem>
 
                 <MenuDivider />
-                <MenuItem style={{ outline: "none", borderColor: 'transparent' }}>More content...</MenuItem>
+                <MenuItem
+                  style={{ outline: "none", borderColor: "transparent" }}
+                >
+                  More content...
+                </MenuItem>
               </MenuList>
             </Menu>
           )}

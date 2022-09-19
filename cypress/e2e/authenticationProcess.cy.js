@@ -13,7 +13,7 @@ describe("Authentication:", () => {
     });
 
     context("currentUser present", () => {
-      before(() => {
+      beforeEach(() => {
         cy.authenticateUser({ name: "John Doe" });
       });
       it("is expected to show SignUp button in AppBar", () => {
@@ -23,20 +23,30 @@ describe("Authentication:", () => {
         cy.getCy("sign-in-button").should("not.exist");
       });
       it("is exprected to display currentUser´s name", () => {
-        cy.getCy("user-name").should("contain.text", "John Doe");
+        cy.getCy("user-avatar").click();
+        cy.getCy("user-name")
+          .should("contain.text", "John Doe")
+          .and("be.visible");
       });
     });
   });
 
   describe("by navigating to, ", () => {
     beforeEach("- ACTIONS intercept calls, navigate --", () => {
-      cy.intercept("POST", `${Cypress.env("apiUrl")}/auth**`, {
-        fixture: "createAccountResponse.json",
-      }).as("createAccount");
       cy.getCy("sign-up-button").click();
     });
     context("and submitting the registration form", () => {
       beforeEach("- ACTIONS fill in form --", () => {
+        cy.intercept("POST", "**/auth", {
+          fixture: "authenticatedUser.json",
+        }).as("signUp");
+        cy.intercept("POST", "**/auth/sign_in", {
+          fixture: "authenticatedUser.json",
+        }).as("signIn");
+        cy.intercept("GET", "**/auth/validate_token", {
+          fixture: "authenticatedUser.json",
+          headers: { uid: "random.guy@mail.com" },
+        });
         cy.getCy("create-account-form").within(() => {
           cy.getCy("name").type("Random Guy");
           cy.getCy("email").type("random.guy@email.com");
@@ -46,31 +56,30 @@ describe("Authentication:", () => {
         });
       });
       it("is expected to make a network call on submit", () => {
-        cy.wait("@createAccount").its("request.method").should("eql", "POST");
+        cy.wait("@signUp").its("request.method").should("eql", "POST");
       });
-  
+
       it("is expected to include form data as params", () => {
-        cy.wait("@createAccount").then(({ request }) => {
-          expect(request.body.params.name).to.eql("Random Guy");
-          expect(request.body.params.email).to.eql("random.guy@email.com");
-          expect(request.body.params.password).to.eql("password");
-          expect(request.body.params.passwordConf).to.eql("password");
+        cy.wait("@signUp").then(({ request }) => {
+          expect(request.body.name).to.eql("Random Guy");
+          expect(request.body.email).to.eql("random.guy@email.com");
+          expect(request.body.password).to.eql("password");
+          expect(request.body.passwordConf).to.eql("password");
         });
       });
-  
+
       it("is expected to store currentUser in application state", () => {
-        cy.wait("@createAccount");
+        cy.wait("@signUp");
         cy.applicationState()
           .invoke("getState")
           .its("user.currentUser")
           .should("not.be", "undefined")
           .and("be.an", "object");
       });
-  
-      it.only("is expected to redirect user to main view", () => {
-        cy.url().should("include", "/");
+
+      it("is expected to redirect user to main view", () => {
+        cy.location("pathname").should("eq", "/");
       });
     });
-
   });
 });
