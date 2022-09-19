@@ -1,10 +1,8 @@
 import {
   Box,
   Flex,
-  Text,
   IconButton,
   Button,
-  Stack,
   Collapse,
   Image,
   Menu,
@@ -15,7 +13,6 @@ import {
   Avatar,
   useColorMode,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
@@ -26,13 +23,15 @@ import whiteLogo from "../../assets/pranzo_white.png";
 import { FlagIcon } from "react-flag-kit";
 import { FaMoon } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
-
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Navigation = () => {
   const { isOpen, onToggle } = useDisclosure();
   const { i18n, t } = useTranslation();
   const { toggleColorMode } = useColorMode();
+  const navigate = useNavigate();
+
 
   const { currentUser } = useSelector((state) => state.user);
   return (
@@ -105,7 +104,7 @@ const Navigation = () => {
                   fontSize={"sm"}
                   fontWeight={400}
                   variant={"link"}
-                  href={"#"}
+                  onClick={()=> navigate('/auth')}
                   data-cy="sign-in-button"
                 >
                   {t('appBar.signIn')}
@@ -117,7 +116,7 @@ const Navigation = () => {
                   fontSize={"sm"}
                   fontWeight={600}
                   colorScheme="pink"
-                  href={"#"}
+                  onClick={()=> navigate('/auth')}
                   data-cy="sign-up-button"
                 >
                   {t('appBar.signUp')}

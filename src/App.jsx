@@ -8,7 +8,7 @@ import { Box } from "@chakra-ui/react";
 
 const App = () => {
   return (
-    <Box height={"100vh"}>
+    <Box height={"100vh"} w={'100vw'}>
       <Navigation />
       <Routes>
         <Route path="/" element={<Landing />} />

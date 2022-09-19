@@ -16,5 +16,10 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 
+before(() => {
+  cy.intercept("?restaurant", { fixture: "dummy.jpeg" })
+  cy.intercept("?avatar", { fixture: "dummy.jpeg" })
+});
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
