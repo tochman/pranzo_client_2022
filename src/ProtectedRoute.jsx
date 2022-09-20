@@ -1,20 +1,25 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-// import { setMessage } from "../state/features/messageSlice";
+import { createStandaloneToast } from "@chakra-ui/react";
+const { toast } = createStandaloneToast();
 
 const ProtectedRoute = () => {
   const location = useLocation();
-  const { currentUser } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+  const { authenticated } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!currentUser) {
-      // dispatch(setMessage([{content: "You can't do that!", status: 'error'}]));
-      // navigate("/auth", { state: { originalRoute: location } });
+    if (!authenticated) {
+      toast({
+        title: "You can't do that!",
+        description: "Please log in or register first.",
+        isClosable: true,
+        status: "error",
+      });
+      navigate("/auth/sign-in", { state: { originalRoute: location } });
     }
-  }, [currentUser, location, dispatch, navigate]);
+  }, [authenticated, location, navigate]);
 
   return <Outlet />;
 };

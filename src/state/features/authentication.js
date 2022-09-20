@@ -1,8 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import JtockAuth from "j-tockauth";
-import {createStandaloneToast} from '@chakra-ui/react'
+import { createStandaloneToast } from "@chakra-ui/react";
 const { toast } = createStandaloneToast();
-
 
 const auth = new JtockAuth({
   host: "http://localhost:3001",
@@ -23,7 +22,7 @@ const toastErrorMessage = (messages) => {
 
 export const registerUser = createAsyncThunk(
   "user/registerUser",
-  async (data, {dispatch}) => {
+  async (data, { dispatch }) => {
     try {
       const response = await auth.signUp(data);
       dispatch({ type: "user/setCurrentUser", payload: response.data });
