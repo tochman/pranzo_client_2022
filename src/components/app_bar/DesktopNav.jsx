@@ -7,19 +7,30 @@ import {
   PopoverContent,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import DesktopSubNav from "./DesktopSubNav";
 import { NAV_ITEMS } from "./NAV_ITEMS";
+import { VENDOR_NAV_ITEMS } from "./VENDOR_NAV_ITEMS";
 
 const DesktopNav = () => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
   const linkHoverColor = useColorModeValue("gray.800", "white");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
   const navigate = useNavigate();
+  const { currentUser, authenticated } = useSelector((state) => state.user);
+  const ITEMS = authenticated ? VENDOR_NAV_ITEMS : NAV_ITEMS;
+
+  // let ITEMS = []
+  // useEffect(() => {
+  //   console.table(ITEMS)
+  //   debugger;
+  // }, [ITEMS]);
 
   return (
     <Stack direction={"row"} spacing={4}>
-      {NAV_ITEMS.map((navItem) => (
+      {ITEMS.map((navItem) => (
         <Box key={navItem.label} data-cy={navItem.dataCy}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
@@ -48,9 +59,15 @@ const DesktopNav = () => {
                 minW={"sm"}
               >
                 <Stack>
-                  {navItem.children.map((child) => (
-                    <DesktopSubNav key={child.label} {...child} />
-                  ))}
+                  {navItem.children.map((child) => {
+                    if (child.condition) {
+                      return eval(child.condition) ? (
+                        <DesktopSubNav key={child.label} {...child} />
+                      ) : null;
+                    } else {
+                      return <DesktopSubNav key={child.label} {...child} />;
+                    }
+                  })}
                 </Stack>
               </PopoverContent>
             )}

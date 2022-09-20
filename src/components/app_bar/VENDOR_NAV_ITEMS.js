@@ -1,9 +1,22 @@
-export const NAV_ITEMS = [
+export const VENDOR_NAV_ITEMS = [
   {
-    label: 'Create Project',
-    dataCy: 'create-project',
-    href: '/projects/create'
- 
+    label: "Your Venue",
+    dataCy: "venue",
+
+    children: [
+      {
+        label: "Setup your venue",
+        dataCy: "venue-setup",
+        href: "/dashboard/venue",
+        condition: "!currentUser.vendor"
+      },
+      {
+        label: "Venue details",
+        dataCy: "venue-setup",
+        href: "/dashboard/venue",
+        condition: "currentUser.vendor"
+      },
+    ],
   },
   // {
   //   label: 'Find Work',
