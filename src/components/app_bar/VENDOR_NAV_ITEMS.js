@@ -1,17 +1,18 @@
 export const VENDOR_NAV_ITEMS = [
   {
-    label: "Your Venue",
-    dataCy: "venue",
+    label: "t('dashboard.headings.myVenue')",
+    dataCy: "my-venue",
 
     children: [
       {
-        label: "Setup your venue",
+        label: "t('dashboard.headings.setupVenue')",
+        subLabel: 'testing testing',
         dataCy: "venue-setup",
         href: "/dashboard/venue",
         condition: "!currentUser.vendor"
       },
       {
-        label: "Venue details",
+        label: "t('dashboard.headings.detailsVenue')",
         dataCy: "venue-setup",
         href: "/dashboard/venue",
         condition: "currentUser.vendor"

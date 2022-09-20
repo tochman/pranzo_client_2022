@@ -9,8 +9,10 @@ import {
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-const DesktopSubNav = ({ label, href, subLabel }) => {
+const DesktopSubNav = ({ label, href, subLabel , labelHandler}) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   return (
     <Link
@@ -28,9 +30,9 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
             _groupHover={{ color: "pink.400" }}
             fontWeight={500}
           >
-            {label}
+            {eval(label)}
           </Text>
-          <Text fontSize={"sm"}>{subLabel}</Text>
+          <Text fontSize={"sm"}>{labelHandler(subLabel)}</Text>
         </Box>
         <Flex
           transition={"all .3s ease"}

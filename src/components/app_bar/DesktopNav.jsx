@@ -7,29 +7,30 @@ import {
   PopoverContent,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import DesktopSubNav from "./DesktopSubNav";
 import { NAV_ITEMS } from "./NAV_ITEMS";
 import { VENDOR_NAV_ITEMS } from "./VENDOR_NAV_ITEMS";
-
 const DesktopNav = () => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
   const linkHoverColor = useColorModeValue("gray.800", "white");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { currentUser, authenticated } = useSelector((state) => state.user);
   const ITEMS = authenticated ? VENDOR_NAV_ITEMS : NAV_ITEMS;
 
-  // let ITEMS = []
-  // useEffect(() => {
-  //   console.table(ITEMS)
-  //   debugger;
-  // }, [ITEMS]);
-
+  const labelHandler = (label) => {
+    try {
+      return eval(label);
+    } catch {
+      return label;
+    }
+  };
   return (
-    <Stack direction={"row"} spacing={4}>
+    <Stack direction={"row"} spacing={4} data-cy="navigation-items">
       {ITEMS.map((navItem) => (
         <Box key={navItem.label} data-cy={navItem.dataCy}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
@@ -45,7 +46,7 @@ const DesktopNav = () => {
                   color: linkHoverColor,
                 }}
               >
-                {navItem.label}
+                {labelHandler(navItem.label)}
               </Link>
             </PopoverTrigger>
 
@@ -59,13 +60,23 @@ const DesktopNav = () => {
                 minW={"sm"}
               >
                 <Stack>
-                  {navItem.children.map((child) => {
+                  {navItem.children.map((child, index) => {
                     if (child.condition) {
                       return eval(child.condition) ? (
-                        <DesktopSubNav key={child.label} {...child} />
+                        <DesktopSubNav
+                          key={index}
+                          {...child}
+                          labelHandler={labelHandler}
+                        />
                       ) : null;
                     } else {
-                      return <DesktopSubNav key={child.label} {...child} />;
+                      return (
+                        <DesktopSubNav
+                          key={index}
+                          {...child}
+                          labelHandler={labelHandler}
+                        />
+                      );
                     }
                   })}
                 </Stack>

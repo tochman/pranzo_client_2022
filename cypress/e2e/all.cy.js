@@ -1,3 +1,4 @@
-import  './application_structure.cy'
+import  './applicationStructure.cy'
 import './authenticationProcess.cy'
 import './userCanToggleApplicationLanguage.cy'
+import './dashboardViewForVendors.cy'

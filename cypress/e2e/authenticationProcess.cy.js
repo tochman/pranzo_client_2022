@@ -76,8 +76,8 @@ describe("Authentication:", () => {
           .and("be.an", "object");
       });
 
-      it("is expected to redirect user to main view", () => {
-        cy.location("pathname").should("eq", "/");
+      it("is expected to redirect user to /dashboard view", () => {
+        cy.location("pathname").should("eq", "/dashboard");
       });
     });
 
@@ -109,7 +109,7 @@ describe("Authentication:", () => {
         });
       });
 
-      it("is expected to redirect user to main view", () => {
+      it("is expected to remain on the sign-up view", () => {
         cy.location("pathname").should("eq", "/auth/sign-up");
       });
 
@@ -151,22 +151,14 @@ describe("Authentication:", () => {
 
       it("is expected to store currentUser in application state", () => {
         cy.wait("@signIn");
-        // using cypress-pipe
-        // const getUser = (window) => window.store.getState().user.currentUser;
         cy.window()
           .pipe((window) => window.store.getState().user.currentUser)
           .should("not.be", "undefined")
           .and("be.an", "object");
-        //   default way failing
-        // cy.applicationState()
-        //   .invoke("getState")
-        //   .its("user.currentUser")
-        //   .should("not.be", "undefined")
-        //   .and("be.an", "object");
       });
 
-      it("is expected to redirect user to main view", () => {
-        cy.location("pathname").should("eq", "/");
+      it("is expected to redirect user to dashboard view", () => {
+        cy.location("pathname").should("eq", "/dashboard");
       });
     });
 

@@ -16,6 +16,13 @@ export const GB = {
         passwordConfirmation: "Confirm your password",
       },
     },
+    dashboard: {
+      headings: {
+        myVenue: "My venue",
+        setupVenue: "Setup your venue",
+        detailsVenue: "Venue details",
+      },
+    },
     appBar: {
       signIn: "Sign In",
       signUp: "Sign Up",

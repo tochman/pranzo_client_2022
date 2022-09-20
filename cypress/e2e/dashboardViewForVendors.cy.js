@@ -10,10 +10,15 @@ describe("Dashboard view", () => {
         vendor: { name: "The Other Place" },
       });
     });
-    it.only("is expected to display view on the dashboard path", () => {
+    it("is expected to display view on the dashboard path", () => {
       cy.location("pathname").should("eq", "/dashboard");
     });
 
-    it("is expected to display a set of navigation links", () => {});
+    it.only("is expected to display a set of navigation links", () => {
+      cy.getCy('navigation-bar').within(()=>{
+        cy.getCy('navigation-items').should('contain.text', 'My venue')
+        
+      })
+    });
   });
 });

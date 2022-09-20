@@ -1,10 +1,10 @@
 export const NAV_ITEMS = [
-  {
-    label: 'Create Project',
-    dataCy: 'create-project',
-    href: '/projects/create'
+  // {
+  //   label: 'Create Project',
+  //   dataCy: 'create-project',
+  //   href: '/projects/create'
  
-  },
+  // },
   // {
   //   label: 'Find Work',
   //   children: [

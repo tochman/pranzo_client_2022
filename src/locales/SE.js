@@ -15,6 +15,13 @@ export const SE = {
         passwordConfirmation: "Bekräfta ditt lösenord",
       },
     },
+    dashboard: {
+      headings: {
+        myVenue: "Mitt företag",
+        setupVenue: "Lägg till företag",
+        detailsVenue: "Företagsdetaljer",
+      },
+    },
     appBar: {
       signIn: 'Logga in',
       signUp: 'Registrera'
