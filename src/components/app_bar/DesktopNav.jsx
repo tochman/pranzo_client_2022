@@ -19,7 +19,7 @@ const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { currentUser, authenticated } = useSelector((state) => state.user);
+  const { vendor, authenticated } = useSelector((state) => state.user);
   const ITEMS = authenticated ? VENDOR_NAV_ITEMS : NAV_ITEMS;
 
   const labelHandler = (label) => {

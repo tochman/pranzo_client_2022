@@ -180,13 +180,6 @@ const ChartInNumbers = () => {
   };
 
   return (
-    // <ReactApexChart
-    //     options={lineChartOptions}
-    //     series={lineChartData}
-    //     type="area"
-    //     width="100%"
-    //     height="100%"
-    //   />
     <Card
       py="1rem"
       height={{ sm: "200px" }}

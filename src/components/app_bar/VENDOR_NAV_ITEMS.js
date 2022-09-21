@@ -9,13 +9,13 @@ export const VENDOR_NAV_ITEMS = [
         subLabel: 'testing testing',
         dataCy: "venue-setup",
         href: "/dashboard/venue/setup",
-        condition: "!currentUser.vendor"
+        condition: "!vendor"
       },
       {
         label: "t('dashboard.headings.detailsVenue')",
         dataCy: "venue-setup",
         href: "/dashboard/venue",
-        condition: "currentUser.vendor"
+        condition: "vendor"
       },
     ],
   },

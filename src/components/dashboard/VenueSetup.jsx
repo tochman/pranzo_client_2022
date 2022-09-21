@@ -1,6 +1,5 @@
 import {
   Button,
-  Checkbox,
   Flex,
   FormErrorMessage,
   FormControl,
@@ -8,11 +7,7 @@ import {
   Heading,
   Input,
   Textarea,
-  Link,
-  Image,
-  Box,
   Stack,
-  Text,
 } from "@chakra-ui/react";
 import { t } from "i18next";
 import { useEffect } from "react";
@@ -20,11 +15,15 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import snakecasekeys from "snakecase-keys";
+import { setupVendor } from "../../state/features/vendors";
 
 const VenueSetup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { authenticated, currentUser } = useSelector((state) => state.user);
+  const { vendor } = useSelector(
+    (state) => state.user
+  );
   const { t } = useTranslation();
   const {
     handleSubmit,
@@ -32,8 +31,13 @@ const VenueSetup = () => {
     formState: { errors, isSubmitting },
   } = useForm();
 
-  const handleFormSubmit = () => {
-    debugger;
+  useEffect(() => {
+    vendor && navigate("/dashboard");
+  }, [vendor]);
+
+  const handleFormSubmit = (data) => {
+    const params = snakecasekeys(data);
+    dispatch(setupVendor(params));
   };
 
   return (
@@ -47,6 +51,7 @@ const VenueSetup = () => {
                 {t("venue.formElements.venueName")}
               </FormLabel>
               <Input
+                data-cy="name"
                 id="name"
                 {...register("name", {
                   required: t("forms.messages.required"),
@@ -65,6 +70,7 @@ const VenueSetup = () => {
                 {t("venue.formElements.description")}
               </FormLabel>
               <Textarea
+                data-cy="description"
                 id="description"
                 {...register("description", {
                   required: t("forms.messages.required"),
@@ -83,6 +89,7 @@ const VenueSetup = () => {
                 {t("venue.formElements.primaryEmail")}
               </FormLabel>
               <Input
+                data-cy="email"
                 id="primaryEmail"
                 {...register("primaryEmail", {
                   pattern: {
@@ -101,6 +108,7 @@ const VenueSetup = () => {
               colorScheme="teal"
               isLoading={isSubmitting}
               type="submit"
+              data-cy="submit"
             >
               {t("forms.elements.submit")}
             </Button>
