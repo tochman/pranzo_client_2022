@@ -8,7 +8,7 @@ export const VENDOR_NAV_ITEMS = [
         label: "t('dashboard.headings.setupVenue')",
         subLabel: 'testing testing',
         dataCy: "venue-setup",
-        href: "/dashboard/venue",
+        href: "/dashboard/venue/setup",
         condition: "!currentUser.vendor"
       },
       {

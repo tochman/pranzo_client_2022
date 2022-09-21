@@ -8,14 +8,16 @@ import SignUp from "./components/auth/SignUp";
 import SignIn from "./components/auth/SignIn";
 import Footer from "./components/footer/Footer";
 import Dashboard from "./components/dashboard/Dashboard";
+import VenueSetup from "./components/dashboard/VenueSetup";
 import { useEffect } from "react";
+
 const App = () => {
   const { authenticated } = useSelector((state) => state.user);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
-    authenticated && navigate('/dashboard')
-  }, [authenticated])
-  
+    authenticated && navigate("/dashboard");
+  }, [authenticated]);
+
   return (
     <Box height={"100vh"} w={"100vw"}>
       <Navigation />
@@ -24,6 +26,7 @@ const App = () => {
 
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/venue/setup" element={<VenueSetup />} />
           {/*<Route path="/projects/create" element={<ProjectCreate />} /> */}
         </Route>
         <Route path="/auth/sign-up" element={<SignUp />} />

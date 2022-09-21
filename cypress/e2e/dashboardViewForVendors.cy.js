@@ -14,10 +14,9 @@ describe("Dashboard view", () => {
       cy.location("pathname").should("eq", "/dashboard");
     });
 
-    it.only("is expected to display a set of navigation links", () => {
+    it("is expected to display a set of navigation links", () => {
       cy.getCy('navigation-bar').within(()=>{
         cy.getCy('navigation-items').should('contain.text', 'My venue')
-        
       })
     });
   });

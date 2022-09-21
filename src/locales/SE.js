@@ -1,5 +1,21 @@
 export const SE = {
   translation: {
+    forms: {
+      elements: { submit: "Skicka" },
+      messages: {
+        required: "Det här fältet är obligatoriskt",
+        minLength: "Kortaste tillåtna längd är {{length}} tecken.",
+      },
+    },
+
+    venue: {
+      setup: { heading: "Skapa ditt företag" },
+      formElements: {
+        venueName: "Namn",
+        description: "Beskrivning",
+        primaryEmail: "Primär mailadress",
+      },
+    },
     authentication: {
       submit: "Skicka",
       signIn: {
@@ -23,8 +39,8 @@ export const SE = {
       },
     },
     appBar: {
-      signIn: 'Logga in',
-      signUp: 'Registrera'
+      signIn: "Logga in",
+      signUp: "Registrera",
     },
     footer: { slogan: "Lunchkort och presentkort på ett enklare sätt" },
     hero: {
@@ -34,8 +50,8 @@ export const SE = {
       subSlogan:
         "Låg startavgift och inga prenumerationskostnader. Betala allt eftersom du använder systemet!",
       buttonText: "Kom igång!",
-      ctaText: "Det finns ingen förskottsavgift för att registrera dig. Vi debiterar dig endast om du faktiskt drar nytta av Pranzo-plattformen med en startavgift på 45 € och 1 € per utfärdat kort."
-
+      ctaText:
+        "Det finns ingen förskottsavgift för att registrera dig. Vi debiterar dig endast om du faktiskt drar nytta av Pranzo-plattformen med en startavgift på 45 € och 1 € per utfärdat kort.",
     },
     sellingPoints: {
       benefits: "Fördelar",

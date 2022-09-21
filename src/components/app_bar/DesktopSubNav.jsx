@@ -11,11 +11,12 @@ import { ChevronRightIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-const DesktopSubNav = ({ label, href, subLabel , labelHandler}) => {
+const DesktopSubNav = ({ label, href, subLabel, dataCy, labelHandler }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (
     <Link
+      data-cy={dataCy}
       onClick={() => navigate(href)}
       role={"group"}
       display={"block"}
