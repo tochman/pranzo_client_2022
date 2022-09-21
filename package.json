@@ -18,17 +18,22 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@reduxjs/toolkit": "^1.8.5",
+    "apexcharts": "^3.35.5",
+    "axios": "^0.27.2",
     "framer-motion": "^6",
     "i18next": "^21.9.1",
     "j-tockauth": "^1.2.7",
     "react": "^18.2.0",
+    "react-apexcharts": "^1.4.0",
     "react-dom": "^18.2.0",
     "react-flag-kit": "^1.1.1",
+    "react-hook-form": "^7.36.0",
     "react-i18next": "^11.18.6",
     "react-icons": "^4.4.0",
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.4.0",
-    "redux": "^4.2.0"
+    "redux": "^4.2.0",
+    "snakecase-keys": "^5.4.4"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",

@@ -1,5 +1,21 @@
 export const GB = {
   translation: {
+    forms: {
+      elements: { submit: "Submit" },
+      messages: {
+        required: "This field is required.",
+        minLength: "Minimum length should be {{length}}",
+        invalidEmail: "This is an invalid email...."
+      },
+    },
+    venue: {
+      setup: { heading: "Set up your venue" },
+      formElements: {
+        venueName: "Name",
+        description: "Description",
+        primaryEmail: "Primary email",
+      },
+    },
     authentication: {
       submit: "Submit",
       signIn: {
@@ -7,13 +23,19 @@ export const GB = {
         email: "Your email",
         password: "Password",
       },
-
       registerNewAccount: {
         header: "Register a new account",
         name: "Your name",
         email: "Your email",
         password: "Password",
         passwordConfirmation: "Confirm your password",
+      },
+    },
+    dashboard: {
+      headings: {
+        myVenue: "My venue",
+        setupVenue: "Setup your venue",
+        detailsVenue: "Venue details",
       },
     },
     appBar: {

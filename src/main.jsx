@@ -9,10 +9,12 @@ import App from "./App";
 import "./index.css";
 import theme from "./theme";
 import "./i18n";
+import axios from "axios";
 
 if (window.Cypress) {
   window.store = store;
 } else {
+  // not needed in production. Used for manual testing
   window.store = store;
 }
 

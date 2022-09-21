@@ -1,0 +1,21 @@
+{
+  "vendor": {
+    "id": 394,
+    "name": "The Other Restaurant",
+    "description": "A friendly neighbourhood restaurant",
+    "primary_email": "info@theotherplace.io",
+    "users": [
+      {
+        "id": 1525,
+        "email": "info@theotherplace.io",
+        "name": "The Other Place (System User)"
+      },
+      {
+        "id": 895,
+        "email": "user@mail.com",
+        "name": "Kalle"
+      }
+    ],
+    "addresses": []
+  }
+}
