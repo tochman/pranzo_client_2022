@@ -1,0 +1,21 @@
+{
+  "vendor": {
+    "id": 394,
+    "name": "StarBugs",
+    "description": "A corporate chain with no charm....",
+    "primary_email": "info@starbugs.io",
+    "users": [
+      {
+        "id": 1525,
+        "email": "info@starbugs.io",
+        "name": "info@starbugs.io (System User)"
+      },
+      {
+        "id": 895,
+        "email": "user@mail.com",
+        "name": "Kalle Andersson"
+      }
+    ],
+    "addresses": []
+  }
+}

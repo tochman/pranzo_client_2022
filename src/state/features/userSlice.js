@@ -13,7 +13,7 @@ export const userSlice = createSlice({
       state.currentUser = action.payload;
       state.authenticated = true;
     },
-    setVendor: (state, action) => {
+    setVenue: (state, action) => {
       state.vendor = action.payload;
     },
   },

@@ -10,20 +10,18 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { t } from "i18next";
-import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import snakecasekeys from "snakecase-keys";
-import { setupVendor } from "../../state/features/vendors";
-
+import { setupVenue, editVenue } from "../../state/features/vendors";
 const VenueSetup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { vendor } = useSelector(
-    (state) => state.user
-  );
+  const { state } = useLocation();
+  const { edit } = state || false;
+  const { vendor } = useSelector((state) => state.user);
   const { t } = useTranslation();
   const {
     handleSubmit,
@@ -31,13 +29,14 @@ const VenueSetup = () => {
     formState: { errors, isSubmitting },
   } = useForm();
 
-  useEffect(() => {
-    vendor && navigate("/dashboard");
-  }, [vendor]);
-
   const handleFormSubmit = (data) => {
     const params = snakecasekeys(data);
-    dispatch(setupVendor(params));
+    if (edit) {
+      dispatch(editVenue(params));
+    } else {
+      dispatch(setupVenue(params));
+    }
+    navigate("/dashboard/venue");
   };
 
   return (
@@ -51,6 +50,7 @@ const VenueSetup = () => {
                 {t("venue.formElements.venueName")}
               </FormLabel>
               <Input
+                defaultValue={edit && vendor.name}
                 data-cy="name"
                 id="name"
                 {...register("name", {
@@ -71,6 +71,7 @@ const VenueSetup = () => {
               </FormLabel>
               <Textarea
                 data-cy="description"
+                defaultValue={edit && vendor.description}
                 id="description"
                 {...register("description", {
                   required: t("forms.messages.required"),
@@ -90,6 +91,7 @@ const VenueSetup = () => {
               </FormLabel>
               <Input
                 data-cy="email"
+                defaultValue={edit && vendor.primary_email}
                 id="primaryEmail"
                 {...register("primaryEmail", {
                   pattern: {
