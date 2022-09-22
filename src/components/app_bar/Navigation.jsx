@@ -14,6 +14,7 @@ import {
   useColorModeValue,
   useDisclosure,
   HStack,
+  Hide,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import DesktopNav from "./DesktopNav";
@@ -52,7 +53,10 @@ const Navigation = () => {
           ml={{ base: -2 }}
           display={{ base: "flex", md: "none" }}
         >
+          <HStack >
+
           <IconButton
+            data-cy="mobile-nav-toggle"
             onClick={onToggle}
             icon={
               isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
@@ -60,8 +64,16 @@ const Navigation = () => {
             variant={"ghost"}
             aria-label={"Toggle Navigation"}
           />
+          <Box pt={2}>
+            <Logo width={"110px"} onClick={() => navigate("/")} />
+          </Box>
+          </HStack>
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
+        <Flex
+          flex={{ base: 1 }}
+          justify={{ base: "center", md: "start" }}
+          display={{ base: "none", md: "flex" }}
+        >
           <Logo onClick={() => navigate("/")} />
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
@@ -69,54 +81,58 @@ const Navigation = () => {
         </Flex>
 
         <Flex alignItems={"center"}>
-          <Box mr={4}>
-            {i18n.language === "GB" ? (
-              <FlagIcon
-                code="SE"
-                size={20}
-                data-cy="flag"
-                style={{ cursor: "pointer" }}
-                onClick={() => i18n.changeLanguage("SE")}
-              />
-            ) : (
-              <FlagIcon
-                code="GB"
-                size={20}
-                data-cy="flag"
-                style={{ cursor: "pointer" }}
-                onClick={() => i18n.changeLanguage("GB")}
-              />
-            )}
-          </Box>
-          <Box mr={4}>
-            <FiMoon style={{ cursor: "pointer" }} onClick={toggleColorMode} />
-          </Box>
+          <Hide below="md">
+            <Box mr={4}>
+              {i18n.language === "GB" ? (
+                <FlagIcon
+                  code="SE"
+                  size={20}
+                  data-cy="flag"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => i18n.changeLanguage("SE")}
+                />
+              ) : (
+                <FlagIcon
+                  code="GB"
+                  size={20}
+                  data-cy="flag"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => i18n.changeLanguage("GB")}
+                />
+              )}
+            </Box>
+            <Box mr={4}>
+              <FiMoon style={{ cursor: "pointer" }} onClick={toggleColorMode} />
+            </Box>
+          </Hide>
           {!currentUser ? (
             <>
-              <Box mr={4}>
-                <Button
-                  as={"a"}
-                  fontSize={"sm"}
-                  fontWeight={400}
-                  variant={"link"}
-                  onClick={() => navigate("/auth/sign-in")}
-                  data-cy="sign-in-button"
-                >
-                  {t("appBar.signIn")}
-                </Button>
-              </Box>
-              <Box mr={4}>
-                <Button
-                  display={{ base: "none", md: "inline-flex" }}
-                  fontSize={"sm"}
-                  fontWeight={600}
-                  colorScheme="pink"
-                  onClick={() => navigate("/auth/sign-up")}
-                  data-cy="sign-up-button"
-                >
-                  {t("appBar.signUp")}
-                </Button>
-              </Box>
+              <Hide below={"md"}>
+                <Box mr={4}>
+                  <Button
+                    as={"a"}
+                    fontSize={"sm"}
+                    fontWeight={400}
+                    variant={"link"}
+                    onClick={() => navigate("/auth/sign-in")}
+                    data-cy="sign-in-button"
+                  >
+                    {t("appBar.signIn")}
+                  </Button>
+                </Box>
+                <Box mr={4}>
+                  <Button
+                    display={{ base: "none", md: "inline-flex" }}
+                    fontSize={"sm"}
+                    fontWeight={600}
+                    colorScheme="pink"
+                    onClick={() => navigate("/auth/sign-up")}
+                    data-cy="sign-up-button"
+                  >
+                    {t("appBar.signUp")}
+                  </Button>
+                </Box>
+              </Hide>
             </>
           ) : (
             <Menu>

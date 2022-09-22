@@ -11,14 +11,14 @@ const Landing = () => {
     <>
       <Hero />
       <Box bg={useColorModeValue("white", "gray.700")}>
-        <Stack pt={30} pb={10} align={"center"} ml={48} mr={48}>
+        <Stack pt={30} pb={10} align={"center"} ml={{base: 2, md: 20}} mr={{base: 2, md: 20}} >
           <Button colorScheme="pink" size={"lg"} style={{ outline: "none", borderColor: 'transparent' }}>
             {t("hero.buttonText")}
           </Button>
-          <Stack mt={20}>
+          <Box mt={20}>
             <Text>{t("hero.ctaText")}
             </Text>
-          </Stack>
+          </Box>
         </Stack>
       </Box>
       <SellingPoints />

@@ -22,7 +22,163 @@ describe("Application stucture", () => {
     it("restricted for a visitor - redirecting to /auth/sign-in", () => {
       cy.visit("/dashboard");
       cy.location("pathname").should("eq", "/auth/sign-in");
-      cy.get('body').should('contain.text', "Please log in or register first.");
+      cy.get("body").should("contain.text", "Please log in or register first.");
     });
   });
+
+  describe("For authenticated user WITH venue", () => {
+    beforeEach("Authenticate and visit app", () => {
+      cy.visit("/");
+      cy.fixture("venueCreateSuccess").then((fixture) => {
+        cy.authenticateUser({
+          ...fixture.vendor.users[1],
+          vendor: fixture.vendor,
+        });
+        cy.applicationState().invoke("dispatch", {
+          type: "user/setVenue",
+          payload: fixture.vendor,
+        });
+      });
+    });
+
+    it("is expected to display menue items", () => {
+      cy.getCy("my-venue").should("exist").and("be.visible");
+    });
+
+    context("pull down contains menu items", () => {
+      beforeEach(() => {
+        cy.getCy("my-venue").trigger("mouseover");
+      });
+      it("is expected to display Edit Venue", () => {
+        cy.getCy("venue-setup")
+          .should("exist")
+          .and("contain.text", "Edit your venue")
+          .and("be.visible");
+      });
+
+      it("is expected to display Venue Details", () => {
+        cy.getCy("venue-details").should("exist").and("be.visible");
+      });
+    });
+  });
+
+  describe("For authenticated user WITHOUT venue", () => {
+    beforeEach("Authenticate and visit app", () => {
+      cy.visit("/");
+      cy.fixture("venueCreateSuccess").then((fixture) => {
+        cy.authenticateUser({
+          ...fixture.vendor.users[1],
+          vendor: null,
+        });
+      });
+    });
+
+    it("is expected to display menue items", () => {
+      cy.getCy("my-venue").should("exist").and("be.visible");
+    });
+
+    context("pull down contains menu items", () => {
+      beforeEach(() => {
+        cy.getCy("my-venue").trigger("mouseover");
+      });
+      it("is expected to display Setup Venue", () => {
+        cy.getCy("venue-setup")
+          .should("exist")
+          .and("contain.text", "Setup your venue")
+          .and("be.visible");
+      });
+
+      it("is expected to hide Venue Details", () => {
+        cy.getCy("venue-details").should("not.exist");
+      });
+    });
+  });
+
+  describe.only("MOBILE VIEW: For visitors", () => {
+    beforeEach("Authenticate, visit app and open navigation", () => {
+      cy.visit("/");
+      cy.viewport("iphone-x");
+      cy.getCy("mobile-nav-toggle").trigger("click");
+    });
+
+    it("is expected to display menue items", () => {
+      cy.getCy("nothing-to-see").should("exist").and("be.visible");
+    });
+  });
+
+  describe("MOBILE VIEW: For authenticated user WITH venue", () => {
+    beforeEach("Authenticate, visit app and open navigation", () => {
+      cy.visit("/");
+      cy.viewport("iphone-x");
+      cy.fixture("venueCreateSuccess").then((fixture) => {
+        cy.authenticateUser({
+          ...fixture.vendor.users[1],
+          vendor: fixture.vendor,
+        });
+        cy.applicationState().invoke("dispatch", {
+          type: "user/setVenue",
+          payload: fixture.vendor,
+        });
+      });
+      cy.getCy("mobile-nav-toggle").trigger("click");
+    });
+
+    it("is expected to display menue items", () => {
+      cy.getCy("my-venue-mobile").should("exist").and("be.visible");
+    });
+
+    context("pull down contains menu items", () => {
+      beforeEach(() => {
+        cy.getCy("my-venue-mobile").trigger("click");
+      });
+      it("is expected to display Edit Venue", () => {
+        cy.getCy("venue-setup-mobile")
+          .should("exist")
+          .and("contain.text", "Edit your venue")
+          .and("be.visible");
+      });
+
+      it("is expected to display Venue Details", () => {
+        cy.getCy("venue-details-mobile")
+          .should("exist")
+          .and("be.visible")
+          .and("contain.text", "Venue details");
+      });
+    });
+  });
+
+  describe("MOBILE VIEW For authenticated user WITHOUT venue", () => {
+    beforeEach("Authenticate, visit app and open navigation", () => {
+      cy.visit("/");
+      cy.viewport("iphone-x");
+      cy.fixture("venueCreateSuccess").then((fixture) => {
+        cy.authenticateUser({
+          ...fixture.vendor.users[1],
+          vendor: null,
+        });
+      });
+      cy.getCy("mobile-nav-toggle").trigger("click");
+    });
+
+    it("is expected to display menue items", () => {
+      cy.getCy("my-venue-mobile").should("exist").and("be.visible");
+    });
+
+    context("pull down contains menu items", () => {
+      beforeEach(() => {
+        cy.getCy("my-venue-mobile").trigger("click");
+      });
+      it("is expected to display Setup Venue", () => {
+        cy.getCy("venue-setup-mobile")
+          .should("exist")
+          .and("contain.text", "Setup your venue")
+          .and("be.visible");
+      });
+
+      it("is expected to hide Venue Details", () => {
+        cy.getCy("venue-details-mobile").should("not.exist");
+      });
+    });
+  });
+
 });
