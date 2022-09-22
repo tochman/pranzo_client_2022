@@ -50,7 +50,7 @@ const VenueSetup = () => {
                 {t("venue.formElements.venueName")}
               </FormLabel>
               <Input
-                defaultValue={edit && vendor.name}
+                defaultValue={(edit || vendor) && vendor.name}
                 data-cy="name"
                 id="name"
                 {...register("name", {
@@ -71,7 +71,7 @@ const VenueSetup = () => {
               </FormLabel>
               <Textarea
                 data-cy="description"
-                defaultValue={edit && vendor.description}
+                defaultValue={(edit || vendor) && vendor.description}
                 id="description"
                 {...register("description", {
                   required: t("forms.messages.required"),
@@ -91,7 +91,7 @@ const VenueSetup = () => {
               </FormLabel>
               <Input
                 data-cy="email"
-                defaultValue={edit && vendor.primary_email}
+                defaultValue={(edit || vendor) && vendor.primary_email}
                 id="primaryEmail"
                 {...register("primaryEmail", {
                   pattern: {
