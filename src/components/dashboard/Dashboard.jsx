@@ -12,8 +12,10 @@ import {
 import ChartWrapper from "./templates/ChartWrapper";
 import ChartInNumbers from "./ChartInNumbers";
 import ChartInValue from "./ChartInValue";
+import { useTranslation } from "react-i18next";
 
 const Dashboard = () => {
+  const { t } = useTranslation();
   const percentage = 20;
   return (
     <Stack spacing={8} m={1}>
@@ -28,7 +30,7 @@ const Dashboard = () => {
               fontWeight="bold"
               pb=".1rem"
             >
-              Issued Vouchers
+              {t("dashboard.content.stats.issuedVouchers")}
             </StatLabel>
             <StatNumber>10</StatNumber>
             <StatHelpText>Feb 12 - Feb 28</StatHelpText>
@@ -40,7 +42,7 @@ const Dashboard = () => {
               fontWeight="bold"
               pb=".1rem"
             >
-              Voucher Sales
+              {t("dashboard.content.stats.salesVouchers")}
             </StatLabel>
             <StatNumber>€2.560</StatNumber>
             <StatHelpText>Feb 12 - Feb 28</StatHelpText>
@@ -53,7 +55,7 @@ const Dashboard = () => {
               fontWeight="bold"
               pb=".1rem"
             >
-              Issued Gift Cards
+              {t("dashboard.content.stats.issuedGiftCards")}
             </StatLabel>
             <StatNumber>20</StatNumber>
             <StatHelpText>Feb 12 - Feb 28</StatHelpText>
@@ -65,7 +67,7 @@ const Dashboard = () => {
               fontWeight="bold"
               pb=".1rem"
             >
-              Gift Card Sales
+              {t("dashboard.content.stats.salesGiftCards")}
             </StatLabel>
             <StatNumber>€12.110</StatNumber>
             <StatHelpText>Feb 12 - Feb 28</StatHelpText>
@@ -74,12 +76,12 @@ const Dashboard = () => {
       </Box>
       <Box pb={20}>
         <ChartWrapper
-          title="Sales Overview (in numbers)"
+          title={t("dashboard.content.charts.salesOverviewNumbers")}
           percentage={-20}
           chart={<ChartInNumbers />}
         />
         <ChartWrapper
-          title="Sales Overview (in value)"
+          title={t("dashboard.content.charts.salesOverviewValue")}
           chart={<ChartInValue />}
         />
       </Box>

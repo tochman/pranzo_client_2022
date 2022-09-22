@@ -43,14 +43,14 @@ const VenueSetup = () => {
     <Stack minH={"80vh"} direction={{ base: "column", md: "row" }} m={1}>
       <Flex p={8} flex={1} align={"top"} justify={"left"}>
         <Stack spacing={4} w={"full"} maxW={"md"}>
-          <Heading fontSize={"2xl"}>{t("venue.setup.heading")}</Heading>
+          <Heading fontSize={"2xl"}>{(edit || vendor) ? t("venue.edit.heading") : t("venue.setup.heading")}</Heading>
           <form onSubmit={handleSubmit(handleFormSubmit)}>
             <FormControl isInvalid={errors.name}>
               <FormLabel htmlFor="name">
                 {t("venue.formElements.venueName")}
               </FormLabel>
               <Input
-                defaultValue={edit && vendor.name}
+                defaultValue={(edit || vendor) && vendor.name}
                 data-cy="name"
                 id="name"
                 {...register("name", {
@@ -71,7 +71,7 @@ const VenueSetup = () => {
               </FormLabel>
               <Textarea
                 data-cy="description"
-                defaultValue={edit && vendor.description}
+                defaultValue={(edit || vendor) && vendor.description}
                 id="description"
                 {...register("description", {
                   required: t("forms.messages.required"),
@@ -91,7 +91,7 @@ const VenueSetup = () => {
               </FormLabel>
               <Input
                 data-cy="email"
-                defaultValue={edit && vendor.primary_email}
+                defaultValue={(edit || vendor) && vendor.primary_email}
                 id="primaryEmail"
                 {...register("primaryEmail", {
                   pattern: {

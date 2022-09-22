@@ -78,14 +78,14 @@ const SignUp = () => {
                 type="password"
               />
             </FormControl>
-            <Stack spacing={6}>
+            <Stack spacing={6} mt={5}>
               <Button
                 data-cy="submit"
                 colorScheme={"pink"}
                 variant={"solid"}
                 type="submit"
               >
-                 {t("authentication.submit")}
+                {t("authentication.submit")}
               </Button>
             </Stack>
           </form>

@@ -57,7 +57,7 @@ const SignIn = () => {
               <Input name="password" data-cy="password" type="password" />
             </FormControl>
 
-            <Stack spacing={6}>
+            <Stack spacing={6} mt={5}>
               <Button
                 data-cy="submit"
                 colorScheme={"pink"}

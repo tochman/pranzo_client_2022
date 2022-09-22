@@ -12,10 +12,12 @@ import Logo from "../content/Logo";
 import { FlagIcon } from "react-flag-kit";
 import { FiMoon } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const { t, i18n } = useTranslation();
-  const {  toggleColorMode } = useColorMode();
+  const { toggleColorMode } = useColorMode();
+  const { navigate } = useNavigate();
   return (
     <Box
       data-cy="footer"
@@ -35,9 +37,8 @@ const Footer = () => {
         justify={{ base: "center", md: "space-between" }}
         align={{ base: "center", md: "center" }}
       >
-        <Logo />
+        <Logo onClick={() => navigate("/")} />
         <Text fontSize="sm">{t("footer.slogan")}</Text>
-        {/* <Text fontSize='sm'>Voucher And Gift Card Management Made Easy</Text> */}
 
         <Stack direction={"row"} spacing={3}>
           <Box h="24px">
@@ -58,10 +59,7 @@ const Footer = () => {
             )}
           </Box>
           <Box h="24px">
-            <FiMoon
-              style={{cursor: "pointer" }}
-              onClick={toggleColorMode}
-            />
+            <FiMoon style={{ cursor: "pointer" }} onClick={toggleColorMode} />
           </Box>
         </Stack>
       </Container>

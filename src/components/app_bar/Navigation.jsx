@@ -4,7 +4,6 @@ import {
   IconButton,
   Button,
   Collapse,
-  Image,
   Menu,
   MenuButton,
   MenuList,
@@ -19,22 +18,20 @@ import {
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import DesktopNav from "./DesktopNav";
 import MobileNav from "./MobileNav";
-import colorLogo from "../../assets/pranzo_color.png";
-import whiteLogo from "../../assets/pranzo_white.png";
 import { FlagIcon } from "react-flag-kit";
 import { FiMoon, FiUser, FiLogOut } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearSession } from "../../state/features/authentication";
-
+import Logo from "../content/Logo";
 
 const Navigation = () => {
   const { isOpen, onToggle } = useDisclosure();
   const { i18n, t } = useTranslation();
   const { toggleColorMode } = useColorMode();
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const { currentUser } = useSelector((state) => state.user);
   return (
@@ -65,13 +62,7 @@ const Navigation = () => {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Image
-            onClick={() => navigate("/")}
-            htmlWidth={"120px"}
-            htmlHeight={"auto"}
-            objectFit="fit"
-            src={useColorModeValue(colorLogo, whiteLogo)}
-          />
+          <Logo onClick={() => navigate("/")} />
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
@@ -157,8 +148,8 @@ const Navigation = () => {
 
                 <HStack>
                   <MenuItem
-                    onClick={ () => {
-                      dispatch(clearSession({}))
+                    onClick={() => {
+                      dispatch(clearSession({}));
                     }}
                     data-cy="end-session"
                     style={{ outline: "none", borderColor: "transparent" }}
