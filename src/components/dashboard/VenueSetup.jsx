@@ -43,7 +43,7 @@ const VenueSetup = () => {
     <Stack minH={"80vh"} direction={{ base: "column", md: "row" }} m={1}>
       <Flex p={8} flex={1} align={"top"} justify={"left"}>
         <Stack spacing={4} w={"full"} maxW={"md"}>
-          <Heading fontSize={"2xl"}>{t("venue.setup.heading")}</Heading>
+          <Heading fontSize={"2xl"}>{(edit || vendor) ? t("venue.edit.heading") : t("venue.setup.heading")}</Heading>
           <form onSubmit={handleSubmit(handleFormSubmit)}>
             <FormControl isInvalid={errors.name}>
               <FormLabel htmlFor="name">

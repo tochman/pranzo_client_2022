@@ -29,6 +29,7 @@ export const GB = {
     },
     venue: {
       setup: { heading: "Set up your venue" },
+      edit: { heading: "Edit your venue" },
       formElements: {
         venueName: "Name",
         description: "Description",

@@ -8,8 +8,8 @@ export const SE = {
       },
       content: {
         stats: {
-          issuedVouchers: "Utfärdade Vouchers",
-          salesVouchers: "Försäljning Vouchers",
+          issuedVouchers: "Utfärdade Lunchkort",
+          salesVouchers: "Försäljning Lunchkort",
           issuedGiftCards: "Utfärdade Presentkort",
           salesGiftCards: "Försäljning Presentkort",
         },
@@ -28,7 +28,8 @@ export const SE = {
     },
 
     venue: {
-      setup: { heading: "Skapa ditt företag" },
+      setup: { heading: "Skapa företag" },
+      edit: { heading: "Redigera företag" },
       formElements: {
         venueName: "Namn",
         description: "Beskrivning",
