@@ -1,11 +1,30 @@
 export const GB = {
   translation: {
+    dashboard: {
+      headings: {
+        myVenue: "My venue",
+        setupVenue: "Setup your venue",
+        detailsVenue: "Venue details",
+      },
+      content: {
+        stats: {
+          issuedVouchers: "Issued Vouchers",
+          salesVouchers: "Voucher Sales",
+          issuedGiftCards: "Issued Gift Cards",
+          salesGiftCards: "Gift Card Sales",
+        },
+        charts: {
+          salesOverviewNumbers: "Sales Overview (in numbers)",
+          salesOverviewValue: "Sales Overview (in value)",
+        },
+      },
+    },
     forms: {
       elements: { submit: "Submit" },
       messages: {
         required: "This field is required.",
         minLength: "Minimum length should be {{length}}",
-        invalidEmail: "This is an invalid email...."
+        invalidEmail: "This is an invalid email....",
       },
     },
     venue: {
@@ -29,13 +48,6 @@ export const GB = {
         email: "Your email",
         password: "Password",
         passwordConfirmation: "Confirm your password",
-      },
-    },
-    dashboard: {
-      headings: {
-        myVenue: "My venue",
-        setupVenue: "Setup your venue",
-        detailsVenue: "Venue details",
       },
     },
     appBar: {

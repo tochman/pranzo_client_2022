@@ -1,5 +1,24 @@
 export const SE = {
   translation: {
+    dashboard: {
+      headings: {
+        myVenue: "Mitt företag",
+        setupVenue: "Lägg till företag",
+        detailsVenue: "Företagsdetaljer",
+      },
+      content: {
+        stats: {
+          issuedVouchers: "Utfärdade Vouchers",
+          salesVouchers: "Försäljning Vouchers",
+          issuedGiftCards: "Utfärdade Presentkort",
+          salesGiftCards: "Försäljning Presentkort",
+        },
+        charts: {
+          salesOverviewNumbers: "Försäljning (antal)",
+          salesOverviewValue: "Försäljning (värde)",
+        },
+      },
+    },
     forms: {
       elements: { submit: "Skicka" },
       messages: {
@@ -29,13 +48,6 @@ export const SE = {
         email: "Din mailadress",
         password: "Lösenord",
         passwordConfirmation: "Bekräfta ditt lösenord",
-      },
-    },
-    dashboard: {
-      headings: {
-        myVenue: "Mitt företag",
-        setupVenue: "Lägg till företag",
-        detailsVenue: "Företagsdetaljer",
       },
     },
     appBar: {
