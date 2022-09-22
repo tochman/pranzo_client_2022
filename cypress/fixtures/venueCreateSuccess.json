@@ -1,7 +1,7 @@
 {
   "vendor": {
     "id": 394,
-    "name": "The Other Restaurant",
+    "name": "The Other Place",
     "description": "A friendly neighbourhood restaurant",
     "primary_email": "info@theotherplace.io",
     "users": [
@@ -13,7 +13,7 @@
       {
         "id": 895,
         "email": "user@mail.com",
-        "name": "Kalle"
+        "name": "Kalle Andersson"
       }
     ],
     "addresses": []

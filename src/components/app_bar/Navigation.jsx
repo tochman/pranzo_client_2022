@@ -25,13 +25,16 @@ import { FlagIcon } from "react-flag-kit";
 import { FiMoon, FiUser, FiLogOut } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { clearSession } from "../../state/features/authentication";
+
 
 const Navigation = () => {
   const { isOpen, onToggle } = useDisclosure();
   const { i18n, t } = useTranslation();
   const { toggleColorMode } = useColorMode();
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const { currentUser } = useSelector((state) => state.user);
   return (
@@ -63,6 +66,7 @@ const Navigation = () => {
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
           <Image
+            onClick={() => navigate("/")}
             htmlWidth={"120px"}
             htmlHeight={"auto"}
             objectFit="fit"
@@ -151,18 +155,18 @@ const Navigation = () => {
 
                 <MenuDivider />
 
-                  <HStack>
-                    <MenuItem
-                      onClick={() => {
-                        debugger;
-                      }}
-                      data-cy="user-name"
-                      style={{ outline: "none", borderColor: "transparent" }}
-                    >
-                      <FiLogOut />
-                      <Box pl={2}>Log out</Box>
-                    </MenuItem>
-                  </HStack>
+                <HStack>
+                  <MenuItem
+                    onClick={ () => {
+                      dispatch(clearSession({}))
+                    }}
+                    data-cy="end-session"
+                    style={{ outline: "none", borderColor: "transparent" }}
+                  >
+                    <FiLogOut />
+                    <Box pl={2}>Log out</Box>
+                  </MenuItem>
+                </HStack>
               </MenuList>
             </Menu>
           )}

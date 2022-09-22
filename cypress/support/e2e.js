@@ -14,12 +14,19 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
-import 'cypress-pipe'
+import "./commands";
+import "cypress-pipe";
+import "cypress-localstorage-commands";
 
 beforeEach(() => {
-  cy.intercept("?restaurant", { fixture: "dummy.jpeg" })
-  cy.intercept("?avatar", { fixture: "dummy.jpeg" })
-
+  cy.intercept("GET", "**/auth/validate_token**", { fixture: 'signUpAuthenticationError.json', statusCode: 401 });
 });
 
+beforeEach(() => {
+  cy.intercept("?restaurant", { fixture: "dummy.jpeg" });
+  cy.intercept("?avatar", { fixture: "dummy.jpeg" });
+});
+
+afterEach(() => {
+  cy.removeLocalStorage("J-tockAuth-Storage");
+});

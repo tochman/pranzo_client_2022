@@ -2,6 +2,30 @@ describe("Authentication:", () => {
   beforeEach(() => {
     cy.visit("/");
   });
+
+  describe("logging out from the application", () => {
+    beforeEach(() => {
+      cy.authenticateUser({ name: "John Doe" });
+      cy.getCy("user-avatar").click();      
+      cy.getCy("end-session").click();
+      cy.wait(1000)
+    });
+    
+    it("is expected to show SignUp button in AppBar", () => {
+      cy.getCy("sign-up-button").should("exist").and('be.visible');
+    });
+    it("is expected to show SignIn button in AppBar", () => {
+      cy.getCy("sign-in-button").should("exist").and('be.visible');
+    });
+
+    it("is expected to clear currentUser from application state", () => {
+      cy.window()
+        .pipe((window) => window.store.getState().user.currentUser)
+        .should("eql", null)
+    });
+
+  });
+
   describe("initial UI elements (CTA´s) with", () => {
     context("no currentUser", () => {
       it("is expected to show SignUp button in AppBar", () => {
@@ -12,14 +36,39 @@ describe("Authentication:", () => {
       });
     });
 
+    context("token is stored in localStorage", () => {
+      beforeEach(() => {
+        cy.intercept("GET", "**/auth/validate_token**", {
+          fixture: "authenticatedUser.json",
+        });
+        cy.visit("/");
+        const values =
+          '{"access-token":"pCTtJ6i-ZQOigaeRc8XuhQ", "uid":"user@mail.com"}';
+        cy.setLocalStorage("J-tockAuth-Storage", values);
+      });
+
+      it("is expected to hide SignUp button in AppBar", () => {
+        cy.getCy("sign-up-button").should("not.exist");
+      });
+      it("is expected to hide SignIn button in AppBar", () => {
+        cy.getCy("sign-in-button").should("not.exist");
+      });
+      it("is exprected to display currentUser´s name", () => {
+        cy.getCy("user-avatar").click();
+        cy.getCy("user-name")
+          .should("contain.text", "Kalle Andersson")
+          .and("be.visible");
+      });
+    });
+
     context("currentUser present", () => {
       beforeEach(() => {
         cy.authenticateUser({ name: "John Doe" });
       });
-      it("is expected to show SignUp button in AppBar", () => {
+      it("is expected to hide SignUp button in AppBar", () => {
         cy.getCy("sign-up-button").should("not.exist");
       });
-      it("is expected to show SignIn button in AppBar", () => {
+      it("is expected to hide SignIn button in AppBar", () => {
         cy.getCy("sign-in-button").should("not.exist");
       });
       it("is exprected to display currentUser´s name", () => {

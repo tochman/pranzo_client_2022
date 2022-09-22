@@ -31,7 +31,7 @@ const DesktopSubNav = ({ label, href, subLabel, dataCy, labelHandler }) => {
             _groupHover={{ color: "pink.400" }}
             fontWeight={500}
           >
-            {eval(label)}
+            {labelHandler(label)}
           </Text>
           <Text fontSize={"sm"}>{labelHandler(subLabel)}</Text>
         </Box>

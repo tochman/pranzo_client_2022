@@ -1,24 +1,18 @@
 import {
   Box,
   Heading,
-  Text,
   Stack,
   Stat,
   StatLabel,
   StatNumber,
   StatHelpText,
-  StatArrow,
   StatGroup,
   Divider,
-  Center,
-  Flex,
 } from "@chakra-ui/react";
 import ChartWrapper from "./templates/ChartWrapper";
 import ChartInNumbers from "./ChartInNumbers";
 import ChartInValue from "./ChartInValue";
-import Card from "./templates/Card";
-import CardHeader from "./templates/CardHeader";
-import CardBody from "./templates/CardBody";
+
 const Dashboard = () => {
   const percentage = 20;
   return (

@@ -1,6 +1,6 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Navigation from "./components/app_bar/Navigation";
 import Landing from "./components/content/Landing";
 import ProtectedRoute from "./ProtectedRoute";
@@ -9,11 +9,20 @@ import SignIn from "./components/auth/SignIn";
 import Footer from "./components/footer/Footer";
 import Dashboard from "./components/dashboard/Dashboard";
 import VenueSetup from "./components/dashboard/VenueSetup";
-import { useEffect } from "react";
+import VenueView from "./components/dashboard/VenueView";
 
+import { useEffect } from "react";
+import { validateUserByToken } from "./state/features/authentication";
 const App = () => {
   const { authenticated } = useSelector((state) => state.user);
+  const dispatch = useDispatch()
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+    dispatch(validateUserByToken({foo: 'bar'}))
+  }, []);
+
   useEffect(() => {
     authenticated && navigate("/dashboard");
   }, [authenticated]);
@@ -27,13 +36,12 @@ const App = () => {
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/venue/setup" element={<VenueSetup />} />
-          {/*<Route path="/projects/create" element={<ProjectCreate />} /> */}
+          <Route path="/dashboard/venue" element={<VenueView />} /> 
         </Route>
         <Route path="/auth/sign-up" element={<SignUp />} />
         <Route path="/auth/sign-in" element={<SignIn />} />
       </Routes>
       <Footer />
-      {/* <Toast /> */}
     </Box>
   );
 };

@@ -9,13 +9,15 @@ import {
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import DesktopSubNav from "./DesktopSubNav";
 import { NAV_ITEMS } from "./NAV_ITEMS";
 import { VENDOR_NAV_ITEMS } from "./VENDOR_NAV_ITEMS";
+
 const DesktopNav = () => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
   const linkHoverColor = useColorModeValue("gray.800", "white");
+  const location = useLocation();
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ const DesktopNav = () => {
 
   const labelHandler = (label) => {
     try {
-      return eval(label);
+      return t(label);
     } catch {
       return label;
     }
@@ -61,23 +63,13 @@ const DesktopNav = () => {
               >
                 <Stack>
                   {navItem.children.map((child, index) => {
-                    if (child.condition) {
-                      return eval(child.condition) ? (
-                        <DesktopSubNav
-                          key={index}
-                          {...child}
-                          labelHandler={labelHandler}
-                        />
-                      ) : null;
-                    } else {
-                      return (
-                        <DesktopSubNav
-                          key={index}
-                          {...child}
-                          labelHandler={labelHandler}
-                        />
-                      );
-                    }
+                    return (
+                      <DesktopSubNav
+                        key={index}
+                        {...child}
+                        labelHandler={labelHandler}
+                      />
+                    );
                   })}
                 </Stack>
               </PopoverContent>
