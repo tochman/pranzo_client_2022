@@ -2,6 +2,7 @@ import {
   Box,
   Stack,
   Link,
+  Text,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -9,31 +10,94 @@ import {
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import DesktopSubNav from "./DesktopSubNav";
-import { NAV_ITEMS } from "./NAV_ITEMS";
-import { VENDOR_NAV_ITEMS } from "./VENDOR_NAV_ITEMS";
 
 const DesktopNav = () => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
   const linkHoverColor = useColorModeValue("gray.800", "white");
-  const location = useLocation();
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { vendor, authenticated } = useSelector((state) => state.user);
-  const ITEMS = authenticated ? VENDOR_NAV_ITEMS : NAV_ITEMS;
 
-  const labelHandler = (label) => {
-    try {
-      return t(label);
-    } catch {
-      return label;
-    }
-  };
   return (
     <Stack direction={"row"} spacing={4} data-cy="navigation-items">
-      {ITEMS.map((navItem) => (
+      <Box data-cy="my-venue">
+        <Popover trigger={"hover"} placement={"bottom-start"}>
+          <PopoverTrigger>
+            <Link
+              p={2}
+              fontSize={"sm"}
+              fontWeight={500}
+              color={linkColor}
+              _hover={{
+                textDecoration: "none",
+                color: linkHoverColor,
+              }}
+            >
+              {t("dashboard.headings.myVenue")}
+            </Link>
+          </PopoverTrigger>
+
+          <PopoverContent
+            border={0}
+            boxShadow={"xl"}
+            bg={popoverContentBgColor}
+            p={4}
+            rounded={"xl"}
+            minW={"sm"}
+          >
+            <Stack>
+              {authenticated && (
+                <>
+                  {vendor && (
+                    <DesktopSubNav
+                      {...{
+                        dataCy: "venue-details",
+                        href: "/dashboard/venue",
+                      }}
+                    >
+                      <Text
+                        transition={"all .3s ease"}
+                        _groupHover={{ color: "pink.400" }}
+                        fontWeight={500}
+                        >
+                        {t("dashboard.headings.detailsVenue")}
+                      </Text>
+                      <Text fontSize={"sm"}>
+                        Detailed overview of your venue
+                      </Text>
+                    </DesktopSubNav>
+                  )}
+                  <DesktopSubNav
+                    {...{
+                      dataCy: "venue-setup",
+                      href: "/dashboard/venue/setup",
+                    }}
+                  >
+                    <Text
+                      transition={"all .3s ease"}
+                      _groupHover={{ color: "pink.400" }}
+                      fontWeight={500}
+                    >
+                      {vendor
+                        ? t("dashboard.headings.editVenue.label")
+                        : t("dashboard.headings.setupVenue.label")}
+                    </Text>
+                    <Text fontSize={"sm"}>
+                      {vendor
+                        ? t("dashboard.headings.editVenue.subLabel")
+                        : t("dashboard.headings.setupVenue.subLabel")}
+                    </Text>
+                  </DesktopSubNav>
+                </>
+              )}
+            </Stack>
+          </PopoverContent>
+        </Popover>
+      </Box>
+      {/* {ITEMS.map((navItem) => (
         <Box key={navItem.label} data-cy={navItem.dataCy}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
@@ -76,7 +140,7 @@ const DesktopNav = () => {
             )}
           </Popover>
         </Box>
-      ))}
+      ))} */}
     </Stack>
   );
 };

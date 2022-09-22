@@ -11,7 +11,7 @@ import {
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 
-const MobileNavItem = ({ label, children, href, dataCy }) => {
+const MobileNavItem = ({ label, href, dataCy, children }) => {
   const { isOpen, onToggle } = useDisclosure();
   const navigate = useNavigate();
 
@@ -34,7 +34,7 @@ const MobileNavItem = ({ label, children, href, dataCy }) => {
         >
           {label}
         </Text>
-        {children && (
+        
           <Icon
             as={ChevronDownIcon}
             transition={"all .25s ease-in-out"}
@@ -42,7 +42,7 @@ const MobileNavItem = ({ label, children, href, dataCy }) => {
             w={6}
             h={6}
           />
-        )}
+        
       </Flex>
 
       <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>

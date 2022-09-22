@@ -53,6 +53,7 @@ const Navigation = () => {
           display={{ base: "flex", md: "none" }}
         >
           <IconButton
+            data-cy="mobile-nav-toggle"
             onClick={onToggle}
             icon={
               isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />

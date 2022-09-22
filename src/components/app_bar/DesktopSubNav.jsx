@@ -11,8 +11,7 @@ import { ChevronRightIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-const DesktopSubNav = ({ label, href, subLabel, dataCy, labelHandler }) => {
-  const { t } = useTranslation();
+const DesktopSubNav = ({ subLabel, href, dataCy, children }) => {
   const navigate = useNavigate();
   return (
     <Link
@@ -26,14 +25,7 @@ const DesktopSubNav = ({ label, href, subLabel, dataCy, labelHandler }) => {
     >
       <Stack direction={"row"} align={"center"}>
         <Box>
-          <Text
-            transition={"all .3s ease"}
-            _groupHover={{ color: "pink.400" }}
-            fontWeight={500}
-          >
-            {labelHandler(label)}
-          </Text>
-          <Text fontSize={"sm"}>{labelHandler(subLabel)}</Text>
+          {children}
         </Box>
         <Flex
           transition={"all .3s ease"}
