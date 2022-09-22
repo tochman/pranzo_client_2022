@@ -65,6 +65,7 @@ export const SE = {
     appBar: {
       signIn: "Logga in",
       signUp: "Registrera",
+      nothingToSeeHere: "Registrera ett konto för att komma åt funktioner."
     },
     footer: { slogan: "Lunchkort och presentkort på ett enklare sätt" },
     hero: {

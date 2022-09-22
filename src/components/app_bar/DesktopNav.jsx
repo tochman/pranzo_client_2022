@@ -63,7 +63,7 @@ const DesktopNav = () => {
                         _groupHover={{ color: "pink.400" }}
                         fontWeight={500}
                         >
-                        {t("dashboard.headings.detailsVenue")}
+                        {t("dashboard.headings.detailsVenue.label")}
                       </Text>
                       <Text fontSize={"sm"}>
                         Detailed overview of your venue

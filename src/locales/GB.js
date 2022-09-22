@@ -65,6 +65,7 @@ export const GB = {
     appBar: {
       signIn: "Sign In",
       signUp: "Sign Up",
+      nothingToSeeHere: "Please register to access features"
     },
     footer: { slogan: "Voucher And Gift Card Management Made Easy" },
     hero: {

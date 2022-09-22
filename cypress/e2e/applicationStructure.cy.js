@@ -94,6 +94,18 @@ describe("Application stucture", () => {
     });
   });
 
+  describe.only("MOBILE VIEW: For visitors", () => {
+    beforeEach("Authenticate, visit app and open navigation", () => {
+      cy.visit("/");
+      cy.viewport("iphone-x");
+      cy.getCy("mobile-nav-toggle").trigger("click");
+    });
+
+    it("is expected to display menue items", () => {
+      cy.getCy("nothing-to-see").should("exist").and("be.visible");
+    });
+  });
+
   describe("MOBILE VIEW: For authenticated user WITH venue", () => {
     beforeEach("Authenticate, visit app and open navigation", () => {
       cy.visit("/");
