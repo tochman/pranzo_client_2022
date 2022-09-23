@@ -36,7 +36,7 @@ export const signInUser = createAsyncThunk(
       // check if vendor_id is present. If yes fetch the vendor and dispatch "user/setVenue" action
       if (response.data.vendor_id) {
         const vendorResponse = await auth.privateRoute(
-          `/api/vendors/${response.data.vendor_id}`,
+          `api/vendors/${response.data.vendor_id}`,
           { method: "GET" }
         );
         dispatch({
@@ -59,12 +59,20 @@ export const validateUserByToken = createAsyncThunk(
       const response = await auth.validateToken(headers);
       if (response.data.vendor_id) {
         const vendorResponse = await auth.privateRoute(
-          `/api/vendors/${response.data.vendor_id}`,
+          `api/vendors/${response.data.vendor_id}`,
           { method: "GET" }
         );
         dispatch({
           type: "user/setVenue",
           payload: vendorResponse.data.vendor,
+        });
+        const voucherResponse = await auth.privateRoute(
+          `api/vendors/${response.data.vendor_id}/vouchers`,
+          { method: "GET" }
+        );
+        dispatch({
+          type: "user/setVouchers",
+          payload: voucherResponse.data.vouchers,
         });
       }
       dispatch({ type: "user/setCurrentUser", payload: response.data });
@@ -76,7 +84,7 @@ export const validateUserByToken = createAsyncThunk(
 
 export const clearSession = createAsyncThunk(
   "user/clearSession",
-  ( params, { dispatch }) => {
+  (params, { dispatch }) => {
     localStorage.removeItem("J-tockAuth-Storage");
     dispatch(endSession(params));
   }

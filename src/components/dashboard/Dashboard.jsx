@@ -74,7 +74,7 @@ const Dashboard = () => {
           </Stat>
         </StatGroup>
       </Box>
-      <Box pb={20}>
+      <Box pb={5}>
         <ChartWrapper
           title={t("dashboard.content.charts.salesOverviewNumbers")}
           percentage={-20}
