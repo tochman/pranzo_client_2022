@@ -4,9 +4,14 @@ describe("Application stucture", () => {
     cy.location("pathname").should("eq", "/");
   });
 
-  it("is expected to have a /auth path", () => {
-    cy.visit("/auth");
-    cy.location("pathname").should("eq", "/auth");
+  it("is expected to have a /auth/sign-in path", () => {
+    cy.visit("/auth/sign-in");
+    cy.location("pathname").should("eq", "/auth/sign-in");
+  });
+
+  it("is expected to have a /auth/sign-up path", () => {
+    cy.visit("/auth/sign-up");
+    cy.location("pathname").should("eq", "/auth/sign-up");
   });
 
   describe("is expected to have a /dashboard path", () => {
@@ -94,7 +99,7 @@ describe("Application stucture", () => {
     });
   });
 
-  describe.only("MOBILE VIEW: For visitors", () => {
+  describe("MOBILE VIEW: For visitors", () => {
     beforeEach("Authenticate, visit app and open navigation", () => {
       cy.visit("/");
       cy.viewport("iphone-x");

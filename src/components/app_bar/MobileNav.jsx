@@ -150,6 +150,7 @@ const MobileNav = ({ toggleMainNavBar }) => {
                   {t("dashboard.headings.detailsVenue.label")}
                 </Link>
               )}
+
               <Link
                 py={2}
                 onClick={() => {
