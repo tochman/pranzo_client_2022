@@ -37,7 +37,9 @@ const Footer = () => {
         justify={{ base: "center", md: "space-between" }}
         align={{ base: "center", md: "center" }}
       >
-        <Logo onClick={() => navigate("/")} />
+        <Box onClick={() => navigate("/")}>
+          <Logo />
+        </Box>
         <Text fontSize="sm">{t("footer.slogan")}</Text>
 
         <Stack direction={"row"} spacing={3}>
