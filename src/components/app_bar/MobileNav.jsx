@@ -9,18 +9,21 @@ import {
   Button,
   useColorModeValue,
   useDisclosure,
+  useColorMode,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
-import { ChevronDownIcon } from "@chakra-ui/icons";
-
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+import { FlagIcon } from "react-flag-kit";
+import { FiMoon } from "react-icons/fi";
 
-const MobileNav = () => {
-  const { isOpen, onToggle } = useDisclosure();
+const MobileNav = ({ toggleMainNavBar }) => {
   const { vendor, authenticated } = useSelector((state) => state.user);
-
-  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { isOpen, onToggle } = useDisclosure();
+  const { toggleColorMode } = useColorMode();
+  const { t, i18n } = useTranslation();
 
   return (
     <Stack
@@ -29,35 +32,68 @@ const MobileNav = () => {
       display={{ md: "none" }}
     >
       <>
-        <Text
-          data-cy="nothing-to-see"
-          fontWeight={600}
-          color={useColorModeValue("gray.600", "gray.200")}
-        >
-          {t("appBar.nothingToSeeHere")}
-        </Text>
-        <Stack>
-          <Button
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"outline"}
-            width="100%"
-            onClick={() => redirect("/auth/sign-in")}
-            data-cy="sign-in-button"
-          >
-            {t("appBar.signIn")}
-          </Button>
-          <Button
-            fontSize={"sm"}
-            fontWeight={600}
-            colorScheme="pink"
-            width="100%"
-            onClick={() => redirect("/auth/sign-up")}
-            data-cy="sign-up-button"
-          >
-            {t("appBar.signUp")}
-          </Button>
+        <Stack direction={"row"} spacing={3}>
+          <Box h="24px">
+            {i18n.language === "GB" ? (
+              <FlagIcon
+                code="SE"
+                style={{ cursor: "pointer" }}
+                size={20}
+                onClick={() => i18n.changeLanguage("SE")}
+              />
+            ) : (
+              <FlagIcon
+                code="GB"
+                style={{ cursor: "pointer" }}
+                size={20}
+                onClick={() => i18n.changeLanguage("GB")}
+              />
+            )}
+          </Box>
+          <Box h="24px">
+            <FiMoon style={{ cursor: "pointer" }} onClick={toggleColorMode} />
+          </Box>
         </Stack>
+        {!authenticated && (
+          <>
+            <Text
+              data-cy="nothing-to-see"
+              align={"center"}
+              fontWeight={600}
+              color={useColorModeValue("gray.600", "gray.200")}
+            >
+              {t("appBar.nothingToSeeHere")}
+            </Text>
+            <Stack>
+              <Button
+                fontSize={"sm"}
+                fontWeight={400}
+                variant={"outline"}
+                width="100%"
+                onClick={() => {
+                  navigate("/auth/sign-in", { replace: true });
+                  toggleMainNavBar();
+                }}
+                data-cy="sign-in-button-mobile"
+              >
+                {t("appBar.signIn")}
+              </Button>
+              <Button
+                fontSize={"sm"}
+                fontWeight={600}
+                colorScheme="pink"
+                width="100%"
+                onClick={() => {
+                  navigate("/auth/sign-up", { replace: true });
+                  toggleMainNavBar();
+                }}
+                data-cy="sign-up-button-mobile"
+              >
+                {t("appBar.signUp")}
+              </Button>
+            </Stack>
+          </>
+        )}
       </>
       <Stack spacing={4} onClick={onToggle}>
         <Flex
@@ -105,7 +141,10 @@ const MobileNav = () => {
               {vendor && (
                 <Link
                   py={2}
-                  onClick={() => redirect("/dashboard/venue")}
+                  onClick={() => {
+                    navigate("/dashboard/venue", { replace: true });
+                    toggleMainNavBar();
+                  }}
                   data-cy="venue-details-mobile"
                 >
                   {t("dashboard.headings.detailsVenue.label")}
@@ -113,7 +152,10 @@ const MobileNav = () => {
               )}
               <Link
                 py={2}
-                onClick={() => redirect("/dashboard/venue/setup")}
+                onClick={() => {
+                  navigate("/dashboard/venue/setup", { replace: true });
+                  toggleMainNavBar();
+                }}
                 data-cy="venue-setup-mobile"
               >
                 {vendor
@@ -124,9 +166,6 @@ const MobileNav = () => {
           </Collapse>
         )}
       </Stack>
-      {/* {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label} {...navItem} />
-      ))} */}
     </Stack>
   );
 };

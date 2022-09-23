@@ -53,20 +53,30 @@ const Navigation = () => {
           ml={{ base: -2 }}
           display={{ base: "flex", md: "none" }}
         >
-          <HStack >
-
-          <IconButton
-            data-cy="mobile-nav-toggle"
-            onClick={onToggle}
-            icon={
-              isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
-            }
-            variant={"ghost"}
-            aria-label={"Toggle Navigation"}
-          />
-          <Box pt={2}>
-            <Logo width={"110px"} onClick={() => navigate("/")} />
-          </Box>
+          <HStack>
+            <IconButton
+              data-cy="mobile-nav-toggle"
+              onClick={onToggle}
+              icon={
+                isOpen ? (
+                  <CloseIcon w={3} h={3} />
+                ) : (
+                  <HamburgerIcon w={5} h={5} />
+                )
+              }
+              variant={"ghost"}
+              aria-label={"Toggle Navigation"}
+            />
+            <Box
+              data-cy="mobile-logo"
+              pt={2}
+              onClick={() => {
+                isOpen && onToggle();
+                navigate("/");
+              }}
+            >
+              <Logo width={"110px"} />
+            </Box>
           </HStack>
         </Flex>
         <Flex
@@ -74,7 +84,9 @@ const Navigation = () => {
           justify={{ base: "center", md: "start" }}
           display={{ base: "none", md: "flex" }}
         >
-          <Logo onClick={() => navigate("/")} />
+          <Box data-cy="logo" onClick={() => navigate("/")}>
+            <Logo />
+          </Box>
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
@@ -178,11 +190,10 @@ const Navigation = () => {
             </Menu>
           )}
         </Flex>
-        {/* </Stack> */}
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
+        <MobileNav toggleMainNavBar={onToggle} />
       </Collapse>
     </Box>
   );
