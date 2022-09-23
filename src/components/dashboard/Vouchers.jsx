@@ -1,4 +1,4 @@
-import { Button, Flex, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Flex, Text, Spacer, useColorModeValue } from "@chakra-ui/react";
 import Card from "./templates/Card";
 import CardBody from "./templates/CardBody";
 import CardHeader from "./templates/CardHeader";
@@ -16,46 +16,9 @@ import {
   FaShoppingCart,
 } from "react-icons/fa";
 
-const Vouchers = ({ title }) => {
-  const { vouchers } = useSelector((state => state.user));
+const Vouchers = () => {
+  const { vouchers } = useSelector((state) => state.user);
   const textColor = useColorModeValue("gray.700", "white");
-  const data = [
-    {
-      date: "March, 01, 2020",
-      code: "#MS-415646",
-      price: "$180",
-      logo: FaFilePdf,
-      format: "PDF",
-    },
-    {
-      date: "February, 10, 2020",
-      code: "#RV-126749",
-      price: "$250",
-      logo: FaFilePdf,
-      format: "PDF",
-    },
-    {
-      date: "April, 05, 2020",
-      code: "#FB-212562",
-      price: "$560",
-      logo: FaFilePdf,
-      format: "PDF",
-    },
-    {
-      date: "June, 25, 2019",
-      code: "#QW-103578",
-      price: "$120",
-      logo: FaFilePdf,
-      format: "PDF",
-    },
-    {
-      date: "March, 01, 2019",
-      code: "#AR-803481",
-      price: "$300",
-      logo: FaFilePdf,
-      format: "PDF",
-    },
-  ];
 
   return (
     <Card
@@ -66,18 +29,41 @@ const Vouchers = ({ title }) => {
       <CardHeader>
         <Flex justify="space-between" align="center" mb="1rem" w="100%">
           <Text fontSize="lg" color={textColor} fontWeight="bold">
-            {title}
+            Vouchers
           </Text>
-          <Button
-            colorScheme="teal"
-            borderColor="teal.300"
-            color="teal.300"
-            variant="outline"
-            fontSize="xs"
-            p="8px 32px"
-          >
-            VIEW ALL
-          </Button>
+        </Flex>
+        <Flex my={{ sm: "1rem", xl: "10px" }} alignItems="center">
+          <Flex direction="column">
+            <Text fontSize="md" color={textColor} fontWeight="bold">
+              Code
+            </Text>
+            <Text
+              fontSize="sm"
+              color="gray.400"
+              fontWeight="semibold"
+              me="16px"
+            >
+              Status
+            </Text>
+          </Flex>
+          <Spacer />
+          <Box justifyContent={"center"}>
+            <Text fontSize="md" color="gray.400" fontWeight="semibold">
+              Initial value
+            </Text>
+          </Box>
+          <Spacer />
+          <Box justifyContent={"center"}>
+            <Text fontSize="md" color="gray.400" fontWeight="semibold">
+              Current Value
+            </Text>
+          </Box>
+          <Spacer />
+          <Box me="10px">
+            <Text fontSize="md" color="gray.400" fontWeight="semibold">
+              {""}
+            </Text>
+          </Box>
         </Flex>
       </CardHeader>
       <CardBody>

@@ -62,7 +62,7 @@ const DesktopNav = () => {
                         transition={"all .3s ease"}
                         _groupHover={{ color: "pink.400" }}
                         fontWeight={500}
-                        >
+                      >
                         {t("dashboard.headings.detailsVenue.label")}
                       </Text>
                       <Text fontSize={"sm"}>
@@ -91,6 +91,60 @@ const DesktopNav = () => {
                         : t("dashboard.headings.setupVenue.subLabel")}
                     </Text>
                   </DesktopSubNav>
+                </>
+              )}
+            </Stack>
+          </PopoverContent>
+        </Popover>
+      </Box>
+      <Box data-cy="vouchers">
+        <Popover trigger={"hover"} placement={"bottom-start"}>
+          <PopoverTrigger>
+            <Link
+              p={2}
+              // onClick={() => navigate('/dashboard/vouchers')}
+              fontSize={"sm"}
+              fontWeight={500}
+              color={linkColor}
+              _hover={{
+                textDecoration: "none",
+                color: linkHoverColor,
+              }}
+            >
+              {"Vouchers"}
+            </Link>
+          </PopoverTrigger>
+          <PopoverContent
+            border={0}
+            boxShadow={"xl"}
+            bg={popoverContentBgColor}
+            p={4}
+            rounded={"xl"}
+            minW={"sm"}
+          >
+            <Stack>
+            {authenticated && (
+                <>
+                  {vendor && (
+                    <DesktopSubNav
+                      {...{
+                        dataCy: "voucher-management",
+                        href: "/dashboard/vouchers",
+                      }}
+                    >
+                      <Text
+                        transition={"all .3s ease"}
+                        _groupHover={{ color: "pink.400" }}
+                        fontWeight={500}
+                      >
+                        Management
+                      </Text>
+                      <Text fontSize={"sm"}>
+                        View and manage issued vouchers
+                      </Text>
+                    </DesktopSubNav>
+                  )}
+                  
                 </>
               )}
             </Stack>

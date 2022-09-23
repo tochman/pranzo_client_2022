@@ -1,6 +1,7 @@
 describe.only('', () => {
 
   beforeEach(() => {
+    cy.visit('/')
     cy.fixture("venueCreateSuccess").then((fixture) => {
       cy.authenticateUser({
         ...fixture.vendor.users[1],
@@ -17,6 +18,9 @@ describe.only('', () => {
         payload: fixture.vouchers,
       });
     });
+    cy.getCy('vouchers').click()
+    cy.getCy('voucher-management').click()
+    cy.get('body').click()
   });
 
 
