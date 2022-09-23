@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 const Footer = () => {
   const { t, i18n } = useTranslation();
   const { toggleColorMode } = useColorMode();
-  const { navigate } = useNavigate();
+  const navigate = useNavigate();
   return (
     <Box
       data-cy="footer"

@@ -4,6 +4,18 @@ describe.only('Navigating the application on MOBILE device', () => {
     cy.viewport("iphone-x");
     cy.getCy("mobile-nav-toggle").trigger("click");
   });
+
+  describe.only('Logo link', () => {
+    before(()=>{
+      cy.visit('/auth/sign-up')
+      cy.getCy('mobile-logo').trigger('click')
+    })
+
+    it('is expected to navigate to root path', () => {
+      cy.location("pathname").should("eq", "/");
+
+    });
+  });
   describe('as a VISITOR', () => {
     context('Sign Up Process', () => {
       beforeEach(() => {
@@ -50,7 +62,7 @@ describe.only('Navigating the application on MOBILE device', () => {
       });
     });
 
-    context.only('navigating to Venue Setup', () => {
+    context('navigating to Venue Setup', () => {
       beforeEach(() => {
         cy.getCy("venue-setup-mobile").trigger('click')
       });

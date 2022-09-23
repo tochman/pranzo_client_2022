@@ -67,8 +67,15 @@ const Navigation = () => {
               variant={"ghost"}
               aria-label={"Toggle Navigation"}
             />
-            <Box pt={2} onClick={() => navigate("/")}>
-              <Logo width={"110px"} onClick={() => navigate("/")} />
+            <Box
+              data-cy="mobile-logo"
+              pt={2}
+              onClick={() => {
+                isOpen && onToggle();
+                navigate("/");
+              }}
+            >
+              <Logo width={"110px"} />
             </Box>
           </HStack>
         </Flex>
@@ -77,7 +84,7 @@ const Navigation = () => {
           justify={{ base: "center", md: "start" }}
           display={{ base: "none", md: "flex" }}
         >
-          <Box onClick={() => navigate("/")}>
+          <Box data-cy="logo" onClick={() => navigate("/")}>
             <Logo />
           </Box>
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
