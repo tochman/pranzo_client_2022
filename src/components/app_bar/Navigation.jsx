@@ -182,7 +182,7 @@ const Navigation = () => {
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
+        <MobileNav toggleMainNavBar={onToggle}/>
       </Collapse>
     </Box>
   );
