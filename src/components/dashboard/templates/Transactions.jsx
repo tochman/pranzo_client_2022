@@ -46,7 +46,7 @@ const Transactions = (props) => {
         <Thead>
           <Th>Transactions</Th>
           <Th></Th>
-          <Th><Button  variant='outline' colorScheme='pink' size='sm'>Create transaction</Button></Th>
+          <Th></Th>
         </Thead>
         <Tbody>{transactionRows}</Tbody>
       </Table>
