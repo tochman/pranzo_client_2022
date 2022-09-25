@@ -3,20 +3,29 @@
     {
       "id": 846,
       "code": "CXuny",
-      "active": true,
+      "active": false,
+      "variant": "servings",
       "value": 10,
       "current_value": 10,
       "email": null,
       "transactions": []
     },
     {
-      "id": 847,
+      "id": 1000,
       "code": "eLtZr",
       "active": true,
+      "variant": "servings",
       "value": 10,
-      "current_value": 9,
+      "current_value": 8,
       "email": "random@random.com",
       "transactions": [
+        {
+          "id": 840,
+          "date": "2022-09-23T13:43:15.720Z",
+          "voucher_id": 847,
+          "created_at": "2022-09-23T13:43:15.721Z",
+          "updated_at": "2022-09-23T13:43:15.721Z"
+        },
         {
           "id": 840,
           "date": "2022-09-23T13:43:15.720Z",
@@ -30,8 +39,9 @@
       "id": 848,
       "code": "Dqbnc",
       "active": true,
-      "value": 10,
-      "current_value": 10,
+      "variant": "cash",
+      "value": 900,
+      "current_value": 900,
       "email": null,
       "transactions": []
     },
@@ -39,6 +49,7 @@
       "id": 849,
       "code": "FydIL",
       "active": true,
+      "variant": "servings",
       "value": 10,
       "current_value": 9,
       "email": null,
@@ -56,20 +67,21 @@
       "id": 850,
       "code": "7feSM",
       "active": true,
+      "variant": "servings",
       "value": 10,
       "current_value": 8,
       "email": null,
       "transactions": [
         {
           "id": 839,
-          "date": "2022-09-23T13:43:15.718Z",
+          "date": "2022-09-23T13:43:15.700Z",
           "voucher_id": 850,
           "created_at": "2022-09-23T13:43:15.719Z",
           "updated_at": "2022-09-23T13:43:15.719Z"
         },
         {
           "id": 843,
-          "date": "2022-09-23T13:43:15.725Z",
+          "date": "2022-09-23T13:43:15.700Z",
           "voucher_id": 850,
           "created_at": "2022-09-23T13:43:15.726Z",
           "updated_at": "2022-09-23T13:43:15.726Z"
@@ -80,13 +92,14 @@
       "id": 851,
       "code": "yAl2C",
       "active": true,
+      "variant": "servings",
       "value": 10,
       "current_value": 8,
       "email": null,
       "transactions": [
         {
           "id": 834,
-          "date": "2022-09-23T13:43:15.709Z",
+          "date": "2022-09-23T13:43:15.724Z",
           "voucher_id": 851,
           "created_at": "2022-09-23T13:43:15.710Z",
           "updated_at": "2022-09-23T13:43:15.710Z"
@@ -104,6 +117,7 @@
       "id": 852,
       "code": "pqadE",
       "active": true,
+      "variant": "servings",
       "value": 10,
       "current_value": 9,
       "email": null,
@@ -121,6 +135,7 @@
       "id": 853,
       "code": "aVlT3",
       "active": true,
+      "variant": "servings",
       "value": 10,
       "current_value": 8,
       "email": null,
@@ -145,6 +160,7 @@
       "id": 854,
       "code": "iIAO7",
       "active": true,
+      "variant": "servings",
       "value": 10,
       "current_value": 9,
       "email": null,
@@ -161,7 +177,8 @@
     {
       "id": 855,
       "code": "MLvjq",
-      "active": true,
+      "active": false,
+      "variant": "servings",
       "value": 10,
       "current_value": 10,
       "email": null,

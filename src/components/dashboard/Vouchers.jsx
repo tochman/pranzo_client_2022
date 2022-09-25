@@ -14,116 +14,89 @@ import {
   useColorModeValue,
   useDisclosure,
   Accordion,
+  Icon,
+  Collapse,
 } from "@chakra-ui/react";
 
-
-import React from "react";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { FiCheck } from "react-icons/fi";
+import { AiOutlineNumber } from "react-icons/ai";
+
+import { FaRegMoneyBillAlt }  from "react-icons/fa";
 import Transactions from "./templates/Transactions";
 
 const Vouchers = () => {
   const { vouchers } = useSelector((state) => state.user);
   const textColor = useColorModeValue("gray.700", "white");
+  const [isOpen, setOpen] = useState({});
+  let initialRowState = [];
+  useEffect(() => {
+    vouchers.forEach((voucher) =>
+      initialRowState.push({ [voucher.code]: false })
+    );
+    setOpen(initialRowState);
+  }, [vouchers]);
+
+  const rows = vouchers.map((voucher) => {
+    const icon = voucher.variant === 'servings' ? <AiOutlineNumber /> : <FaRegMoneyBillAlt />
+    return (
+      <React.Fragment  key={voucher.code} >
+        <Tr
+         
+          onClick={() =>
+            setOpen({ ...isOpen, [voucher.code]: !isOpen[voucher.code] })
+          }
+        >
+          <Td>{voucher.code}</Td>
+          <Td>{voucher.active && <FiCheck />}</Td>
+          <Td>{ icon}</Td>
+          <Td>{voucher.value}</Td>
+          <Td>{voucher.current_value}</Td>
+          <Td>{voucher.email ? voucher.email : "holder"}</Td>
+          <Td>
+            {!voucher.transactions.length == 0 && (
+              <Icon
+                as={ChevronDownIcon}
+                transition={"all .25s ease-in-out"}
+                transform={isOpen[voucher.code] ? "rotate(180deg)" : ""}
+                w={6}
+                h={6}
+              />
+            )}
+          </Td>
+        </Tr>
+        <Tr>
+          <td colSpan="6">
+            <Collapse in={isOpen[voucher.code]} animateOpacity>
+              <Transactions transactions={voucher.transactions} />
+            </Collapse>
+          </td>
+        </Tr>
+      </React.Fragment>
+    );
+  });
 
   return (
     <Box m={{ base: 5 }}>
       <TableContainer>
-        <Table variant="striped" colorScheme="pink">
+        <Table variant="simple" colorScheme="pink">
           <Thead>
             <Tr>
               <Th>Code</Th>
               <Th>Active</Th>
+              <Th>Variant</Th>
               <Th>Initial Value</Th>
               <Th>Current Value</Th>
               <Th>Owner</Th>
               <Th>{""}</Th>
             </Tr>
           </Thead>
-          <Tbody>
-            {vouchers.map((voucher) => {
-              return (
-                  <Tr>
-                    <Td>{voucher.code}</Td>
-                    <Td>{voucher.active && <FiCheck />}</Td>
-                    <Td>{voucher.value}</Td>
-                    <Td>{voucher.current_value}</Td>
-                    <Td>{voucher.email ? voucher.email : "holder"}</Td>
-                    <Td>
-
-                      <Box display={'none'}>
-                        <Text>Hello</Text>
-                      </Box>
-                    </Td>
-                  </Tr>
-              );
-            })}
-          </Tbody>
+          <Tbody>{rows}</Tbody>
         </Table>
       </TableContainer>
     </Box>
-    // <Card
-    //   p="22px"
-    //   my={{ sm: "24px", lg: "0px" }}
-    //   ms={{ sm: "0px", lg: "24px" }}
-    // >
-    //   <CardHeader>
-    //     <Flex justify="space-between" align="center" mb="1rem" w="100%">
-    //       <Text fontSize="lg" color={textColor} fontWeight="bold">
-    //         Vouchers
-    //       </Text>
-    //     </Flex>
-    //     <Flex my={{ sm: "1rem", xl: "10px" }} alignItems="center">
-    //       <Flex direction="column">
-    //         <Text fontSize="md" color={textColor} fontWeight="bold">
-    //           Code
-    //         </Text>
-    //         <Text
-    //           fontSize="sm"
-    //           color="gray.400"
-    //           fontWeight="semibold"
-    //           me="16px"
-    //         >
-    //           Status
-    //         </Text>
-    //       </Flex>
-    //       <Spacer />
-    //       <Box justifyContent={"center"}>
-    //         <Text fontSize="md" color="gray.400" fontWeight="semibold">
-    //           Initial value
-    //         </Text>
-    //       </Box>
-    //       <Spacer />
-    //       <Box justifyContent={"center"}>
-    //         <Text fontSize="md" color="gray.400" fontWeight="semibold">
-    //           Current Value
-    //         </Text>
-    //       </Box>
-    //       <Spacer />
-    //       <Box me="10px">
-    //         <Text fontSize="md" color="gray.400" fontWeight="semibold">
-    //           {""}
-    //         </Text>
-    //       </Box>
-    //     </Flex>
-    //   </CardHeader>
-    //   <CardBody>
-    //     <Flex direction="column" w="100%">
-    //       {vouchers.map((row) => {
-    //         return (
-    //           <VouchersRow
-    //             code={row.code}
-    //             active={row.active}
-    //             value={row.value}
-    //             currentValue={row.current_value}
-    //             holder={row.email}
-    //             transactions={row.transactions}
-    //           />
-    //         );
-    //       })}
-    //     </Flex>
-    //   </CardBody>
-    // </Card>
   );
 };
 

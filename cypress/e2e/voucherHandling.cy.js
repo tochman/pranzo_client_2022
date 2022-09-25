@@ -24,7 +24,7 @@ describe.only('', () => {
   });
 
 
-  it('', () => {
+  it('is expected to reveal transactions for voucher', () => {
     
   });
 });

@@ -23,6 +23,7 @@
     "framer-motion": "^6",
     "i18next": "^21.9.1",
     "j-tockauth": "^1.2.7",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
     "react-dom": "^18.2.0",
