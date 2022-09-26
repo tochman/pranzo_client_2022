@@ -17,14 +17,14 @@ describe("Navigating the application on MOBILE device", () => {
     });
   });
 
-  describe('FOOTER: Contentvisibility', () => {
+  describe("FOOTER: Content visibility", () => {
     beforeEach(() => {
       cy.getCy("mobile-nav-toggle").trigger("click");
-      cy.getCy('toggle-footer-content-section').trigger('click')
+      cy.getCy("toggle-footer-content-section").trigger("click");
     });
-    
-    it('is expected to toggle visibility of footer sections', () => {
-      cy.getCy('footer-content').should('exist').and('be.visible')
+
+    it("is expected to toggle visibility of footer sections", () => {
+      cy.getCy("footer-content").should("exist").and("be.visible");
     });
   });
 
@@ -46,6 +46,12 @@ describe("Navigating the application on MOBILE device", () => {
 
       it("is expected to navigate to auth/sign-up", () => {
         cy.location("pathname").should("eq", "/auth/sign-in");
+      });
+    });
+
+    context("Voucher management", () => {
+      it("is expected to HIDE voucher management links", () => {
+        cy.getCy("voucher-management-mobile").should("not.exist");
       });
     });
   });
@@ -82,11 +88,16 @@ describe("Navigating the application on MOBILE device", () => {
       it("is expected to navigate to /dashboard/venue/setup", () => {
         cy.location("pathname").should("eq", "/dashboard/venue/setup");
       });
-      
-      it('is expected to display the right header', () => {
+
+      it("is expected to display the right header", () => {
         cy.get("body").should("contain.text", "Edit your venue");
       });
-    
+    });
+
+    context("Voucher management", () => {
+      it("is expected to HIDE voucher management links", () => {
+        cy.getCy("voucher-management-mobile").should("exist");
+      });
     });
   });
 
@@ -110,8 +121,14 @@ describe("Navigating the application on MOBILE device", () => {
         cy.location("pathname").should("eq", "/dashboard/venue/setup");
       });
 
-      it('is expected to display the right header', () => {
+      it("is expected to display the right header", () => {
         cy.get("body").should("contain.text", "Set up your venue");
+      });
+    });
+
+    context("Voucher management", () => {
+      it("is expected to HIDE voucher management links", () => {
+        cy.getCy("voucher-management-mobile").should("not.exist");
       });
     });
   });

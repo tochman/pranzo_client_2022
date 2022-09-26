@@ -20,6 +20,9 @@ import "cypress-localstorage-commands";
 
 beforeEach(() => {
   cy.intercept("GET", "**/auth/validate_token**", { fixture: 'signUpAuthenticationError.json', statusCode: 401 });
+  cy.intercept("GET", "**/api/vendors/**/vouchers", {
+    fixture: "vouchersIndex",
+  });
 });
 
 beforeEach(() => {

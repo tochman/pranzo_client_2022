@@ -15,7 +15,14 @@ describe("Dashboard view", () => {
           payload: fixture.vendor,
         });
       });
+      cy.fixture("vouchersIndex").then((fixture) => {
+        cy.applicationState().invoke("dispatch", {
+          type: "user/setVouchers",
+          payload: fixture.vouchers,
+        });
+      });
     });
+
     it("is expected to display view on the dashboard path", () => {
       cy.location("pathname").should("eq", "/dashboard");
     });

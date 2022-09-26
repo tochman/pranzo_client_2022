@@ -48,6 +48,7 @@ describe("Application stucture", () => {
 
     it("is expected to display menue items", () => {
       cy.getCy("my-venue").should("exist").and("be.visible");
+      cy.getCy("vouchers").should("exist").and("be.visible"); //refactor to it's own it block?
     });
 
     context("pull down contains menu items", () => {
@@ -80,6 +81,10 @@ describe("Application stucture", () => {
 
     it("is expected to display menue items", () => {
       cy.getCy("my-venue").should("exist").and("be.visible");
+    });
+
+    it('is expected to hide Vouchers menue item', () => {
+      cy.getCy("vouchers").should("not.exist")
     });
 
     context("pull down contains menu items", () => {
@@ -130,6 +135,7 @@ describe("Application stucture", () => {
 
     it("is expected to display menue items", () => {
       cy.getCy("my-venue-mobile").should("exist").and("be.visible");
+      cy.getCy("vouchers-mobile").should("exist").and("be.visible");
     });
 
     context("pull down contains menu items", () => {
@@ -167,6 +173,10 @@ describe("Application stucture", () => {
 
     it("is expected to display menue items", () => {
       cy.getCy("my-venue-mobile").should("exist").and("be.visible");
+    });
+
+    it('is expected to hide Vouchers menue item', () => {
+      cy.getCy("vouchers-mobile").should("not.exist")
     });
 
     context("pull down contains menu items", () => {
