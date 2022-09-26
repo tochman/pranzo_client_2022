@@ -25,7 +25,7 @@ describe('Vouchers view', () => {
 
   describe('Clicking on the table row for vouchers', () => {
 
-    context.only('Active vouchers with prior TRANSACTIONS', () => {
+    context('Active vouchers with prior TRANSACTIONS', () => {
       beforeEach(() => {
         cy.getCy('eLtZr').trigger('click')
       });
