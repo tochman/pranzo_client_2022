@@ -46,7 +46,7 @@ describe("Application stucture", () => {
       });
     });
 
-    it("is expected to display menue items", () => {
+    it.only("is expected to display menue items", () => {
       cy.getCy("my-venue").should("exist").and("be.visible");
     });
 

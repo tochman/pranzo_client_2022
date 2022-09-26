@@ -22,6 +22,7 @@ const MobileNav = ({ toggleMainNavBar }) => {
   const { vendor, authenticated } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const { isOpen, onToggle } = useDisclosure();
+  const { isOpen: isVouchersOpen, onToggle: vouchersToggle } = useDisclosure();
   const { toggleColorMode } = useColorMode();
   const { t, i18n } = useTranslation();
 
@@ -130,14 +131,7 @@ const MobileNav = ({ toggleMainNavBar }) => {
             animateOpacity
             style={{ marginTop: "0!important" }}
           >
-            <Stack
-              mt={2}
-              pl={4}
-              borderLeft={1}
-              borderStyle={"solid"}
-              borderColor={useColorModeValue("gray.200", "gray.700")}
-              align={"start"}
-            >
+            <Stack pl={3} align={"start"}>
               {vendor && (
                 <Link
                   py={2}
@@ -167,6 +161,54 @@ const MobileNav = ({ toggleMainNavBar }) => {
           </Collapse>
         )}
       </Stack>
+      {authenticated && vendor && (
+        <Stack spacing={4} onClick={vouchersToggle}>
+          <Flex
+            py={2}
+            as={Link}
+            justify={"space-between"}
+            align={"center"}
+            _hover={{
+              textDecoration: "none",
+            }}
+            data-cy={"vouchers-mobile"}
+          >
+            <>
+              <Text
+                fontWeight={600}
+                color={useColorModeValue("gray.600", "gray.200")}
+              >
+                Vouchers
+              </Text>
+              <Icon
+                as={ChevronDownIcon}
+                transition={"all .25s ease-in-out"}
+                transform={isOpen ? "rotate(180deg)" : ""}
+                w={6}
+                h={6}
+              />
+            </>
+          </Flex>
+          <Collapse
+            in={isVouchersOpen}
+            animateOpacity
+            style={{ marginTop: "0!important" }}
+          >
+            <Stack pl={3} align={"start"}>
+              <Link
+                py={2}
+                onClick={() => {
+                  navigate("/dashboard/vouchers", { replace: true });
+                  toggleMainNavBar();
+                }}
+                data-cy="voucher-management-mobile"
+              >
+                {"View & Manage"}
+              </Link>
+            </Stack>
+          </Collapse>
+        </Stack>
+      )}
     </Stack>
   );
 };

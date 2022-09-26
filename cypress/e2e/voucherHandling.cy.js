@@ -1,5 +1,6 @@
 describe('Vouchers view', () => {
   before(() => {
+
     cy.visit('/')
     cy.fixture("venueCreateSuccess").then((fixture) => {
       cy.authenticateUser({
@@ -24,7 +25,7 @@ describe('Vouchers view', () => {
 
   describe('Clicking on the table row for vouchers', () => {
 
-    context('Active vouchers with prior TRANSACTIONS', () => {
+    context.only('Active vouchers with prior TRANSACTIONS', () => {
       beforeEach(() => {
         cy.getCy('eLtZr').trigger('click')
       });

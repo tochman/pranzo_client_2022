@@ -41,7 +41,10 @@ const Transactions = (props) => {
     );
   });
   return (
-    <TableContainer data-cy={`${props.code}-table`} >
+    <TableContainer
+      data-cy={`${props.code}-table`}
+      width={{ baseStyle: "80%", sm: "100%" }}
+    >
       <Table variant="striped">
         <Thead>
           <Th>Transactions</Th>

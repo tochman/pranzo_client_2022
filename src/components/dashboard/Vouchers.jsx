@@ -26,6 +26,7 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
+  Hide,
 } from "@chakra-ui/react";
 import _ from "lodash";
 import { ChevronDownIcon } from "@chakra-ui/icons";
@@ -74,9 +75,11 @@ const Vouchers = () => {
           style={{ cursor: "pointer" }}
         >
           <Td>{voucher.code}</Td>
-          <Td>{voucher.active && <FiCheck />}</Td>
-          <Td>{icon}</Td>
-          <Td>{voucher.value}</Td>
+          <Hide below="md">
+            <Td>{voucher.active && <FiCheck />}</Td>
+            <Td>{icon}</Td>
+            <Td>{voucher.value}</Td>
+          </Hide>
           <Td>{voucher.current_value}</Td>
           <Td>
             <Icon
@@ -89,7 +92,7 @@ const Vouchers = () => {
           </Td>
         </Tr>
         <Tr>
-          <td colSpan="6">
+          <td colSpan="5">
             <Collapse in={isOpen[voucher.code]} animateOpacity>
               <VStack m={{ base: 2 }} spacing={4}>
                 {voucher.active ? (
@@ -169,17 +172,19 @@ const Vouchers = () => {
 
   return (
     <>
-      <Box m={{ base: 5 }}>
-        <TableContainer>
+      <Box m={{ base: 5, sm: 0, xs: 0 }}>
+        <TableContainer width={{sm: '100%'}}>
           <Table variant="simple" colorScheme="pink">
             <Thead>
               <Tr>
                 <Th>Code</Th>
-                <Th>Active</Th>
-                <Th>Variant</Th>
-                <Th>Initial Value</Th>
+                <Hide below={'md'}>
+                  <Th>Active</Th>
+                  <Th>Variant</Th>
+                  <Th>Initial Value</Th>
+                </Hide>
                 <Th>Current Value</Th>
-                <Th>{""}</Th>
+                <Th maxWidth={{sm: '10%'}}>{""}</Th>
               </Tr>
             </Thead>
             <Tbody>{rows}</Tbody>
