@@ -36,7 +36,7 @@ export const signInUser = createAsyncThunk(
       // check if vendor_id is present. If yes fetch the vendor and dispatch "user/setVenue" action
       if (response.data.vendor_id) {
         const vendorResponse = await auth.privateRoute(
-          `api/vendors/${response.data.vendor_id}`,
+          `/api/vendors/${response.data.vendor_id}`,
           { method: "GET" }
         );
         dispatch({
@@ -59,7 +59,7 @@ export const validateUserByToken = createAsyncThunk(
       const response = await auth.validateToken(headers);
       if (response.data.vendor_id) {
         const vendorResponse = await auth.privateRoute(
-          `api/vendors/${response.data.vendor_id}`,
+          `/api/vendors/${response.data.vendor_id}`,
           { method: "GET" }
         );
         dispatch({
