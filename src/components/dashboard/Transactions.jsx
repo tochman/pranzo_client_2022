@@ -20,7 +20,7 @@ import {
 } from "@chakra-ui/react";
 
 import moment from "moment";
-import { removeDuplicates } from "../../../state/utilities/utilities";
+import { removeDuplicates } from "../../state/utilities/utilities";
 const Transactions = (props) => {
   let transactions = JSON.parse(JSON.stringify(props.transactions)); // really? Is this fixing object is not extensible?
   const cleanTransactions = removeDuplicates(transactions, "date");
@@ -41,7 +41,7 @@ const Transactions = (props) => {
     );
   });
   return (
-    <TableContainer >
+    <TableContainer data-cy={`${props.code}-table`} >
       <Table variant="striped">
         <Thead>
           <Th>Transactions</Th>

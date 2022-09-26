@@ -1,4 +1,4 @@
-describe.only('', () => {
+describe('', () => {
 
   beforeEach(() => {
     cy.visit('/')
@@ -23,8 +23,27 @@ describe.only('', () => {
     cy.get('body').click()
   });
 
+  describe('Clickeng on the table row for vouchers', () => {
 
-  it('is expected to reveal transactions for voucher', () => {
+    context.only('Active with prior TRANSACTIONS', () => {
+      beforeEach(() => {
+        cy.getCy('eLtZr').trigger('click')
+      });
+
+      it('is expected to reveal transactions for voucher', () => {
+        cy.getCy('eLtZr-table').should('exist').and('be.visible')
+      });
+
+      it('is expected to display holder information', () => {
+        cy.getCy('eLtZr-holder').should('contain.text', 'Holder: random@random.com')
+      });
+
+      it('is expected to display action button', () => {
+        cy.getCy('eLtZr-cta').should('exist').and('contain.text', 'Create transaction')
+      });
+      
+    });
     
   });
+
 });

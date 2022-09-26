@@ -27,7 +27,7 @@ import {
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
-
+import _ from "lodash";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -35,7 +35,7 @@ import { FiCheck } from "react-icons/fi";
 import { AiOutlineNumber } from "react-icons/ai";
 
 import { FaRegMoneyBillAlt } from "react-icons/fa";
-import Transactions from "./templates/Transactions";
+import Transactions from "./Transactions";
 import ServingsVoucherActions from "./ServingsVoucherActions";
 import CashVoucherActions from "./CashVoucherActions";
 
@@ -66,9 +66,12 @@ const Vouchers = () => {
     return (
       <React.Fragment key={voucher.code}>
         <Tr
-          onClick={() =>
-            setOpen({ ...isOpen, [voucher.code]: !isOpen[voucher.code] })
-          }
+          data-cy={voucher.code}
+          onClick={() => {
+            let status = _.mapValues(setOpen, () => false);
+            setOpen({ ...status, [voucher.code]: !isOpen[voucher.code] });
+          }}
+          style={{ cursor: "pointer" }}
         >
           <Td>{voucher.code}</Td>
           <Td>{voucher.active && <FiCheck />}</Td>
@@ -89,32 +92,39 @@ const Vouchers = () => {
           <td colSpan="6">
             <Collapse in={isOpen[voucher.code]} animateOpacity>
               <VStack m={{ base: 2 }} spacing={4}>
-                <Text as={"small"}>
+                <Text as={"small"} data-cy={`${voucher.code}-holder`}>
                   Holder: {voucher.email ? voucher.email : "holder"}
                 </Text>
-                { voucher.status == "active" ? 
-                
-                <Button
-                  alignSelf={"left"}
-                  variant="outline"
-                  colorScheme="pink"
-                  size="sm"
-                  onClick={() => openModal()}
-                >
-                  Create transaction
-                </Button> : 
-                <Button
-                alignSelf={"left"}
-                variant="outline"
-                colorScheme="pink"
-                size="sm"
-                onClick={() => openModal()}
-              >
-                Activate
-              </Button>
-              }
+                {voucher.active ? (
+                  <Button
+                    data-cy={`${voucher.code}-cta`}
+                    alignSelf={"left"}
+                    variant="outline"
+                    colorScheme="pink"
+                    size="sm"
+                    onClick={() => openModal()}
+                  >
+                    Create transaction
+                  </Button>
+                ) : (
+                  <Button
+                    data-cy={`${voucher.code}-cta`}
+                    alignSelf={"left"}
+                    variant="outline"
+                    colorScheme="pink"
+                    size="sm"
+                    onClick={() => openModal()}
+                  >
+                    Activate
+                  </Button>
+                )}
               </VStack>
-              { voucher.transactions != 0 && <Transactions transactions={voucher.transactions} />}
+              {voucher.transactions != 0 && (
+                <Transactions
+                  code={voucher.code}
+                  transactions={voucher.transactions}
+                />
+              )}
             </Collapse>
           </td>
         </Tr>
