@@ -92,20 +92,22 @@ const Vouchers = () => {
           <td colSpan="6">
             <Collapse in={isOpen[voucher.code]} animateOpacity>
               <VStack m={{ base: 2 }} spacing={4}>
-                <Text as={"small"} data-cy={`${voucher.code}-holder`}>
-                  Holder: {voucher.email ? voucher.email : "holder"}
-                </Text>
                 {voucher.active ? (
-                  <Button
-                    data-cy={`${voucher.code}-cta`}
-                    alignSelf={"left"}
-                    variant="outline"
-                    colorScheme="pink"
-                    size="sm"
-                    onClick={() => openModal()}
-                  >
-                    Create transaction
-                  </Button>
+                  <>
+                    <Text as={"small"} data-cy={`${voucher.code}-holder`}>
+                      Holder: {voucher.email ? voucher.email : "holder"}
+                    </Text>
+                    <Button
+                      data-cy={`${voucher.code}-cta`}
+                      alignSelf={"left"}
+                      variant="outline"
+                      colorScheme="pink"
+                      size="sm"
+                      onClick={() => openModal()}
+                    >
+                      Create transaction
+                    </Button>
+                  </>
                 ) : (
                   <Button
                     data-cy={`${voucher.code}-cta`}

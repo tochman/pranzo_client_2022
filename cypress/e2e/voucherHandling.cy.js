@@ -1,6 +1,5 @@
-describe('', () => {
-
-  beforeEach(() => {
+describe('Vouchers view', () => {
+  before(() => {
     cy.visit('/')
     cy.fixture("venueCreateSuccess").then((fixture) => {
       cy.authenticateUser({
@@ -23,9 +22,9 @@ describe('', () => {
     cy.get('body').click()
   });
 
-  describe('Clickeng on the table row for vouchers', () => {
+  describe('Clicking on the table row for vouchers', () => {
 
-    context.only('Active with prior TRANSACTIONS', () => {
+    context('Active vouchers with prior TRANSACTIONS', () => {
       beforeEach(() => {
         cy.getCy('eLtZr').trigger('click')
       });
@@ -40,6 +39,44 @@ describe('', () => {
 
       it('is expected to display action button', () => {
         cy.getCy('eLtZr-cta').should('exist').and('contain.text', 'Create transaction')
+      });
+      
+    });
+
+    context('Active vouchers without prior TRANSACTIONS', () => {
+      beforeEach(() => {
+        cy.getCy('Dqbnc').trigger('click')
+      });
+
+      it('is expected to reveal transactions for voucher', () => {
+        cy.getCy('Dqbnc-table').should('not.exist')
+      });
+
+      it('is expected to display holder information', () => {
+        cy.getCy('Dqbnc-holder').should('contain.text', 'Holder: holder')
+      });
+
+      it('is expected to display action button', () => {
+        cy.getCy('Dqbnc-cta').should('exist').and('contain.text', 'Create transaction')
+      });
+      
+    });
+
+    context('Inactive voucher', () => {
+      beforeEach(() => {
+        cy.getCy('CXuny').trigger('click')
+      });
+
+      it('is expected to reveal transactions for voucher', () => {
+        cy.getCy('CXuny-table').should('not.exist')
+      });
+
+      it('is expected to display holder information', () => {
+        cy.getCy('CXuny-holder').should('not.exist')
+      });
+
+      it('is expected to display action button', () => {
+        cy.getCy('CXuny-cta').should('exist').and('contain.text', 'Activate')
       });
       
     });
