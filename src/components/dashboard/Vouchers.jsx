@@ -18,7 +18,7 @@ import {
   Icon,
   Collapse,
   Button,
-  HStack,
+  VStack,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -36,10 +36,11 @@ import { AiOutlineNumber } from "react-icons/ai";
 
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import Transactions from "./templates/Transactions";
+import ServingsVoucherActions from "./ServingsVoucherActions";
+import CashVoucherActions from "./CashVoucherActions";
 
 const Vouchers = () => {
   const { vouchers } = useSelector((state) => state.user);
-  const textColor = useColorModeValue("gray.700", "white");
   const [isOpen, setOpen] = useState({});
   const {
     isOpen: isModalOpen,
@@ -75,24 +76,24 @@ const Vouchers = () => {
           <Td>{voucher.value}</Td>
           <Td>{voucher.current_value}</Td>
           <Td>
-            {!voucher.transactions.length == 0 && (
-              <Icon
-                as={ChevronDownIcon}
-                transition={"all .25s ease-in-out"}
-                transform={isOpen[voucher.code] ? "rotate(180deg)" : ""}
-                w={6}
-                h={6}
-              />
-            )}
+            <Icon
+              as={ChevronDownIcon}
+              transition={"all .25s ease-in-out"}
+              transform={isOpen[voucher.code] ? "rotate(180deg)" : ""}
+              w={6}
+              h={6}
+            />
           </Td>
         </Tr>
         <Tr>
           <td colSpan="6">
             <Collapse in={isOpen[voucher.code]} animateOpacity>
-              <HStack m={{ base: 2 }} spacing={4}>
+              <VStack m={{ base: 2 }} spacing={4}>
                 <Text as={"small"}>
                   Holder: {voucher.email ? voucher.email : "holder"}
                 </Text>
+                { voucher.status == "active" ? 
+                
                 <Button
                   alignSelf={"left"}
                   variant="outline"
@@ -101,9 +102,19 @@ const Vouchers = () => {
                   onClick={() => openModal()}
                 >
                   Create transaction
-                </Button>
-              </HStack>
-              <Transactions transactions={voucher.transactions} />
+                </Button> : 
+                <Button
+                alignSelf={"left"}
+                variant="outline"
+                colorScheme="pink"
+                size="sm"
+                onClick={() => openModal()}
+              >
+                Activate
+              </Button>
+              }
+              </VStack>
+              { voucher.transactions != 0 && <Transactions transactions={voucher.transactions} />}
             </Collapse>
           </td>
         </Tr>
@@ -114,15 +125,20 @@ const Vouchers = () => {
             backdropBlur="2px"
           />
           <ModalContent>
-            <ModalHeader>Code: {voucher.code} - {voucher.variant}</ModalHeader>
+            <ModalHeader>
+              Code: {voucher.code} - {voucher.variant}
+            </ModalHeader>
             <ModalCloseButton
               onClick={() => {
                 onModalClose();
               }}
             />
             <ModalBody>
-
-              { voucher.variant == 'servings' ? <Text>Servings voucher  actions</Text> : <Text>Cash voucher actions</Text>}
+              {voucher.variant == "servings" ? (
+                <ServingsVoucherActions />
+              ) : (
+                <CashVoucherActions />
+              )}
             </ModalBody>
             <ModalFooter>
               <Button
