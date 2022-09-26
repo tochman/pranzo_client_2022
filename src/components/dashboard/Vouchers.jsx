@@ -41,6 +41,12 @@ const Vouchers = () => {
   const { vouchers } = useSelector((state) => state.user);
   const textColor = useColorModeValue("gray.700", "white");
   const [isOpen, setOpen] = useState({});
+  const {
+    isOpen: isModalOpen,
+    onOpen: openModal,
+    onClose: onModalClose,
+  } = useDisclosure();
+
   let initialRowState = [];
   useEffect(() => {
     vouchers.forEach((voucher) =>
@@ -92,6 +98,7 @@ const Vouchers = () => {
                   variant="outline"
                   colorScheme="pink"
                   size="sm"
+                  onClick={() => openModal()}
                 >
                   Create transaction
                 </Button>
@@ -100,6 +107,34 @@ const Vouchers = () => {
             </Collapse>
           </td>
         </Tr>
+        <Modal isCentered isOpen={isModalOpen}>
+          <ModalOverlay
+            bg="blackAlpha.300"
+            backdropInvert="80%"
+            backdropBlur="2px"
+          />
+          <ModalContent>
+            <ModalHeader>Code: {voucher.code} - {voucher.variant}</ModalHeader>
+            <ModalCloseButton
+              onClick={() => {
+                onModalClose();
+              }}
+            />
+            <ModalBody>
+
+              { voucher.variant == 'servings' ? <Text>Servings voucher  actions</Text> : <Text>Cash voucher actions</Text>}
+            </ModalBody>
+            <ModalFooter>
+              <Button
+                onClick={() => {
+                  onModalClose();
+                }}
+              >
+                Close
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
       </React.Fragment>
     );
   });
@@ -123,22 +158,6 @@ const Vouchers = () => {
           </Table>
         </TableContainer>
       </Box>
-      <Modal isCentered isOpen={true} >
-        <ModalOverlay
-          bg="blackAlpha.300"
-          backdropFilter="blur(10px) hue-rotate(90deg)"
-        />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Text>Custom backdrop filters!</Text>
-          </ModalBody>
-          <ModalFooter>
-            <Button>Close</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
     </>
   );
 };
