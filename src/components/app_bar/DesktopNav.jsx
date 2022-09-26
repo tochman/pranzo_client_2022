@@ -102,7 +102,6 @@ const DesktopNav = () => {
           <PopoverTrigger>
             <Link
               p={2}
-              // onClick={() => navigate('/dashboard/vouchers')}
               fontSize={"sm"}
               fontWeight={500}
               color={linkColor}
@@ -123,29 +122,22 @@ const DesktopNav = () => {
             minW={"sm"}
           >
             <Stack>
-            {authenticated && (
-                <>
-                  {vendor && (
-                    <DesktopSubNav
-                      {...{
-                        dataCy: "voucher-management",
-                        href: "/dashboard/vouchers",
-                      }}
-                    >
-                      <Text
-                        transition={"all .3s ease"}
-                        _groupHover={{ color: "pink.400" }}
-                        fontWeight={500}
-                      >
-                        Management
-                      </Text>
-                      <Text fontSize={"sm"}>
-                        View and manage issued vouchers
-                      </Text>
-                    </DesktopSubNav>
-                  )}
-                  
-                </>
+              {authenticated && vendor && (
+                <DesktopSubNav
+                  {...{
+                    dataCy: "voucher-management",
+                    href: "/dashboard/vouchers",
+                  }}
+                >
+                  <Text
+                    transition={"all .3s ease"}
+                    _groupHover={{ color: "pink.400" }}
+                    fontWeight={500}
+                  >
+                    Management
+                  </Text>
+                  <Text fontSize={"sm"}>View and manage issued vouchers</Text>
+                </DesktopSubNav>
               )}
             </Stack>
           </PopoverContent>
