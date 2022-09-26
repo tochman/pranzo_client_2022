@@ -1,20 +1,13 @@
 import {
   Text,
-  Container,
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
-  Flex,
   Box,
   TableContainer,
-  useColorModeValue,
-  useDisclosure,
-  Accordion,
   Icon,
   Collapse,
   Button,
@@ -27,6 +20,7 @@ import {
   ModalBody,
   ModalCloseButton,
   Hide,
+  useDisclosure,
 } from "@chakra-ui/react";
 import _ from "lodash";
 import { ChevronDownIcon } from "@chakra-ui/icons";
@@ -59,7 +53,7 @@ const Vouchers = () => {
 
   const rows = vouchers.map((voucher) => {
     const icon =
-      voucher.variant === "servings" ? (
+      voucher.variant == "servings" ? (
         <AiOutlineNumber />
       ) : (
         <FaRegMoneyBillAlt />
@@ -173,18 +167,18 @@ const Vouchers = () => {
   return (
     <>
       <Box m={{ base: 5, sm: 0, xs: 0 }}>
-        <TableContainer width={{sm: '100%'}}>
+        <TableContainer width={{ sm: "100%" }}>
           <Table variant="simple" colorScheme="pink">
             <Thead>
               <Tr>
                 <Th>Code</Th>
-                <Hide below={'md'}>
+                <Hide below={"md"}>
                   <Th>Active</Th>
                   <Th>Variant</Th>
                   <Th>Initial Value</Th>
                 </Hide>
                 <Th>Current Value</Th>
-                <Th maxWidth={{sm: '10%'}}>{""}</Th>
+                <Th maxWidth={{ sm: "10%" }}>{""}</Th>
               </Tr>
             </Thead>
             <Tbody>{rows}</Tbody>

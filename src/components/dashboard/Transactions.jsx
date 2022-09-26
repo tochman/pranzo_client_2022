@@ -1,22 +1,11 @@
 import {
-  Text,
-  Container,
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
-  Box,
   TableContainer,
-  useColorModeValue,
-  useDisclosure,
-  Accordion,
-  Icon,
-  Collapse,
-  Button,
 } from "@chakra-ui/react";
 
 import moment from "moment";
