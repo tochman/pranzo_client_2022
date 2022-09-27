@@ -14,7 +14,7 @@ describe("Application stucture", () => {
     cy.location("pathname").should("eq", "/auth/sign-up");
   });
 
-  it.only('is expected to have a /join-pranzo path', () => {
+  it('is expected to have a /join-pranzo path', () => {
     cy.visit('/join-pranzo')
     cy.location("pathname").should("eq", "/join-pranzo");
   });

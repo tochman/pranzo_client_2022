@@ -12,18 +12,18 @@ import VenueSetup from "./components/dashboard/VenueSetup";
 import VenueView from "./components/dashboard/VenueView";
 import Vouchers from "./components/dashboard/Vouchers";
 import PranzoProcess from "./components/content/PranzoProcess";
-
 import { useEffect } from "react";
 import { validateUserByToken } from "./state/features/authentication";
+import { getHeaders } from "./state/utilities/authConfig";
 const App = () => {
   const { authenticated } = useSelector((state) => state.user);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
   useEffect(() => {
-    dispatch(validateUserByToken({foo: 'bar'}))
-  }, []);
+    const authHeaders = getHeaders()
+    authHeaders.uid && dispatch(validateUserByToken());
+  }, [getHeaders]);
 
   useEffect(() => {
     authenticated && navigate("/dashboard");
@@ -38,8 +38,8 @@ const App = () => {
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/venue/setup" element={<VenueSetup />} />
-          <Route path="/dashboard/venue" element={<VenueView />} /> 
-          <Route path='/dashboard/vouchers' element={<Vouchers />} />
+          <Route path="/dashboard/venue" element={<VenueView />} />
+          <Route path="/dashboard/vouchers" element={<Vouchers />} />
         </Route>
         <Route path="/join-pranzo" element={<PranzoProcess />} />
         <Route path="/auth/sign-up" element={<SignUp />} />

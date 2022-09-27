@@ -23,7 +23,6 @@ describe("Authentication:", () => {
         .pipe((window) => window.store.getState().user.currentUser)
         .should("eql", null)
     });
-
   });
 
   describe("initial UI elements (CTA´s) with", () => {
@@ -40,7 +39,7 @@ describe("Authentication:", () => {
       beforeEach(() => {
         cy.intercept("GET", "**/auth/validate_token**", {
           fixture: "authenticatedUser.json",
-        });
+        }).as('validateTokenCall');
         cy.visit("/");
         const values =
           '{"access-token":"pCTtJ6i-ZQOigaeRc8XuhQ", "uid":"user@mail.com"}';
@@ -50,10 +49,12 @@ describe("Authentication:", () => {
       it("is expected to hide SignUp button in AppBar", () => {
         cy.getCy("sign-up-button").should("not.exist");
       });
+
       it("is expected to hide SignIn button in AppBar", () => {
         cy.getCy("sign-in-button").should("not.exist");
       });
-      it("is exprected to display currentUser´s name", () => {
+
+      it.only("is exprected to display currentUser´s name", () => {
         cy.getCy("user-avatar").click();
         cy.getCy("user-name")
           .should("contain.text", "Kalle Andersson")
