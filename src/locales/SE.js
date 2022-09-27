@@ -81,6 +81,10 @@ export const SE = {
     sellingPoints: {
       benefits: "Fördelar",
       subSlogan: "Minska manuell hantering",
+      pranzoExperience: {
+        header: "Kom igång med Pranzo",
+        subHeader: "Vi håller det enkelt.",
+      },
       right: {
         header: "Lojala kunder",
         content:

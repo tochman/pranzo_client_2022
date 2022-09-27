@@ -11,6 +11,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import VenueSetup from "./components/dashboard/VenueSetup";
 import VenueView from "./components/dashboard/VenueView";
 import Vouchers from "./components/dashboard/Vouchers";
+import PranzoProcess from "./components/content/PranzoProcess";
 
 import { useEffect } from "react";
 import { validateUserByToken } from "./state/features/authentication";
@@ -40,6 +41,7 @@ const App = () => {
           <Route path="/dashboard/venue" element={<VenueView />} /> 
           <Route path='/dashboard/vouchers' element={<Vouchers />} />
         </Route>
+        <Route path="/join-pranzo" element={<PranzoProcess />} />
         <Route path="/auth/sign-up" element={<SignUp />} />
         <Route path="/auth/sign-in" element={<SignIn />} />
       </Routes>
