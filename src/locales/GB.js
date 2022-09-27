@@ -65,7 +65,7 @@ export const GB = {
     appBar: {
       signIn: "Sign In",
       signUp: "Sign Up",
-      nothingToSeeHere: "Please register to access features"
+      nothingToSeeHere: "Please register to access features",
     },
     footer: { slogan: "Voucher And Gift Card Management Made Easy" },
     hero: {
@@ -80,6 +80,10 @@ export const GB = {
     sellingPoints: {
       benefits: "Benefits",
       subSlogan: "Let's move away from manual work",
+      pranzoExperience: {
+        header: "The Pranzo Experience",
+        subHeader: "We keep it simple, for your benefit.",
+      },
       right: {
         header: "Customer Loyalty",
         content:
