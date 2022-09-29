@@ -39,7 +39,7 @@ export const GB = {
           labels: {
             transactions: "Transactions",
             servings: "Servings: ",
-            createTransaction: "Create Transaction",
+            createTransaction: "Create transaction",
             activate: "Activate voucher",
             showInactive: "Show inactive",
             owner: "Owner: ",
