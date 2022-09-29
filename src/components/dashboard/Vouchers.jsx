@@ -14,51 +14,44 @@ import {
   Button,
   VStack,
   HStack,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
   Hide,
   Switch,
   FormControl,
   FormLabel,
-  useDisclosure,
 } from "@chakra-ui/react";
 import _ from "lodash";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FiCheck } from "react-icons/fi";
 import { AiOutlineNumber } from "react-icons/ai";
 import QrCodePopup from "@jimengio/qrcode-popup/lib/qrcode-popup";
 
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import Transactions from "./Transactions";
-import ServingsVoucherActions from "./ServingsVoucherActions";
-import CashVoucherActions from "./CashVoucherActions";
+import VoucherActions from "./VoucherActions";
+import { useTranslation } from "react-i18next";
 
 const Vouchers = () => {
+  const { t } = useTranslation();
   const { vouchers } = useSelector((state) => state.user);
   const [isOpen, setOpen] = useState({});
+  const [isModalOpen, setModalOpen] = useState({});
   const [activeVouchers, setActiveVouchers] = useState([]);
-  const [showScanner, setShowScanner] = useState(false);
+  const [, setShowScanner] = useState(false);
   const [showInactive, setShowInactive] = useState(false);
-  const {
-    isOpen: isModalOpen,
-    onOpen: openModal,
-    onClose: onModalClose,
-  } = useDisclosure();
+  const dispatch = useDispatch();
 
   let initialRowState = [];
+  let initialModalState = [];
   useEffect(() => {
     setActiveVouchers(vouchers);
-    activeVouchers.forEach((voucher) =>
-      initialRowState.push({ [voucher.code]: false })
-    );
+    activeVouchers.forEach((voucher) => {
+      initialRowState.push({ [voucher.code]: false });
+      initialModalState.push({ [voucher.code]: false });
+    });
     setOpen(initialRowState);
+    setModalOpen(initialModalState);
   }, [vouchers]);
 
   const filterVouchers = (code, options = {}) => {
@@ -70,11 +63,29 @@ const Vouchers = () => {
       setActiveVouchers(vouchers);
     }
     if (options.source === "scanner") {
-
       setShowScanner(false);
     }
     return null;
   };
+
+  const toggleModal = (voucher) => {
+    let status = _.mapValues(setModalOpen, () => false);
+    setModalOpen({ ...status, [voucher.code]: !isModalOpen[voucher.code] });
+  };
+
+  const modals = activeVouchers.map((voucher) => {
+    return (
+      <>
+        {isModalOpen[voucher.code] && (
+          <VoucherActions
+            isModalOpen={isModalOpen[voucher.code]}
+            toggleModal={toggleModal}
+            voucher={voucher}
+          />
+        )}
+      </>
+    );
+  });
 
   const rows = activeVouchers.map((voucher) => {
     const icon =
@@ -118,7 +129,10 @@ const Vouchers = () => {
                   {voucher.active ? (
                     <>
                       <Text as={"small"} data-cy={`${voucher.code}-holder`}>
-                        Holder: {voucher.email ? voucher.email : "holder"}
+                        {t("dashboard.content.vouchers.labels.owner")}
+                        {voucher.email
+                          ? voucher.email
+                          : t("dashboard.content.vouchers.labels.presenter")}
                       </Text>
                       <Button
                         data-cy={`${voucher.code}-cta`}
@@ -126,9 +140,11 @@ const Vouchers = () => {
                         variant="outline"
                         colorScheme="pink"
                         size="sm"
-                        onClick={() => openModal()}
+                        onClick={() => toggleModal(voucher)}
                       >
-                        Create transaction
+                        {t(
+                          "dashboard.content.vouchers.labels.createTransaction"
+                        )}
                       </Button>
                     </>
                   ) : (
@@ -138,9 +154,10 @@ const Vouchers = () => {
                       variant="outline"
                       colorScheme="pink"
                       size="sm"
-                      onClick={() => openModal()}
+                      // This click needs to trigger the activation
+                      onClick={() => toggleModal(voucher)}
                     >
-                      Activate
+                      {t("dashboard.content.vouchers.labels.activate")}
                     </Button>
                   )}
                 </VStack>
@@ -153,51 +170,18 @@ const Vouchers = () => {
               </Collapse>
             </td>
           </Tr>
-          <Modal isCentered isOpen={isModalOpen}>
-            <ModalOverlay
-              bg="blackAlpha.300"
-              backdropInvert="80%"
-              backdropBlur="2px"
-            />
-            <ModalContent>
-              <ModalHeader>
-                Code: {voucher.code} - {voucher.variant}
-              </ModalHeader>
-              <ModalCloseButton
-                onClick={() => {
-                  onModalClose();
-                }}
-              />
-              <ModalBody>
-                {voucher.variant == "servings" ? (
-                  <ServingsVoucherActions />
-                ) : (
-                  <CashVoucherActions />
-                )}
-              </ModalBody>
-              <ModalFooter>
-                <Button
-                  onClick={() => {
-                    onModalClose();
-                  }}
-                >
-                  Close
-                </Button>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
         </React.Fragment>
       );
     }
   });
 
   return (
-    <Container maxW={{ base: "90vw" }} mt={5} mb={5}>
+    <Container maxW={{ base: "90vw", sm: "100vw" }} mt={5} mb={5}>
       <Box>
         <HStack>
           <FormControl display="flex" alignItems="center">
             <FormLabel htmlFor="voucher-status" mb="0">
-              Show inactive
+              {t("dashboard.content.vouchers.labels.showInactive")}
             </FormLabel>
             <Switch
               id="voucher-status"
@@ -205,33 +189,28 @@ const Vouchers = () => {
               onChange={() => setShowInactive(!showInactive)}
             />
           </FormControl>
-       
-            <QrCodePopup
-              onDetect={(code) => {
-                filterVouchers(code, { source: "scanner" });
-              }}
-            >
-              <Button
-                colorScheme="teal"
-                size="lg"
-                data-cy="scan"
-              >
-                Scan Voucher
-              </Button>
-            </QrCodePopup>
-          
+
+          <QrCodePopup
+            onDetect={(code) => {
+              filterVouchers(code, { source: "scanner" });
+            }}
+          >
+            <Button colorScheme="teal" size="lg" data-cy="scan">
+              Scan Voucher
+            </Button>
+          </QrCodePopup>
         </HStack>
         <TableContainer width={{ sm: "100%" }}>
           <Table variant="simple" data-cy="vouchers-index">
             <Thead>
               <Tr>
-                <Th>Code</Th>
+                <Th>{t("dashboard.content.vouchers.table.code")}</Th>
                 <Hide below={"md"}>
-                  <Th>Active</Th>
-                  <Th>Variant</Th>
-                  <Th>Initial Value</Th>
+                  <Th>{t("dashboard.content.vouchers.table.active")}</Th>
+                  <Th>{t("dashboard.content.vouchers.table.variant")}</Th>
+                  <Th>{t("dashboard.content.vouchers.table.initialValue")}</Th>
                 </Hide>
-                <Th>Current Value</Th>
+                <Th>{t("dashboard.content.vouchers.table.currentValue")}</Th>
                 <Th maxWidth={{ sm: "10%" }}>{""}</Th>
               </Tr>
             </Thead>
@@ -239,6 +218,7 @@ const Vouchers = () => {
           </Table>
         </TableContainer>
       </Box>
+      {modals}
     </Container>
   );
 };

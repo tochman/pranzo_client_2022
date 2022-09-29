@@ -35,7 +35,7 @@ describe("Vouchers view", () => {
       it("is expected to display holder information", () => {
         cy.getCy("eLtZr-holder").should(
           "contain.text",
-          "Holder: random@random.com"
+          "Owner: random@random.com"
         );
       });
 
@@ -56,7 +56,7 @@ describe("Vouchers view", () => {
       });
 
       it("is expected to display holder information", () => {
-        cy.getCy("Dqbnc-holder").should("contain.text", "Holder: holder");
+        cy.getCy("Dqbnc-holder").should("contain.text", "Owner: holder of card");
       });
 
       it("is expected to display action button", () => {

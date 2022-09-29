@@ -28,6 +28,25 @@ export const SE = {
           salesOverviewNumbers: "Försäljning (antal)",
           salesOverviewValue: "Försäljning (värde)",
         },
+        vouchers: {
+          table: {
+            code: "Kod",
+            status: "Status",
+            active: "Aktiv?",
+            variant: "Variant",
+            initialValue: "Värde",
+            currentValue: "Saldo",
+          },
+          labels: {
+            transactions: "Transaktioner",
+            servings: "Antal: ",
+            createTransaction: "Skapa en transaktion",
+            activate: "Aktivera kort",
+            showInactive: "Visa inaktiva",
+            owner: "Ägare: ",
+            presenter: "anonymt",
+          },
+        },
       },
     },
     forms: {
@@ -65,7 +84,7 @@ export const SE = {
     appBar: {
       signIn: "Logga in",
       signUp: "Registrera",
-      nothingToSeeHere: "Registrera ett konto för att komma åt funktioner."
+      nothingToSeeHere: "Registrera ett konto för att komma åt funktioner.",
     },
     footer: { slogan: "Lunchkort och presentkort på ett enklare sätt" },
     hero: {

@@ -7,7 +7,6 @@ export const GB = {
           label: "Setup your venue",
           subLabel: "Add a venue to your profile",
         },
-
         editVenue: {
           label: "Edit your venue",
           subLabel: "Update details of your venue",
@@ -27,6 +26,25 @@ export const GB = {
         charts: {
           salesOverviewNumbers: "Sales Overview (in numbers)",
           salesOverviewValue: "Sales Overview (in value)",
+        },
+        vouchers: {
+          table: {
+            code: "Code",
+            status: "Status",
+            active: "Active?",
+            variant: "Variant",
+            initialValue: "Value",
+            currentValue: "Current value",
+          },
+          labels: {
+            transactions: "Transactions",
+            servings: "Servings: ",
+            createTransaction: "Create transaction",
+            activate: "Activate voucher",
+            showInactive: "Show inactive",
+            owner: "Owner: ",
+            presenter: "holder of card",
+          },
         },
       },
     },

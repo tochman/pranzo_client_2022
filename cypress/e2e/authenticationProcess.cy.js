@@ -54,7 +54,7 @@ describe("Authentication:", () => {
         cy.getCy("sign-in-button").should("not.exist");
       });
 
-      it.only("is exprected to display currentUser´s name", () => {
+      it("is exprected to display currentUser´s name", () => {
         cy.getCy("user-avatar").click();
         cy.getCy("user-name")
           .should("contain.text", "Kalle Andersson")

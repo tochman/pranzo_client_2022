@@ -1,8 +1,7 @@
-import React from 'react'
 
 const ServingsVoucherActions = () => {
   return (
-    <div>ServingsVoucherActions</div>
+    <div>This will consume a serving on this voucher</div>
   )
 }
 

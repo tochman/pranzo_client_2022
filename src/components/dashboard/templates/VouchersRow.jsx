@@ -1,8 +1,6 @@
 import {
   Box,
-  Button,
   Flex,
-  Icon,
   Spacer,
   Text,
   useColorModeValue,
@@ -14,16 +12,8 @@ const VouchersRow = ({
   active,
   value,
   currentValue,
-  holder,
-  transactions,
 }) => {
   const textColor = useColorModeValue("gray.700", "white");
-
-  // code={row.code}
-  // active={row.active}
-  // value={row.value}
-  // currentValue={row.current_value}
-  // holder={row.email}
 
   return (
     <Flex
