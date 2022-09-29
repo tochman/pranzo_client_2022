@@ -1,0 +1,17 @@
+{
+  "message": "Voucher eLtZr was updated with a new transaction",
+  "voucher": {
+    "id": 1000,
+    "code": "eLtZr",
+    "active": true,
+    "value": 10,
+    "variant": "servings",
+    "current_value": 7,
+    "email": "random@random.com",
+    "transactions": [
+      { "id": 662, "date": "September 27, 2022 19:51" },
+      { "id": 663, "date": "September 27, 2022 19:51" },
+      { "id": 664, "date": "September 29, 2022 00:00" }
+    ]
+  }
+}

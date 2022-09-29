@@ -10,44 +10,47 @@ import {
 } from "@chakra-ui/react";
 import ServingsVoucherActions from "./ServingsVoucherActions";
 import CashVoucherActions from "./CashVoucherActions";
-
+import { useSelector, useDispatch } from "react-redux";
+import { createTransaction } from "../../state/features/vouchers";
 const VoucherActions = ({ isModalOpen, toggleModal, voucher }) => {
+  const dispatch = useDispatch();
+
   return (
-    <section data-cy={`${voucher.code}-modal`}>
-      <Modal isCentered isOpen={isModalOpen}>
-        <ModalOverlay
-          bg="blackAlpha.300"
-          backdropInvert="80%"
-          backdropBlur="2px"
+    <Modal isCentered isOpen={isModalOpen}>
+      <ModalOverlay
+        bg="blackAlpha.300"
+        backdropInvert="80%"
+        backdropBlur="2px"
+      />
+      <ModalContent data-cy={`${voucher.code}-modal`}>
+        <ModalHeader>
+          Code: {voucher.code} - {voucher.variant}
+        </ModalHeader>
+        <ModalCloseButton
+          onClick={() => {
+            toggleModal();
+          }}
         />
-        <ModalContent>
-          <ModalHeader>
-            Code: {voucher.code} - {voucher.variant}
-          </ModalHeader>
-          <ModalCloseButton
+        <ModalBody>
+          {voucher.variant == "servings" ? (
+            <ServingsVoucherActions />
+          ) : (
+            <CashVoucherActions />
+          )}
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            data-cy={`${voucher.code}-create-transaction`}
             onClick={() => {
-              toggleModal();
+              dispatch(createTransaction(voucher));
+              toggleModal(!isModalOpen)
             }}
-          />
-          <ModalBody>
-            {voucher.variant == "servings" ? (
-              <ServingsVoucherActions />
-            ) : (
-              <CashVoucherActions />
-            )}
-          </ModalBody>
-          <ModalFooter>
-            <Button
-              onClick={() => {
-                ToggleModal();
-              }}
-            >
-              Close
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </section>
+          >
+            Create
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   );
 };
 

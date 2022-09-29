@@ -22,7 +22,7 @@ import {
 import _ from "lodash";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FiCheck } from "react-icons/fi";
 import { AiOutlineNumber } from "react-icons/ai";
 import QrCodePopup from "@jimengio/qrcode-popup/lib/qrcode-popup";
@@ -38,6 +38,7 @@ const Vouchers = () => {
   const [activeVouchers, setActiveVouchers] = useState([]);
   const [, setShowScanner] = useState(false);
   const [showInactive, setShowInactive] = useState(false);
+  const dispatch = useDispatch();
 
   let initialRowState = [];
   let initialModalState = [];
@@ -69,6 +70,20 @@ const Vouchers = () => {
     let status = _.mapValues(setModalOpen, () => false);
     setModalOpen({ ...status, [voucher.code]: !isModalOpen[voucher.code] });
   };
+
+  const modals = activeVouchers.map((voucher) => {
+    return (
+      <>
+        {isModalOpen[voucher.code] && (
+          <VoucherActions
+            isModalOpen={isModalOpen[voucher.code]}
+            toggleModal={toggleModal}
+            voucher={voucher}
+          />
+        )}
+      </>
+    );
+  });
 
   const rows = activeVouchers.map((voucher) => {
     const icon =
@@ -148,13 +163,6 @@ const Vouchers = () => {
               </Collapse>
             </td>
           </Tr>
-          {isModalOpen[voucher.code] && (
-            <VoucherActions
-              isModalOpen={isModalOpen[voucher.code]}
-              toggleModal={toggleModal}
-              voucher={voucher}
-            />
-          )}
         </React.Fragment>
       );
     }
@@ -203,6 +211,7 @@ const Vouchers = () => {
           </Table>
         </TableContainer>
       </Box>
+      {modals}
     </Container>
   );
 };

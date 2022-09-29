@@ -19,20 +19,8 @@
       "current_value": 8,
       "email": "random@random.com",
       "transactions": [
-        {
-          "id": 840,
-          "date": "2022-09-23T13:43:15.720Z",
-          "voucher_id": 847,
-          "created_at": "2022-09-23T13:43:15.721Z",
-          "updated_at": "2022-09-23T13:43:15.721Z"
-        },
-        {
-          "id": 840,
-          "date": "2022-09-23T13:43:15.720Z",
-          "voucher_id": 847,
-          "created_at": "2022-09-23T13:43:15.721Z",
-          "updated_at": "2022-09-23T13:43:15.721Z"
-        }
+        { "id": 661, "date": "September 27, 2022 19:51" },
+        { "id": 662, "date": "September 27, 2022 19:51" }
       ]
     },
     {
