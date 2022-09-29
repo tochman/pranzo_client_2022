@@ -63,7 +63,7 @@ describe("Creating a transaction", () => {
         cy.get("[data-cy=eLtZr-table]>table>tbody")
           .children("tr")
           .should("have.length", 2)
-          .and("contain.text", "September 29th 2022")
+          .and("contain.text", "September 27, 2022")
           .and("contain.text", "Servings: 1");
       });
     });

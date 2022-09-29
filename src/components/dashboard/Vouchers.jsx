@@ -30,8 +30,10 @@ import QrCodePopup from "@jimengio/qrcode-popup/lib/qrcode-popup";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import Transactions from "./Transactions";
 import VoucherActions from "./VoucherActions";
+import { useTranslation } from "react-i18next";
 
 const Vouchers = () => {
+  const { t } = useTranslation();
   const { vouchers } = useSelector((state) => state.user);
   const [isOpen, setOpen] = useState({});
   const [isModalOpen, setModalOpen] = useState({});
@@ -127,7 +129,10 @@ const Vouchers = () => {
                   {voucher.active ? (
                     <>
                       <Text as={"small"} data-cy={`${voucher.code}-holder`}>
-                        Holder: {voucher.email ? voucher.email : "holder"}
+                        {t("dashboard.content.vouchers.labels.owner")}
+                        {voucher.email
+                          ? voucher.email
+                          : t("dashboard.content.vouchers.labels.presenter")}
                       </Text>
                       <Button
                         data-cy={`${voucher.code}-cta`}
@@ -137,7 +142,9 @@ const Vouchers = () => {
                         size="sm"
                         onClick={() => toggleModal(voucher)}
                       >
-                        Create transaction
+                        {t(
+                          "dashboard.content.vouchers.labels.createTransaction"
+                        )}
                       </Button>
                     </>
                   ) : (
@@ -150,7 +157,7 @@ const Vouchers = () => {
                       // This click needs to trigger the activation
                       onClick={() => toggleModal(voucher)}
                     >
-                      Activate
+                      {t("dashboard.content.vouchers.labels.activate")}
                     </Button>
                   )}
                 </VStack>
@@ -169,12 +176,12 @@ const Vouchers = () => {
   });
 
   return (
-    <Container maxW={{ base: "90vw" }} mt={5} mb={5}>
+    <Container maxW={{ base: "90vw", sm: "100vw" }} mt={5} mb={5}>
       <Box>
         <HStack>
           <FormControl display="flex" alignItems="center">
             <FormLabel htmlFor="voucher-status" mb="0">
-              Show inactive
+              {t("dashboard.content.vouchers.labels.showInactive")}
             </FormLabel>
             <Switch
               id="voucher-status"
@@ -197,13 +204,13 @@ const Vouchers = () => {
           <Table variant="simple" data-cy="vouchers-index">
             <Thead>
               <Tr>
-                <Th>Code</Th>
+                <Th>{t("dashboard.content.vouchers.table.code")}</Th>
                 <Hide below={"md"}>
-                  <Th>Active</Th>
-                  <Th>Variant</Th>
-                  <Th>Initial Value</Th>
+                  <Th>{t("dashboard.content.vouchers.table.active")}</Th>
+                  <Th>{t("dashboard.content.vouchers.table.variant")}</Th>
+                  <Th>{t("dashboard.content.vouchers.table.initialValue")}</Th>
                 </Hide>
-                <Th>Current Value</Th>
+                <Th>{t("dashboard.content.vouchers.table.currentValue")}</Th>
                 <Th maxWidth={{ sm: "10%" }}>{""}</Th>
               </Tr>
             </Thead>
