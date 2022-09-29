@@ -14,18 +14,10 @@ import {
   Button,
   VStack,
   HStack,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
   Hide,
   Switch,
   FormControl,
   FormLabel,
-  useDisclosure,
 } from "@chakra-ui/react";
 import _ from "lodash";
 import { ChevronDownIcon } from "@chakra-ui/icons";
@@ -37,28 +29,26 @@ import QrCodePopup from "@jimengio/qrcode-popup/lib/qrcode-popup";
 
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import Transactions from "./Transactions";
-import ServingsVoucherActions from "./ServingsVoucherActions";
-import CashVoucherActions from "./CashVoucherActions";
+import VoucherActions from "./VoucherActions";
 
 const Vouchers = () => {
   const { vouchers } = useSelector((state) => state.user);
   const [isOpen, setOpen] = useState({});
+  const [isModalOpen, setModalOpen] = useState({});
   const [activeVouchers, setActiveVouchers] = useState([]);
-  const [showScanner, setShowScanner] = useState(false);
+  const [, setShowScanner] = useState(false);
   const [showInactive, setShowInactive] = useState(false);
-  const {
-    isOpen: isModalOpen,
-    onOpen: openModal,
-    onClose: onModalClose,
-  } = useDisclosure();
 
   let initialRowState = [];
+  let initialModalState = [];
   useEffect(() => {
     setActiveVouchers(vouchers);
-    activeVouchers.forEach((voucher) =>
-      initialRowState.push({ [voucher.code]: false })
-    );
+    activeVouchers.forEach((voucher) => {
+      initialRowState.push({ [voucher.code]: false });
+      initialModalState.push({ [voucher.code]: false });
+    });
     setOpen(initialRowState);
+    setModalOpen(initialModalState);
   }, [vouchers]);
 
   const filterVouchers = (code, options = {}) => {
@@ -70,10 +60,14 @@ const Vouchers = () => {
       setActiveVouchers(vouchers);
     }
     if (options.source === "scanner") {
-
       setShowScanner(false);
     }
     return null;
+  };
+
+  const toggleModal = (voucher) => {
+    let status = _.mapValues(setModalOpen, () => false);
+    setModalOpen({ ...status, [voucher.code]: !isModalOpen[voucher.code] });
   };
 
   const rows = activeVouchers.map((voucher) => {
@@ -126,7 +120,7 @@ const Vouchers = () => {
                         variant="outline"
                         colorScheme="pink"
                         size="sm"
-                        onClick={() => openModal()}
+                        onClick={() => toggleModal(voucher)}
                       >
                         Create transaction
                       </Button>
@@ -138,7 +132,8 @@ const Vouchers = () => {
                       variant="outline"
                       colorScheme="pink"
                       size="sm"
-                      onClick={() => openModal()}
+                      // This click needs to trigger the activation
+                      onClick={() => toggleModal(voucher)}
                     >
                       Activate
                     </Button>
@@ -153,39 +148,13 @@ const Vouchers = () => {
               </Collapse>
             </td>
           </Tr>
-          <Modal isCentered isOpen={isModalOpen}>
-            <ModalOverlay
-              bg="blackAlpha.300"
-              backdropInvert="80%"
-              backdropBlur="2px"
+          {isModalOpen[voucher.code] && (
+            <VoucherActions
+              isModalOpen={isModalOpen[voucher.code]}
+              toggleModal={toggleModal}
+              voucher={voucher}
             />
-            <ModalContent>
-              <ModalHeader>
-                Code: {voucher.code} - {voucher.variant}
-              </ModalHeader>
-              <ModalCloseButton
-                onClick={() => {
-                  onModalClose();
-                }}
-              />
-              <ModalBody>
-                {voucher.variant == "servings" ? (
-                  <ServingsVoucherActions />
-                ) : (
-                  <CashVoucherActions />
-                )}
-              </ModalBody>
-              <ModalFooter>
-                <Button
-                  onClick={() => {
-                    onModalClose();
-                  }}
-                >
-                  Close
-                </Button>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
+          )}
         </React.Fragment>
       );
     }
@@ -205,21 +174,16 @@ const Vouchers = () => {
               onChange={() => setShowInactive(!showInactive)}
             />
           </FormControl>
-       
-            <QrCodePopup
-              onDetect={(code) => {
-                filterVouchers(code, { source: "scanner" });
-              }}
-            >
-              <Button
-                colorScheme="teal"
-                size="lg"
-                data-cy="scan"
-              >
-                Scan Voucher
-              </Button>
-            </QrCodePopup>
-          
+
+          <QrCodePopup
+            onDetect={(code) => {
+              filterVouchers(code, { source: "scanner" });
+            }}
+          >
+            <Button colorScheme="teal" size="lg" data-cy="scan">
+              Scan Voucher
+            </Button>
+          </QrCodePopup>
         </HStack>
         <TableContainer width={{ sm: "100%" }}>
           <Table variant="simple" data-cy="vouchers-index">
