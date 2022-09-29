@@ -41,7 +41,7 @@ export const signInUser = createAsyncThunk(
       dispatch({ type: "user/setCurrentUser", payload: response.data });
       // check if vendor_id is present. If yes fetch the vendor and dispatch "user/setVenue" action
     } catch (error) {
-      toastErrorMessage(error.response.data.errors);
+      toastMessage(error.response.data.errors);
     }
   }
 );
