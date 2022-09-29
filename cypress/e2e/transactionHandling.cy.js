@@ -1,4 +1,4 @@
-describe("Vouchers view", () => {
+describe("Creating a transaction", () => {
   before(() => {
     cy.intercept("GET", "**/auth/validate_token**", {
       fixture: "authenticatedUser.json",
@@ -20,15 +20,14 @@ describe("Vouchers view", () => {
         payload: fixture.vouchers,
       });
     });
+  });
 
+  beforeEach(() => {
     cy.getCy("vouchers").click();
     cy.getCy("voucher-management").click();
     cy.getCy("eLtZr").trigger("click");
+    cy.get("body").trigger("click");
     cy.getCy("eLtZr-cta").trigger("click");
-  });
-
-  it("is expected to show modal", () => {
-    cy.getCy("eLtZr-modal").should("exist");
   });
 
   describe('clicking on "Create transaction"', () => {
@@ -39,11 +38,6 @@ describe("Vouchers view", () => {
       cy.getCy("eLtZr-create-transaction").click();
     });
 
-    describe.only("the Modal", () => {
-      it("is expected to be hidden", () => {
-        cy.getCy("eLtZr-modal").should("not.exist");
-      });
-    });
     describe("call to API", () => {
       it("is expected to make be a POST request", () => {
         cy.wait("@createTransaction")
@@ -51,13 +45,41 @@ describe("Vouchers view", () => {
           .should("eql", "POST");
       });
 
-      it("is expected to return a sussess message", () => {
+      it("is expected to return a success message", () => {
         cy.wait("@createTransaction").then(({ request, response }) => {
           expect(response.body).to.have.own.property(
             "message",
             "Voucher eLtZr was updated with a new transaction"
           );
         });
+      });
+    });
+
+    describe("the transactions table", () => {
+      beforeEach(() => {
+        cy.getCy("eLtZr").trigger("click");
+      });
+      it("is expected to reveal transactions for voucher", () => {
+        cy.get("[data-cy=eLtZr-table]>table>tbody")
+          .children("tr")
+          .should("have.length", 2)
+          .and("contain.text", "September 29th 2022")
+          .and("contain.text", "Servings: 1");
+      });
+    });
+
+    describe("the Modal", () => {
+      it("is expected to be hidden", () => {
+        cy.getCy("eLtZr-modal").should("not.exist");
+      });
+    });
+
+    describe("Flash message", () => {
+      it("is expected to be displayed", () => {
+        cy.get("body").should(
+          "contain.text",
+          "Voucher eLtZr was updated with a new transaction"
+        );
       });
     });
   });

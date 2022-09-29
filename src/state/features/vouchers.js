@@ -1,6 +1,6 @@
 import { auth } from "../utilities/authConfig";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { toastErrorMessage } from "../utilities/utilities";
+import { toastMessage } from "../utilities/utilities";
 
 export const createTransaction = createAsyncThunk(
   "users/createTransaction",
@@ -26,8 +26,12 @@ export const createTransaction = createAsyncThunk(
         type: "user/setVouchers",
         payload: updatedVouchers,
       });
+      toastMessage([response.data.message], "success");
     } catch (error) {
-      // /error handler
+      const message =
+        error?.response?.data?.errors?.full_messages ||
+        error.message + ". Please try again.";
+      toastMessage([message]);
     }
   }
 );

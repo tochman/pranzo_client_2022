@@ -1,6 +1,6 @@
 import { auth } from "../utilities/authConfig";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { toastErrorMessage } from "../utilities/utilities";
+import { toastMessage } from "../utilities/utilities";
 
 export const setupVenue = createAsyncThunk(
   "user/registerVenue",
@@ -12,8 +12,10 @@ export const setupVenue = createAsyncThunk(
       });
       dispatch({ type: "user/setVenue", payload: response.data.vendor });
     } catch (error) {
-      const message = error?.response?.data?.errors?.full_messages || error.message + ". Please try again."
-      toastErrorMessage([message]);
+      const message =
+        error?.response?.data?.errors?.full_messages ||
+        error.message + ". Please try again.";
+      toastMessage([message]);
     }
   }
 );
@@ -28,8 +30,10 @@ export const editVenue = createAsyncThunk(
       });
       dispatch({ type: "user/setVenue", payload: response.data.vendor });
     } catch (error) {
-      const message = error?.response?.data?.errors?.full_messages || error.message + ". Please try again."
-      toastErrorMessage([message]);
+      const message =
+        error?.response?.data?.errors?.full_messages ||
+        error.message + ". Please try again.";
+      toastMessage([message]);
     }
   }
 );

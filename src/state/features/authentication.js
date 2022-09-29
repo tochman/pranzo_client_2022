@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { toastErrorMessage } from "../utilities/utilities";
+import { toastMessage } from "../utilities/utilities";
 import { auth, getHeaders } from "../utilities/authConfig";
 import { endSession } from "./userSlice";
 export const registerUser = createAsyncThunk(
@@ -7,13 +7,9 @@ export const registerUser = createAsyncThunk(
   async (data, { dispatch }) => {
     try {
       const response = await auth.signUp(data);
-
       dispatch({ type: "user/setCurrentUser", payload: response.data });
-
-      // return response.data;
     } catch (error) {
-      toastErrorMessage(error.response.data.errors.full_messages);
-      // return error.response.data;
+      toastMessage(error.response.data.errors.full_messages);
     }
   }
 );
