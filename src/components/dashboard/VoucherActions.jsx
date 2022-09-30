@@ -1,5 +1,6 @@
 import {
   Button,
+  Text,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -11,9 +12,55 @@ import {
 import ServingsVoucherActions from "./ServingsVoucherActions";
 import CashVoucherActions from "./CashVoucherActions";
 import { useSelector, useDispatch } from "react-redux";
+
 import { createTransaction } from "../../state/features/vouchers";
-const VoucherActions = ({ isModalOpen, toggleModal, voucher }) => {
+import ActivateVoucherForm from "./ActivateVoucherForm";
+import { useTranslation } from "react-i18next";
+const VoucherActions = ({ isModalOpen, toggleModal, voucher, action }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
+
+  const activateVoucherContent = (
+    <>
+      <ModalBody>
+        <ActivateVoucherForm voucher={voucher} />
+      </ModalBody>
+      <ModalFooter>
+        {/* <Button
+          data-cy={`${voucher.code}-create-transaction`}
+          onClick={() => {
+            dispatch(createTransaction(voucher));
+            toggleModal(!isModalOpen);
+          }}
+        >
+          Create
+        </Button> */}
+      </ModalFooter>
+    </>
+  );
+
+  const createTransactionContent = (
+    <>
+      <ModalBody>
+        {voucher.variant == "servings" ? (
+          <ServingsVoucherActions />
+        ) : (
+          <CashVoucherActions />
+        )}
+      </ModalBody>
+      <ModalFooter>
+        <Button
+          data-cy={`${voucher.code}-create-transaction`}
+          onClick={() => {
+            dispatch(createTransaction(voucher));
+            toggleModal(!isModalOpen);
+          }}
+        >
+          Create
+        </Button>
+      </ModalFooter>
+    </>
+  );
 
   return (
     <Modal isCentered isOpen={isModalOpen}>
@@ -24,31 +71,18 @@ const VoucherActions = ({ isModalOpen, toggleModal, voucher }) => {
       />
       <ModalContent data-cy={`${voucher.code}-modal`}>
         <ModalHeader>
-          Code: {voucher.code} - {voucher.variant}
+          {t("dashboard.content.vouchers.table.code")}{": "} {voucher.code} -{" "}
+          <Text as="small"> 
+          {voucher.variant}
+          </Text>
         </ModalHeader>
         <ModalCloseButton
           onClick={() => {
-            toggleModal();
+            toggleModal(!isModalOpen);;
           }}
         />
-        <ModalBody>
-          {voucher.variant == "servings" ? (
-            <ServingsVoucherActions />
-          ) : (
-            <CashVoucherActions />
-          )}
-        </ModalBody>
-        <ModalFooter>
-          <Button
-            data-cy={`${voucher.code}-create-transaction`}
-            onClick={() => {
-              dispatch(createTransaction(voucher));
-              toggleModal(!isModalOpen)
-            }}
-          >
-            Create
-          </Button>
-        </ModalFooter>
+        {action === "createTransaction" && createTransactionContent}
+        {action === "activateVoucher" && activateVoucherContent}
       </ModalContent>
     </Modal>
   );

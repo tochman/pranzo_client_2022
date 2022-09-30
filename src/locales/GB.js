@@ -49,7 +49,7 @@ export const GB = {
       },
     },
     forms: {
-      elements: { submit: "Submit" },
+      elements: { submit: "Submit", email: "Email" },
       messages: {
         required: "This field is required.",
         minLength: "Minimum length should be {{length}}",

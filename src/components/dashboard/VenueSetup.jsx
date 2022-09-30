@@ -9,7 +9,6 @@ import {
   Textarea,
   Stack,
 } from "@chakra-ui/react";
-import { t } from "i18next";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";

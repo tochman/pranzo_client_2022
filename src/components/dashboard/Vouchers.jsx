@@ -31,6 +31,7 @@ import { FaRegMoneyBillAlt } from "react-icons/fa";
 import Transactions from "./Transactions";
 import VoucherActions from "./VoucherActions";
 import { useTranslation } from "react-i18next";
+import CashVoucherActions from "./CashVoucherActions";
 
 const Vouchers = () => {
   const { t } = useTranslation();
@@ -81,6 +82,7 @@ const Vouchers = () => {
             isModalOpen={isModalOpen[voucher.code]}
             toggleModal={toggleModal}
             voucher={voucher}
+            action= {CashVoucherActions.active ? 'createTransaction' : 'activateVoucher'}
           />
         )}
       </>

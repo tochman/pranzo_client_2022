@@ -50,7 +50,7 @@ export const SE = {
       },
     },
     forms: {
-      elements: { submit: "Skicka" },
+      elements: { submit: "Skicka", email: 'Mailadress' },
       messages: {
         required: "Det här fältet är obligatoriskt",
         minLength: "Kortaste tillåtna längd är {{length}} tecken.",
