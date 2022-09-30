@@ -82,7 +82,7 @@ const Vouchers = () => {
             isModalOpen={isModalOpen[voucher.code]}
             toggleModal={toggleModal}
             voucher={voucher}
-            action= {CashVoucherActions.active ? 'createTransaction' : 'activateVoucher'}
+            action= {voucher.active ? 'createTransaction' : 'activateVoucher'}
           />
         )}
       </>
