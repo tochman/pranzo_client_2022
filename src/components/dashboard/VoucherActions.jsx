@@ -26,15 +26,6 @@ const VoucherActions = ({ isModalOpen, toggleModal, voucher, action }) => {
         <ActivateVoucherForm voucher={voucher} />
       </ModalBody>
       <ModalFooter>
-        {/* <Button
-          data-cy={`${voucher.code}-create-transaction`}
-          onClick={() => {
-            dispatch(createTransaction(voucher));
-            toggleModal(!isModalOpen);
-          }}
-        >
-          Create
-        </Button> */}
       </ModalFooter>
     </>
   );

@@ -50,7 +50,11 @@ export const SE = {
       },
     },
     forms: {
-      elements: { submit: "Skicka", email: 'Mailadress' },
+      elements: {
+        submit: "Skicka",
+        email: "Mailadress",
+        mobilePass: "Skapa digitalt kort?",
+      },
       messages: {
         required: "Det här fältet är obligatoriskt",
         minLength: "Kortaste tillåtna längd är {{length}} tecken.",

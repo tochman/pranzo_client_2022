@@ -49,7 +49,11 @@ export const GB = {
       },
     },
     forms: {
-      elements: { submit: "Submit", email: "Email" },
+      elements: {
+        submit: "Submit",
+        email: "Email",
+        mobilePass: "Add digital card?",
+      },
       messages: {
         required: "This field is required.",
         minLength: "Minimum length should be {{length}}",

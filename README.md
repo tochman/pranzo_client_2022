@@ -5,13 +5,14 @@ Application for Users (Vendors) of the Pranzo Voucher and Gift Card Management p
 ### Technology
 Application is scaffolded using [Vite](https://vitejs.dev/) 
 E2E testing with [CypressIO](https://www.cypress.io/)
-
+PassKit for Apple and Google Wallet integration: [Documentation](https://docs.passkit.io/)
 ### Resources
 [React Icons](https://react-icons.github.io/) - We use [Feather](https://react-icons.github.io/react-icons/icons?name=fi) icon set.
 
 ```js
 import { IconName } from "react-icons/fi";
 ```
+
 
 ### Contributions
 
