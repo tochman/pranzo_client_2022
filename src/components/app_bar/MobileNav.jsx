@@ -178,7 +178,7 @@ const MobileNav = ({ toggleMainNavBar }) => {
                 fontWeight={600}
                 color={useColorModeValue("gray.600", "gray.200")}
               >
-                {t('dashboard.headings.vouchers')}
+              {t("dashboard.headings.vouchers")}
               </Text>
               <Icon
                 as={ChevronDownIcon}

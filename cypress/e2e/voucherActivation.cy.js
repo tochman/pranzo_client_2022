@@ -38,7 +38,7 @@ describe("Activating a voucher", () => {
       cy.getCy("CXuny-cta").trigger("click");
     });
 
-    context.only("with an owner email", () => {
+    context("with an owner email", () => {
       beforeEach(() => {
         cy.getCy("email").type("new_client@random.com");
         cy.getCy("submit-activation-form").click({ force: true });
@@ -51,7 +51,7 @@ describe("Activating a voucher", () => {
             .should("eql", "PUT");
         });
   
-        it.only("is expected to return a success message", () => {
+        it("is expected to return a success message", () => {
           cy.wait("@activateVoucher").then(({ request, response }) => {
             expect(response.body).to.have.own.property(
               "message",

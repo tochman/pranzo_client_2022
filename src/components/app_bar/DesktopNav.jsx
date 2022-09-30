@@ -110,7 +110,7 @@ const DesktopNav = () => {
                 color: linkHoverColor,
               }}
             >
-              {t("dashboard.headings.vouchers.label")}
+              {t("dashboard.headings.vouchers")}
             </Link>
           </PopoverTrigger>
           <PopoverContent
