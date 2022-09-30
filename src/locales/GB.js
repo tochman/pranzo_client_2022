@@ -15,6 +15,11 @@ export const GB = {
           label: "Venue details",
           subLabel: "Detailed view of your venue",
         },
+        vouchers: "Vouchers",
+        viewAndManage: {
+          label: "View & manage",
+          subLabel: "Manage your vouchers and cards.",
+        },
       },
       content: {
         stats: {

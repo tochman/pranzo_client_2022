@@ -66,7 +66,7 @@ const DesktopNav = () => {
                         {t("dashboard.headings.detailsVenue.label")}
                       </Text>
                       <Text fontSize={"sm"}>
-                        Detailed overview of your venue
+                        {t("dashboard.headings.detailsVenue.subLabel")}
                       </Text>
                     </DesktopSubNav>
                   )}
@@ -110,7 +110,7 @@ const DesktopNav = () => {
                 color: linkHoverColor,
               }}
             >
-              {"Vouchers"}
+              {t("dashboard.headings.vouchers.label")}
             </Link>
           </PopoverTrigger>
           <PopoverContent
@@ -134,59 +134,17 @@ const DesktopNav = () => {
                     _groupHover={{ color: "pink.400" }}
                     fontWeight={500}
                   >
-                    Management
+                    {t("dashboard.headings.viewAndManage.label")}
                   </Text>
-                  <Text fontSize={"sm"}>View and manage issued vouchers</Text>
+                  <Text fontSize={"sm"}>
+                    {t("dashboard.headings.viewAndManage.subLabel")}
+                  </Text>
                 </DesktopSubNav>
               )}
             </Stack>
           </PopoverContent>
         </Popover>
       </Box>
-      {/* {ITEMS.map((navItem) => (
-        <Box key={navItem.label} data-cy={navItem.dataCy}>
-          <Popover trigger={"hover"} placement={"bottom-start"}>
-            <PopoverTrigger>
-              <Link
-                p={2}
-                onClick={() => navigate(navItem.href)}
-                fontSize={"sm"}
-                fontWeight={500}
-                color={linkColor}
-                _hover={{
-                  textDecoration: "none",
-                  color: linkHoverColor,
-                }}
-              >
-                {labelHandler(navItem.label)}
-              </Link>
-            </PopoverTrigger>
-
-            {navItem.children && (
-              <PopoverContent
-                border={0}
-                boxShadow={"xl"}
-                bg={popoverContentBgColor}
-                p={4}
-                rounded={"xl"}
-                minW={"sm"}
-              >
-                <Stack>
-                  {navItem.children.map((child, index) => {
-                    return (
-                      <DesktopSubNav
-                        key={index}
-                        {...child}
-                        labelHandler={labelHandler}
-                      />
-                    );
-                  })}
-                </Stack>
-              </PopoverContent>
-            )}
-          </Popover>
-        </Box>
-      ))} */}
     </Stack>
   );
 };

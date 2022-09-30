@@ -16,6 +16,11 @@ export const SE = {
           label: "Företagsuppgifter",
           subLabel: "Översikt av ditt företag",
         },
+        vouchers: "Kort",
+        viewAndManage: {
+          label: "Hantera kort",
+          subLabel: "Aktivera kort, skapa transaktioner, mm. ",
+        },
       },
       content: {
         stats: {
