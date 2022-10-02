@@ -63,7 +63,9 @@ export const GB = {
         mobilePass: "Add digital card?",
         pdfCard: "Add PDF card?",
         pdfVariant: 'Choose card design:',
-        pdfLanguage: "Language:"
+        pdfLanguage: "Language:",
+        swedish: "Swedish",
+        english: "English"
       },
       messages: {
         required: "This field is required.",

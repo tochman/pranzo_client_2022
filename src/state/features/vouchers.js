@@ -11,10 +11,10 @@ export const activateVoucher = createAsyncThunk(
         command: "activate",
         email: data.email,
         activate_wallet: data["activate_wallet"],
-        activate_pdf: data['activate-pdf'],
+        activate_pdf: data["activate_pdf"],
         pdf_options: {
-          variant: data['pdf-variant'],
-          language: data['pdf-language'],
+          variant: data["pdf_variant"],
+          language: data["pdf_language"],
         },
       },
     };
@@ -30,7 +30,7 @@ export const activateVoucher = createAsyncThunk(
         if (voucher.id === data.voucher) {
           return {
             ...voucher,
-            active: true,
+            ...data.voucher,
           };
         }
         return voucher;
@@ -63,7 +63,7 @@ export const createTransaction = createAsyncThunk(
         if (voucher.id === response.data.voucher.id) {
           return {
             ...voucher,
-            ...response.data.voucher
+            ...response.data.voucher,
           };
         }
         return voucher;

@@ -1,23 +1,18 @@
 import {
   Button,
-  Flex,
   FormErrorMessage,
   FormControl,
   FormLabel,
   Checkbox,
-  Heading,
   Input,
-  Textarea,
   Stack,
   Radio,
   RadioGroup,
-  useDisclosure,
+  HStack,
 } from "@chakra-ui/react";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { activateVoucher } from "../../state/features/vouchers";
 
 const ActivateVoucherForm = ({ voucher }) => {
@@ -25,12 +20,10 @@ const ActivateVoucherForm = ({ voucher }) => {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
+    watch,
   } = useForm();
-
-  // const [showPdfOptions, setShowPdfOptions] = useState(false);
-  const { isOpen: showPdfOptions, onToggle: setShowPdfOptions } = useDisclosure();
+  const watchActivatePdf = watch("activate_pdf", false);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { t } = useTranslation();
   const { vendor } = useSelector((state) => state.user);
 
@@ -38,9 +31,6 @@ const ActivateVoucherForm = ({ voucher }) => {
     dispatch(activateVoucher(data));
   };
 
-  const handlePdfCheckbox = () => {
-    setShowPdfOptions(!showPdfOptions);
-  };
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)}>
       <Input
@@ -70,28 +60,20 @@ const ActivateVoucherForm = ({ voucher }) => {
           {errors.email && errors.email.message}
         </FormErrorMessage>
       </FormControl>
-      <FormControl>
-        <FormLabel htmlFor="activate_wallet">
+      <HStack mt={4}>
+        <Checkbox {...register("activate_wallet")} data-cy="activate_wallet">
           {t("forms.elements.mobilePass")}
-        </FormLabel>
-        <Checkbox
-          {...register("activate_wallet")}
-          data-cy="activate_wallet"
-          id="activate_wallet"
-        />
-      </FormControl>
-      <FormControl>
-        <FormLabel htmlFor="activate_pdf">
-          {t("forms.elements.pdfCard")}
-        </FormLabel>
+        </Checkbox>
         <Checkbox
           {...register("activate_pdf")}
           data-cy="activate_pdf"
           id="activate_pdf"
-        />
-      </FormControl>
-      {showPdfOptions && (
-        <>
+        >
+          {t("forms.elements.pdfCard")}
+        </Checkbox>
+      </HStack>
+      {watchActivatePdf && (
+        <Stack direction={"column"} mt={4}>
           <FormControl>
             <FormLabel htmlFor="pdf_variant">
               {t("forms.elements.pdfVariant")}
@@ -99,7 +81,7 @@ const ActivateVoucherForm = ({ voucher }) => {
             <RadioGroup
               id="pdf_variant"
               {...register("pdf_variant")}
-              value={value}
+              value={"1"}
             >
               <Stack direction="row">
                 <Radio value="1">Design 1</Radio>
@@ -108,9 +90,30 @@ const ActivateVoucherForm = ({ voucher }) => {
               </Stack>
             </RadioGroup>
           </FormControl>
-        </>
+          <FormControl>
+            <FormLabel htmlFor="pdf_language">
+              {t("forms.elements.pdfLanguage")}
+            </FormLabel>
+            <RadioGroup
+              id="pdf_language"
+              {...register("pdf_language")}
+              value={"se"}
+            >
+              <Stack direction="row">
+                <Radio value="se">{t("forms.elements.swedish")}</Radio>
+                <Radio value="en">{t("forms.elements.english")}</Radio>
+              </Stack>
+            </RadioGroup>
+          </FormControl>
+        </Stack>
       )}
-      <Button data-cy="submit-activation-form" type="submit">
+      <Button
+        data-cy="submit-activation-form"
+        type="submit"
+        colorScheme="pink"
+        mt={4}
+        isLoading={isSubmitting}
+      >
         {t("forms.elements.submit")}
       </Button>
     </form>

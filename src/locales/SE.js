@@ -64,7 +64,9 @@ export const SE = {
         mobilePass: "Skapa digitalt kort?",
         pdfCard: "Skapa PDF?",
         pdfVariant: 'Välj design:',
-        pdfLanguage: "Språk:"
+        pdfLanguage: "Språk:",
+        swedish: "Svenska",
+        english: "Engelska"
       },
       messages: {
         required: "Det här fältet är obligatoriskt",
