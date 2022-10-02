@@ -5,6 +5,8 @@ import {
   Stack,
   Text,
   Button,
+  Center,
+  Flex,
   HStack,
   Icon,
   useColorModeValue,
@@ -36,16 +38,13 @@ const Footer = () => {
       width={"100vw"}
     >
       <Container
-        as={Stack}
         maxW={"8xl"}
         py={4}
-        direction={{ base: "column", md: "row" }}
-        spacing={4}
-        justify={{ base: "center", md: "space-between" }}
+        justify={{ base: "center", md: "center" }}
         align={{ base: "center", md: "center" }}
       >
-        <HStack data-cy="footer-logo" onClick={() => navigate("/")}>
-          <Logo />
+        <HStack data-cy="footer-logo">
+          <Logo onClick={() => navigate("/")} />
           <Icon
             {...buttonProps}
             data-cy="toggle-footer-content-section"
@@ -66,7 +65,9 @@ const Footer = () => {
           {...disclosureProps}
           animateOpacity
         >
-          <Text fontSize="sm">{t("footer.slogan")}</Text>
+          <Center>
+            <Text fontSize="sm">{t("footer.slogan")}</Text>
+          </Center>
           <Stack direction={"row"} spacing={3} justify={"center"}>
             <Box h="16px">
               {i18n.language === "GB" ? (

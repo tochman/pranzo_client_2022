@@ -16,6 +16,11 @@ export const SE = {
           label: "Företagsuppgifter",
           subLabel: "Översikt av ditt företag",
         },
+        vouchers: "Kort",
+        viewAndManage: {
+          label: "Hantera kort",
+          subLabel: "Aktivera kort, skapa transaktioner, mm. ",
+        },
       },
       content: {
         stats: {
@@ -45,12 +50,24 @@ export const SE = {
             showInactive: "Visa inaktiva",
             owner: "Ägare: ",
             presenter: "anonymt",
+            servingsActions: {
+              mainLabel: "Du kommer att minska kortets saldo med 1 portion.",
+            },
           },
         },
       },
     },
     forms: {
-      elements: { submit: "Skicka" },
+      elements: {
+        submit: "Skicka",
+        email: "Mailadress",
+        mobilePass: "Skapa digitalt kort?",
+        pdfCard: "Skapa PDF?",
+        pdfVariant: "Välj design:",
+        pdfLanguage: "Språk:",
+        swedish: "Svenska",
+        english: "Engelska",
+      },
       messages: {
         required: "Det här fältet är obligatoriskt",
         minLength: "Kortaste tillåtna längd är {{length}} tecken.",
@@ -91,6 +108,7 @@ export const SE = {
       mainSlogan: "Förenkla din försäljning – Öka dina intäkter",
       promoText:
         "Gör voucher- och presentkortshanteringen enkel. Pranzo erbjuder en enkel och lättanvänd lösning för att skapa, sälja och administrera lunch- och presentkort",
+      walletsPromoText: "Koppla dina kort till Apple- och Google Plånbok.",
       subSlogan:
         "Låg startavgift och inga prenumerationskostnader. Betala allt eftersom du använder systemet!",
       buttonText: "Kom igång!",

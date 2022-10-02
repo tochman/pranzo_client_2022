@@ -1,8 +1,8 @@
+import { useTranslation } from "react-i18next";
 
 const ServingsVoucherActions = () => {
-  return (
-    <div>This will consume a serving on this voucher</div>
-  )
-}
+  const { t } = useTranslation();
+  return <div>{t('dashboard.content.vouchers.labels.servingsActions.mainLabel')}</div>;
+};
 
-export default ServingsVoucherActions
+export default ServingsVoucherActions;

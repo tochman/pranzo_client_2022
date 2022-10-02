@@ -15,6 +15,11 @@ export const GB = {
           label: "Venue details",
           subLabel: "Detailed view of your venue",
         },
+        vouchers: "Vouchers",
+        viewAndManage: {
+          label: "View & manage",
+          subLabel: "Manage your vouchers and cards.",
+        },
       },
       content: {
         stats: {
@@ -44,12 +49,24 @@ export const GB = {
             showInactive: "Show inactive",
             owner: "Owner: ",
             presenter: "holder of card",
+            servingsActions: {
+              mainLabel: "This will consume a serving on this voucher.",
+            },
           },
         },
       },
     },
     forms: {
-      elements: { submit: "Submit" },
+      elements: {
+        submit: "Submit",
+        email: "Email",
+        mobilePass: "Add digital card?",
+        pdfCard: "Add PDF card?",
+        pdfVariant: 'Choose card design:',
+        pdfLanguage: "Language:",
+        swedish: "Swedish",
+        english: "English"
+      },
       messages: {
         required: "This field is required.",
         minLength: "Minimum length should be {{length}}",
@@ -89,8 +106,9 @@ export const GB = {
     hero: {
       mainSlogan: "Simplify your sales - Increase your revenue",
       promoText:
-        "Making voucher and gift card management easy. Pranzo offers a simple and easy-to-use solution for creating, selling and administering pre-paid lunch or gift cards",
+        "Making voucher and gift card management easy. Pranzo offers a simple and easy-to-use solution for creating, selling and administering pre-paid lunch- or gift cards.",
       subSlogan: "Low start-up fee and no subscriptions costs. Pay as you go!",
+      walletsPromoText: "Connect your cards to Apple and Google Wallet.",
       buttonText: "Get started",
       ctaText:
         "There's no upfront fee to register. We will charge you only if you actually benefit from the Pranzo plattform with a one time set-up fee of €45 and €1 per issued voucher.",

@@ -178,7 +178,7 @@ const MobileNav = ({ toggleMainNavBar }) => {
                 fontWeight={600}
                 color={useColorModeValue("gray.600", "gray.200")}
               >
-                Vouchers
+              {t("dashboard.headings.vouchers")}
               </Text>
               <Icon
                 as={ChevronDownIcon}
@@ -203,7 +203,7 @@ const MobileNav = ({ toggleMainNavBar }) => {
                 }}
                 data-cy="voucher-management-mobile"
               >
-                {"View & Manage"}
+                {t('dashboard.headings.viewAndManage.label')}
               </Link>
             </Stack>
           </Collapse>
