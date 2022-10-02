@@ -10,7 +10,12 @@ export const activateVoucher = createAsyncThunk(
       voucher: {
         command: "activate",
         email: data.email,
-        activate_wallet: data['mobile-pass'],
+        activate_wallet: data["activate_wallet"],
+        activate_pdf: data['activate-pdf'],
+        pdf_options: {
+          variant: data['pdf-variant'],
+          language: data['pdf-language'],
+        },
       },
     };
     try {

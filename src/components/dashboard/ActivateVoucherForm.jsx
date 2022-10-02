@@ -61,9 +61,9 @@ const ActivateVoucherForm = ({ voucher }) => {
       <FormControl>
         <FormLabel htmlFor="email">{t("forms.elements.mobilePass")}</FormLabel>
         <Checkbox
-          data-cy="mobile-pass"
-          id="mobile-pass"
-          {...register("mobile-pass")}
+          data-cy="activate_wallet"
+          id="activate_wallet"
+          {...register("activate_wallet")}
         />
       </FormControl>
       <Button data-cy="submit-activation-form" type="submit">
