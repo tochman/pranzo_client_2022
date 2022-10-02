@@ -62,6 +62,9 @@ export const SE = {
         submit: "Skicka",
         email: "Mailadress",
         mobilePass: "Skapa digitalt kort?",
+        pdfCard: "Skapa PDF?",
+        pdfVariant: 'Välj design:',
+        pdfLanguage: "Språk:"
       },
       messages: {
         required: "Det här fältet är obligatoriskt",

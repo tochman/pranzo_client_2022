@@ -50,8 +50,8 @@ export const GB = {
             owner: "Owner: ",
             presenter: "holder of card",
             servingsActions: {
-              mainLabel: "This will consume a serving on this voucher."
-            }
+              mainLabel: "This will consume a serving on this voucher.",
+            },
           },
         },
       },
@@ -61,6 +61,9 @@ export const GB = {
         submit: "Submit",
         email: "Email",
         mobilePass: "Add digital card?",
+        pdfCard: "Add PDF card?",
+        pdfVariant: 'Choose card design:',
+        pdfLanguage: "Language:"
       },
       messages: {
         required: "This field is required.",

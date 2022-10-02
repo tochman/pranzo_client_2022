@@ -41,11 +41,13 @@ describe("Activating a voucher", () => {
     context("with an owner email", () => {
       beforeEach(() => {
         cy.getCy("email").type("new_client@random.com");
-        cy.getCy("submit-activation-form").click({ force: true });
+        cy.getCy("activate_wallet").click()
+        cy.getCy("activate_pdf").click({ force: true })
+        // cy.getCy("submit-activation-form").click({ force: true });
       });
 
       describe("call to API", () => {
-        it("is expected to make be a POST request", () => {
+        it.only("is expected to make be a POST request", () => {
           cy.wait("@activateVoucher")
             .its("request.method")
             .should("eql", "PUT");
