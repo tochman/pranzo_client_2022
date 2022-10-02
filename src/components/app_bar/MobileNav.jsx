@@ -203,7 +203,7 @@ const MobileNav = ({ toggleMainNavBar }) => {
                 }}
                 data-cy="voucher-management-mobile"
               >
-                {t('dashboard.headings.viewAndManage')}
+                {t('dashboard.headings.viewAndManage.label')}
               </Link>
             </Stack>
           </Collapse>
