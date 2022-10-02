@@ -53,6 +53,11 @@ describe("Creating a transaction", () => {
           );
         });
       });
+
+      it('is expected to display the updated value of voucher in the main table', () => {
+        cy.wait("@createTransaction")
+        cy.getCy('eLtZr').should('contain.text', '7')
+      });
     });
 
     describe("the transactions table", () => {

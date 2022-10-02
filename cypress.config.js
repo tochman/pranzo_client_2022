@@ -6,7 +6,7 @@ export default defineConfig({
     chromeWebSecurity: false,
     excludeSpecPattern: process.env.CI ? ["cypress/e2e/all.cy.js"] : [],
     video: false,
-    retries: 1,
+    retries: 0,
     env: {
       apiUrl: "http://localhost:3001",
     },

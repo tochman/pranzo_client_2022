@@ -49,6 +49,9 @@ export const GB = {
             showInactive: "Show inactive",
             owner: "Owner: ",
             presenter: "holder of card",
+            servingsActions: {
+              mainLabel: "This will consume a serving on this voucher."
+            }
           },
         },
       },

@@ -63,7 +63,7 @@ export const createTransaction = createAsyncThunk(
         if (voucher.id === response.data.voucher.id) {
           return {
             ...voucher,
-            transactions: response.data.voucher.transactions,
+            ...response.data.voucher
           };
         }
         return voucher;

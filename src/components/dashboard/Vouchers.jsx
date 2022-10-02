@@ -31,7 +31,6 @@ import { FaRegMoneyBillAlt } from "react-icons/fa";
 import Transactions from "./Transactions";
 import VoucherActions from "./VoucherActions";
 import { useTranslation } from "react-i18next";
-import CashVoucherActions from "./CashVoucherActions";
 
 const Vouchers = () => {
   const { t } = useTranslation();
@@ -41,7 +40,6 @@ const Vouchers = () => {
   const [activeVouchers, setActiveVouchers] = useState([]);
   const [, setShowScanner] = useState(false);
   const [showInactive, setShowInactive] = useState(false);
-  const dispatch = useDispatch();
 
   let initialRowState = [];
   let initialModalState = [];

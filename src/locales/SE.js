@@ -50,6 +50,9 @@ export const SE = {
             showInactive: "Visa inaktiva",
             owner: "Ägare: ",
             presenter: "anonymt",
+            servingsActions: {
+              mainLabel: "Du kommer att minska kortets saldo med 1 portion.",
+            },
           },
         },
       },
