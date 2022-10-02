@@ -97,54 +97,56 @@ const DesktopNav = () => {
           </PopoverContent>
         </Popover>
       </Box>
-      <Box data-cy="vouchers">
-        <Popover trigger={"hover"} placement={"bottom-start"}>
-          <PopoverTrigger>
-            <Link
-              p={2}
-              fontSize={"sm"}
-              fontWeight={500}
-              color={linkColor}
-              _hover={{
-                textDecoration: "none",
-                color: linkHoverColor,
-              }}
+      {vendor && authenticated && (
+        <Box data-cy="vouchers">
+          <Popover trigger={"hover"} placement={"bottom-start"}>
+            <PopoverTrigger>
+              <Link
+                p={2}
+                fontSize={"sm"}
+                fontWeight={500}
+                color={linkColor}
+                _hover={{
+                  textDecoration: "none",
+                  color: linkHoverColor,
+                }}
+              >
+                {t("dashboard.headings.vouchers")}
+              </Link>
+            </PopoverTrigger>
+            <PopoverContent
+              border={0}
+              boxShadow={"xl"}
+              bg={popoverContentBgColor}
+              p={4}
+              rounded={"xl"}
+              minW={"sm"}
             >
-              {t("dashboard.headings.vouchers")}
-            </Link>
-          </PopoverTrigger>
-          <PopoverContent
-            border={0}
-            boxShadow={"xl"}
-            bg={popoverContentBgColor}
-            p={4}
-            rounded={"xl"}
-            minW={"sm"}
-          >
-            <Stack>
-              {authenticated && vendor && (
-                <DesktopSubNav
-                  {...{
-                    dataCy: "voucher-management",
-                    href: "/dashboard/vouchers",
-                  }}
-                >
-                  <Text
-                    transition={"all .3s ease"}
-                    _groupHover={{ color: "pink.400" }}
-                    fontWeight={500}
+              <Stack>
+                {authenticated && vendor && (
+                  <DesktopSubNav
+                    {...{
+                      dataCy: "voucher-management",
+                      href: "/dashboard/vouchers",
+                    }}
                   >
-                    {t("dashboard.headings.viewAndManage.label")}
-                  </Text>
-                  <Text fontSize={"sm"}>
-                    {t("dashboard.headings.viewAndManage.subLabel")}
-                  </Text>
-                </DesktopSubNav>
-              )}
-            </Stack>
-          </PopoverContent>
-        </Popover>
-      </Box>
+                    <Text
+                      transition={"all .3s ease"}
+                      _groupHover={{ color: "pink.400" }}
+                      fontWeight={500}
+                    >
+                      {t("dashboard.headings.viewAndManage.label")}
+                    </Text>
+                    <Text fontSize={"sm"}>
+                      {t("dashboard.headings.viewAndManage.subLabel")}
+                    </Text>
+                  </DesktopSubNav>
+                )}
+              </Stack>
+            </PopoverContent>
+          </Popover>
+        </Box>
+      )}
     </Stack>
   );
 };

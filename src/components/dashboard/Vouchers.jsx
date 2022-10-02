@@ -80,7 +80,7 @@ const Vouchers = () => {
             isModalOpen={isModalOpen[voucher.code]}
             toggleModal={toggleModal}
             voucher={voucher}
-            action= {voucher.active ? 'createTransaction' : 'activateVoucher'}
+            action={voucher.active ? "createTransaction" : "activateVoucher"}
           />
         )}
       </>
@@ -176,8 +176,8 @@ const Vouchers = () => {
   });
 
   return (
-    <Container maxW={{ base: "90vw", sm: "100vw" }} mt={5} mb={5}>
-      <Box>
+    <>
+      <Box maxW={{ base: "90vw", xs: "100vw" }} mt={5} mb={5} mr={2} ml={2}>
         <HStack>
           <FormControl display="flex" alignItems="center">
             <FormLabel htmlFor="voucher-status" mb="0">
@@ -189,18 +189,19 @@ const Vouchers = () => {
               onChange={() => setShowInactive(!showInactive)}
             />
           </FormControl>
-
-          <QrCodePopup
-            onDetect={(code) => {
-              filterVouchers(code, { source: "scanner" });
-            }}
-          >
-            <Button colorScheme="teal" size="lg" data-cy="scan">
-              Scan Voucher
-            </Button>
-          </QrCodePopup>
+          {!showInactive && (
+            <QrCodePopup
+              onDetect={(code) => {
+                filterVouchers(code, { source: "scanner" });
+              }}
+            >
+              <Button colorScheme="teal" size="lg" data-cy="scan">
+                Scan Voucher
+              </Button>
+            </QrCodePopup>
+          )}
         </HStack>
-        <TableContainer width={{ sm: "100%" }}>
+        <TableContainer width={{ xs: "100%" }} mr={{xs: 0}} ml={{xs: 0}}>
           <Table variant="simple" data-cy="vouchers-index">
             <Thead>
               <Tr>
@@ -219,7 +220,7 @@ const Vouchers = () => {
         </TableContainer>
       </Box>
       {modals}
-    </Container>
+    </>
   );
 };
 

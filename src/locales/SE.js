@@ -63,10 +63,10 @@ export const SE = {
         email: "Mailadress",
         mobilePass: "Skapa digitalt kort?",
         pdfCard: "Skapa PDF?",
-        pdfVariant: 'Välj design:',
+        pdfVariant: "Välj design:",
         pdfLanguage: "Språk:",
         swedish: "Svenska",
-        english: "Engelska"
+        english: "Engelska",
       },
       messages: {
         required: "Det här fältet är obligatoriskt",
@@ -108,6 +108,7 @@ export const SE = {
       mainSlogan: "Förenkla din försäljning – Öka dina intäkter",
       promoText:
         "Gör voucher- och presentkortshanteringen enkel. Pranzo erbjuder en enkel och lättanvänd lösning för att skapa, sälja och administrera lunch- och presentkort",
+      walletsPromoText: "Koppla dina kort till Apple- och Google Plånbok.",
       subSlogan:
         "Låg startavgift och inga prenumerationskostnader. Betala allt eftersom du använder systemet!",
       buttonText: "Kom igång!",

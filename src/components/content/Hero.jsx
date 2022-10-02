@@ -1,7 +1,7 @@
 import { Flex, Heading, Image, Stack, Text } from "@chakra-ui/react";
 import Logo from "./Logo";
-import { useTranslation } from 'react-i18next'
-
+import { useTranslation } from "react-i18next";
+import WalletBanner from "./WalletBanner";
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -23,19 +23,18 @@ const Hero = () => {
           <Logo width={"250px"} />
           <Heading fontSize={{ base: "3xl", md: "2xl", lg: "3xl" }}>
             <Text as={"span"} position={"relative"}>
-              {t('hero.mainSlogan')}
+              {t("hero.mainSlogan")}
             </Text>
           </Heading>
           <Text fontSize={{ base: "md", lg: "lg" }} color={"gray.500"}>
-            {t('hero.promoText')}
-
+            {t("hero.promoText")}
           </Text>
-
           <Heading fontSize={{ base: "1xl", md: "1xl", lg: "1xl" }}>
             <Text as={"span"} position={"relative"}>
-            {t('hero.subSlogan')}
+              {t("hero.subSlogan")}
             </Text>
           </Heading>
+          <WalletBanner />
         </Stack>
       </Flex>
       <Flex flex={1}>

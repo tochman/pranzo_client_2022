@@ -106,8 +106,9 @@ export const GB = {
     hero: {
       mainSlogan: "Simplify your sales - Increase your revenue",
       promoText:
-        "Making voucher and gift card management easy. Pranzo offers a simple and easy-to-use solution for creating, selling and administering pre-paid lunch or gift cards",
+        "Making voucher and gift card management easy. Pranzo offers a simple and easy-to-use solution for creating, selling and administering pre-paid lunch- or gift cards.",
       subSlogan: "Low start-up fee and no subscriptions costs. Pay as you go!",
+      walletsPromoText: "Connect your cards to Apple and Google Wallet.",
       buttonText: "Get started",
       ctaText:
         "There's no upfront fee to register. We will charge you only if you actually benefit from the Pranzo plattform with a one time set-up fee of €45 and €1 per issued voucher.",
