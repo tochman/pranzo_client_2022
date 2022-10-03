@@ -97,10 +97,10 @@ const ActivateVoucherForm = ({ voucher }) => {
             <RadioGroup
               name="pdf_language"
               {...register("pdf_language")}
-              defaultValue={"se"}
+              defaultValue={"sv"}
             >
               <Stack direction="row">
-                <Radio value="se">{t("forms.elements.swedish")}</Radio>
+                <Radio value="sv">{t("forms.elements.swedish")}</Radio>
                 <Radio value="en">{t("forms.elements.english")}</Radio>
               </Stack>
             </RadioGroup>
