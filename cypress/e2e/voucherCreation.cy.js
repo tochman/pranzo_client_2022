@@ -27,8 +27,16 @@ describe("Vouchers: create a batch", () => {
   });
 
   describe("UI", () => {
-    it.only("is expected to route to '/dashboard/vouchers/create' ", () => {
+    it("is expected to route to '/dashboard/vouchers/create' ", () => {
       cy.location("pathname").should("eq", "/dashboard/vouchers/create");
     });
+
+    it.only('is expected to have a form', () => {
+      cy.getCy('batch-create-vouchers').should('exist').and('be.visible')
+    });
+  });
+
+  describe.only('', () => {
+    
   });
 });
