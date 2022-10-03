@@ -26,18 +26,13 @@ export const activateVoucher = createAsyncThunk(
           data: payload,
         }
       );
-      const updatedVouchers = vouchers.map((voucher) => {
-        if (voucher.id === data.voucher) {
-          return {
-            ...voucher,
-            ...data.voucher,
-          };
-        }
-        return voucher;
-      });
+      const voucherResponse = await auth.privateRoute(
+        `/api/vendors/${data.vendor.id}/vouchers`,
+        { method: "GET" }
+      );
       dispatch({
         type: "user/setVouchers",
-        payload: updatedVouchers,
+        payload: voucherResponse.data.vouchers,
       });
     } catch (error) {
       const message =

@@ -1,5 +1,5 @@
 describe("Activating a voucher", () => {
-  before(() => {
+  beforeEach(() => {
     cy.visit("/");
     cy.fixture("venueCreateSuccess").then((fixture) => {
       cy.authenticateUser({
@@ -34,6 +34,9 @@ describe("Activating a voucher", () => {
       cy.intercept("PUT", "**/vendors/**/vouchers/**", {
         fixture: "voucherActivationResponse.json",
       }).as("activateVoucher");
+      cy.intercept("GET", "**/api/vendors/**/vouchers", {
+        fixture: "vouchersIndexUpdated",
+      });
       cy.getCy("CXuny").trigger("click");
       cy.getCy("CXuny-cta").trigger("click");
     });
@@ -44,6 +47,9 @@ describe("Activating a voucher", () => {
         cy.getCy("activate_wallet").click();
         cy.getCy("activate_pdf").click({ force: true });
         cy.getCy("submit-activation-form").click({ force: true });
+      });
+      afterEach(() => {
+        cy.getCy('voucher-status').click()
       });
 
       describe("call to API", () => {
