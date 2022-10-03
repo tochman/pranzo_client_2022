@@ -80,13 +80,20 @@ const ActivateVoucherForm = ({ voucher }) => {
             </FormLabel>
             <RadioGroup
               name="pdf_variant"
-              {...register("pdf_variant")}
+              id="pdf_variant"
+              data-cy="pdf_variant"
               defaultValue={"1"}
             >
               <Stack direction="row">
-                <Radio value="1">Design 1</Radio>
-                <Radio value="2">Design 2</Radio>
-                <Radio value="3">Design 3</Radio>
+                <Radio {...register("pdf_variant")} value="1">
+                  Design 1
+                </Radio>
+                <Radio {...register("pdf_variant")} value="2">
+                  Design 2
+                </Radio>
+                <Radio {...register("pdf_variant")} value="3">
+                  Design 3
+                </Radio>
               </Stack>
             </RadioGroup>
           </FormControl>
@@ -96,13 +103,25 @@ const ActivateVoucherForm = ({ voucher }) => {
             </FormLabel>
             <RadioGroup
               name="pdf_language"
+              id="pdf_language"
               data-cy="pdf_language"
-              {...register("pdf_language")}
               defaultValue={"sv"}
             >
               <Stack direction="row">
-                <Radio  data-cy="swedish" value="sv">{t("forms.elements.swedish")}</Radio>
-                <Radio  data-cy="english" value="en">{t("forms.elements.english")}</Radio>
+                <Radio
+                  {...register("pdf_language")}
+                  data-cy="swedish"
+                  value="sv"
+                >
+                  {t("forms.elements.swedish")}
+                </Radio>
+                <Radio
+                  {...register("pdf_language")}
+                  data-cy="english"
+                  value="en"
+                >
+                  {t("forms.elements.english")}
+                </Radio>
               </Stack>
             </RadioGroup>
           </FormControl>

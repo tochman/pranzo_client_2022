@@ -49,7 +49,7 @@ describe("Activating a voucher", () => {
         cy.getCy("submit-activation-form").click({ force: true });
       });
       afterEach(() => {
-        cy.getCy('voucher-status').click()
+        cy.getCy("voucher-status").click();
       });
 
       describe("call to API", () => {
@@ -75,13 +75,16 @@ describe("Activating a voucher", () => {
         cy.getCy("email").type("new_client@random.com");
         cy.getCy("activate_wallet").click();
         cy.getCy("activate_pdf").click({ force: true });
-        cy.getCy('pdf_language').within(()=>{
-          cy.getCy('english').click()
-        })
+        cy.getCy("pdf_variant").within(() => {
+          cy.contains("2").click();
+        });
+        cy.getCy("pdf_language").within(() => {
+          cy.contains("English").click();
+        });
         cy.getCy("submit-activation-form").click({ force: true });
       });
       afterEach(() => {
-        cy.getCy('voucher-status').click()
+        cy.getCy("voucher-status").click();
       });
 
       describe("call to API", () => {
@@ -91,14 +94,19 @@ describe("Activating a voucher", () => {
             .should("eql", "PUT");
         });
 
-        it.only('is expected to send options as params', () => {
-          cy.wait("@activateVoucher").then((request) => {
-            debugger
-          })
+        it.only("is expected to send options as params", () => {
+          cy.wait("@activateVoucher").then(({ request }) => {
+            expect(request.body.voucher.activate_pdf).to.eql(true);
+            expect(request.body.voucher.activate_wallet).to.eql(true);
+            expect(request.body.voucher.command).to.eql("activate");
+            expect(request.body.voucher.email).to.eql("new_client@random.com");
+            expect(request.body.voucher.pdf_options.variant).to.eql("2");
+            expect(request.body.voucher.pdf_options.language).to.eql("en");
+          });
         });
 
         it("is expected to return a success message", () => {
-          cy.wait("@activateVoucher").then(({ request, response }) => {
+          cy.wait("@activateVoucher").then(({ response }) => {
             expect(response.body).to.have.own.property(
               "message",
               "Voucher is now active"
