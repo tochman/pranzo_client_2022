@@ -206,6 +206,18 @@ const MobileNav = ({ toggleMainNavBar }) => {
                 {t('dashboard.headings.viewAndManage.label')}
               </Link>
             </Stack>
+            <Stack pl={3} align={"start"}>
+              <Link
+                py={2}
+                onClick={() => {
+                  navigate("/dashboard/vouchers/create", { replace: true });
+                  toggleMainNavBar();
+                }}
+                data-cy="voucher-create-mobile"
+              >
+                {t("dashboard.headings.create.label")}
+              </Link>
+            </Stack>
           </Collapse>
         </Stack>
       )}
