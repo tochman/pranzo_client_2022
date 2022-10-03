@@ -79,7 +79,7 @@ const ActivateVoucherForm = ({ voucher }) => {
               {t("forms.elements.pdfVariant")}
             </FormLabel>
             <RadioGroup
-              id="pdf_variant"
+              name="pdf_variant"
               {...register("pdf_variant")}
               defaultValue={"1"}
             >
@@ -95,7 +95,7 @@ const ActivateVoucherForm = ({ voucher }) => {
               {t("forms.elements.pdfLanguage")}
             </FormLabel>
             <RadioGroup
-              id="pdf_language"
+              name="pdf_language"
               {...register("pdf_language")}
               defaultValue={"se"}
             >
