@@ -25,9 +25,9 @@ describe("Creating a transaction", () => {
   beforeEach(() => {
     cy.getCy("vouchers").click();
     cy.getCy("voucher-management").click();
-    cy.getCy("eLtZr").trigger("click");
-    cy.get("body").trigger("click");
-    cy.getCy("eLtZr-cta").trigger("click");
+    cy.get("body").click()
+    cy.getCy("eLtZr").click()
+    cy.getCy("eLtZr-cta").click()
   });
 
   describe('clicking on "Create transaction"', () => {
