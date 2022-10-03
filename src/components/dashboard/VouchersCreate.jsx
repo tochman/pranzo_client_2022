@@ -17,9 +17,12 @@ import {
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { activateVoucher } from "../../state/features/vouchers";
+import { useNavigate } from "react-router-dom";
+import { createVouchers } from "../../state/features/vouchers";
 
-const VouchersCreate = ({ voucher }) => {
+
+const VouchersCreate = () => {
+  const navigate = useNavigate()
   const {
     handleSubmit,
     register,
@@ -32,7 +35,8 @@ const VouchersCreate = ({ voucher }) => {
   const { vendor } = useSelector((state) => state.user);
 
   const handleFormSubmit = (data) => {
-    dispatch(activateVoucher(data));
+    dispatch(createVouchers(data));
+    navigate('/dashboard/vouchers')
   };
 
   return (
@@ -123,28 +127,6 @@ const VouchersCreate = ({ voucher }) => {
             </Select>
           </>
         )}
-        {/* <Input
-          type={"hidden"}
-          id="vendor"
-          {...register("vendor", { value: vendor.id })}
-        />
-        <FormControl isInvalid={errors.name}>
-          <FormLabel htmlFor="email">{t("forms.elements.email")}</FormLabel>
-          <Input
-            data-cy="email"
-            id="email"
-            {...register("email", {
-              required: t("forms.messages.required"),
-              minLength: {
-                value: 4,
-                message: t("forms.messages.minLength", { length: 4 }),
-              },
-            })}
-          />
-          <FormErrorMessage>
-            {errors.email && errors.email.message}
-          </FormErrorMessage>
-        </FormControl> */}
         <Button
           data-cy="submit-create-form"
           type="submit"

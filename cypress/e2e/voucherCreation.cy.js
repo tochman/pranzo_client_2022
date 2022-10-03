@@ -1,10 +1,10 @@
 describe("Vouchers: create a batch", () => {
-  before(() => {
+  beforeEach(() => {
     cy.visit("/");
     cy.intercept("POST", "**/api/vendors/**/vouchers", {
       body: { message: "10 new vouchers was created" },
       statusCode: 201,
-    });
+    }).as("batchCreate");
     cy.fixture("venueCreateSuccess").then((fixture) => {
       cy.authenticateUser({
         ...fixture.vendor.users[1],
@@ -31,12 +31,40 @@ describe("Vouchers: create a batch", () => {
       cy.location("pathname").should("eq", "/dashboard/vouchers/create");
     });
 
-    it.only('is expected to have a form', () => {
-      cy.getCy('batch-create-vouchers').should('exist').and('be.visible')
+    it("is expected to have a form", () => {
+      cy.getCy("batch-create-vouchers").should("exist").and("be.visible");
     });
   });
 
-  describe.only('', () => {
-    
+  describe("Submitting the form", () => {
+    beforeEach(() => {
+      cy.intercept("GET", "**/api/vendors/**/vouchers", {
+        fixture: "vouchersIndexUpdatedAfterCreate",
+      });
+      cy.getCy("amount").type(10);
+      cy.getCy("variant").select("servings");
+      cy.getCy("value").select("10");
+      cy.getCy("submit-create-form").click();
+    });
+
+    it("is expected to make a POST request", () => {
+      cy.wait("@batchCreate").its("request.method").should("eq", "POST");
+    });
+
+    it("is expected to include ", () => {
+      cy.wait("@batchCreate").then(({ request }) => {
+        expect(request.body.command).to.eql("batch");
+        expect(request.body.amount).to.eql("10");
+        expect(request.body.voucher.value).to.eql("10");
+        expect(request.body.voucher.variant).to.eql("servings");
+      });
+    });
+
+    it("is expected to display the new vouchers as inactive", () => {
+      cy.getCy("voucher-status").click();
+      cy.get("[data-cy=vouchers-index]>tbody").within(() => {
+        cy.get('td:contains("12345")').should("have.length", 10);
+      });
+    });
   });
 });
