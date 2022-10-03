@@ -20,6 +20,10 @@ export const GB = {
           label: "View & manage",
           subLabel: "Manage your vouchers and cards.",
         },
+        create: {
+          label: "Create",
+          subLabel: "Add inventory of vouchers",
+        },
       },
       content: {
         stats: {
@@ -62,15 +66,23 @@ export const GB = {
         email: "Email",
         mobilePass: "Add digital card?",
         pdfCard: "Add PDF card?",
-        pdfVariant: 'Choose card design:',
+        pdfVariant: "Choose card design:",
         pdfLanguage: "Language:",
         swedish: "Swedish",
-        english: "English"
+        english: "English",
+        amount: "Amount",
+        variant: "Variant",
+        valueServings: "Value (servings)",
+        valueCash: "Value (money)",
+        selectVariant: "Select a card variant",
+        selectServings: "Select a value",
+        selectCash: "Select a money value",
       },
       messages: {
         required: "This field is required.",
         minLength: "Minimum length should be {{length}}",
         invalidEmail: "This is an invalid email....",
+        submitNumber: "Please submit a number",
       },
     },
     venue: {

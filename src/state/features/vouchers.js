@@ -1,6 +1,45 @@
 import { auth } from "../utilities/authConfig";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toastMessage } from "../utilities/utilities";
+import { Route } from "react-router-dom";
+
+export const createVouchers = createAsyncThunk(
+  "users/createVouchers",
+  async (data, { dispatch }) => {
+    const payload = {
+      command: data.command,
+      amount: data.amount,
+      voucher: {
+        value: data.value,
+        variant: data.variant,
+      },
+    };
+
+    try {
+      const response = await auth.privateRoute(
+        `/api/vendors/${data.vendor}/vouchers`,
+        {
+          method: "POST",
+          data: payload,
+        }
+      );
+      const voucherResponse = await auth.privateRoute(
+        `/api/vendors/${data.vendor.id}/vouchers`,
+        { method: "GET" }
+      );
+      dispatch({
+        type: "user/setVouchers",
+        payload: voucherResponse.data.vouchers,
+      });
+      toastMessage([response.data.message], (status = "success"));
+    } catch (error) {
+      const message =
+        error?.response?.data?.errors?.full_messages ||
+        error.message + ". Please try again.";
+      toastMessage([message]);
+    }
+  }
+);
 
 export const activateVoucher = createAsyncThunk(
   "users/activateVoucher",
@@ -18,7 +57,7 @@ export const activateVoucher = createAsyncThunk(
       },
     };
     try {
-      await auth.privateRoute(
+      const response = await auth.privateRoute(
         `/api/vendors/${data.vendor}/vouchers/${data.voucher}`,
         {
           method: "PUT",
@@ -33,6 +72,7 @@ export const activateVoucher = createAsyncThunk(
         type: "user/setVouchers",
         payload: voucherResponse.data.vouchers,
       });
+      toastMessage([response.data.message], (status = "success"));
     } catch (error) {
       const message =
         error?.response?.data?.errors?.full_messages ||

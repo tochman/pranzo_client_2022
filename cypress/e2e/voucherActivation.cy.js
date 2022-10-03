@@ -69,5 +69,43 @@ describe("Activating a voucher", () => {
         });
       });
     });
+
+    context("with an owner email and ENGLISH", () => {
+      beforeEach(() => {
+        cy.getCy("email").type("new_client@random.com");
+        cy.getCy("activate_wallet").click();
+        cy.getCy("activate_pdf").click({ force: true });
+        cy.getCy('pdf_language').within(()=>{
+          cy.getCy('english').click()
+        })
+        cy.getCy("submit-activation-form").click({ force: true });
+      });
+      afterEach(() => {
+        cy.getCy('voucher-status').click()
+      });
+
+      describe("call to API", () => {
+        it("is expected to make be a POST request", () => {
+          cy.wait("@activateVoucher")
+            .its("request.method")
+            .should("eql", "PUT");
+        });
+
+        it.only('is expected to send options as params', () => {
+          cy.wait("@activateVoucher").then((request) => {
+            debugger
+          })
+        });
+
+        it("is expected to return a success message", () => {
+          cy.wait("@activateVoucher").then(({ request, response }) => {
+            expect(response.body).to.have.own.property(
+              "message",
+              "Voucher is now active"
+            );
+          });
+        });
+      });
+    });
   });
 });

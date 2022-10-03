@@ -21,6 +21,10 @@ export const SE = {
           label: "Hantera kort",
           subLabel: "Aktivera kort, skapa transaktioner, mm. ",
         },
+        create: {
+          label: "Skapa",
+          subLabel: "Lägg till nya kort",
+        },
       },
       content: {
         stats: {
@@ -67,10 +71,19 @@ export const SE = {
         pdfLanguage: "Språk:",
         swedish: "Svenska",
         english: "Engelska",
+        amount: "Antal",
+        variant: "Korttyp",
+        valueServings: "Värde (portioner)",
+        valueCash: "Värde (pengar)",
+        selectVariant: "Välj typ av kort",
+        selectServings: "Välj värde",
+        selectCash: "Välje ett värde",
       },
       messages: {
         required: "Det här fältet är obligatoriskt",
         minLength: "Kortaste tillåtna längd är {{length}} tecken.",
+        invalidEmail: "Det här är en ogiltig adress",
+        submitNumber: "Var god ange ett nummer.",
       },
     },
 
