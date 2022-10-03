@@ -123,25 +123,40 @@ const DesktopNav = () => {
               minW={"sm"}
             >
               <Stack>
-                {authenticated && vendor && (
-                  <DesktopSubNav
-                    {...{
-                      dataCy: "voucher-management",
-                      href: "/dashboard/vouchers",
-                    }}
+                <DesktopSubNav
+                  {...{
+                    dataCy: "voucher-management",
+                    href: "/dashboard/vouchers",
+                  }}
+                >
+                  <Text
+                    transition={"all .3s ease"}
+                    _groupHover={{ color: "pink.400" }}
+                    fontWeight={500}
                   >
-                    <Text
-                      transition={"all .3s ease"}
-                      _groupHover={{ color: "pink.400" }}
-                      fontWeight={500}
-                    >
-                      {t("dashboard.headings.viewAndManage.label")}
-                    </Text>
-                    <Text fontSize={"sm"}>
-                      {t("dashboard.headings.viewAndManage.subLabel")}
-                    </Text>
-                  </DesktopSubNav>
-                )}
+                    {t("dashboard.headings.viewAndManage.label")}
+                  </Text>
+                  <Text fontSize={"sm"}>
+                    {t("dashboard.headings.viewAndManage.subLabel")}
+                  </Text>
+                </DesktopSubNav>
+                <DesktopSubNav
+                  {...{
+                    dataCy: "voucher-create",
+                    href: "/dashboard/vouchers/create",
+                  }}
+                >
+                  <Text
+                    transition={"all .3s ease"}
+                    _groupHover={{ color: "pink.400" }}
+                    fontWeight={500}
+                  >
+                    {t("dashboard.headings.create.label")}
+                  </Text>
+                  <Text fontSize={"sm"}>
+                    {t("dashboard.headings.create.subLabel")}
+                  </Text>
+                </DesktopSubNav>
               </Stack>
             </PopoverContent>
           </Popover>

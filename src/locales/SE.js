@@ -21,6 +21,10 @@ export const SE = {
           label: "Hantera kort",
           subLabel: "Aktivera kort, skapa transaktioner, mm. ",
         },
+        create: {
+          label: "Skapa",
+          subLabel: "Lägg till nya kort",
+        },
       },
       content: {
         stats: {
