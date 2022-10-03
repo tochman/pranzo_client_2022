@@ -4,8 +4,7 @@ import { toastMessage } from "../utilities/utilities";
 
 export const activateVoucher = createAsyncThunk(
   "users/activateVoucher",
-  async (data, { getState, dispatch }) => {
-    let { vouchers } = getState().user;
+  async (data, { dispatch }) => {
     const payload = {
       voucher: {
         command: "activate",
