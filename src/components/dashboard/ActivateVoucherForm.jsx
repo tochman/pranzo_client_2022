@@ -49,6 +49,10 @@ const ActivateVoucherForm = ({ voucher }) => {
           data-cy="email"
           id="email"
           {...register("email", {
+            pattern: {
+              value: /(^[^@.]+)@([^@.]+)\.{1}(\w{1,6}$)/i,
+              message: t("forms.messages.invalidEmail"),
+            },
             required: t("forms.messages.required"),
             minLength: {
               value: 4,

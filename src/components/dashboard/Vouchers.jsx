@@ -10,7 +10,6 @@ import {
   TableContainer,
   Icon,
   Collapse,
-  Container,
   Button,
   VStack,
   HStack,
@@ -21,16 +20,16 @@ import {
 } from "@chakra-ui/react";
 import _ from "lodash";
 import { ChevronDownIcon } from "@chakra-ui/icons";
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { FiCheck } from "react-icons/fi";
 import { AiOutlineNumber } from "react-icons/ai";
-import QrCodePopup from "@jimengio/qrcode-popup/lib/qrcode-popup";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import Transactions from "./Transactions";
 import VoucherActions from "./VoucherActions";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { toastMessage } from "../../state/utilities/utilities";
+import QrCodePopup from "@jimengio/qrcode-popup/lib/qrcode-popup";
 
 const Vouchers = () => {
   const { t } = useTranslation();
@@ -58,7 +57,9 @@ const Vouchers = () => {
     if (filteredVouchers.length) {
       setActiveVouchers(filteredVouchers);
     } else {
-      const message = t("dashboard.content.vouchers.labels.notFound", {code: code})
+      const message = t("dashboard.content.vouchers.labels.notFound", {
+        code: code,
+      });
       toastMessage([message]);
     }
     if (code === "") {

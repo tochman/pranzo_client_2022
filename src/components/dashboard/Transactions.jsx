@@ -7,8 +7,7 @@ import {
   Td,
   TableContainer,
 } from "@chakra-ui/react";
-// import moment from "moment";
-import moment from 'moment-with-locales-es6';
+import moment from "moment-with-locales-es6";
 
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -23,7 +22,7 @@ const Transactions = (props) => {
   }, [i18n.language]);
 
   useEffect(() => {
-    moment.locale(currentLng)
+    moment.locale(currentLng);
   }, [currentLng, moment]);
 
   let transactions = JSON.parse(JSON.stringify(props.transactions)); // really? Is this fixing object is not extensible?

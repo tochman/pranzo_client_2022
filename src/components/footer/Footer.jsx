@@ -4,19 +4,17 @@ import {
   Container,
   Stack,
   Text,
-  Button,
   Center,
-  Flex,
   HStack,
   Icon,
   useColorModeValue,
   useColorMode,
   useDisclosure,
 } from "@chakra-ui/react";
-import Logo from "../content/Logo";
 import { FlagIcon } from "react-flag-kit";
 import { FiMoon } from "react-icons/fi";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import Logo from "../content/Logo";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 

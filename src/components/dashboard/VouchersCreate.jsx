@@ -101,7 +101,7 @@ const VouchersCreate = () => {
               <option value="15">15</option>
             </Select>
             <FormHelperText>
-            {t("forms.elements.selectValueHelper")}
+              {t("forms.elements.selectValueHelper")}
             </FormHelperText>
           </FormControl>
         )}

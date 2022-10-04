@@ -15,6 +15,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import snakecasekeys from "snakecase-keys";
 import { setupVenue, editVenue } from "../../state/features/vendors";
+
 const VenueSetup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -67,6 +67,7 @@ export const GB = {
     },
     forms: {
       elements: {
+        create: 'Create',
         submit: "Submit",
         email: "Email",
         mobilePass: "Add digital card?",

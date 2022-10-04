@@ -39,7 +39,7 @@ export const SE = {
         },
         vouchers: {
           create: {
-            createFormHeading: 'Lägg till kort till lagret'
+            createFormHeading: "Lägg till kort till lagret",
           },
           table: {
             code: "Kod",
@@ -68,6 +68,7 @@ export const SE = {
     },
     forms: {
       elements: {
+        create: "Skapa",
         submit: "Skicka",
         email: "Mailadress",
         mobilePass: "Skapa digitalt kort?",
@@ -79,13 +80,15 @@ export const SE = {
         amount: "Antal",
         amountHelper: "Antal kort du vill lägga till ditt lager.",
         variant: "Korttyp",
-        variantHelper: "Enbart 'servings' (portioner) är tillgängliga för närvarande",
+        variantHelper:
+          "Enbart 'servings' (portioner) är tillgängliga för närvarande",
         valueServings: "Värde (portioner)",
         valueCash: "Värde (pengar)",
         selectVariant: "Välj typ av kort",
         selectServings: "Välj värde",
         selectCash: "Välje ett värde",
-        selectValueHelper: "Välj värdet på varje kupong. Om du vill skapa kuponger med andra värden, skicka in ett formulär för varje värde."
+        selectValueHelper:
+          "Välj värdet på varje kupong. Om du vill skapa kuponger med andra värden, skicka in ett formulär för varje värde.",
       },
       messages: {
         required: "Det här fältet är obligatoriskt",

@@ -11,11 +11,11 @@ import {
 } from "@chakra-ui/react";
 import ServingsVoucherActions from "./ServingsVoucherActions";
 import CashVoucherActions from "./CashVoucherActions";
-import { useSelector, useDispatch } from "react-redux";
-
-import { createTransaction } from "../../state/features/vouchers";
 import ActivateVoucherForm from "./ActivateVoucherForm";
 import { useTranslation } from "react-i18next";
+import { createTransaction } from "../../state/features/vouchers";
+import { useDispatch } from "react-redux";
+
 const VoucherActions = ({ isModalOpen, toggleModal, voucher, action }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -25,8 +25,7 @@ const VoucherActions = ({ isModalOpen, toggleModal, voucher, action }) => {
       <ModalBody>
         <ActivateVoucherForm voucher={voucher} />
       </ModalBody>
-      <ModalFooter>
-      </ModalFooter>
+      <ModalFooter></ModalFooter>
     </>
   );
 
@@ -47,7 +46,7 @@ const VoucherActions = ({ isModalOpen, toggleModal, voucher, action }) => {
             toggleModal(!isModalOpen);
           }}
         >
-          Create
+          {t('forms.elements.create')}
         </Button>
       </ModalFooter>
     </>
@@ -62,14 +61,12 @@ const VoucherActions = ({ isModalOpen, toggleModal, voucher, action }) => {
       />
       <ModalContent data-cy={`${voucher.code}-modal`}>
         <ModalHeader>
-          {t("dashboard.content.vouchers.table.code")}{": "} {voucher.code} -{" "}
-          <Text as="small"> 
-          {voucher.variant}
-          </Text>
+          {t("dashboard.content.vouchers.table.code")}
+          {": "} {voucher.code} - <Text as="small">{voucher.variant}</Text>
         </ModalHeader>
         <ModalCloseButton
           onClick={() => {
-            toggleModal(!isModalOpen);;
+            toggleModal(!isModalOpen);
           }}
         />
         {action === "createTransaction" && createTransactionContent}

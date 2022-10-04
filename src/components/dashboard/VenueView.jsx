@@ -1,10 +1,4 @@
-import {
-  Box,
-  Text,
-  Stack,
-  Flex,
-  Button,
-} from "@chakra-ui/react";
+import { Box, Text, Stack, Flex, Button } from "@chakra-ui/react";
 import Card from "./templates/Card";
 import CardHeader from "./templates/CardHeader";
 import CardBody from "./templates/CardBody";
