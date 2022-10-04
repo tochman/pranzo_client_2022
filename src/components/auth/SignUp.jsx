@@ -1,45 +1,38 @@
 import {
   Button,
-  Checkbox,
   Flex,
   FormControl,
   FormLabel,
+  FormErrorMessage,
   Heading,
   Input,
-  Link,
   Stack,
   Image,
 } from "@chakra-ui/react";
-import { t } from "i18next";
 import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../state/features/authentication";
-
+import { emailRegex } from "../../state/utilities/utilities";
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { authenticated } = useSelector((state) => state.user);
   const { t } = useTranslation();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm();
 
   useEffect(() => {
     authenticated && navigate("/");
   }, [authenticated]);
 
-  const handleFormSubmission = (event) => {
-    event.preventDefault();
-    const name = event.target["name"].value;
-    const email = event.target["email"].value;
-    const password = event.target["password"].value;
-    const passwordConf = event.target["password-conf"].value;
-    const params = {
-      name: name,
-      email: email,
-      password: password,
-      passwordConf: passwordConf,
-    };
-    dispatch(registerUser(params));
+  const handleFormSubmission = (data) => {
+    dispatch(registerUser(data));
   };
 
   return (
@@ -49,26 +42,75 @@ const SignUp = () => {
           <Heading fontSize={"2xl"}>
             {t("authentication.registerNewAccount.header")}
           </Heading>
-          <form data-cy="create-account-form" onSubmit={handleFormSubmission}>
-            <FormControl>
+          <form
+            data-cy="create-account-form"
+            onSubmit={handleSubmit(handleFormSubmission)}
+          >
+            <FormControl isInvalid={errors.name}>
               <FormLabel>
                 {t("authentication.registerNewAccount.name")}
               </FormLabel>
-              <Input name="name" data-cy="name" type="text" />
+              <Input
+                name="name"
+                data-cy="name"
+                type="text"
+                {...register("name", {
+                  required: t("forms.messages.required"),
+                  minLength: {
+                    value: 4,
+                    message: t("forms.messages.minLength", { length: 4 }),
+                  },
+                })}
+              />
+              <FormErrorMessage>
+                {errors.name && errors.name.message}
+              </FormErrorMessage>
             </FormControl>
-            <FormControl>
+            <FormControl isInvalid={errors.email}>
               <FormLabel>
                 {t("authentication.registerNewAccount.email")}
               </FormLabel>
-              <Input name="email" data-cy="email" type="email" />
+              <Input
+                name="email"
+                data-cy="email"
+                type="email"
+                {...register("email", {
+                  pattern: {
+                    value: emailRegex,
+                    message: t("forms.messages.invalidEmail"),
+                  },
+                  required: t("forms.messages.required"),
+                  minLength: {
+                    value: 4,
+                    message: t("forms.messages.minLength", { length: 4 }),
+                  },
+                })}
+              />
+              <FormErrorMessage>
+                {errors.email && errors.email.message}
+              </FormErrorMessage>
             </FormControl>
-            <FormControl>
+            <FormControl isInvalid={errors.password}>
               <FormLabel>
                 {t("authentication.registerNewAccount.password")}
               </FormLabel>
-              <Input name="password" data-cy="password" type="password" />
+              <Input
+                name="password"
+                data-cy="password"
+                type="password"
+                {...register("password", {
+                  required: t("forms.messages.required"),
+                  minLength: {
+                    value: 4,
+                    message: t("forms.messages.minLength", { length: 4 }),
+                  },
+                })}
+              />
+              <FormErrorMessage>
+                {errors.password && errors.password.message}
+              </FormErrorMessage>
             </FormControl>
-            <FormControl>
+            <FormControl isInvalid={errors.passwordConf}>
               <FormLabel>
                 {t("authentication.registerNewAccount.passwordConfirmation")}
               </FormLabel>
@@ -76,7 +118,17 @@ const SignUp = () => {
                 name="password-conf"
                 data-cy="password-conf"
                 type="password"
+                {...register("passwordConf", {
+                  required: t("forms.messages.required"),
+                  minLength: {
+                    value: 4,
+                    message: t("forms.messages.minLength", { length: 4 }),
+                  },
+                })}
               />
+              <FormErrorMessage>
+                {errors.passwordConf && errors.passwordConf.message}
+              </FormErrorMessage>
             </FormControl>
             <Stack spacing={6} mt={5}>
               <Button
@@ -84,6 +136,7 @@ const SignUp = () => {
                 colorScheme={"pink"}
                 variant={"solid"}
                 type="submit"
+                isLoading={isSubmitting}
               >
                 {t("authentication.submit")}
               </Button>

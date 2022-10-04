@@ -146,25 +146,12 @@ describe("Authentication:", () => {
         });
       });
 
-      it("is expected to make a network call on submit", () => {
-        cy.wait("@failedSignUp").its("request.method").should("eql", "POST");
-      });
-
-      it("is expected to include form data as params", () => {
-        cy.wait("@failedSignUp").then(({ request }) => {
-          expect(request.body.name).to.eql("Random Guy");
-          expect(request.body.email).to.eql("");
-          expect(request.body.password).to.eql("password");
-          expect(request.body.passwordConf).to.eql("password");
-        });
-      });
-
       it("is expected to remain on the sign-up view", () => {
         cy.location("pathname").should("eq", "/auth/sign-up");
       });
 
       it("is expected to display an error message", () => {
-        cy.get("body").should("contain.text", "Email can't be blank");
+        cy.get("body").should("contain.text", "This field is required");
       });
     });
   });

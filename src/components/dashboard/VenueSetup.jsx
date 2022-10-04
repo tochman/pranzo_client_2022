@@ -15,6 +15,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import snakecasekeys from "snakecase-keys";
 import { setupVenue, editVenue } from "../../state/features/vendors";
+import { emailRegex } from "../../state/utilities/utilities";
 
 const VenueSetup = () => {
   const dispatch = useDispatch();
@@ -95,7 +96,7 @@ const VenueSetup = () => {
                 id="primaryEmail"
                 {...register("primaryEmail", {
                   pattern: {
-                    value: /(^[^@.]+)@([^@.]+)\.{1}(\w{1,6}$)/i,
+                    value: emailRegex,
                     message: t("forms.messages.invalidEmail"),
                   },
                   required: t("forms.messages.required"),

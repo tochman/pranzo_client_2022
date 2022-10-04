@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { activateVoucher } from "../../state/features/vouchers";
+import { emailRegex } from "../../state/utilities/utilities";
 
 const ActivateVoucherForm = ({ voucher }) => {
   const {
@@ -43,14 +44,14 @@ const ActivateVoucherForm = ({ voucher }) => {
         id="vendor"
         {...register("vendor", { value: vendor.id })}
       />
-      <FormControl isInvalid={errors.name}>
+      <FormControl isInvalid={errors.email}>
         <FormLabel htmlFor="email">{t("forms.elements.email")}</FormLabel>
         <Input
           data-cy="email"
           id="email"
           {...register("email", {
             pattern: {
-              value: /(^[^@.]+)@([^@.]+)\.{1}(\w{1,6}$)/i,
+              value: emailRegex,
               message: t("forms.messages.invalidEmail"),
             },
             required: t("forms.messages.required"),

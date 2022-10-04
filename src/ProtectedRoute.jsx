@@ -11,12 +11,12 @@ const ProtectedRoute = () => {
 
   useEffect(() => {
     if (!authenticated) {
-      toast({
-        title: "You can't do that!",
-        description: "Please log in or register first.",
-        isClosable: true,
-        status: "error",
-      });
+      // toast({
+      //   title: "You can't do that!",
+      //   description: "Please log in or register first.",
+      //   isClosable: true,
+      //   status: "error",
+      // });
       navigate("/auth/sign-in", { state: { originalRoute: location } });
     }
   }, [authenticated, location, navigate]);

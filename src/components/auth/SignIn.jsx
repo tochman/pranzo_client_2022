@@ -1,39 +1,39 @@
 import {
   Button,
-  Checkbox,
   Flex,
   FormControl,
   FormLabel,
+  FormErrorMessage,
   Heading,
   Input,
-  Link,
   Stack,
   Image,
 } from "@chakra-ui/react";
-import { t } from "i18next";
 import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { signInUser } from "../../state/features/authentication";
+import { emailRegex } from "../../state/utilities/utilities";
+
 
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { authenticated, currentUser } = useSelector((state) => state.user);
+  const { authenticated } = useSelector((state) => state.user);
   const { t } = useTranslation();
-
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm();
   useEffect(() => {
     authenticated && navigate("/");
   }, [authenticated]);
 
-  const handleFormSubmission = (event) => {
-    event.preventDefault();
-    const email = event.target["email"].value;
-    const password = event.target["password"].value;
-
-    dispatch(signInUser({ email: email, password: password }));
-
+  const handleFormSubmission = (data) => {
+    dispatch(signInUser(data));
   };
 
   return (
@@ -43,18 +43,49 @@ const SignIn = () => {
           <Heading fontSize={"2xl"}>
             {t("authentication.signIn.header")}
           </Heading>
-          <form data-cy="sign-in-form" onSubmit={handleFormSubmission}>
-            <FormControl>
-              <FormLabel>
-                {t("authentication.signIn.email")}
-              </FormLabel>
-              <Input name="email" data-cy="email" type="email" />
+          <form
+            data-cy="sign-in-form"
+            onSubmit={handleSubmit(handleFormSubmission)}
+          >
+            <FormControl isInvalid={errors.email}>
+              <FormLabel>{t("authentication.signIn.email")}</FormLabel>
+              <Input
+                name="email"
+                data-cy="email"
+                type="email"
+                {...register("email", {
+                  pattern: {
+                    value: emailRegex,
+                    message: t("forms.messages.invalidEmail"),
+                  },
+                  required: t("forms.messages.required"),
+                  minLength: {
+                    value: 4,
+                    message: t("forms.messages.minLength", { length: 4 }),
+                  },
+                })}
+              />
+              <FormErrorMessage>
+                {errors.email && errors.email.message}
+              </FormErrorMessage>
             </FormControl>
-            <FormControl>
-              <FormLabel>
-                {t("authentication.signIn.password")}
-              </FormLabel>
-              <Input name="password" data-cy="password" type="password" />
+            <FormControl isInvalid={errors.password}>
+              <FormLabel>{t("authentication.signIn.password")}</FormLabel>
+              <Input
+                name="password"
+                data-cy="password"
+                type="password"
+                {...register("password", {
+                  required: t("forms.messages.required"),
+                  minLength: {
+                    value: 4,
+                    message: t("forms.messages.minLength", { length: 4 }),
+                  },
+                })}
+              />
+              <FormErrorMessage>
+                {errors.password && errors.password.message}
+              </FormErrorMessage>
             </FormControl>
 
             <Stack spacing={6} mt={5}>
@@ -63,6 +94,7 @@ const SignIn = () => {
                 colorScheme={"pink"}
                 variant={"solid"}
                 type="submit"
+                isLoading={isSubmitting}
               >
                 {t("authentication.submit")}
               </Button>
