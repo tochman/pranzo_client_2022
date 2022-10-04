@@ -94,7 +94,7 @@ describe("Activating a voucher", () => {
             .should("eql", "PUT");
         });
 
-        it.only("is expected to send options as params", () => {
+        it("is expected to send options as params", () => {
           cy.wait("@activateVoucher").then(({ request }) => {
             expect(request.body.voucher.activate_pdf).to.eql(true);
             expect(request.body.voucher.activate_wallet).to.eql(true);

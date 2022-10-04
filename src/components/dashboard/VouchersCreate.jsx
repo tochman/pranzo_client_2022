@@ -20,9 +20,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createVouchers } from "../../state/features/vouchers";
 
-
 const VouchersCreate = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const {
     handleSubmit,
     register,
@@ -36,24 +35,26 @@ const VouchersCreate = () => {
 
   const handleFormSubmit = (data) => {
     dispatch(createVouchers(data));
-    navigate('/dashboard/vouchers')
+    navigate("/dashboard/vouchers");
   };
 
   return (
     <Container m={2}>
-      <Heading>Create vouchers for inventory</Heading>
+      <Heading>
+        {t("dashboard.content.vouchers.create.createFormHeading")}
+      </Heading>
       <form
         data-cy="batch-create-vouchers"
         onSubmit={handleSubmit(handleFormSubmit)}
       >
         <Input type={"hidden"} {...register("vendor", { value: vendor.id })} />
         <Input type={"hidden"} {...register("command", { value: "batch" })} />
-        <FormControl isInvalid={errors.name} mt={3}>
+        <FormControl isInvalid={errors.amount} mt={3}>
           <FormLabel htmlFor="amount">{t("forms.elements.amount")}</FormLabel>
           <Input
             width={"140px"}
             data-cy="amount"
-            type={'number'}
+            type={"number"}
             id="amount"
             {...register("amount", {
               required: t("forms.messages.required"),
@@ -63,9 +64,7 @@ const VouchersCreate = () => {
               },
             })}
           />
-          <FormHelperText>
-            The amount of vouchers you want to add to your inventory
-          </FormHelperText>
+          <FormHelperText>{t("forms.elements.amountHelper")}</FormHelperText>
           <FormErrorMessage>
             {errors.amount && errors.amount.message}
           </FormErrorMessage>
@@ -83,9 +82,7 @@ const VouchersCreate = () => {
               Cash
             </option>
           </Select>
-          <FormHelperText>
-            Only "servings" are currently implemented
-          </FormHelperText>
+          <FormHelperText>{t("forms.elements.variantHelper")}</FormHelperText>
         </FormControl>
 
         {watchVariant === "servings" && (
@@ -104,8 +101,8 @@ const VouchersCreate = () => {
               <option value="15">15</option>
             </Select>
             <FormHelperText>
-            Choose the value of each voucher. If you wish to create vouchers with other values, please go through the creation process for each value. 
-          </FormHelperText>
+            {t("forms.elements.selectValueHelper")}
+            </FormHelperText>
           </FormControl>
         )}
         {watchVariant === "cash" && (

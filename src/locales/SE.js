@@ -23,7 +23,7 @@ export const SE = {
         },
         create: {
           label: "Skapa",
-          subLabel: "Lägg till nya kort",
+          subLabel: "Fyll på ditt lager av kort",
         },
       },
       content: {
@@ -38,6 +38,9 @@ export const SE = {
           salesOverviewValue: "Försäljning (värde)",
         },
         vouchers: {
+          create: {
+            createFormHeading: 'Lägg till kort till lagret'
+          },
           table: {
             code: "Kod",
             status: "Status",
@@ -72,12 +75,15 @@ export const SE = {
         swedish: "Svenska",
         english: "Engelska",
         amount: "Antal",
+        amountHelper: "Antal kort du vill lägga till ditt lager.",
         variant: "Korttyp",
+        variantHelper: "Enbart 'servings' (portioner) är tillgängliga för närvarande",
         valueServings: "Värde (portioner)",
         valueCash: "Värde (pengar)",
         selectVariant: "Välj typ av kort",
         selectServings: "Välj värde",
         selectCash: "Välje ett värde",
+        selectValueHelper: "Välj värdet på varje kupong. Om du vill skapa kuponger med andra värden, skicka in ett formulär för varje värde."
       },
       messages: {
         required: "Det här fältet är obligatoriskt",
