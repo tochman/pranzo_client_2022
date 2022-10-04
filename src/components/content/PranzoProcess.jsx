@@ -1,7 +1,6 @@
 import {
   Container,
   Heading,
-  Box,
   Stack,
   Button,
   Text,

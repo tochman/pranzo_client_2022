@@ -1,7 +1,6 @@
 import {
   Box,
   Flex,
-  Text,
   Stack,
   Icon,
   Link,
@@ -9,9 +8,8 @@ import {
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
-const DesktopSubNav = ({ subLabel, href, dataCy, children }) => {
+const DesktopSubNav = ({  href, dataCy, children }) => {
   const navigate = useNavigate();
   return (
     <Link

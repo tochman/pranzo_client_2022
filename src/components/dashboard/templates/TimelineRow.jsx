@@ -17,8 +17,8 @@ const TimelineRow = ({ logo, title, date, color, index, arrLength }) => {
           as={logo}
           bg={bgIconColor}
           color={color}
-          h={{base: "30px"}}
-          w={{base: "26px"}}
+          h={{ base: "30px" }}
+          w={{ base: "26px" }}
           mt={1}
           ml="-15px"
           pe="6px"
