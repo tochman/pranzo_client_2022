@@ -11,6 +11,7 @@ const ProtectedRoute = () => {
 
   useEffect(() => {
     if (!authenticated) {
+      // Not sure we need this toast
       // toast({
       //   title: "You can't do that!",
       //   description: "Please log in or register first.",
