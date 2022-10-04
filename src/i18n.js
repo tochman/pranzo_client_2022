@@ -8,13 +8,13 @@ i18n.use(initReactI18next).init({
     GB: GB,
     SE: SE,
   },
-  lng: "GB",
-  fallbackLng: "GB",
+  lng: import.meta.env.PROD ? "SE" : "GB",
+  fallbackLng: import.meta.env.PROD ? "SE" : "GB",
   react: {
-    useSuspense: true, 
+    useSuspense: true,
   },
   interpolation: {
-    escapeValue: false, 
+    escapeValue: false,
   },
 });
 

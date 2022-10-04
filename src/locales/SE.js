@@ -137,7 +137,7 @@ export const SE = {
         "Låg startavgift och inga prenumerationskostnader. Betala allt eftersom du använder systemet!",
       buttonText: "Kom igång!",
       ctaText:
-        "Det finns ingen förskottsavgift för att registrera dig. Vi debiterar dig endast om du faktiskt drar nytta av Pranzo-plattformen med en startavgift på 45 € och 1 € per utfärdat kort.",
+        "Det finns ingen förskottsavgift för att registrera dig. Vi debiterar dig endast om du faktiskt drar nytta av Pranzo-plattformen med en startavgift på 450 kr och 13kr per utfärdat kort.",
     },
     sellingPoints: {
       benefits: "Fördelar",
