@@ -60,6 +60,8 @@ export const SE = {
             servingsActions: {
               mainLabel: "Du kommer att minska kortets saldo med 1 portion.",
             },
+            notFound: "Vi kunde inte hitta kortet med koden: {{code}}!",
+            scanVoucher: "Scanna kort",
           },
         },
       },

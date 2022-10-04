@@ -38,7 +38,7 @@ export const GB = {
         },
         vouchers: {
           create: {
-            createFormHeading: 'Create vouchers for inventory'
+            createFormHeading: "Create vouchers for inventory",
           },
           table: {
             code: "Code",
@@ -59,6 +59,8 @@ export const GB = {
             servingsActions: {
               mainLabel: "This will consume a serving on this voucher.",
             },
+            notFound: "The voucher {{code}} was not found!",
+            scanVoucher: "Scan Voucher",
           },
         },
       },
@@ -74,7 +76,8 @@ export const GB = {
         swedish: "Swedish",
         english: "English",
         amount: "Amount",
-        amountHelper: "The number of vouchers you want to add to your inventory",
+        amountHelper:
+          "The number of vouchers you want to add to your inventory",
         variant: "Variant",
         variantHelper: "Only 'servings' are currently implemented",
         valueServings: "Value (servings)",
@@ -82,7 +85,8 @@ export const GB = {
         selectVariant: "Select a card variant",
         selectServings: "Select a value",
         selectCash: "Select a money value",
-        selectValueHelper: "Choose the value of each voucher. If you wish to create vouchers with other values, please go through the creation process for each value."
+        selectValueHelper:
+          "Choose the value of each voucher. If you wish to create vouchers with other values, please go through the creation process for each value.",
       },
       messages: {
         required: "This field is required.",

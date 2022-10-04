@@ -56,7 +56,10 @@ describe("Vouchers view", () => {
       });
 
       it("is expected to display holder information", () => {
-        cy.getCy("Dqbnc-holder").should("contain.text", "Owner: holder of card");
+        cy.getCy("Dqbnc-holder").should(
+          "contain.text",
+          "Owner: holder of card"
+        );
       });
 
       it("is expected to display action button", () => {
@@ -68,7 +71,7 @@ describe("Vouchers view", () => {
 
     context("Inactive voucher", () => {
       beforeEach(() => {
-        cy.getCy("voucher-status").click({ force: true }); // a bit hacky but it's a Chakra element and hard to get to 
+        cy.getCy("voucher-status").click({ force: true }); // a bit hacky but it's a Chakra element and hard to get to
         cy.getCy("CXuny").trigger("click");
       });
 
@@ -87,16 +90,35 @@ describe("Vouchers view", () => {
   });
 
   describe("using QR code scanner", () => {
-    beforeEach(() => {
-      cy.getCy("voucher-status").click({ force: true }); // this is needed due to previus test
-      cy.getCy("scan").trigger("click");
+    context("and finding a voucher", () => {
+      beforeEach(() => {
+        cy.getCy("voucher-status").click({ force: true }); // this is needed due to previus test
+        cy.getCy("scan").trigger("click");
+      });
+
+      it("is expected to filter the voucher", () => {
+        cy.get("[data-cy=vouchers-index]>tbody")
+          .children("tr")
+          .should("have.length", 2)
+          .and("contain.text", "izBgW");
+      });
     });
 
-    it("is expected to filter the voucher", () => {
-      cy.get("[data-cy=vouchers-index]>tbody")
-        .children("tr")
-        .should("have.length", 2)
-        .and("contain.text", "izBgW");
+    context("and NOT finding a voucher", () => {
+      beforeEach(() => {
+        cy.fixture("vouchersIndexWithout(izBgW)").then((fixture) => {
+          cy.applicationState().invoke("dispatch", {
+            type: "user/setVouchers",
+            payload: fixture.vouchers,
+          });
+        });
+        cy.getCy("voucher-status").click({ force: true }); // this is needed due to previus test
+        cy.getCy("scan").trigger("click");
+      });
+      
+      it("is expected to filter the voucher", () => {
+        cy.get("body").should("contain.text", "The voucher izBgW was not found!");
+      });
     });
   });
 });

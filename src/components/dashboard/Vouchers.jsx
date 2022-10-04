@@ -26,11 +26,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { FiCheck } from "react-icons/fi";
 import { AiOutlineNumber } from "react-icons/ai";
 import QrCodePopup from "@jimengio/qrcode-popup/lib/qrcode-popup";
-
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import Transactions from "./Transactions";
 import VoucherActions from "./VoucherActions";
 import { useTranslation } from "react-i18next";
+import { toastMessage } from "../../state/utilities/utilities";
 
 const Vouchers = () => {
   const { t } = useTranslation();
@@ -57,6 +57,9 @@ const Vouchers = () => {
     let filteredVouchers = vouchers.filter((voucher) => voucher.code === code);
     if (filteredVouchers.length) {
       setActiveVouchers(filteredVouchers);
+    } else {
+      const message = t("dashboard.content.vouchers.labels.notFound", {code: code})
+      toastMessage([message]);
     }
     if (code === "") {
       setActiveVouchers(vouchers);
@@ -196,12 +199,12 @@ const Vouchers = () => {
               }}
             >
               <Button colorScheme="teal" size="lg" data-cy="scan">
-                Scan Voucher
+                {t("dashboard.content.vouchers.labels.scanVoucher")}
               </Button>
             </QrCodePopup>
           )}
         </HStack>
-        <TableContainer width={{ xs: "100%" }} mr={{xs: 0}} ml={{xs: 0}}>
+        <TableContainer width={{ xs: "100%" }} mr={{ xs: 0 }} ml={{ xs: 0 }}>
           <Table variant="simple" data-cy="vouchers-index">
             <Thead>
               <Tr>
