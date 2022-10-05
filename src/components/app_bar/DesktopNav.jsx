@@ -23,39 +23,58 @@ const DesktopNav = () => {
 
   return (
     <Stack direction={"row"} spacing={4} data-cy="navigation-items">
-      <Box data-cy="my-venue">
-        <Popover trigger={"hover"} placement={"bottom-start"}>
-          <PopoverTrigger>
-            <Link
-              p={2}
-              fontSize={"sm"}
-              fontWeight={500}
-              color={linkColor}
-              _hover={{
-                textDecoration: "none",
-                color: linkHoverColor,
-              }}
-            >
-              {t("dashboard.headings.myVenue")}
-            </Link>
-          </PopoverTrigger>
+      {authenticated && (
+        <Box data-cy="my-venue">
+          <Popover trigger={"hover"} placement={"bottom-start"}>
+            <PopoverTrigger>
+              <Link
+                p={2}
+                fontSize={"sm"}
+                fontWeight={500}
+                color={linkColor}
+                _hover={{
+                  textDecoration: "none",
+                  color: linkHoverColor,
+                }}
+              >
+                {t("dashboard.headings.myVenue")}
+              </Link>
+            </PopoverTrigger>
 
-          <PopoverContent
-            border={0}
-            boxShadow={"xl"}
-            bg={popoverContentBgColor}
-            p={4}
-            rounded={"xl"}
-            minW={"sm"}
-          >
-            <Stack>
-              {authenticated && (
-                <>
-                  {vendor && (
+            <PopoverContent
+              border={0}
+              boxShadow={"xl"}
+              bg={popoverContentBgColor}
+              p={4}
+              rounded={"xl"}
+              minW={"sm"}
+            >
+              <Stack>
+                {authenticated && (
+                  <>
+                    {vendor && (
+                      <DesktopSubNav
+                        {...{
+                          dataCy: "venue-details",
+                          href: "/dashboard/venue",
+                        }}
+                      >
+                        <Text
+                          transition={"all .3s ease"}
+                          _groupHover={{ color: "pink.400" }}
+                          fontWeight={500}
+                        >
+                          {t("dashboard.headings.detailsVenue.label")}
+                        </Text>
+                        <Text fontSize={"sm"}>
+                          {t("dashboard.headings.detailsVenue.subLabel")}
+                        </Text>
+                      </DesktopSubNav>
+                    )}
                     <DesktopSubNav
                       {...{
-                        dataCy: "venue-details",
-                        href: "/dashboard/venue",
+                        dataCy: "venue-setup",
+                        href: "/dashboard/venue/setup",
                       }}
                     >
                       <Text
@@ -63,40 +82,23 @@ const DesktopNav = () => {
                         _groupHover={{ color: "pink.400" }}
                         fontWeight={500}
                       >
-                        {t("dashboard.headings.detailsVenue.label")}
+                        {vendor
+                          ? t("dashboard.headings.editVenue.label")
+                          : t("dashboard.headings.setupVenue.label")}
                       </Text>
                       <Text fontSize={"sm"}>
-                        {t("dashboard.headings.detailsVenue.subLabel")}
+                        {vendor
+                          ? t("dashboard.headings.editVenue.subLabel")
+                          : t("dashboard.headings.setupVenue.subLabel")}
                       </Text>
                     </DesktopSubNav>
-                  )}
-                  <DesktopSubNav
-                    {...{
-                      dataCy: "venue-setup",
-                      href: "/dashboard/venue/setup",
-                    }}
-                  >
-                    <Text
-                      transition={"all .3s ease"}
-                      _groupHover={{ color: "pink.400" }}
-                      fontWeight={500}
-                    >
-                      {vendor
-                        ? t("dashboard.headings.editVenue.label")
-                        : t("dashboard.headings.setupVenue.label")}
-                    </Text>
-                    <Text fontSize={"sm"}>
-                      {vendor
-                        ? t("dashboard.headings.editVenue.subLabel")
-                        : t("dashboard.headings.setupVenue.subLabel")}
-                    </Text>
-                  </DesktopSubNav>
-                </>
-              )}
-            </Stack>
-          </PopoverContent>
-        </Popover>
-      </Box>
+                  </>
+                )}
+              </Stack>
+            </PopoverContent>
+          </Popover>
+        </Box>
+      )}
       {vendor && authenticated && (
         <Box data-cy="vouchers">
           <Popover trigger={"hover"} placement={"bottom-start"}>
