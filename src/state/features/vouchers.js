@@ -1,7 +1,6 @@
 import { auth } from "../utilities/authConfig";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toastMessage } from "../utilities/utilities";
-import { Route } from "react-router-dom";
 
 export const createVouchers = createAsyncThunk(
   "users/createVouchers",
