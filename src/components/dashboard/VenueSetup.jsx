@@ -32,7 +32,7 @@ const VenueSetup = () => {
     clearErrors,
     formState: { errors, isSubmitting, isValid },
   } = useForm({
-    mode: "onChange",
+    criteriaMode:  "all",
   });
 
   const handleFormSubmit = (data) => {
@@ -55,7 +55,7 @@ const VenueSetup = () => {
         shouldFocus: true,
       });
     } else {
-      clearErrors('primaryEmail')
+      clearErrors("primaryEmail");
     }
   };
 
