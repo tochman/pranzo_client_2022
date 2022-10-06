@@ -51,7 +51,7 @@ const VenueSetup = () => {
     });
     if (response.data.message === "conflict") {
       setError("primaryEmail", {
-        message: "This email needs to be unique, please use another one....",
+        message: t("forms.messages.notUnique"),
         shouldFocus: true,
       });
     } else {

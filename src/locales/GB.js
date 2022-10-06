@@ -94,6 +94,7 @@ export const GB = {
         minLength: "Minimum length should be {{length}}",
         invalidEmail: "This is an invalid email....",
         submitNumber: "Please submit a number",
+        notUnique: "This email needs to be unique, please use another one...."
       },
     },
     venue: {

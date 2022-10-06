@@ -95,6 +95,7 @@ export const SE = {
         minLength: "Kortaste tillåtna längd är {{length}} tecken.",
         invalidEmail: "Det här är en ogiltig adress",
         submitNumber: "Var god ange ett nummer.",
+        notUnique: "Den här e-postadressen används redan, välj en annan...",
       },
     },
 
