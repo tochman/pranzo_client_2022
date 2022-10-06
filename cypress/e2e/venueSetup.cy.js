@@ -60,7 +60,7 @@ describe("Vendor can setup a Venue", () => {
     });
   });
 
-  context.only('using an email that is taken', () => {
+  context('using an email that is taken', () => {
     beforeEach(() => {
       cy.intercept("POST", "**/api/validate_user", {
         fixture: "emailConflict.json",
