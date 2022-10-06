@@ -77,9 +77,11 @@ const VouchersCreate = () => {
             placeholder={t("forms.elements.selectVariant")}
             {...register("variant")}
           >
-            <option value="servings">Servings</option>
-            <option disabled={true} value="cash">
-              Cash
+            <option value="servings">
+              {t("forms.elements.servingsVariant.plural")}
+            </option>
+            <option value="cash">
+              {t("forms.elements.cashVariant.plural")}
             </option>
           </Select>
           <FormHelperText>{t("forms.elements.variantHelper")}</FormHelperText>

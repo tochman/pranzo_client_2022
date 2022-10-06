@@ -80,8 +80,16 @@ export const SE = {
         amount: "Antal",
         amountHelper: "Antal kort du vill lägga till ditt lager.",
         variant: "Korttyp",
+        servingsVariant: {
+          singular: "Förbrukningskort",
+          plural: "Förbrukningskort",
+        },
+        cashVariant: {
+          singular: "Presentkort",
+          plural: "Presentkort",
+        },
         variantHelper:
-          "Enbart 'servings' (portioner) är tillgängliga för närvarande",
+          "Välj den typ/variant av kort du vill skapa. Om du vill skapa andra typer av kort, gå igenom skapandeprocessen för varje typ.",
         valueServings: "Värde (portioner)",
         valueCash: "Värde (pengar)",
         selectVariant: "Välj typ av kort",

@@ -67,7 +67,7 @@ export const GB = {
     },
     forms: {
       elements: {
-        create: 'Create',
+        create: "Create",
         submit: "Submit",
         email: "Email",
         mobilePass: "Add digital card?",
@@ -80,7 +80,16 @@ export const GB = {
         amountHelper:
           "The number of vouchers you want to add to your inventory",
         variant: "Variant",
-        variantHelper: "Only 'servings' are currently implemented",
+        servingsVariant: {
+          singular: "Consumption card",
+          plural: "Consumption cards",
+        },
+        cashVariant: {
+          singular: "Gift card",
+          plural: "Gift cards",
+        },
+        variantHelper:
+          "Choose the variant of the cards you wish to create. If you wish to create other variants of vouchers, please go through the creation process for each variant.",
         valueServings: "Value (servings)",
         valueCash: "Value (money)",
         selectVariant: "Select a card variant",
@@ -94,7 +103,7 @@ export const GB = {
         minLength: "Minimum length should be {{length}}",
         invalidEmail: "This is an invalid email....",
         submitNumber: "Please submit a number",
-        notUnique: "This email needs to be unique, please use another one...."
+        notUnique: "This email needs to be unique, please use another one....",
       },
     },
     venue: {
