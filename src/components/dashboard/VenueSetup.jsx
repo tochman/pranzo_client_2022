@@ -16,6 +16,7 @@ import { useForm } from "react-hook-form";
 import snakecasekeys from "snakecase-keys";
 import { setupVenue, editVenue } from "../../state/features/vendors";
 import { emailRegex } from "../../state/utilities/utilities";
+import { auth } from "../../state/utilities/authConfig";
 
 const VenueSetup = () => {
   const dispatch = useDispatch();
@@ -27,8 +28,12 @@ const VenueSetup = () => {
   const {
     handleSubmit,
     register,
-    formState: { errors, isSubmitting },
-  } = useForm();
+    setError,
+    clearErrors,
+    formState: { errors, isSubmitting, isValid },
+  } = useForm({
+    criteriaMode:  "all",
+  });
 
   const handleFormSubmit = (data) => {
     const params = snakecasekeys(data);
@@ -40,11 +45,29 @@ const VenueSetup = () => {
     navigate("/dashboard/venue");
   };
 
+  const checkEmail = async () => {
+    const response = await auth.privateRoute("api/validate_user", {
+      method: "POST",
+    });
+    if (response.data.message === "conflict") {
+      setError("primaryEmail", {
+        message: "This email needs to be unique, please use another one....",
+        shouldFocus: true,
+      });
+    } else {
+      clearErrors("primaryEmail");
+    }
+  };
+
   return (
     <Stack minH={"80vh"} direction={{ base: "column", md: "row" }} m={1}>
       <Flex p={8} flex={1} align={"top"} justify={"left"}>
         <Stack spacing={4} w={"full"} maxW={"md"}>
-          <Heading fontSize={"2xl"}>{(edit || vendor) ? t("venue.edit.heading") : t("venue.setup.heading")}</Heading>
+          <Heading fontSize={"2xl"}>
+            {edit || vendor
+              ? t("venue.edit.heading")
+              : t("venue.setup.heading")}
+          </Heading>
           <form onSubmit={handleSubmit(handleFormSubmit)}>
             <FormControl isInvalid={errors.name}>
               <FormLabel htmlFor="name">
@@ -101,6 +124,7 @@ const VenueSetup = () => {
                   },
                   required: t("forms.messages.required"),
                 })}
+                onBlur={() => checkEmail()}
               />
               <FormErrorMessage>
                 {errors.primaryEmail && errors.primaryEmail.message}
@@ -112,6 +136,7 @@ const VenueSetup = () => {
               isLoading={isSubmitting}
               type="submit"
               data-cy="submit"
+              disabled={!isValid}
             >
               {t("forms.elements.submit")}
             </Button>
