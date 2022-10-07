@@ -97,6 +97,9 @@ export const GB = {
         selectCash: "Select a money value",
         selectValueHelper:
           "Choose the value of each voucher. If you wish to create vouchers with other values, please go through the creation process for each value.",
+        cashAmount: "To deduct:",
+        cashAmountHelper:
+          "Type in the total of the value your customer spent on goods or services.",
       },
       messages: {
         required: "This field is required.",

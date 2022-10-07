@@ -1,0 +1,15 @@
+{
+  "message": "Voucher Dqbnc was updated with a new transaction",
+  "voucher": {
+    "id": 848,
+    "code": "Dqbnc",
+    "active": true,
+    "value": 1000,
+    "variant": "cash",
+    "current_value": 750,
+    "email": "random@random.com",
+    "transactions": [
+      { "id": 664, "date": "September 29, 2022 00:00", "amount": 250 }
+    ]
+  }
+}

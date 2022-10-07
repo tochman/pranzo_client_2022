@@ -97,6 +97,9 @@ export const SE = {
         selectCash: "Välje ett värde",
         selectValueHelper:
           "Välj värdet på varje kupong. Om du vill skapa kuponger med andra värden, skicka in ett formulär för varje värde.",
+        cashAmount: "Att dra av:",
+        cashAmountHelper:
+          "Skriv in det totala värdet som din kund spenderade på varor eller tjänster.",
       },
       messages: {
         required: "Det här fältet är obligatoriskt",

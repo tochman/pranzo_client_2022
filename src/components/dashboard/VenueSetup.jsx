@@ -30,11 +30,14 @@ const VenueSetup = () => {
     register,
     setError,
     clearErrors,
+    getFieldState,
     formState: { errors, isSubmitting, isValid },
   } = useForm({
     criteriaMode:  "all",
   });
-
+  
+  const primaryEmailState = getFieldState("primaryEmail");
+  
   const handleFormSubmit = (data) => {
     const params = snakecasekeys(data);
     if (edit) {
@@ -44,9 +47,9 @@ const VenueSetup = () => {
     }
     navigate("/dashboard/venue");
   };
-
+  
   const checkEmail = async () => {
-    const response = await auth.privateRoute("api/validate_user", {
+    const response = await auth.privateRoute("/api/validate_user", {
       method: "POST",
     });
     if (response.data.message === "conflict") {
@@ -136,7 +139,7 @@ const VenueSetup = () => {
               isLoading={isSubmitting}
               type="submit"
               data-cy="submit"
-              disabled={!isValid}
+              disabled={primaryEmailState.error}
             >
               {t("forms.elements.submit")}
             </Button>

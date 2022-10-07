@@ -15,10 +15,12 @@ import ActivateVoucherForm from "./ActivateVoucherForm";
 import { useTranslation } from "react-i18next";
 import { createTransaction } from "../../state/features/vouchers";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 const VoucherActions = ({ isModalOpen, toggleModal, voucher, action }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const [amount, setAmount] = useState(0);
 
   const activateVoucherContent = (
     <>
@@ -35,18 +37,18 @@ const VoucherActions = ({ isModalOpen, toggleModal, voucher, action }) => {
         {voucher.variant == "servings" ? (
           <ServingsVoucherActions />
         ) : (
-          <CashVoucherActions />
+          <CashVoucherActions setAmount={setAmount} />
         )}
       </ModalBody>
       <ModalFooter>
         <Button
           data-cy={`${voucher.code}-create-transaction`}
           onClick={() => {
-            dispatch(createTransaction(voucher));
+            dispatch(createTransaction({ voucher: voucher, amount: amount }));
             toggleModal(!isModalOpen);
           }}
         >
-          {t('forms.elements.create')}
+          {t("forms.elements.create")}
         </Button>
       </ModalFooter>
     </>

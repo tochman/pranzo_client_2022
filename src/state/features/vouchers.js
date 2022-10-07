@@ -83,12 +83,14 @@ export const activateVoucher = createAsyncThunk(
 
 export const createTransaction = createAsyncThunk(
   "users/createTransaction",
-  async (voucher, { getState, dispatch }) => {
+  async ({ voucher, amount }, { getState, dispatch }) => {
     let { vendor, vouchers } = getState().user;
+    const payload = amount && { value: amount}
     try {
       const response = await auth.privateRoute(
         `/api/vendors/${vendor.id}/vouchers/${voucher.id}/transactions`,
         {
+          data: payload,
           method: "POST",
         }
       );

@@ -22,6 +22,8 @@ describe("Vendor can setup a Venue", () => {
       cy.getCy("name").type("The Other Place");
       cy.getCy("description").type("A friendly neighbourhood restaurant");
       cy.getCy("email").type("info@theotherplace.io");
+      cy.get('body').click()
+      cy.wait(1000)
       cy.getCy("submit").click();
     });
 
@@ -72,7 +74,7 @@ describe("Vendor can setup a Venue", () => {
       cy.getCy("description").type("A friendly neighbourhood restaurant");
       cy.getCy("email").type("info@theotherplace.io");
       cy.get('body').click()
-  
+      // cy.getCy("submit").click(); // still not sure about this
     });
 
     it('is expected to make a call to API and check email', () => {
@@ -90,6 +92,9 @@ describe("Vendor can setup a Venue", () => {
       cy.authenticateUser({
         name: "John Doe",
       });
+      cy.intercept("POST", "**/api/validate_user", {
+        fixture: "emailOk.json",
+      }).as('checkEmail')
       cy.intercept("POST", "**/api/vendors", { statusCode: 500 }).as(
         "vendorCreateError"
       );
