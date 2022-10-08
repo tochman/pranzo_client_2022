@@ -164,9 +164,9 @@ export const SE = {
           "Belöna dina lojala lunchgäster med möjligheten att köpa ett lunchkort som ger dem ett rabatterat pris samtidigt som du drar nytta av ökade och stabila intäkter.",
       },
       middle: {
-        header: "Bygg vidare",
+        header: "Mobilt",
         content:
-          "Det tar tid att bygga upp en lojal kundbas. Som krögare vet du detta mycket väl. Din kreativitet och hårda arbete i köket, tillsammans med den service din restaurang erbjuder, lägger grunden för nöjda och återkommande gäster.",
+          "Vad är det enda som dina gäster (nästan) alltid har i fickan? Borde inte dina erbjudanden finnas där också? PRANZO-kort levereras direkt till dina gästers mobiltelefon.",
       },
       left: {
         header: "Ta kontrol",

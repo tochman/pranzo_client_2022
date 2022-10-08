@@ -162,9 +162,9 @@ export const GB = {
           "Reward your loyal lunch guests with the opportunity to buy a lunch-card that gives them a discounted price while you benefit from increased and steady revenue.",
       },
       middle: {
-        header: "Build on your reputation",
+        header: "Mobile friendly",
         content:
-          "It takes time to build a loyal customer base. As a restaurateur, you know this very well. Your creativity and hard work in the kitchen, together with the service your restaurant offers, lays the foundation for satisfied and returning guests.",
+          "What is the one thing that your guests (almost) always have in their pockets? Shouldn't your offers be there too? PRANZO cards are delivered directly to your guests' mobile phones.",
       },
       left: {
         header: "Take control",
