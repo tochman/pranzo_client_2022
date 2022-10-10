@@ -5,6 +5,7 @@ import {
   FormControl,
   FormLabel,
   Heading,
+  Text,
   Input,
   Stack,
 } from "@chakra-ui/react";
@@ -16,7 +17,7 @@ import snakecasekeys from "snakecase-keys";
 import { setupAffiliate } from "../../state/features/vendors";
 import { emailRegex } from "../../state/utilities/utilities";
 
-const VenueSetup = () => {
+const AffiliateSetup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -41,25 +42,26 @@ const VenueSetup = () => {
     navigate("/dashboard");
   };
 
-  // const checkEmail = async () => {
-  //   const response = await auth.privateRoute("/api/validate_user", {
-  //     method: "POST",
-  //   });
-  //   if (response.data.message === "conflict") {
-  //     setError("primaryEmail", {
-  //       message: t("forms.messages.notUnique"),
-  //       shouldFocus: true,
-  //     });
-  //   } else {
-  //     clearErrors("primaryEmail");
-  //   }
-  // };
+  const checkEmail = async () => {
+    const response = await auth.privateRoute("/api/validate_user", {
+      method: "POST",
+    });
+    if (response.data.message === "conflict") {
+      clearErrors("primaryEmail");
+    } else {
+      setError("primaryEmail", {
+        message: t("forms.messages.notUnique"),
+        shouldFocus: true,
+      });
+    }
+  };
 
   return (
     <Stack minH={"80vh"} direction={{ base: "column", md: "row" }} m={1}>
       <Flex p={8} flex={1} align={"top"} justify={"left"}>
         <Stack spacing={4} w={"full"} maxW={"md"}>
-          <Heading fontSize={"2xl"}>{t("venue.setup.heading")}</Heading>
+          <Heading fontSize={"2xl"}>{t("venue.affiliate.setup.heading")}</Heading>
+          <Text>{t("venue.affiliate.setup.subHeading")}</Text>
           <form onSubmit={handleSubmit(handleFormSubmit)}>
 
             <FormControl isInvalid={errors.primaryEmail}>
@@ -76,7 +78,7 @@ const VenueSetup = () => {
                   },
                   required: t("forms.messages.required"),
                 })}
-                // onBlur={() => checkEmail()}
+                onBlur={() => checkEmail()}
               />
               <FormErrorMessage>
                 {errors.primaryEmail && errors.primaryEmail.message}
@@ -99,4 +101,4 @@ const VenueSetup = () => {
   );
 };
 
-export default VenueSetup;
+export default AffiliateSetup;

@@ -120,6 +120,15 @@ export const SE = {
         description: "Beskrivning",
         primaryEmail: "Primär mailadress",
       },
+      user: { heading: "Användare" },
+      affiliate: {
+        heading: "Partnerföretag",
+        setup: {
+          heading: "Lägg till ett partnerföretag",
+          subHeading:
+            "Genom att lägga till partnerföretag, kommer du kunna utfärda kort och kuponger som kan accepteras hos dina partners",
+        },
+      },
     },
     authentication: {
       submit: "Skicka",

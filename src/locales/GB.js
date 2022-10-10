@@ -6,7 +6,8 @@ export const GB = {
         setupVenue: {
           label: "Setup your venue",
           subLabel: "Add a venue to your profile",
-          subLabelLong: "You have to go through some more setup and configuration before you can issue cards and vouchers."
+          subLabelLong:
+            "You have to go through some more setup and configuration before you can issue cards and vouchers.",
         },
         editVenue: {
           label: "Edit your venue",
@@ -117,6 +118,15 @@ export const GB = {
         venueName: "Name",
         description: "Description",
         primaryEmail: "Primary email",
+      },
+      user: { heading: "Users" },
+      affiliate: {
+        heading: "Affiliates",
+        setup: {
+          heading: "Add an affiliate",
+          subHeading:
+            "Adding affiliates to your network will allow you to issue vouchers that can be honored by your affiliates",
+        },
       },
     },
     authentication: {

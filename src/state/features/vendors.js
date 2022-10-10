@@ -37,3 +37,10 @@ export const editVenue = createAsyncThunk(
     }
   }
 );
+
+export const setupAffiliate = createAsyncThunk(
+  "user/setupAffiliate", 
+  async (data, {dispatch}) => {
+    
+  }
+)

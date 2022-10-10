@@ -6,11 +6,12 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { FiPlus } from "react-icons/fi";
+import { useTranslation } from "react-i18next";
 
 const UsersView = () => {
   const { users } = useSelector((state) => state.user.vendor);
   const navigate = useNavigate();
-
+  const { t } = useTranslation();
   const usersCards = users.map((user) => {
     return (
       <CardHeader mt={4} key={user.email}>
@@ -38,11 +39,11 @@ const UsersView = () => {
           <Flex justify="space-between" align="top" mb="1rem" w="100%">
             <Box>
               <Heading as="h2" size={"lg"}>
-                Users
+                {t('venue.user.heading')}
               </Heading>
               {usersCards}
             </Box>
-            <Box >
+            <Box>
               {/* <Button
                 onClick={() =>
                   navigate("/dashboard/affiliate/add")

@@ -16,6 +16,8 @@ import PranzoProcess from "./components/content/PranzoProcess";
 import { useEffect } from "react";
 import { validateUserByToken } from "./state/features/authentication";
 import { getHeaders } from "./state/utilities/authConfig";
+import AffiliateSetup from "./components/dashboard/AffiliateSetup";
+
 const App = () => {
   const { authenticated } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -42,6 +44,7 @@ const App = () => {
           <Route path="/dashboard/venue" element={<VenueView />} />
           <Route path="/dashboard/vouchers" element={<Vouchers />} />
           <Route path="/dashboard/vouchers/create" element={<VouchersCreate />} />
+          <Route path="/dashboard/venue/affiliate/add" element={<AffiliateSetup />}/>
         </Route>
         <Route path="/join-pranzo" element={<PranzoProcess />} />
         <Route path="/auth/sign-up" element={<SignUp />} />

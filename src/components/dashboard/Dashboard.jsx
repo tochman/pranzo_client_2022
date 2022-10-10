@@ -9,7 +9,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import AffiliatesView from "./AffilietsView";
+import AffiliatesView from "./AffilietesView";
 import UsersView from "./UsersView";
 import VenueView from "./VenueView";
 

@@ -6,10 +6,12 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { FiPlus } from "react-icons/fi";
+import { useTranslation } from "react-i18next";
 
 const AffiliatesView = () => {
   const { affiliates } = useSelector((state) => state.user.vendor);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const affiliatesCards = affiliates.map((affiliate) => {
     return (
@@ -38,7 +40,7 @@ const AffiliatesView = () => {
           {affiliates && (
             <Box>
               <Heading as="h2" size={"lg"}>
-                Affiliates
+                {t("venue.affiliate.heading")}
               </Heading>
               {affiliates.length >= 1 ? (
                 affiliatesCards
@@ -51,7 +53,7 @@ const AffiliatesView = () => {
           )}
           <Box>
             <Button
-              onClick={() => navigate("/dashboard/affiliate/add")}
+              onClick={() => navigate("/dashboard/venue/affiliate/add")}
               data-cy="affiliate-add-button"
               variant={"outline"}
               fontSize={"sm"}
