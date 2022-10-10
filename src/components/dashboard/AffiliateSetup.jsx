@@ -11,16 +11,16 @@ import {
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import snakecasekeys from "snakecase-keys";
 import { setupAffiliate } from "../../state/features/vendors";
 import { emailRegex } from "../../state/utilities/utilities";
+import { auth } from "../../state/utilities/authConfig";
 
 const AffiliateSetup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { state } = useLocation();
   const { vendor } = useSelector((state) => state.user);
   const { t } = useTranslation();
   const {
@@ -38,7 +38,7 @@ const AffiliateSetup = () => {
 
   const handleFormSubmit = (data) => {
     const params = snakecasekeys(data);
-    dispatch(setupVenue(params));
+    dispatch(setupAffiliate(params));
     navigate("/dashboard");
   };
 
@@ -63,7 +63,7 @@ const AffiliateSetup = () => {
           <Heading fontSize={"2xl"}>{t("venue.affiliate.setup.heading")}</Heading>
           <Text>{t("venue.affiliate.setup.subHeading")}</Text>
           <form onSubmit={handleSubmit(handleFormSubmit)}>
-
+          <Input type={"hidden"} {...register("vendor", { value: vendor.id })} />
             <FormControl isInvalid={errors.primaryEmail}>
               <FormLabel htmlFor="primaryEmail">
                 {t("venue.formElements.primaryEmail")}

@@ -39,8 +39,21 @@ export const editVenue = createAsyncThunk(
 );
 
 export const setupAffiliate = createAsyncThunk(
-  "user/setupAffiliate", 
-  async (data, {dispatch}) => {
-    
+  "user/setupAffiliate",
+  async (data, { getState, dispatch }) => {
+    const response = await auth.privateRoute(
+      `/api/vendors/${data.vendor}/affiliates`,
+      { method: "POST", data: data }
+    );
+
+    const vendorResponse = await auth.privateRoute(
+      `/api/vendors/${data.vendor}`,
+      { method: "GET" }
+    );
+    dispatch({
+      type: "user/setVenue",
+      payload: vendorResponse.data.vendor,
+    });
+    toastMessage([response.data.message], (status = "success"));
   }
-)
+);

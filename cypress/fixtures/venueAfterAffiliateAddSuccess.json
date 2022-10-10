@@ -1,0 +1,38 @@
+{
+  "vendor": {
+    "id": 394,
+    "name": "The Other Place",
+    "description": "A friendly neighbourhood restaurant",
+    "primary_email": "info@theotherplace.io",
+    "affiliates": [
+      {
+        "id": 79,
+        "name": "Conroy Café",
+        "primary_email": "see.abbott@conroy.info"
+      },
+      {
+        "id": 80,
+        "name": "Halvorson Bistro",
+        "primary_email": "earlean.rice@halvorson.com"
+      },
+      {
+        "id": 100,
+        "name": "The Place We All Love",
+        "primary_email": "info@wealllove.info"
+      }
+    ],
+    "users": [
+      {
+        "id": 1525,
+        "email": "info@theotherplace.io",
+        "name": "The Other Place (System User)"
+      },
+      {
+        "id": 895,
+        "email": "user@mail.com",
+        "name": "Kalle Andersson"
+      }
+    ],
+    "addresses": []
+  }
+}
