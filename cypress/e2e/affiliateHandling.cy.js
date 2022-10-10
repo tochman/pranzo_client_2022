@@ -35,5 +35,7 @@ describe("Affiliate handling", () => {
     cy.getCy("submit").click();
   });
 
-  it("", () => {});
+  it("Is expected to display a success message", () => {
+    cy.get('body').should('contain.text', "Your affiliate network has been expanded with The Place We All Love")
+  });
 });
