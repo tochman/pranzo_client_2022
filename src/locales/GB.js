@@ -6,6 +6,7 @@ export const GB = {
         setupVenue: {
           label: "Setup your venue",
           subLabel: "Add a venue to your profile",
+          subLabelLong: "You have to go through some more setup and configuration before you can issue cards and vouchers."
         },
         editVenue: {
           label: "Edit your venue",

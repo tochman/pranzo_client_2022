@@ -6,6 +6,8 @@ export const SE = {
         setupVenue: {
           label: "Lägg till företag",
           subLabel: "Lägg till ett företag till din profil",
+          subLabelLong:
+            "Du måste ange lite mer inställningar innan du kan utfärda kort och kuponger.",
         },
 
         editVenue: {

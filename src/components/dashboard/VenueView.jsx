@@ -1,4 +1,4 @@
-import { Box, Text, Stack, Flex, Button } from "@chakra-ui/react";
+import { Box, Text, Stack, Flex, Button, Heading } from "@chakra-ui/react";
 import Card from "./templates/Card";
 import CardHeader from "./templates/CardHeader";
 import CardBody from "./templates/CardBody";
@@ -20,8 +20,12 @@ const VenueView = () => {
       >
         {vendor && (
           <>
-            <Flex justify="space-between" align="center" mb="1rem" w="100%">
-              <CardHeader>
+            <Flex justify="space-between" align="top" mb="1rem" w="100%">
+            <Box>
+              <Heading as="h2" size={"lg"}>
+                Your venue
+              </Heading>
+              <CardHeader mt={4}>
                 <Text fontSize="lg" fontWeight="bold">
                   {vendor.name}
                 </Text>
@@ -32,6 +36,7 @@ const VenueView = () => {
                   </Box>
                 </Text>
               </CardHeader>
+            </Box>
               <Button
                 onClick={() =>
                   navigate("/dashboard/venue/setup", { state: { edit: true } })

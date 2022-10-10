@@ -33,11 +33,11 @@ const VenueSetup = () => {
     getFieldState,
     formState: { errors, isSubmitting, isValid },
   } = useForm({
-    criteriaMode:  "all",
+    criteriaMode: "all",
   });
-  
+
   const primaryEmailState = getFieldState("primaryEmail");
-  
+
   const handleFormSubmit = (data) => {
     const params = snakecasekeys(data);
     if (edit) {
@@ -47,7 +47,7 @@ const VenueSetup = () => {
     }
     navigate("/dashboard/venue");
   };
-  
+
   const checkEmail = async () => {
     const response = await auth.privateRoute("/api/validate_user", {
       method: "POST",
@@ -92,8 +92,8 @@ const VenueSetup = () => {
                 {errors.name && errors.name.message}
               </FormErrorMessage>
             </FormControl>
-            <FormControl isInvalid={errors.name}>
-              <FormLabel htmlFor="name">
+            <FormControl isInvalid={errors.description}>
+              <FormLabel htmlFor="description">
                 {t("venue.formElements.description")}
               </FormLabel>
               <Textarea

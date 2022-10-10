@@ -23,7 +23,7 @@ describe("Dashboard view", () => {
       });
     });
 
-    it("is expected to display view on the dashboard path", () => {
+    it.only("is expected to display view on the dashboard path", () => {
       cy.location("pathname").should("eq", "/dashboard");
     });
 

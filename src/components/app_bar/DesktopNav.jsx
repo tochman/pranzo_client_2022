@@ -56,7 +56,7 @@ const DesktopNav = () => {
                       <DesktopSubNav
                         {...{
                           dataCy: "venue-details",
-                          href: "/dashboard/venue",
+                          href: "/dashboard",
                         }}
                       >
                         <Text
