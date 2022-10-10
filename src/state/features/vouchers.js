@@ -85,7 +85,7 @@ export const createTransaction = createAsyncThunk(
   "users/createTransaction",
   async ({ voucher, amount }, { getState, dispatch }) => {
     let { vendor, vouchers } = getState().user;
-    const payload = amount && { value: amount}
+    const payload = amount && { value: amount };
     try {
       const response = await auth.privateRoute(
         `/api/vendors/${vendor.id}/vouchers/${voucher.id}/transactions`,
@@ -111,6 +111,7 @@ export const createTransaction = createAsyncThunk(
     } catch (error) {
       const message =
         error?.response?.data?.errors?.full_messages ||
+        error?.response.data?.message ||
         error.message + ". Please try again.";
       toastMessage([message]);
     }

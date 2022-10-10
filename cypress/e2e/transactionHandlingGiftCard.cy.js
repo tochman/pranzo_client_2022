@@ -23,18 +23,18 @@ describe("Creating a transaction", () => {
   });
 
   beforeEach(() => {
-    cy.getCy("vouchers").click();
-    cy.getCy("voucher-management").click();
-    cy.get("body").click()
-    cy.getCy("Dqbnc").click()
-    cy.getCy("Dqbnc-cta").click()
   });
-
+  
   describe('clicking on "Create transaction"', () => {
     beforeEach(() => {
       cy.intercept("POST", "**/vendors/**/vouchers/**/transactions", {
         fixture: "sucessfullGiftCardTransaction.json",
       }).as("createTransaction");
+      cy.getCy("vouchers").click();
+      cy.getCy("voucher-management").click();
+      cy.get("body").click()
+      cy.getCy("Dqbnc").click()
+      cy.getCy("Dqbnc-cta").click()
       cy.getCy('transaction-amount').type('250')
       cy.getCy("Dqbnc-create-transaction").click();
     });
@@ -90,5 +90,38 @@ describe("Creating a transaction", () => {
     });
 
 
+  });
+
+  describe.only("depleted card", () => {
+    beforeEach(() => {
+      cy.fixture("vouchersIndexWithDepletedCashAndServings").then((fixture) => {
+        cy.applicationState().invoke("dispatch", {
+          type: "user/setVouchers",
+          payload: fixture.vouchers,
+        });
+      });
+      cy.intercept("POST", "**/vendors/**/vouchers/**/transactions", {
+        fixture: "voucherValueExceeded.json", statusCode: 422
+      }).as("createTransaction");
+      cy.getCy("vouchers").click();
+      cy.getCy("voucher-management").click();
+      cy.get("body").click();
+      cy.getCy("67890").click();
+      cy.getCy("67890-cta").click();
+      cy.getCy("67890-create-transaction").click();
+    });
+
+    it("is expected to make be a POST request", () => {
+      cy.wait("@createTransaction").its("request.method").should("eql", "POST");
+    });
+
+    it("is expected to return a success message", () => {
+      cy.wait("@createTransaction").then(({ response }) => {
+        expect(response.body).to.have.own.property(
+          "message",
+          "Voucher limit exceeded"
+        );
+      });
+    });
   });
 });
