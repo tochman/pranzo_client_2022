@@ -1,0 +1,40 @@
+{
+  "vouchers": [
+    {
+      "id": 1000,
+      "code": "12345",
+      "active": true,
+      "variant": "servings",
+      "value": 10,
+      "current_value": 0,
+      "email": "random@random.com",
+      "transactions": [
+        { "id": 661, "date": "September 27, 2022 19:51" },
+        { "id": 662, "date": "September 27, 2022 19:51" },
+        { "id": 663, "date": "September 27, 2022 19:51" },
+        { "id": 664, "date": "September 28, 2022 19:51" },
+        { "id": 665, "date": "September 28, 2022 19:51" },
+        { "id": 666, "date": "September 28, 2022 19:51" },
+        { "id": 667, "date": "September 28, 2022 19:51" },
+        { "id": 668, "date": "September 28, 2022 19:51" },
+        { "id": 669, "date": "September 28, 2022 19:51" },
+        { "id": 670, "date": "September 28, 2022 19:51" }
+      ]
+    },
+    {
+      "id": 1001,
+      "code": "67890",
+      "active": true,
+      "variant": "cash",
+      "value": 1000,
+      "current_value": 0,
+      "email": "random@random.com",
+      "transactions": [
+        { "id": 700, "date": "September 27, 2022 19:51", "amount": 100 },
+        { "id": 701, "date": "September 27, 2022 19:51", "amount": 250 },
+        { "id": 702, "date": "September 28, 2022 19:51", "amount": 150 },
+        { "id": 703, "date": "September 28, 2022 19:51", "amount": 500 }
+      ]
+    }
+  ]
+}
