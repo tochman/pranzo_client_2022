@@ -92,7 +92,7 @@ describe("Creating a transaction", () => {
 
   });
 
-  describe.only("depleted card", () => {
+  describe("depleted card", () => {
     beforeEach(() => {
       cy.fixture("vouchersIndexWithDepletedCashAndServings").then((fixture) => {
         cy.applicationState().invoke("dispatch", {
