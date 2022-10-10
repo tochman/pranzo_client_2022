@@ -13,7 +13,7 @@ const UsersView = () => {
 
   const usersCards = users.map((user) => {
     return (
-      <CardHeader mt={4}>
+      <CardHeader mt={4} key={user.email}>
         <Text fontSize="lg" fontWeight="bold">
           {user.name}
         </Text>
@@ -43,11 +43,11 @@ const UsersView = () => {
               {usersCards}
             </Box>
             <Box >
-              <Button
+              {/* <Button
                 onClick={() =>
                   navigate("/dashboard/affiliate/add")
                 }
-                data-cy="venue-edit-button"
+                data-cy="user-add-button"
                 variant={"outline"}
                 fontSize={"sm"}
                 fontWeight={600}
@@ -55,7 +55,7 @@ const UsersView = () => {
                 p="8px 32px"
               >
                 <FiPlus />
-              </Button>
+              </Button> */}
             </Box>
           </Flex>
         )}

@@ -19,11 +19,11 @@ import { FlagIcon } from "react-flag-kit";
 import { FiMoon } from "react-icons/fi";
 
 const MobileNav = ({ toggleMainNavBar }) => {
+  const { toggleColorMode } = useColorMode();
+  const { isOpen, onToggle } = useDisclosure();
   const { vendor, authenticated } = useSelector((state) => state.user);
   const navigate = useNavigate();
-  const { isOpen, onToggle } = useDisclosure();
   const { isOpen: isVouchersOpen, onToggle: vouchersToggle } = useDisclosure();
-  const { toggleColorMode } = useColorMode();
   const { t, i18n } = useTranslation();
 
   return (

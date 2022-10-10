@@ -45,7 +45,7 @@ const VenueSetup = () => {
     } else {
       dispatch(setupVenue(params));
     }
-    navigate("/dashboard/venue");
+    navigate("/dashboard");
   };
 
   const checkEmail = async () => {

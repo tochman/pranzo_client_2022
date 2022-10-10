@@ -13,7 +13,7 @@ const AffiliatesView = () => {
 
   const affiliatesCards = affiliates.map((affiliate) => {
     return (
-      <CardHeader mt={4}>
+      <CardHeader mt={4} key={affiliate.id}>
         <Text fontSize="lg" fontWeight="bold">
           {affiliate.name}
         </Text>
@@ -52,7 +52,7 @@ const AffiliatesView = () => {
           <Box>
             <Button
               onClick={() => navigate("/dashboard/affiliate/add")}
-              data-cy="venue-edit-button"
+              data-cy="affiliate-add-button"
               variant={"outline"}
               fontSize={"sm"}
               fontWeight={600}

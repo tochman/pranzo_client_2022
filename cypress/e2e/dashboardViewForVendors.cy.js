@@ -23,7 +23,7 @@ describe("Dashboard view", () => {
       });
     });
 
-    it.only("is expected to display view on the dashboard path", () => {
+    it("is expected to display view on the dashboard path", () => {
       cy.location("pathname").should("eq", "/dashboard");
     });
 
@@ -37,7 +37,7 @@ describe("Dashboard view", () => {
       cy.getCy("my-venue").trigger("mouseover");
       cy.getCy("venue-details").click();
       cy.get("body").click();
-      cy.location("pathname").should("eq", "/dashboard/venue");
+      cy.location("pathname").should("eq", "/dashboard");
     });
   });
 });

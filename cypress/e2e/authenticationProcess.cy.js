@@ -66,7 +66,7 @@ describe("Authentication:", () => {
       beforeEach(() => {
         cy.authenticateUser({ name: "John Doe" });
       });
-      it.only("is expected to hide SignUp button in AppBar", () => {
+      it("is expected to hide SignUp button in AppBar", () => {
         cy.getCy("sign-up-button").should("not.exist");
       });
       it("is expected to hide SignIn button in AppBar", () => {
