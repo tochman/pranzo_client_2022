@@ -138,14 +138,14 @@
       "transactions": [
         {
           "id": 836,
-          "date": "2022-09-23T13:43:15.713Z",
+          "date": "September 23, 2022 00:00",
           "voucher_id": 853,
           "created_at": "2022-09-23T13:43:15.714Z",
           "updated_at": "2022-09-23T13:43:15.714Z"
         },
         {
           "id": 838,
-          "date": "2022-09-23T13:43:15.716Z",
+          "date": "September 23, 2022 00:00",
           "voucher_id": 853,
           "created_at": "2022-09-23T13:43:15.717Z",
           "updated_at": "2022-09-23T13:43:15.717Z"

@@ -167,8 +167,7 @@ const Vouchers = () => {
                 </VStack>
                 {voucher.transactions != 0 && (
                   <Transactions
-                    code={voucher.code}
-                    transactions={voucher.transactions}
+                    voucher={voucher}
                   />
                 )}
               </Collapse>

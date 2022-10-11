@@ -1,5 +1,5 @@
 import Chart from "react-apexcharts";
-import Card from "./templates/Card";
+import Card from "../templates/Card";
 
 const ChartInNumbers = () => {
   const lineChartData = [
