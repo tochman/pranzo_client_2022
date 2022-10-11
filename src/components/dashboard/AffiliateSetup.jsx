@@ -50,7 +50,7 @@ const AffiliateSetup = () => {
       clearErrors("primaryEmail");
     } else {
       setError("primaryEmail", {
-        message: t("forms.messages.notUnique"),
+        message: t("forms.messages.userNotFound"),
         shouldFocus: true,
       });
     }

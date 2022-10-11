@@ -109,6 +109,7 @@ export const SE = {
         invalidEmail: "Det här är en ogiltig adress",
         submitNumber: "Var god ange ett nummer.",
         notUnique: "Den här e-postadressen används redan, välj en annan...",
+        userNotFound: "Vi kunde inte hitta någon användare med den här mailadressen. Kontrollera din information..."
       },
     },
 
