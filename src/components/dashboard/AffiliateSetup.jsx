@@ -45,7 +45,7 @@ const AffiliateSetup = () => {
   const checkEmail = async (email) => {
     const response = await auth.privateRoute("/api/validate_user", {
       method: "POST",
-      data: { uid: email },
+      data: { uid: email, command: "vendor" },
     });
     if (response.data.message === "conflict") {
       clearErrors("primaryEmail");
