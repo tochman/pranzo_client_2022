@@ -102,6 +102,7 @@ export const GB = {
         cashAmount: "To deduct:",
         cashAmountHelper:
           "Type in the total of the value your customer spent on goods or services.",
+        availableForAffiliates: "Available for Affiliates",
       },
       messages: {
         required: "This field is required.",
@@ -109,7 +110,8 @@ export const GB = {
         invalidEmail: "This is an invalid email....",
         submitNumber: "Please submit a number",
         notUnique: "This email needs to be unique, please use another one....",
-        userNotFound: "We could not find a user with this email. Please check your records...."
+        userNotFound:
+          "We could not find a user with this email. Please check your records....",
       },
     },
     venue: {

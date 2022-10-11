@@ -11,6 +11,7 @@ export const createVouchers = createAsyncThunk(
       voucher: {
         value: data.value,
         variant: data.variant,
+        affiliate_network: data.affiliate_network
       },
     };
 

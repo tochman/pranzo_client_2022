@@ -6,10 +6,12 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { FiEdit3 } from "react-icons/fi";
+import { useTranslation } from "react-i18next";
 
 const VenueView = () => {
   const { vendor } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const { t } = useTranslation();
   return (
     <Stack>
       <Card
@@ -21,22 +23,22 @@ const VenueView = () => {
         {vendor && (
           <>
             <Flex justify="space-between" align="top" mb="1rem" w="100%">
-            <Box>
-              <Heading as="h2" size={"lg"}>
-                Your venue
-              </Heading>
-              <CardHeader mt={4}>
-                <Text fontSize="lg" fontWeight="bold">
-                  {vendor.name}
-                </Text>
-                <Text fontSize={"small"} fontWeight="bold">
-                  Primary email:{" "}
-                  <Box as="span" fontWeight="normal">
-                    {vendor.primary_email}
-                  </Box>
-                </Text>
-              </CardHeader>
-            </Box>
+              <Box>
+                <Heading as="h2" size={"lg"}>
+                  {t("dashboard.headings.myVenue")}
+                </Heading>
+                <CardHeader mt={4}>
+                  <Text fontSize="lg" fontWeight="bold">
+                    {vendor.name}
+                  </Text>
+                  <Text fontSize={"small"} fontWeight="bold">
+                    Primary email:{" "}
+                    <Box as="span" fontWeight="normal">
+                      {vendor.primary_email}
+                    </Box>
+                  </Text>
+                </CardHeader>
+              </Box>
               <Button
                 onClick={() =>
                   navigate("/dashboard/venue/setup", { state: { edit: true } })

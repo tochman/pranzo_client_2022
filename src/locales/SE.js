@@ -102,6 +102,7 @@ export const SE = {
         cashAmount: "Att dra av:",
         cashAmountHelper:
           "Skriv in det totala värdet som din kund spenderade på varor eller tjänster.",
+        availableForAffiliates: "Tillgänglig för partnerföretag",
       },
       messages: {
         required: "Det här fältet är obligatoriskt",
@@ -109,7 +110,8 @@ export const SE = {
         invalidEmail: "Det här är en ogiltig adress",
         submitNumber: "Var god ange ett nummer.",
         notUnique: "Den här e-postadressen används redan, välj en annan...",
-        userNotFound: "Vi kunde inte hitta någon användare med den här mailadressen. Kontrollera din information..."
+        userNotFound:
+          "Vi kunde inte hitta någon användare med den här mailadressen. Kontrollera din information...",
       },
     },
 
