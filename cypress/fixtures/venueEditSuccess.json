@@ -4,6 +4,18 @@
     "name": "StarBugs",
     "description": "A corporate chain with no charm....",
     "primary_email": "info@starbugs.io",
+    "affiliates": [
+      {
+        "id": 79,
+        "name": "Conroy Café",
+        "primary_email": "see.abbott@conroy.info"
+      },
+      {
+        "id": 80,
+        "name": "Halvorson Bistro",
+        "primary_email": "earlean.rice@halvorson.com"
+      }
+    ],
     "users": [
       {
         "id": 1525,

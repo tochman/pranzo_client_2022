@@ -10,6 +10,7 @@ import {
   Radio,
   RadioGroup,
   HStack,
+  Flex,
   Container,
   Heading,
   Select,
@@ -49,26 +50,40 @@ const VouchersCreate = () => {
       >
         <Input type={"hidden"} {...register("vendor", { value: vendor.id })} />
         <Input type={"hidden"} {...register("command", { value: "batch" })} />
-        <FormControl isInvalid={errors.amount} mt={3}>
-          <FormLabel htmlFor="amount">{t("forms.elements.amount")}</FormLabel>
-          <Input
-            width={"140px"}
-            data-cy="amount"
-            type={"number"}
-            id="amount"
-            {...register("amount", {
-              required: t("forms.messages.required"),
-              minLength: {
-                value: 1,
-                message: t("forms.messages.submitNumber", { length: 4 }),
-              },
-            })}
-          />
-          <FormHelperText>{t("forms.elements.amountHelper")}</FormHelperText>
-          <FormErrorMessage>
-            {errors.amount && errors.amount.message}
-          </FormErrorMessage>
-        </FormControl>
+        <Flex justify="space-between" align="top" mb="1rem" w="100%">
+          <FormControl isInvalid={errors.amount} mt={3}>
+            <FormLabel htmlFor="amount">{t("forms.elements.amount")}</FormLabel>
+            <Input
+              width={"140px"}
+              data-cy="amount"
+              type={"number"}
+              id="amount"
+              {...register("amount", {
+                required: t("forms.messages.required"),
+                minLength: {
+                  value: 1,
+                  message: t("forms.messages.submitNumber", { length: 4 }),
+                },
+              })}
+            />
+            <FormHelperText>{t("forms.elements.amountHelper")}</FormHelperText>
+            <FormErrorMessage>
+              {errors.amount && errors.amount.message}
+            </FormErrorMessage>
+          </FormControl>
+          <FormControl isInvalid={errors.affiliates} mt={"30px"}>
+
+            <Checkbox
+              width={"140px"}
+              data-cy="affiliate_network"
+              type={"number"}
+              id="affiliate_network"
+              {...register("affiliate_network")}
+            >
+              {t("forms.elements.availableForAffiliates")}
+            </Checkbox>
+          </FormControl>
+        </Flex>
         <FormControl mt={3}>
           <FormLabel htmlFor="variant">{t("forms.elements.variant")}</FormLabel>
           <Select

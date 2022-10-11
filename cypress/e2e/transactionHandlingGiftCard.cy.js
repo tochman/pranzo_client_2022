@@ -115,7 +115,7 @@ describe("Creating a transaction", () => {
       cy.wait("@createTransaction").its("request.method").should("eql", "POST");
     });
 
-    it("is expected to return a success message", () => {
+    it("is expected to return a error message", () => {
       cy.wait("@createTransaction").then(({ response }) => {
         expect(response.body).to.have.own.property(
           "message",

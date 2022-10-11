@@ -5,24 +5,22 @@ import {
   FormControl,
   FormLabel,
   Heading,
+  Text,
   Input,
-  Textarea,
   Stack,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import snakecasekeys from "snakecase-keys";
-import { setupVenue, editVenue } from "../../state/features/vendors";
+import { setupAffiliate } from "../../state/features/vendors";
 import { emailRegex } from "../../state/utilities/utilities";
 import { auth } from "../../state/utilities/authConfig";
 
-const VenueSetup = () => {
+const AffiliateSetup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { state } = useLocation();
-  const { edit } = state || false;
   const { vendor } = useSelector((state) => state.user);
   const { t } = useTranslation();
   const {
@@ -40,26 +38,22 @@ const VenueSetup = () => {
 
   const handleFormSubmit = (data) => {
     const params = snakecasekeys(data);
-    if (edit) {
-      dispatch(editVenue({ ...params, id: vendor.id }));
-    } else {
-      dispatch(setupVenue(params));
-    }
+    dispatch(setupAffiliate(params));
     navigate("/dashboard");
   };
 
   const checkEmail = async (email) => {
     const response = await auth.privateRoute("/api/validate_user", {
       method: "POST",
-      data: { uid: email },
+      data: { uid: email, command: "vendor" },
     });
     if (response.data.message === "conflict") {
+      clearErrors("primaryEmail");
+    } else {
       setError("primaryEmail", {
-        message: t("forms.messages.notUnique"),
+        message: t("forms.messages.userNotFound"),
         shouldFocus: true,
       });
-    } else {
-      clearErrors("primaryEmail");
     }
   };
 
@@ -68,58 +62,20 @@ const VenueSetup = () => {
       <Flex p={8} flex={1} align={"top"} justify={"left"}>
         <Stack spacing={4} w={"full"} maxW={"md"}>
           <Heading fontSize={"2xl"}>
-            {edit || vendor
-              ? t("venue.edit.heading")
-              : t("venue.setup.heading")}
+            {t("venue.affiliate.setup.heading")}
           </Heading>
+          <Text>{t("venue.affiliate.setup.subHeading")}</Text>
           <form onSubmit={handleSubmit(handleFormSubmit)}>
-            <FormControl isInvalid={errors.name}>
-              <FormLabel htmlFor="name">
-                {t("venue.formElements.venueName")}
-              </FormLabel>
-              <Input
-                defaultValue={(edit || vendor) && vendor.name}
-                data-cy="name"
-                id="name"
-                {...register("name", {
-                  required: t("forms.messages.required"),
-                  minLength: {
-                    value: 4,
-                    message: t("forms.messages.minLength", { length: 4 }),
-                  },
-                })}
-              />
-              <FormErrorMessage>
-                {errors.name && errors.name.message}
-              </FormErrorMessage>
-            </FormControl>
-            <FormControl isInvalid={errors.description}>
-              <FormLabel htmlFor="description">
-                {t("venue.formElements.description")}
-              </FormLabel>
-              <Textarea
-                data-cy="description"
-                defaultValue={(edit || vendor) && vendor.description}
-                id="description"
-                {...register("description", {
-                  required: t("forms.messages.required"),
-                  minLength: {
-                    value: 20,
-                    message: t("forms.messages.minLength", { length: 20 }),
-                  },
-                })}
-              />
-              <FormErrorMessage>
-                {errors.description && errors.description.message}
-              </FormErrorMessage>
-            </FormControl>
+            <Input
+              type={"hidden"}
+              {...register("vendor", { value: vendor.id })}
+            />
             <FormControl isInvalid={errors.primaryEmail}>
               <FormLabel htmlFor="primaryEmail">
                 {t("venue.formElements.primaryEmail")}
               </FormLabel>
               <Input
                 data-cy="email"
-                defaultValue={(edit || vendor) && vendor.primary_email}
                 id="primaryEmail"
                 {...register("primaryEmail", {
                   pattern: {
@@ -151,4 +107,4 @@ const VenueSetup = () => {
   );
 };
 
-export default VenueSetup;
+export default AffiliateSetup;

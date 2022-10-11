@@ -6,6 +6,8 @@ export const SE = {
         setupVenue: {
           label: "Lägg till företag",
           subLabel: "Lägg till ett företag till din profil",
+          subLabelLong:
+            "Du måste ange lite mer inställningar innan du kan utfärda kort och kuponger.",
         },
 
         editVenue: {
@@ -100,6 +102,7 @@ export const SE = {
         cashAmount: "Att dra av:",
         cashAmountHelper:
           "Skriv in det totala värdet som din kund spenderade på varor eller tjänster.",
+        availableForAffiliates: "Tillgänglig för partnerföretag",
       },
       messages: {
         required: "Det här fältet är obligatoriskt",
@@ -107,6 +110,8 @@ export const SE = {
         invalidEmail: "Det här är en ogiltig adress",
         submitNumber: "Var god ange ett nummer.",
         notUnique: "Den här e-postadressen används redan, välj en annan...",
+        userNotFound:
+          "Vi kunde inte hitta någon användare med den här mailadressen. Kontrollera din information...",
       },
     },
 
@@ -117,6 +122,15 @@ export const SE = {
         venueName: "Namn",
         description: "Beskrivning",
         primaryEmail: "Primär mailadress",
+      },
+      user: { heading: "Användare" },
+      affiliate: {
+        heading: "Partnerföretag",
+        setup: {
+          heading: "Lägg till ett partnerföretag",
+          subHeading:
+            "Genom att lägga till partnerföretag, kommer du kunna utfärda kort och kuponger som kan accepteras hos dina partners",
+        },
       },
     },
     authentication: {

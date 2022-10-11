@@ -1,6 +1,6 @@
 describe("Vendor can setup a Venue", () => {
   beforeEach(() => {
-    cy.visit("/dasboard");
+    cy.visit("/dashboard");
     cy.authenticateUser({
       name: "John Doe",
     });
@@ -54,7 +54,7 @@ describe("Vendor can setup a Venue", () => {
     });
 
     it("is expected to redirect user to /dashboard view", () => {
-      cy.location("pathname").should("eq", "/dashboard/venue");
+      cy.location("pathname").should("eq", "/dashboard");
     });
 
     it('is expected to display vendor information', () => {

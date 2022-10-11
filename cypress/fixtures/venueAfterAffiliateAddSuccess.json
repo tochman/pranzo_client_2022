@@ -14,6 +14,11 @@
         "id": 80,
         "name": "Halvorson Bistro",
         "primary_email": "earlean.rice@halvorson.com"
+      },
+      {
+        "id": 100,
+        "name": "The Place We All Love",
+        "primary_email": "info@wealllove.info"
       }
     ],
     "users": [

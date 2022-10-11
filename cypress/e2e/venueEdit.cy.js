@@ -6,6 +6,9 @@ describe("Venue edit", () => {
         ...fixture.vendor.users[1],
         vendor: fixture.vendor,
       });
+      cy.intercept("POST", "**/api/validate_user", {
+        fixture: "emailOk.json",
+      }).as('checkEmail')
       cy.applicationState().invoke("dispatch", {
         type: "user/setVenue",
         payload: fixture.vendor,
@@ -61,7 +64,7 @@ describe("Venue edit", () => {
       });
 
       it("is expected to redirect user to /dashboard view", () => {
-        cy.location("pathname").should("eq", "/dashboard/venue");
+        cy.location("pathname").should("eq", "/dashboard");
       });
 
       it("is expected to display vendor information", () => {
@@ -86,7 +89,10 @@ describe("Venue edit", () => {
 
     it("is expected to populate input fields with existing data", () => {
       cy.getCy("name").should("have.value", "The Other Place");
-      cy.getCy("description").should("have.value", "A friendly neighbourhood restaurant");
+      cy.getCy("description").should(
+        "have.value",
+        "A friendly neighbourhood restaurant"
+      );
       cy.getCy("email").should("have.value", "info@theotherplace.io");
     });
   });
