@@ -130,6 +130,7 @@ const Vouchers = () => {
             <td colSpan="5">
               <Collapse in={isOpen[voucher.code]} animateOpacity>
                 <VStack m={{ base: 2 }} spacing={4}>
+                  {voucher.vendor && <Text as={"small"}>Issued by: {voucher.vendor.name}</Text>}
                   {voucher.active ? (
                     <>
                       <Text as={"small"} data-cy={`${voucher.code}-holder`}>
@@ -166,9 +167,7 @@ const Vouchers = () => {
                   )}
                 </VStack>
                 {voucher.transactions != 0 && (
-                  <Transactions
-                    voucher={voucher}
-                  />
+                  <Transactions voucher={voucher} />
                 )}
               </Collapse>
             </td>
