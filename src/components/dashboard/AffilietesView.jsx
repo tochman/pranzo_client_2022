@@ -1,7 +1,6 @@
 import { Box, Text, Stack, Heading, Flex, Button } from "@chakra-ui/react";
 import Card from "./templates/Card";
 import CardHeader from "./templates/CardHeader";
-import CardBody from "./templates/CardBody";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 

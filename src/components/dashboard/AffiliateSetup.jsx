@@ -29,7 +29,7 @@ const AffiliateSetup = () => {
     setError,
     clearErrors,
     getFieldState,
-    formState: { errors, isSubmitting, isValid },
+    formState: { errors, isSubmitting },
   } = useForm({
     criteriaMode: "all",
   });

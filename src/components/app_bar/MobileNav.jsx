@@ -136,7 +136,7 @@ const MobileNav = ({ toggleMainNavBar }) => {
                 <Link
                   py={2}
                   onClick={() => {
-                    navigate("/dashboard/venue", { replace: true });
+                    navigate("/dashboard", { replace: true });
                     toggleMainNavBar();
                   }}
                   data-cy="venue-details-mobile"

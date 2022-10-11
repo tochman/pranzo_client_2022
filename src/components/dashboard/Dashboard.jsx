@@ -1,11 +1,4 @@
-import {
-  Box,
-  Stack,
-  Text,
-  Button,
-  Divider,
-} from "@chakra-ui/react";
-
+import { Box, Stack, Text, Button, Divider } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -13,14 +6,13 @@ import AffiliatesView from "./AffilietesView";
 import UsersView from "./UsersView";
 import VenueView from "./VenueView";
 
-
 const Dashboard = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { vendor } = useSelector((state) => state.user);
   return (
     <Stack spacing={8} m={1}>
-      <Box p={5} mb={'40px'}>
+      <Box p={5} mb={"40px"}>
         {!vendor ? (
           <>
             <Text mb={2}>

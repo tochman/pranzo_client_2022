@@ -17,7 +17,6 @@ import { useNavigate } from "react-router-dom";
 import { signInUser } from "../../state/features/authentication";
 import { emailRegex } from "../../state/utilities/utilities";
 
-
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

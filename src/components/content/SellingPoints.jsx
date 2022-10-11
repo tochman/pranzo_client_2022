@@ -9,7 +9,6 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { FiActivity, FiUsers, FiThumbsUp } from "react-icons/fi";
-
 import { useTranslation } from "react-i18next";
 
 const Testimonial = ({ children }) => {

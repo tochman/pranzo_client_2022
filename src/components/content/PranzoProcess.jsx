@@ -117,11 +117,10 @@ const PranzoProcess = () => {
           style={{ outline: "none", borderColor: "transparent" }}
           data-cy="join-pranzo-sign-up-cta"
           onClick={() => navigate("/auth/sign-up")}
-          mb={'20px'}
+          mb={"20px"}
         >
-           {t("appBar.signUp")}
+          {t("appBar.signUp")}
         </Button>
-
       </Stack>
     </Container>
   );
