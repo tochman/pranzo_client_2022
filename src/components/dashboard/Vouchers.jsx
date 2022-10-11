@@ -113,9 +113,23 @@ const Vouchers = () => {
             <Hide below="md">
               <Td>{voucher.active && <FiCheck />}</Td>
               <Td>{icon}</Td>
-              <Td>{voucher.value}</Td>
+              <Td>
+                {voucher.variant === "cash"
+                  ? voucher.value.toLocaleString("sv", {
+                      style: "currency",
+                      currency: "SEK",
+                      maximumSignificantDigits: 2,
+                    })
+                  : voucher.value + " st"}
+              </Td>
             </Hide>
-            <Td>{voucher.current_value}</Td>
+            <Td>{voucher.variant === "cash"
+                  ? voucher.current_value.toLocaleString("sv", {
+                      style: "currency",
+                      currency: "SEK",
+                      maximumSignificantDigits: 2,
+                    })
+                  : voucher.current_value + " st"}</Td>
             <Td>
               <Icon
                 as={ChevronDownIcon}
@@ -130,7 +144,9 @@ const Vouchers = () => {
             <td colSpan="5">
               <Collapse in={isOpen[voucher.code]} animateOpacity>
                 <VStack m={{ base: 2 }} spacing={4}>
-                  {voucher.vendor && <Text as={"small"}>Issued by: {voucher.vendor.name}</Text>}
+                  {voucher.vendor && (
+                    <Text as={"small"}>Issued by: {voucher.vendor.name}</Text>
+                  )}
                   {voucher.active ? (
                     <>
                       <Text as={"small"} data-cy={`${voucher.code}-holder`}>

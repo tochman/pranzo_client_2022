@@ -51,7 +51,12 @@ const Transactions = (props) => {
           <Td>{moment(transaction.date).locale(currentLng).format("LL")}</Td>
           <Td>
             {" "}
-            {"Amount: " + transaction.amount.toString()}
+            {"Amount: " +
+              transaction.amount.toLocaleString("sv", {
+                style: "currency",
+                currency: "SEK",
+                maximumSignificantDigits: 2,
+              })}
             {/* {t("dashboard.content.vouchers.labels.servings") + transaction.count + ", amounts:" + transaction.amounts.toString()} */}
           </Td>
         </Tr>
@@ -66,7 +71,7 @@ const Transactions = (props) => {
           <Td>{moment(transaction.date).locale(currentLng).format("LL")}</Td>
           <Td>
             {`${t("dashboard.content.vouchers.labels.servings")} ${
-              dups.length
+              dups.length + " st"
             }`}
           </Td>
         </Tr>
