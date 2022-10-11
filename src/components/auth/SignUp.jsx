@@ -54,6 +54,7 @@ const SignUp = () => {
                 name="name"
                 data-cy="name"
                 type="text"
+                autocomplete="name"
                 {...register("name", {
                   required: t("forms.messages.required"),
                   minLength: {
@@ -74,6 +75,7 @@ const SignUp = () => {
                 name="email"
                 data-cy="email"
                 type="email"
+                autocomplete="email"
                 {...register("email", {
                   pattern: {
                     value: emailRegex,
@@ -98,6 +100,7 @@ const SignUp = () => {
                 name="password"
                 data-cy="password"
                 type="password"
+                autocomplete="password"
                 {...register("password", {
                   required: t("forms.messages.required"),
                   minLength: {
@@ -117,6 +120,7 @@ const SignUp = () => {
               <Input
                 name="password-conf"
                 data-cy="password-conf"
+                autocomplete="password-conf"
                 type="password"
                 {...register("passwordConf", {
                   required: t("forms.messages.required"),

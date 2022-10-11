@@ -53,6 +53,7 @@ const SignIn = () => {
                 name="email"
                 data-cy="email"
                 type="email"
+                autocomplete="email"
                 {...register("email", {
                   pattern: {
                     value: emailRegex,
@@ -75,6 +76,7 @@ const SignIn = () => {
                 name="password"
                 data-cy="password"
                 type="password"
+                autocomplete="password"
                 {...register("password", {
                   required: t("forms.messages.required"),
                   minLength: {
