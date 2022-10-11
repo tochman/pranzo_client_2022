@@ -48,9 +48,10 @@ const VenueSetup = () => {
     navigate("/dashboard");
   };
 
-  const checkEmail = async () => {
+  const checkEmail = async (email) => {
     const response = await auth.privateRoute("/api/validate_user", {
       method: "POST",
+      data: { uid: email },
     });
     if (response.data.message === "conflict") {
       setError("primaryEmail", {
@@ -127,7 +128,7 @@ const VenueSetup = () => {
                   },
                   required: t("forms.messages.required"),
                 })}
-                onBlur={() => checkEmail()}
+                onBlur={(event) => checkEmail(event.target.value)}
               />
               <FormErrorMessage>
                 {errors.primaryEmail && errors.primaryEmail.message}

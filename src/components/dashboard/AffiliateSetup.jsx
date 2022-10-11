@@ -42,9 +42,10 @@ const AffiliateSetup = () => {
     navigate("/dashboard");
   };
 
-  const checkEmail = async () => {
+  const checkEmail = async (email) => {
     const response = await auth.privateRoute("/api/validate_user", {
       method: "POST",
+      data: { uid: email },
     });
     if (response.data.message === "conflict") {
       clearErrors("primaryEmail");
@@ -60,10 +61,15 @@ const AffiliateSetup = () => {
     <Stack minH={"80vh"} direction={{ base: "column", md: "row" }} m={1}>
       <Flex p={8} flex={1} align={"top"} justify={"left"}>
         <Stack spacing={4} w={"full"} maxW={"md"}>
-          <Heading fontSize={"2xl"}>{t("venue.affiliate.setup.heading")}</Heading>
+          <Heading fontSize={"2xl"}>
+            {t("venue.affiliate.setup.heading")}
+          </Heading>
           <Text>{t("venue.affiliate.setup.subHeading")}</Text>
           <form onSubmit={handleSubmit(handleFormSubmit)}>
-          <Input type={"hidden"} {...register("vendor", { value: vendor.id })} />
+            <Input
+              type={"hidden"}
+              {...register("vendor", { value: vendor.id })}
+            />
             <FormControl isInvalid={errors.primaryEmail}>
               <FormLabel htmlFor="primaryEmail">
                 {t("venue.formElements.primaryEmail")}
@@ -78,7 +84,7 @@ const AffiliateSetup = () => {
                   },
                   required: t("forms.messages.required"),
                 })}
-                onBlur={() => checkEmail()}
+                onBlur={(event) => checkEmail(event.target.value)}
               />
               <FormErrorMessage>
                 {errors.primaryEmail && errors.primaryEmail.message}
