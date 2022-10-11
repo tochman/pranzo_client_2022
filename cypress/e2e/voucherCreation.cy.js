@@ -31,7 +31,7 @@ describe("Vouchers: create a batch", () => {
       cy.location("pathname").should("eq", "/dashboard/vouchers/create");
     });
 
-    it.only("is expected to have a form", () => {
+    it("is expected to have a form", () => {
       cy.getCy("batch-create-vouchers").should("exist").and("be.visible");
     });
   });
