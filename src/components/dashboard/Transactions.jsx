@@ -33,14 +33,7 @@ const Transactions = (props) => {
       (num, trans) => (trans.date === transaction.date ? ++num : num),
       0
     );
-    // let amounts = transactions.reduce(
-    //   (trans) => (trans.date === transaction.date ? transaction.amount : null),
-    //   []
-    // )
-    let amounts = pluck(transactions, "amount");
-    transaction.amounts = amounts;
     transaction.count = transaction_count;
-
     return null;
   });
 
@@ -57,7 +50,6 @@ const Transactions = (props) => {
                 currency: "SEK",
                 maximumSignificantDigits: 2,
               })}
-            {/* {t("dashboard.content.vouchers.labels.servings") + transaction.count + ", amounts:" + transaction.amounts.toString()} */}
           </Td>
         </Tr>
       );

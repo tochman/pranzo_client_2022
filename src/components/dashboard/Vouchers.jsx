@@ -145,7 +145,7 @@ const Vouchers = () => {
               <Collapse in={isOpen[voucher.code]} animateOpacity>
                 <VStack m={{ base: 2 }} spacing={4}>
                   {voucher.vendor && (
-                    <Text as={"small"}>Issued by: {voucher.vendor.name}</Text>
+                    <Text as={"small"}>{t("dashboard.content.vouchers.labels.issuer")} {voucher.vendor.name}</Text>
                   )}
                   {voucher.active ? (
                     <>

@@ -8,7 +8,7 @@
     "value": 1000,
     "current_value": 650,
     "email": "random@ranodom.com",
-    "affiliate_network": false,
+    "affiliate_network": true,
     "vendor": {
       "id": 597,
       "name": "Krajcik Café",

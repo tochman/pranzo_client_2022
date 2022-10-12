@@ -53,9 +53,10 @@ describe("Creating a transaction", () => {
           .should("eql", "POST");
       });
 
-      it("is expected to include value as params", () => {
+      it.only("is expected to include value as params", () => {
         cy.wait("@createTransaction").then(({ request }) => {
           expect(request.body.value).to.eql(250);
+          expect(request.body.honored_by).to.eql(100)
         });
       });
 
@@ -78,7 +79,7 @@ describe("Creating a transaction", () => {
       beforeEach(() => {
         cy.getCy("qwerty").trigger("click");
       });
-      it.only("is expected to reveal transactions for voucher", () => {
+      it("is expected to reveal transactions for voucher", () => {
         cy.get("[data-cy=qwerty-table]>table>tbody")
           .children("tr")
           .should("have.length", 2)
