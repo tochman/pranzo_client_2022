@@ -9,7 +9,7 @@ import {
   StatGroup,
   Divider,
 } from "@chakra-ui/react";
-import ChartWrapper from "./templates/ChartWrapper";
+import ChartWrapper from "../templates/ChartWrapper";
 import ChartInNumbers from "./ChartInNumbers";
 import ChartInValue from "./ChartInValue";
 import { useTranslation } from "react-i18next";

@@ -8,6 +8,7 @@
       "value": 10,
       "current_value": 10,
       "email": null,
+      "affiliate_network": false,
       "transactions": []
     },
     {
@@ -18,6 +19,7 @@
       "value": 10,
       "current_value": 8,
       "email": "random@random.com",
+      "affiliate_network": false,
       "transactions": [
         { "id": 661, "date": "September 27, 2022 19:51" },
         { "id": 662, "date": "September 27, 2022 19:51" }
@@ -31,6 +33,7 @@
       "value": 1000,
       "current_value": 1000,
       "email": null,
+      "affiliate_network": false,
       "transactions": []
     },
     {
@@ -41,6 +44,7 @@
       "value": 10,
       "current_value": 9,
       "email": null,
+      "affiliate_network": false,
       "transactions": [
         {
           "id": 841,
@@ -59,6 +63,7 @@
       "value": 10,
       "current_value": 8,
       "email": null,
+      "affiliate_network": false,
       "transactions": [
         {
           "id": 839,
@@ -84,6 +89,7 @@
       "value": 10,
       "current_value": 8,
       "email": null,
+      "affiliate_network": false,
       "transactions": [
         {
           "id": 834,
@@ -109,6 +115,7 @@
       "value": 10,
       "current_value": 9,
       "email": null,
+      "affiliate_network": false,
       "transactions": [
         {
           "id": 837,
@@ -127,17 +134,18 @@
       "value": 10,
       "current_value": 8,
       "email": null,
+      "affiliate_network": false,
       "transactions": [
         {
           "id": 836,
-          "date": "2022-09-23T13:43:15.713Z",
+          "date": "September 23, 2022 00:00",
           "voucher_id": 853,
           "created_at": "2022-09-23T13:43:15.714Z",
           "updated_at": "2022-09-23T13:43:15.714Z"
         },
         {
           "id": 838,
-          "date": "2022-09-23T13:43:15.716Z",
+          "date": "September 23, 2022 00:00",
           "voucher_id": 853,
           "created_at": "2022-09-23T13:43:15.717Z",
           "updated_at": "2022-09-23T13:43:15.717Z"
@@ -146,19 +154,23 @@
     },
     {
       "id": 854,
-      "code": "iIAO7",
+      "code": "qwerty",
       "active": true,
-      "variant": "servings",
-      "value": 10,
-      "current_value": 9,
-      "email": null,
+      "variant": "cash",
+      "value": 1000,
+      "current_value": 900,
+      "email": "random@ranodom.com",
+      "affiliate_network": true,
+      "vendor": {
+        "id": 597,
+        "name": "Krajcik Café",
+        "primary_email": "jaskolski@krajcik.info"
+      },
       "transactions": [
         {
           "id": 835,
           "date": "2022-09-23T13:43:15.711Z",
-          "voucher_id": 854,
-          "created_at": "2022-09-23T13:43:15.712Z",
-          "updated_at": "2022-09-23T13:43:15.712Z"
+          "amount": 100
         }
       ]
     },
@@ -170,6 +182,7 @@
       "value": 10,
       "current_value": 10,
       "email": null,
+      "affiliate_network": false,
       "transactions": []
     }
   ]

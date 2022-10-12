@@ -58,6 +58,7 @@ export const SE = {
             activate: "Aktivera kort",
             showInactive: "Visa inaktiva",
             owner: "Ägare: ",
+            issuer: "Utfärdare: ",
             presenter: "anonymt",
             servingsActions: {
               mainLabel: "Du kommer att minska kortets saldo med 1 portion.",

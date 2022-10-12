@@ -20,3 +20,13 @@ export const removeDuplicates = (array, key) => {
 
 export const emailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+export const pluck = (array, key) => {
+  var pluckedArray = [];
+  array.forEach((item) => {
+    if (item.hasOwnProperty(key)) {
+      pluckedArray.push(item[key]);
+    }
+  });
+  return pluckedArray;
+};

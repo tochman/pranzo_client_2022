@@ -86,7 +86,8 @@ export const createTransaction = createAsyncThunk(
   "users/createTransaction",
   async ({ voucher, amount }, { getState, dispatch }) => {
     let { vendor, vouchers } = getState().user;
-    const payload = amount && { value: amount };
+    let payload = amount && { value: amount };
+    payload = voucher.affiliate_network && {...payload, honored_by: vendor.id}
     try {
       const response = await auth.privateRoute(
         `/api/vendors/${vendor.id}/vouchers/${voucher.id}/transactions`,

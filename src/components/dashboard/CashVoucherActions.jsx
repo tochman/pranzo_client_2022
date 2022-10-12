@@ -10,15 +10,17 @@ const CashVoucherActions = ({ setAmount }) => {
   const { t } = useTranslation();
 
   return (
-    <FormControl>
-      <FormLabel>{t("forms.elements.cashAmount")}</FormLabel>
-      <Input
-        data-cy="transaction-amount"
-        width={"200px"}
-        onChange={(event) => setAmount(parseInt(event.target.value))}
-      />
-      <FormHelperText>{t("forms.elements.cashAmountHelper")}</FormHelperText>
-    </FormControl>
+    <>
+      <FormControl>
+        <FormLabel>{t("forms.elements.cashAmount")}</FormLabel>
+        <Input
+          data-cy="transaction-amount"
+          width={"200px"}
+          onChange={(event) => setAmount(parseInt(event.target.value))}
+        />
+        <FormHelperText>{t("forms.elements.cashAmountHelper")}</FormHelperText>
+      </FormControl>
+    </>
   );
 };
 

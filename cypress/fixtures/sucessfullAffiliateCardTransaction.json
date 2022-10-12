@@ -1,0 +1,26 @@
+{
+  "message": "Voucher qwerty was updated with a new transaction",
+  "voucher": {
+    "id": 854,
+    "code": "qwerty",
+    "active": true,
+    "variant": "cash",
+    "value": 1000,
+    "current_value": 650,
+    "email": "random@ranodom.com",
+    "affiliate_network": true,
+    "vendor": {
+      "id": 597,
+      "name": "Krajcik Café",
+      "primary_email": "jaskolski@krajcik.info"
+    },
+    "transactions": [
+      {
+        "id": 835,
+        "date": "September 29, 2022 00:00",
+        "amount": 100
+      },
+      { "id": 664, "date": "September 29, 2022 00:00", "amount": 250 }
+    ]
+  }
+}
