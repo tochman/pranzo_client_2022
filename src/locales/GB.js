@@ -55,7 +55,7 @@ export const GB = {
             servings: "Servings: ",
             createTransaction: "Create transaction",
             activate: "Activate voucher",
-            showInactive: "Show inactive",
+            showInactive: "Show inventory",
             owner: "Owner: ",
             issuer: "Issued by: ",
             presenter: "holder of card",

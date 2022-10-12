@@ -56,7 +56,7 @@ export const SE = {
             servings: "Antal: ",
             createTransaction: "Skapa en transaktion",
             activate: "Aktivera kort",
-            showInactive: "Visa inaktiva",
+            showInactive: "Visa lager",
             owner: "Ägare: ",
             issuer: "Utfärdare: ",
             presenter: "anonymt",
