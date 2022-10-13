@@ -126,10 +126,12 @@ export const GB = {
       user: { heading: "Users" },
       affiliate: {
         heading: "Affiliates",
+        subHeading:
+          "Tou have not added any PRANZO users to your affiliate network yet.",
         setup: {
           heading: "Add an affiliate",
           subHeading:
-            "Adding affiliates to your network will allow you to issue vouchers that can be honored by your affiliates",
+            "Adding other PRANZO users as affiliates to your network will allow you to issue vouchers that can be honored by your affiliates",
         },
       },
     },

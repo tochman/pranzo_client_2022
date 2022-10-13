@@ -45,7 +45,7 @@ const AffiliatesView = () => {
                 affiliatesCards
               ) : (
                 <Text>
-                  You haven't added any affiliates to your network yet
+                  {t("venue.affiliate.subHeading")}
                 </Text>
               )}
             </Box>

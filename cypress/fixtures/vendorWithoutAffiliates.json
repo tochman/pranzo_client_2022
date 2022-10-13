@@ -1,0 +1,24 @@
+{
+  "vendor": {
+    "id": 100,
+    "name": "The Other Place",
+    "description": "A friendly neighbourhood restaurant",
+    "primary_email": "info@theotherplace.io",
+    "affiliates": [
+      
+    ],
+    "users": [
+      {
+        "id": 1525,
+        "email": "info@theotherplace.io",
+        "name": "The Other Place (System User)"
+      },
+      {
+        "id": 895,
+        "email": "user@mail.com",
+        "name": "Kalle Andersson"
+      }
+    ],
+    "addresses": []
+  }
+}

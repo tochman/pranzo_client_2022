@@ -127,10 +127,12 @@ export const SE = {
       user: { heading: "Användare" },
       affiliate: {
         heading: "Partnerföretag",
+        subHeading:
+          "Du har inte lagt till några andra PRANZO-användare till ditt partnernätverk.",
         setup: {
           heading: "Lägg till ett partnerföretag",
           subHeading:
-            "Genom att lägga till partnerföretag, kommer du kunna utfärda kort och kuponger som kan accepteras hos dina partners",
+            "Genom att lägga till andra PRANZO-användare som partnerföretag, kommer du kunna utfärda kort och kuponger som kan accepteras hos dina partners",
         },
       },
     },
