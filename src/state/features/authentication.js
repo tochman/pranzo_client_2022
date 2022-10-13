@@ -83,3 +83,12 @@ export const clearSession = createAsyncThunk(
     dispatch(endSession(params));
   }
 );
+
+export const restePassword = createAsyncThunk(
+  "user/resetPassword", 
+  async (params) => {
+    const response = await auth.resetPassword(params.email, 'https.pranzo.se')
+    console.table(response.data)
+  }
+  
+)
