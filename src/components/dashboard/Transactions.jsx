@@ -44,7 +44,7 @@ const Transactions = (props) => {
           <Td>{moment(transaction.date).locale(currentLng).format("LL")}</Td>
           <Td>
             {" "}
-            {"Amount: " +
+            {t("dashboard.content.vouchers.labels.amount") +
               transaction.amount.toLocaleString("sv", {
                 style: "currency",
                 currency: "SEK",

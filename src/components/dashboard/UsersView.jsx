@@ -14,7 +14,7 @@ const UsersView = () => {
           {user.name}
         </Text>
         <Text fontSize={"small"} fontWeight="bold">
-          Primary email:{" "}
+          {t("forms.elements.email") + ": "}
           <Box as="span" fontWeight="normal">
             {user.email}
           </Box>
@@ -38,9 +38,7 @@ const UsersView = () => {
               </Heading>
               {usersCards}
             </Box>
-            <Box>
-              {/* Place CTA here */}
-            </Box>
+            <Box>{/* Place CTA here */}</Box>
           </Flex>
         )}
       </Card>

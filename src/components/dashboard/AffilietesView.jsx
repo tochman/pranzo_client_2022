@@ -19,7 +19,7 @@ const AffiliatesView = () => {
           {affiliate.name}
         </Text>
         <Text fontSize={"small"} fontWeight="bold">
-          Primary email:{" "}
+          {t("venue.formElements.primaryEmail") + ": "}
           <Box as="span" fontWeight="normal">
             {affiliate.primary_email}
           </Box>
@@ -44,9 +44,7 @@ const AffiliatesView = () => {
               {affiliates.length >= 1 ? (
                 affiliatesCards
               ) : (
-                <Text>
-                  {t("venue.affiliate.subHeading")}
-                </Text>
+                <Text>{t("venue.affiliate.subHeading")}</Text>
               )}
             </Box>
           )}

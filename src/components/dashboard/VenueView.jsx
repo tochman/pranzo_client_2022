@@ -32,7 +32,7 @@ const VenueView = () => {
                     {vendor.name}
                   </Text>
                   <Text fontSize={"small"} fontWeight="bold">
-                    Primary email:{" "}
+                    {t("venue.formElements.primaryEmail") + ": "}
                     <Box as="span" fontWeight="normal">
                       {vendor.primary_email}
                     </Box>

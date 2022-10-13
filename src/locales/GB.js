@@ -53,6 +53,7 @@ export const GB = {
           labels: {
             transactions: "Transactions",
             servings: "Servings: ",
+            amount: "Amount: ",
             createTransaction: "Create transaction",
             activate: "Activate voucher",
             showInactive: "Show inventory",

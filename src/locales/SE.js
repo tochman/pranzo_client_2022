@@ -54,6 +54,7 @@ export const SE = {
           labels: {
             transactions: "Transaktioner",
             servings: "Antal: ",
+            amount: "Total: ",
             createTransaction: "Skapa en transaktion",
             activate: "Aktivera kort",
             showInactive: "Visa lager",
