@@ -87,6 +87,7 @@ export const clearSession = createAsyncThunk(
 export const restePassword = createAsyncThunk(
   "user/resetPassword", 
   async (params) => {
+    console.table(params)
     const response = await auth.resetPassword(params.email, 'https.pranzo.se')
     console.table(response.data)
   }
