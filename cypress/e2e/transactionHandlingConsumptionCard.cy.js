@@ -32,8 +32,8 @@ describe("Creating a transaction", () => {
       cy.getCy("vouchers").click();
       cy.getCy("voucher-management").click();
       cy.get("body").click();
-      cy.getCy("eLtZr").click();
-      cy.getCy("eLtZr-cta").click();
+      cy.getCy("eLtZr").click({ force: true });
+      cy.getCy("eLtZr-cta").click({ force: true });
       cy.getCy("eLtZr-create-transaction").click();
     });
 
@@ -64,12 +64,17 @@ describe("Creating a transaction", () => {
         cy.getCy("eLtZr").trigger("click");
       });
 
-      it("is expected to reveal transactions for voucher", () => {
-        cy.get("[data-cy=eLtZr-table]>table>tbody")
-          .children("tr")
+      it("is expected to reveal transaction details for voucher", () => {
+        cy.get("[data-cy=eLtZr-table]>table>tbody>tr")
+          .children("td")
           .should("have.length", 2)
-          .and("contain.text", "September 27, 2022")
-          .and("contain.text", "Servings: 1");
+      });
+
+      it("is expected to reveal transaction details for voucher", () => {
+        cy.get("[data-cy=eLtZr-table]>table>tbody>tr")
+          .children("td")
+          .first().should("contain.text", "September 27, 2022")
+          .next().should("contain.text", "Servings:  2 st")
       });
     });
 
@@ -98,7 +103,8 @@ describe("Creating a transaction", () => {
         });
       });
       cy.intercept("POST", "**/vendors/**/vouchers/**/transactions", {
-        fixture: "voucherValueExceeded.json", statusCode: 422
+        fixture: "voucherValueExceeded.json",
+        statusCode: 422,
       }).as("createTransaction");
       cy.getCy("vouchers").click();
       cy.getCy("voucher-management").click();

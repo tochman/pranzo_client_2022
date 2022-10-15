@@ -1,4 +1,4 @@
-describe("Creating a transaction", () => {
+describe("Creating a transaction on affiliate voucher", () => {
   before(() => {
     cy.intercept("GET", "**/auth/validate_token**", {
       fixture: "authenticatedUser.json",

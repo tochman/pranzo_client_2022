@@ -76,8 +76,8 @@ describe("Navigating the application on MOBILE device", () => {
         cy.getCy("venue-details-mobile").trigger("click");
       });
 
-      it("is expected to navigate to /dashboard/venue", () => {
-        cy.location("pathname").should("eq", "/dashboard/venue");
+      it("is expected to navigate to /dashboard", () => {
+        cy.location("pathname").should("eq", "/dashboard");
       });
     });
 

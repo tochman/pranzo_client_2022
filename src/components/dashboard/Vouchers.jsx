@@ -32,13 +32,19 @@ import { toastMessage } from "../../state/utilities/utilities";
 import QrCodePopup from "@jimengio/qrcode-popup/lib/qrcode-popup";
 
 const Vouchers = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { vouchers } = useSelector((state) => state.user);
   const [isOpen, setOpen] = useState({});
   const [isModalOpen, setModalOpen] = useState({});
   const [activeVouchers, setActiveVouchers] = useState([]);
   const [, setShowScanner] = useState(false);
   const [showInactive, setShowInactive] = useState(false);
+  const [currentLng, setCurrentLng] = useState(
+    i18n.language == "GB" ? "en" : "sv"
+  );
+  useEffect(() => {
+    setCurrentLng(i18n.language == "SE" ? "sv" : "en");
+  }, [i18n.language]);
 
   let initialRowState = [];
   let initialModalState = [];
@@ -115,7 +121,7 @@ const Vouchers = () => {
               <Td>{icon}</Td>
               <Td>
                 {voucher.variant === "cash"
-                  ? voucher.value.toLocaleString("sv", {
+                  ? voucher.value.toLocaleString(currentLng, {
                       style: "currency",
                       currency: "SEK",
                       maximumSignificantDigits: 2,
@@ -124,7 +130,7 @@ const Vouchers = () => {
               </Td>
             </Hide>
             <Td>{voucher.variant === "cash"
-                  ? voucher.current_value.toLocaleString("sv", {
+                  ? voucher.current_value.toLocaleString(currentLng, {
                       style: "currency",
                       currency: "SEK",
                       maximumSignificantDigits: 2,

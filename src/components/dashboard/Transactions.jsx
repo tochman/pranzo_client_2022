@@ -11,7 +11,7 @@ import moment from "moment-with-locales-es6";
 import _ from "lodash";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { pluck, removeDuplicates } from "../../state/utilities/utilities";
+import { removeDuplicates } from "../../state/utilities/utilities";
 
 const Transactions = (props) => {
   const { t, i18n } = useTranslation();
@@ -43,12 +43,11 @@ const Transactions = (props) => {
         <Tr key={transaction.id}>
           <Td>{moment(transaction.date).locale(currentLng).format("LL")}</Td>
           <Td>
-            {" "}
             {t("dashboard.content.vouchers.labels.amount") +
-              transaction.amount.toLocaleString("sv", {
+              transaction.amount.toLocaleString(currentLng, {
                 style: "currency",
                 currency: "SEK",
-                maximumSignificantDigits: 2,
+                maximumSignificantDigits: 3,
               })}
           </Td>
         </Tr>
