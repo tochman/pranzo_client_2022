@@ -1,4 +1,5 @@
 import { createStandaloneToast } from "@chakra-ui/react";
+import { Buffer } from "buffer";
 
 const { toast } = createStandaloneToast();
 
@@ -29,4 +30,23 @@ export const pluck = (array, key) => {
     }
   });
   return pluckedArray;
+};
+
+export const base64toBlob = (data) => {
+  // Cut the prefix `data:application/pdf;base64` from the raw base 64
+  const base64WithoutPrefix = data.substr(
+    "data:application/pdf;base64,".length
+  );
+
+  // // const bytes = atob(base64WithoutPrefix);
+  const buffer = Buffer.from(base64WithoutPrefix, "base64");
+  // debugger
+  // let length = bytes.length;
+  // let out = new Uint8Array(length);
+
+  // while (length--) {
+  //   out[length] = bytes.charCodeAt(length);
+  // }
+
+  return new Blob(buffer, { type: "application/pdf" });
 };
