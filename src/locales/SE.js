@@ -3,6 +3,10 @@ export const SE = {
     dashboard: {
       headings: {
         myVenue: "Mitt företag",
+        reports: {
+          label: "Rapporter",
+          subLabel: "Skapa och titta på statistik och rapporter",
+        },
         setupVenue: {
           label: "Lägg till företag",
           subLabel: "Lägg till ett företag till din profil",

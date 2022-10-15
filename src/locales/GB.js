@@ -3,6 +3,10 @@ export const GB = {
     dashboard: {
       headings: {
         myVenue: "My venue",
+        reports: {
+          label: "Reports",
+          subLabel: "Generate and view statistics and reports",
+        },
         setupVenue: {
           label: "Setup your venue",
           subLabel: "Add a venue to your profile",
