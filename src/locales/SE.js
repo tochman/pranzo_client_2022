@@ -109,6 +109,20 @@ export const SE = {
         cashAmountHelper:
           "Skriv in det totala värdet som din kund spenderade på varor eller tjänster.",
         availableForAffiliates: "Tillgänglig för partnerföretag",
+        report: {
+          variant: "Rapport",
+          selectReportVariant: "Välj typ av rapport",
+          variantHelper:
+            "Du kan välja att skapa dagrapport för idag eller igår, men även skapa rapporter för vecko- eller månadsstatistik.",
+          variants: {
+            today: "Idag",
+            yesterday: "Igår",
+            thisWeek: "Denna vecka",
+            previousWeek: "Föregående vecka",
+            thisMonth: "Denna månad",
+            previousMonth: "Föregående månad",
+          },
+        },
       },
       messages: {
         required: "Det här fältet är obligatoriskt",

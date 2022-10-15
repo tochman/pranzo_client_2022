@@ -27,12 +27,12 @@ describe("Reorting: generate and view", () => {
   });
 
   describe("UI", () => {
-    it.only("is expected to route to '/dashboard/vouchers/create' ", () => {
+    it("is expected to route to '/dashboard/vouchers/create' ", () => {
       cy.location("pathname").should("eq", "/dashboard/reports/create");
     });
 
-    it("is expected to have a form", () => {
-      cy.getCy("batch-create-vouchers").should("exist").and("be.visible");
+    it.only("is expected to have a form", () => {
+      cy.getCy("create-report").should("exist").and("be.visible");
     });
   });
 
