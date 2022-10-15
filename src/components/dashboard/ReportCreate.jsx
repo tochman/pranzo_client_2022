@@ -50,16 +50,7 @@ const ReportCreate = () => {
 
   return (
     <Container m={2}>
-      {reportData && (
-         <>
-         <Document file={reportData} onLoadSuccess={onDocumentLoadSuccess}>
-           <Page pageNumber={pageNumber} />
-         </Document>
-         <p>
-           Page {pageNumber} of {numPages}
-         </p>
-       </>
-      )}
+    
       <Heading as={"h1"} size={"lg"}>
         Create report
       </Heading>
@@ -113,6 +104,16 @@ const ReportCreate = () => {
           {t("forms.elements.submit")}
         </Button>
       </form>
+      {reportData && (
+         <>
+         <Document file={`data:application/pdf;base64,${reportData}`} onLoadSuccess={onDocumentLoadSuccess}>
+           <Page pageNumber={pageNumber} />
+         </Document>
+         <p>
+           Page {pageNumber} of {numPages}
+         </p>
+       </>
+      )}
     </Container>
   );
 };
