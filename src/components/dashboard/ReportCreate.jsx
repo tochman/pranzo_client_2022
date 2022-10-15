@@ -6,6 +6,8 @@ import {
   Input,
   Select,
   Container,
+  Text,
+  Box,
   Heading,
 } from "@chakra-ui/react";
 import { useState } from "react";
@@ -15,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { generateReport } from "../../state/features/reports";
 import { base64toBlob } from "../../state/utilities/utilities";
 
-import { pdfjs, Document, Page } from 'react-pdf';
+import { pdfjs, Document, Page } from "react-pdf";
 import { useEffect } from "react";
 
 const ReportCreate = () => {
@@ -41,16 +43,14 @@ const ReportCreate = () => {
       setReportData(response.payload.report_as_base64);
     });
   };
-  let url
+  let url;
 
   useEffect(() => {
-     url = URL.createObjectURL(base64toBlob(reportData))
-  }, [reportData])
-  
+    url = URL.createObjectURL(base64toBlob(reportData));
+  }, [reportData]);
 
   return (
     <Container m={2}>
-    
       <Heading as={"h1"} size={"lg"}>
         Create report
       </Heading>
@@ -105,14 +105,19 @@ const ReportCreate = () => {
         </Button>
       </form>
       {reportData && (
-         <>
-         <Document file={`data:application/pdf;base64,${reportData}`} onLoadSuccess={onDocumentLoadSuccess}>
-           <Page pageNumber={pageNumber} />
-         </Document>
-         <p>
-           Page {pageNumber} of {numPages}
-         </p>
-       </>
+        <Box mb={"40px"}>
+          <Document
+            file={`data:application/pdf;base64,${reportData}`}
+            onLoadSuccess={onDocumentLoadSuccess}
+          >
+            <Page pageNumber={pageNumber} />
+          </Document>
+          {numPages && (
+            <Text>
+              Page {pageNumber} of {numPages}
+            </Text>
+          )}
+        </Box>
       )}
     </Container>
   );

@@ -42,7 +42,7 @@ describe("Reorting: generate and view", () => {
       cy.getCy("submit-form").click();
     });
 
-    it.only("is expected to make a POST request", () => {
+    it("is expected to make a POST request", () => {
       cy.wait("@reportCreate").its("request.method").should("eq", "POST");
     });
 
