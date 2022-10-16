@@ -43,7 +43,7 @@ const ReportCreate = () => {
   }
   const handleFormSubmit = (data) => {
     dispatch(generateReport(data)).then((response) => {
-      setReportData(response.payload.report_as_base64);
+      response.payload.report_as_base64 && setReportData(response.payload.report_as_base64);
     });
   };
   let url;
@@ -131,6 +131,8 @@ const ReportCreate = () => {
         <Box mb={{ base: "40px", xs: "5px" }} maxWidth={{ base: "100%" }}>
           <Document
             file={`data:application/pdf;base64,${reportData}`}
+            loading={<Text>Laddar rapport...</Text>}
+            error={<Text>Kunde inte ladda rapport... Försök igen.</Text>}
             onLoadSuccess={onDocumentLoadSuccess}
           >
             <Page pageNumber={pageNumber} />
