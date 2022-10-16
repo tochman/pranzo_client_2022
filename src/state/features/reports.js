@@ -9,7 +9,7 @@ export const generateReport = createAsyncThunk(
       `/api/vendors/${data.vendor}/reports`,
       {
         method: "POST",
-        data: { period: data.variant },
+        data: { period: data.variant, command: data.command },
       }
     );
     toastMessage([response.data.message], (status = "success"));

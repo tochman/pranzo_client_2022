@@ -3,12 +3,15 @@ import {
   FormControl,
   FormLabel,
   FormHelperText,
+  RadioGroup,
+  Radio,
   Input,
   Select,
   Container,
   Text,
   Box,
   Heading,
+  Stack,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -60,6 +63,26 @@ const ReportCreate = () => {
           id="vendor"
           {...register("vendor", { value: vendor.id })}
         />
+        <FormControl>
+          <FormLabel htmlFor="command">
+            {t("forms.elements.pdfVariant")}
+          </FormLabel>
+          <RadioGroup
+            name="command"
+            id="command"
+            data-cy="command"
+            defaultValue={"preview"}
+          >
+            <Stack direction="row">
+              <Radio {...register("command")} value="preview">
+                Preview
+              </Radio>
+              <Radio {...register("command")} value="deliver">
+                Deliver
+              </Radio>
+            </Stack>
+          </RadioGroup>
+        </FormControl>
         <FormControl mt={3}>
           <FormLabel htmlFor="variant">
             {t("forms.elements.report.variant")}
@@ -105,7 +128,7 @@ const ReportCreate = () => {
         </Button>
       </form>
       {reportData && (
-        <Box mb={"40px"}>
+        <Box mb={{ base: "40px", xs: "5px" }} maxWidth={{ base: "100%" }}>
           <Document
             file={`data:application/pdf;base64,${reportData}`}
             onLoadSuccess={onDocumentLoadSuccess}
