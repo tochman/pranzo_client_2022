@@ -92,6 +92,23 @@ const DesktopNav = () => {
                           : t("dashboard.headings.setupVenue.subLabel")}
                       </Text>
                     </DesktopSubNav>
+                    <DesktopSubNav
+                        {...{
+                          dataCy: "reports",
+                          href: "/dashboard/reports/create",
+                        }}
+                      >
+                        <Text
+                          transition={"all .3s ease"}
+                          _groupHover={{ color: "pink.400" }}
+                          fontWeight={500}
+                        >
+                          {t("dashboard.headings.reports.label")}
+                        </Text>
+                        <Text fontSize={"sm"}>
+                          {t("dashboard.headings.reports.subLabel")}
+                        </Text>
+                      </DesktopSubNav>
                   </>
                 )}
               </Stack>

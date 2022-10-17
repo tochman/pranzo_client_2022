@@ -3,6 +3,10 @@ export const GB = {
     dashboard: {
       headings: {
         myVenue: "My venue",
+        reports: {
+          label: "Reports",
+          subLabel: "Generate and view statistics and reports",
+        },
         setupVenue: {
           label: "Setup your venue",
           subLabel: "Add a venue to your profile",
@@ -105,6 +109,26 @@ export const GB = {
         cashAmountHelper:
           "Type in the total of the value your customer spent on goods or services.",
         availableForAffiliates: "Available for Affiliates",
+        report: {
+          mainHeader: "Create report",
+          preview: "Preview",
+          deliver: "Deliver",
+          variant: "Report variant",
+          pages: "Page {{page}} of {{pagesTotal}}",
+          selectReportVariant: "Choose type of report",
+          variantHelper:
+            "You can choose daily reports for the last 2 days, but also reports with weekly or monthly statis. ",
+          loading: "Loading preview",
+          loadingError: "Could not load the preview. Please try again.",
+          variants: {
+            today: "Today",
+            yesterday: "Yesterday",
+            thisWeek: "This week",
+            previousWeek: "Previous week",
+            thisMonth: "This month",
+            previousMonth: "Previous month",
+          },
+        },
       },
       messages: {
         required: "This field is required.",

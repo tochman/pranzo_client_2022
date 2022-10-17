@@ -17,6 +17,7 @@ import { useEffect } from "react";
 import { validateUserByToken } from "./state/features/authentication";
 import { getHeaders } from "./state/utilities/authConfig";
 import AffiliateSetup from "./components/dashboard/AffiliateSetup";
+import ReportCreate from "./components/dashboard/ReportCreate";
 
 const App = () => {
   const { authenticated } = useSelector((state) => state.user);
@@ -24,7 +25,7 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const authHeaders = getHeaders()
+    const authHeaders = getHeaders();
     authHeaders.uid && dispatch(validateUserByToken());
   }, [getHeaders]);
 
@@ -43,8 +44,15 @@ const App = () => {
           <Route path="/dashboard/venue/setup" element={<VenueSetup />} />
           <Route path="/dashboard/venue" element={<VenueView />} />
           <Route path="/dashboard/vouchers" element={<Vouchers />} />
-          <Route path="/dashboard/vouchers/create" element={<VouchersCreate />} />
-          <Route path="/dashboard/venue/affiliate/add" element={<AffiliateSetup />}/>
+          <Route
+            path="/dashboard/vouchers/create"
+            element={<VouchersCreate />}
+          />
+          <Route
+            path="/dashboard/venue/affiliate/add"
+            element={<AffiliateSetup />}
+          />
+          <Route path="/dashboard/reports/create" element={<ReportCreate />} />
         </Route>
         <Route path="/join-pranzo" element={<PranzoProcess />} />
         <Route path="/auth/sign-up" element={<SignUp />} />

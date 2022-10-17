@@ -3,6 +3,10 @@ export const SE = {
     dashboard: {
       headings: {
         myVenue: "Mitt företag",
+        reports: {
+          label: "Rapporter",
+          subLabel: "Skapa och titta på statistik och rapporter",
+        },
         setupVenue: {
           label: "Lägg till företag",
           subLabel: "Lägg till ett företag till din profil",
@@ -105,6 +109,26 @@ export const SE = {
         cashAmountHelper:
           "Skriv in det totala värdet som din kund spenderade på varor eller tjänster.",
         availableForAffiliates: "Tillgänglig för partnerföretag",
+        report: {
+          mainHeader: "Skapa rapport",
+          preview: "Förhandsgranska",
+          deliver: "Skicka",
+          variant: "Rapport",
+          pages: "Sida {{page}} av {{pagesTotal}}",
+          selectReportVariant: "Välj typ av rapport",
+          variantHelper:
+            "Du kan välja att skapa dagrapport för idag eller igår, men även skapa rapporter för vecko- eller månadsstatistik.",
+          loading: "Laddar förhandsgranskning",
+          loadingError: "Kunde inte ladda förhandsgranskningen. Försök igen",
+          variants: {
+            today: "Idag",
+            yesterday: "Igår",
+            thisWeek: "Denna vecka",
+            previousWeek: "Föregående vecka",
+            thisMonth: "Denna månad",
+            previousMonth: "Föregående månad",
+          },
+        },
       },
       messages: {
         required: "Det här fältet är obligatoriskt",

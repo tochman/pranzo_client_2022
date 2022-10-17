@@ -157,6 +157,16 @@ const MobileNav = ({ toggleMainNavBar }) => {
                   ? t("dashboard.headings.editVenue.label")
                   : t("dashboard.headings.setupVenue.label")}
               </Link>
+              <Link
+                  py={2}
+                  onClick={() => {
+                    navigate("/dashboard/reports/create", { replace: true });
+                    toggleMainNavBar();
+                  }}
+                  data-cy="reports-mobile"
+                >
+                  {t("dashboard.headings.reports.label")}
+                </Link>
             </Stack>
           </Collapse>
         )}
