@@ -155,7 +155,7 @@ const ReportCreate = () => {
               error={<Text>{t("forms.elements.report.loadingError")}</Text>}
               onLoadSuccess={onDocumentLoadSuccess}
             >
-              <Page pageNumber={pageNumber} width={windowSize.innerWidth * 0.9} />
+              <Page pageNumber={pageNumber} width={windowSize.innerWidth * 0.8} />
             </Document>
           </Box>
         </>
