@@ -65,7 +65,7 @@ const ReportCreate = () => {
   };
 
   return (
-    <Container m={2}>
+    <Container ml={2} pb={'90px'}>
       <Heading as={"h1"} size={"lg"}>
         {t("forms.elements.report.mainHeader")}
       </Heading>
