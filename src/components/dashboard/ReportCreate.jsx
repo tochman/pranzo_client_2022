@@ -14,15 +14,14 @@ import {
   Stack,
   Divider,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { generateReport } from "../../state/features/reports";
-import { base64toBlob } from "../../state/utilities/utilities";
+import { getWindowSize } from "../../state/utilities/utilities";
 
 import { pdfjs, Document, Page } from "react-pdf";
-import { useEffect } from "react";
 
 const ReportCreate = () => {
   pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
@@ -38,22 +37,32 @@ const ReportCreate = () => {
   const [reportData, setReportData] = useState("");
   const [numPages, setNumPages] = useState(null);
   const [pageNumber] = useState(1);
-  let url;
+  const [windowSize, setWindowSize] = useState(getWindowSize());
 
+
+
+  useEffect(() => {
+    function handleWindowResize() {
+      setWindowSize(getWindowSize());
+    }
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  }, []);
+  
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   };
-
+  
   const handleFormSubmit = (data) => {
     dispatch(generateReport(data)).then((response) => {
       response.payload.report_as_base64 &&
-        setReportData(response.payload.report_as_base64);
+      setReportData(response.payload.report_as_base64);
     });
   };
-
-  useEffect(() => {
-    url = URL.createObjectURL(base64toBlob(reportData));
-  }, [reportData]);
 
   return (
     <Container m={2}>
@@ -146,7 +155,7 @@ const ReportCreate = () => {
               error={<Text>{t("forms.elements.report.loadingError")}</Text>}
               onLoadSuccess={onDocumentLoadSuccess}
             >
-              <Page pageNumber={pageNumber} />
+              <Page pageNumber={pageNumber} width={windowSize.innerWidth * 0.9} />
             </Document>
           </Box>
         </>

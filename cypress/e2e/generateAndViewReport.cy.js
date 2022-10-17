@@ -52,7 +52,7 @@ describe("Reporting: generate and view", () => {
       });
     });
 
-    it("is expected to include message and report_as_base64 in response", () => {
+    it.only("is expected to include message and report_as_base64 in response", () => {
       cy.wait("@reportCreate").then(({ response }) => {
         expect(response.body).to.have.ownProperty('message');
         expect(response.body).to.have.ownProperty('report_as_base64');
