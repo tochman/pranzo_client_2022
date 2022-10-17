@@ -30,25 +30,26 @@ const ReportCreate = () => {
   const {
     handleSubmit,
     register,
-    formState: { errors, isSubmitting },
+    formState: { isSubmitting },
   } = useForm();
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { vendor } = useSelector((state) => state.user);
   const [reportData, setReportData] = useState("");
   const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
+  const [pageNumber] = useState(1);
+  let url;
 
-  function onDocumentLoadSuccess({ numPages }) {
+  const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
-  }
+  };
+
   const handleFormSubmit = (data) => {
     dispatch(generateReport(data)).then((response) => {
       response.payload.report_as_base64 &&
         setReportData(response.payload.report_as_base64);
     });
   };
-  let url;
 
   useEffect(() => {
     url = URL.createObjectURL(base64toBlob(reportData));
