@@ -1,4 +1,4 @@
-describe("Reorting: generate and view", () => {
+describe("Reporting: generate and view", () => {
   beforeEach(() => {
     cy.visit("/");
     cy.intercept("POST", "**/api/vendors/**/reports", {
@@ -36,7 +36,7 @@ describe("Reorting: generate and view", () => {
     });
   });
 
-  describe("Submitting the form for CONSUMPTION CARDS", () => {
+  describe("Submitting the form fot period 'TODAY'", () => {
     beforeEach(() => {
       cy.getCy("variant").select("today");
       cy.getCy("submit-form").click();
@@ -52,7 +52,7 @@ describe("Reorting: generate and view", () => {
       });
     });
 
-    it("is expected to include message and report_as_base64 in response", () => {
+    it.only("is expected to include message and report_as_base64 in response", () => {
       cy.wait("@reportCreate").then(({ response }) => {
         expect(response.body).to.have.ownProperty('message');
         expect(response.body).to.have.ownProperty('report_as_base64');

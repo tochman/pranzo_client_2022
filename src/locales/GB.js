@@ -110,10 +110,16 @@ export const GB = {
           "Type in the total of the value your customer spent on goods or services.",
         availableForAffiliates: "Available for Affiliates",
         report: {
+          mainHeader: "Create report",
+          preview: "Preview",
+          deliver: "Deliver",
           variant: "Report variant",
+          pages: "Page {{page}} of {{pagesTotal}}",
           selectReportVariant: "Choose type of report",
           variantHelper:
             "You can choose daily reports for the last 2 days, but also reports with weekly or monthly statis. ",
+          loading: "Loading preview",
+          loadingError: "Could not load the preview. Please try again.",
           variants: {
             today: "Today",
             yesterday: "Yesterday",

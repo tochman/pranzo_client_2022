@@ -12,6 +12,7 @@ import {
   Box,
   Heading,
   Stack,
+  Divider,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -43,7 +44,8 @@ const ReportCreate = () => {
   }
   const handleFormSubmit = (data) => {
     dispatch(generateReport(data)).then((response) => {
-      response.payload.report_as_base64 && setReportData(response.payload.report_as_base64);
+      response.payload.report_as_base64 &&
+        setReportData(response.payload.report_as_base64);
     });
   };
   let url;
@@ -55,7 +57,7 @@ const ReportCreate = () => {
   return (
     <Container m={2}>
       <Heading as={"h1"} size={"lg"}>
-        Create report
+        {t("forms.elements.report.mainHeader")}
       </Heading>
       <form data-cy="create-report" onSubmit={handleSubmit(handleFormSubmit)}>
         <Input
@@ -64,9 +66,6 @@ const ReportCreate = () => {
           {...register("vendor", { value: vendor.id })}
         />
         <FormControl>
-          <FormLabel htmlFor="command">
-            {t("forms.elements.pdfVariant")}
-          </FormLabel>
           <RadioGroup
             name="command"
             id="command"
@@ -75,10 +74,10 @@ const ReportCreate = () => {
           >
             <Stack direction="row">
               <Radio {...register("command")} value="preview">
-                Preview
+                {t("forms.elements.report.preview")}
               </Radio>
               <Radio {...register("command")} value="deliver">
-                Deliver
+                {t("forms.elements.report.deliver")}
               </Radio>
             </Stack>
           </RadioGroup>
@@ -128,22 +127,30 @@ const ReportCreate = () => {
         </Button>
       </form>
       {reportData && (
-        <Box mb={{ base: "40px", xs: "5px" }} maxWidth={{ base: "100%" }}>
-          <Document
-            file={`data:application/pdf;base64,${reportData}`}
-            loading={<Text>Laddar rapport...</Text>}
-            error={<Text>Kunde inte ladda rapport... Försök igen.</Text>}
-            onLoadSuccess={onDocumentLoadSuccess}
-          >
-            <Page pageNumber={pageNumber} />
-          </Document>
-          {numPages && (
-            <Text>
-              Page {pageNumber} of {numPages}
-            </Text>
-          )}
-        </Box>
+        <>
+          <Box maxWidth={{ base: "100%" }}>
+            {pageNumber && (
+              <Box m={1}>
+                <Text as={"small"}>
+                  {t("forms.elements.report.pages", {
+                    page: pageNumber,
+                    pagesTotal: numPages,
+                  })}
+                </Text>
+              </Box>
+            )}
+            <Document
+              file={`data:application/pdf;base64,${reportData}`}
+              loading={<Text>{t("forms.elements.report.loading")}</Text>}
+              error={<Text>{t("forms.elements.report.loadingError")}</Text>}
+              onLoadSuccess={onDocumentLoadSuccess}
+            >
+              <Page pageNumber={pageNumber} />
+            </Document>
+          </Box>
+        </>
       )}
+      <Divider mb={"20px"} />
     </Container>
   );
 };
