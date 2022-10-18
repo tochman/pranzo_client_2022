@@ -31,5 +31,5 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  cy.removeLocalStorage("J-tockAuth-Storage");
+  cy.removeLocalStorage("auth-storage");
 });

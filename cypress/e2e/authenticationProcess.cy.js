@@ -43,7 +43,7 @@ describe("Authentication:", () => {
         cy.visit("/");
         const values =
           '{"access-token":"pCTtJ6i-ZQOigaeRc8XuhQ", "uid":"user@mail.com"}';
-        cy.setLocalStorage("J-tockAuth-Storage", values);
+        cy.setLocalStorage("auth-storage", values);
       });
 
       it("is expected to hide SignUp button in AppBar", () => {

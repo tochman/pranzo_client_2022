@@ -6,7 +6,7 @@ describe("Creating a transaction", () => {
     cy.visit("/");
     const values =
       '{"access-token":"pCTtJ6i-ZQOigaeRc8XuhQ", "uid":"user@mail.com"}';
-    cy.setLocalStorage("J-tockAuth-Storage", values);
+    cy.setLocalStorage("auth-storage", values);
 
     cy.fixture("venueCreateSuccess").then((fixture) => {
       cy.applicationState().invoke("dispatch", {

@@ -25,7 +25,6 @@
     "axios": "^0.27.2",
     "framer-motion": "^6",
     "i18next": "^21.9.1",
-    "j-tockauth": "^1.2.7",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "moment-with-locales-es6": "^1.0.1",

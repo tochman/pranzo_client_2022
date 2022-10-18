@@ -79,7 +79,7 @@ export const validateUserByToken = createAsyncThunk(
 export const clearSession = createAsyncThunk(
   "user/clearSession",
   (params, { dispatch }) => {
-    localStorage.removeItem("J-tockAuth-Storage");
+    localStorage.removeItem("auth-storage");
     dispatch(endSession(params));
   }
 );
