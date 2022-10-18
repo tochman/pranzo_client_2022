@@ -13,7 +13,6 @@ PassKit for Apple and Google Wallet integration: [Documentation](https://docs.pa
 import { IconName } from "react-icons/fi";
 ```
 
-
 ### Contributions
 
 All contrubutions are welcome. Fork and clone this project. Work on a fature branch. Submit Pull Request toward this reositories `main` branch. Provide a good descrition of the implemented feature and make sure all new code is tested. 
