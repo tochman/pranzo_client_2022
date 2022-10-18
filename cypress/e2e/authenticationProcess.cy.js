@@ -6,22 +6,22 @@ describe("Authentication:", () => {
   describe("logging out from the application", () => {
     beforeEach(() => {
       cy.authenticateUser({ name: "John Doe" });
-      cy.getCy("user-avatar").click();      
+      cy.getCy("user-avatar").click();
       cy.getCy("end-session").click();
-      cy.wait(1000)
+      cy.wait(1000);
     });
-    
+
     it("is expected to show SignUp button in AppBar", () => {
-      cy.getCy("sign-up-button").should("exist").and('be.visible');
+      cy.getCy("sign-up-button").should("exist").and("be.visible");
     });
     it("is expected to show SignIn button in AppBar", () => {
-      cy.getCy("sign-in-button").should("exist").and('be.visible');
+      cy.getCy("sign-in-button").should("exist").and("be.visible");
     });
 
     it("is expected to clear currentUser from application state", () => {
       cy.window()
         .pipe((window) => window.store.getState().user.currentUser)
-        .should("eql", null)
+        .should("eql", null);
     });
   });
 
@@ -39,7 +39,7 @@ describe("Authentication:", () => {
       beforeEach(() => {
         cy.intercept("GET", "**/auth/validate_token**", {
           fixture: "authenticatedUser.json",
-        }).as('validateTokenCall');
+        }).as("validateTokenCall");
         cy.visit("/");
         const values =
           '{"access-token":"pCTtJ6i-ZQOigaeRc8XuhQ", "uid":"user@mail.com"}';

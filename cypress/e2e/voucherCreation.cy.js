@@ -51,8 +51,9 @@ describe("Vouchers: create a batch", () => {
       cy.wait("@batchCreate").its("request.method").should("eq", "POST");
     });
 
-    it("is expected to include selection as request parameters", () => {
+    it.only("is expected to include selection as request parameters", () => {
       cy.wait("@batchCreate").then(({ request }) => {
+        debugger
         expect(request.body.command).to.eql("batch");
         expect(request.body.amount).to.eql("10");
         expect(request.body.voucher.value).to.eql("10");
