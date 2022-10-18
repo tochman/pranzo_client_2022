@@ -3,9 +3,11 @@ import Axios from "axios";
 import i18n from "../../i18n";
 class CustomAuth extends JtockAuth {
   constructor(args) {
+    Axios.interceptors.request.use(config => {
+      config.headers['x-locale'] = i18n.language === 'GB' ? 'en' : 'sv'
+      return config;
+    });
     super(args);
-    Axios.defaults.headers.post['X-LOCALE'] = i18n.language === 'GB' ? 'en' : 'sv'
-    debugger
   }
 
 }
