@@ -2,6 +2,13 @@ import { createStandaloneToast } from "@chakra-ui/react";
 
 const { toast } = createStandaloneToast();
 
+Array.prototype.toSentence = function (comma, and) {
+  const b = this.pop();
+  return (b ? (this.length ? [this.join(`${comma} ` || ", "), b] : [b]) : this).join(
+    ` ${and} ` || " and "
+  );
+};
+
 export const toastMessage = (messages, status = "error") => {
   messages.forEach((message) => {
     toast({
