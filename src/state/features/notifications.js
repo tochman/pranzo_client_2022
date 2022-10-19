@@ -32,6 +32,7 @@ export const notifySlack = createAsyncThunk(
 
     if (import.meta.env.DEV) {
       // dev code
+      debugger
       return true;
     } else {
       // production code
