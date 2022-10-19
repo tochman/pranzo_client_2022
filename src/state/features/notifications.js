@@ -31,11 +31,10 @@ export const notifySlack = createAsyncThunk(
     }
 
     if (import.meta.env.PROD) {
-      debugger;
       // production code
       await axios.post(
         `https://hooks.slack.com/services/${
-          import.meta.env.REACT_APP_SLACK_TOKEN
+          import.meta.env.VITE_REACT_APP_SLACK_TOKEN
         }`,
         payload,
         {

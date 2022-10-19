@@ -5,7 +5,7 @@ export const auth = new DeviseTokenAuth({
   host: import.meta.env.PROD
     ? "https://pranzo-api.fly.dev/"
     : "http://localhost:3001",
-  debug: true,
+  debug: false,
   useRoles: false,
 });
 
