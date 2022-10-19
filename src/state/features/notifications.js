@@ -30,15 +30,13 @@ export const notifySlack = createAsyncThunk(
       };
     }
 
-    if (import.meta.env.DEV) {
-      // dev code
-      debugger
-      return true;
-    } else {
+    if (import.meta.env.PROD) {
+      debugger;
       // production code
       await axios.post(
-        `https://hooks.slack.com/services/${import.meta.env.REACT_APP_SLACK_TOKEN}`,
-
+        `https://hooks.slack.com/services/${
+          import.meta.env.REACT_APP_SLACK_TOKEN
+        }`,
         payload,
         {
           headers: {
@@ -46,6 +44,9 @@ export const notifySlack = createAsyncThunk(
           },
         }
       );
+      return true;
+    } else {
+      // dev code
       return true;
     }
   }
