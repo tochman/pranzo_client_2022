@@ -41,6 +41,11 @@ export const signInUser = createAsyncThunk(
         dispatch(storeVendorData({ vendor_id: response.data.vendor_id }));
       }
       dispatch({ type: "user/setCurrentUser", payload: response.data });
+      dispatch({
+        type: "user/notifySlack",
+        payload: { actionType: "registration", user: response.data },
+      });
+      // check if vendor_id is present. If yes fetch the vendor and dispatch "user/setVenue" action
     } catch (error) {
       toastMessage(error.response.data.errors);
     }
