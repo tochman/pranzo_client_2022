@@ -32,7 +32,7 @@ export const notifySlack = createAsyncThunk(
         text: `There is a new ${data.actionType} from ${data.user.email}`,
       };
     }
-
+    console.warn("ENV PROD?: "+ import.meta.env.PROD)
     if (import.meta.env.PROD) {
       // production code
       const token = import.meta.env.VITE_REACT_APP_SLACK_TOKEN
