@@ -1,14 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
 
 export const notifySlack = createAsyncThunk(
   "users/notifySlack",
 
   async (data) => {
+    let payload
     if (data.formSubmission) {
       const text = `Has submitted an interest form for ${data.toSentence()}.\nUse ${
         data.contact.email
       } to get in touch.`;
-      const payload = {
+      payload = {
         icon_emoji: ":pencil2:",
         message: data.contact.message,
         username: data.contact.name,
@@ -23,7 +26,7 @@ export const notifySlack = createAsyncThunk(
         ],
       };
     } else {
-      const payload = {
+      payload = {
         icon_emoji: ":rocket:",
         username: "Notification Bot",
         text: `There is a new ${data.actionType} from ${data.user.email}`,
@@ -32,9 +35,10 @@ export const notifySlack = createAsyncThunk(
 
     if (import.meta.env.PROD) {
       // production code
-      await axios.post(
+      const token = import.meta.env.VITE_REACT_APP_SLACK_TOKEN
+      const resp = await axios.post(
         `https://hooks.slack.com/services/${
-          import.meta.env.VITE_REACT_APP_SLACK_TOKEN
+          token
         }`,
         payload,
         {

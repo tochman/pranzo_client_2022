@@ -1,6 +1,10 @@
 describe("Authentication:", () => {
   beforeEach(() => {
     cy.visit("/");
+    cy.intercept("POST", "**/hooks.slack.com/services/**", {
+      body: { message: "ok" },
+      statusCode: 200,
+    });
   });
 
   describe("logging out from the application", () => {
@@ -118,7 +122,7 @@ describe("Authentication:", () => {
         });
       });
 
-      it("is expected to store currentUser in application state", () => {
+      it.only("is expected to store currentUser in application state", () => {
         cy.wait("@signUp");
         cy.window()
           .pipe((window) => window.store.getState().user.currentUser)

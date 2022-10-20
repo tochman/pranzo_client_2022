@@ -25,14 +25,14 @@ export const registerUser = createAsyncThunk(
   async (data, { dispatch }) => {
     try {
       const response = await auth.signUp(data);
-      dispatch({ type: "user/setCurrentUser", payload: response.data });
       dispatch(
         notifySlack({
           formSubmission: false,
-          actionType: "sign in",
-          user: response.data,
+          actionType: "registration",
+          user: response.data.user.data,
         })
-      );
+      )
+      dispatch({ type: "user/setCurrentUser", payload: response.data });
     } catch (error) {
       toastMessage(error.response.data.errors.full_messages);
     }
@@ -52,7 +52,7 @@ export const signInUser = createAsyncThunk(
         notifySlack({
           formSubmission: false,
           actionType: "sign in",
-          user: response.data,
+          user: response.data.user.data,
         })
       );
       // check if vendor_id is present. If yes fetch the vendor and dispatch "user/setVenue" action
