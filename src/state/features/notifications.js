@@ -6,6 +6,7 @@ export const notifySlack = createAsyncThunk(
   "users/notifySlack",
 
   async (data) => {
+    debugger
     let payload
     if (data.formSubmission) {
       const text = `Has submitted an interest form for ${data.toSentence()}.\nUse ${
@@ -32,10 +33,11 @@ export const notifySlack = createAsyncThunk(
         text: `There is a new ${data.actionType} from ${data.user.email}`,
       };
     }
+    debuggare
     console.warn("ENV PROD?: "+ import.meta.env.PROD)
     if (import.meta.env.PROD) {
       // production code
-      const token = import.meta.env.VITE_REACT_APP_SLACK_TOKEN
+      const token = import.meta.env.VITE_SLACK_TOKEN
       const resp = await axios.post(
         `https://hooks.slack.com/services/${
           token
