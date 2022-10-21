@@ -26,3 +26,5 @@ cypress/fixtures/voucher_scan.y4m
 
 package-lock.json
 screenshots/
+
+.env
