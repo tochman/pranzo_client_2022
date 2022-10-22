@@ -1,5 +1,5 @@
 describe("Application stucture", () => {
-  it("is expected to have a root path", () => {
+  it.only("is expected to have a root path", () => {
     cy.visit("/");
     cy.location("pathname").should("eq", "/");
   });
@@ -116,7 +116,7 @@ describe("Application stucture", () => {
       cy.getCy("mobile-nav-toggle").trigger("click");
     });
 
-    it("is expected to display menue items", () => {
+    it.only("is expected to display menue items", () => {
       cy.getCy("nothing-to-see").should("exist").and("be.visible");
     });
   });

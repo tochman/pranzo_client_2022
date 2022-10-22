@@ -1,4 +1,11 @@
-import { Button, Stack, Box, Text, useColorModeValue } from "@chakra-ui/react";
+import {
+  Button,
+  Stack,
+  Box,
+  Text,
+  Container,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import Hero from "./Hero";
 import LargeQuote from "./LargeQuote";
 import SellingPoints from "./SellingPoints";
@@ -9,7 +16,7 @@ const Landing = () => {
   const navigate = useNavigate();
 
   return (
-    <>
+    <Box m={{ base: "20px", sm: "2px"}} >
       <Hero />
       <Box bg={useColorModeValue("white", "gray.700")}>
         <Stack
@@ -35,7 +42,7 @@ const Landing = () => {
       </Box>
       <SellingPoints />
       <LargeQuote />
-    </>
+    </Box>
   );
 };
 

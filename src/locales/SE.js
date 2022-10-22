@@ -185,12 +185,12 @@ export const SE = {
     },
     footer: { slogan: "Lunchkort och presentkort på ett enklare sätt" },
     hero: {
-      mainSlogan: "Förenkla din försäljning – Öka dina intäkter",
+      mainSlogan: "Digitala klipp- eller presentkort. Kom igång direkt!",
       promoText:
-        "Gör voucher- och presentkortshanteringen enkel. Pranzo erbjuder en enkel och lättanvänd lösning för att skapa, sälja och administrera lunch- och presentkort",
-      walletsPromoText: "Koppla dina kort till Apple- och Google Plånbok.",
+        "Gör klipp- och presentkortshanteringen enkel. Pranzo erbjuder en enkel och lättanvänd lösning för att skapa, sälja och administrera lunch- och presentkort",
+      walletsPromoText: "Koppla dina kort till Apple- och Google Plånbok eller skriv ut dem på plastkort. Du väljer det som passar dig och dina kunder.",
       subSlogan:
-        "Låg startavgift och inga prenumerationskostnader. Betala allt eftersom du använder systemet!",
+        "Du kan vara igång inom 10 minuter. Inget krångel eller dyra avgifter.",
       buttonText: "Kom igång!",
       ctaText:
         "Det finns ingen förskottsavgift för att registrera dig. Vi debiterar dig endast om du faktiskt drar nytta av Pranzo-plattformen med en startavgift på 450 kr och 13kr per utfärdat kort.",
