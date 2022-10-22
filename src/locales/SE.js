@@ -147,7 +147,8 @@ export const SE = {
       formElements: {
         venueName: "Namn",
         venueVatid: "Momsregistreringsnummer",
-        venueVatidHelper: "Ett momsregistreringsnummer eller VAT-nummer (internationellt) är ett nummer som bygger på organisationsnumret. För att organisationsnumret ska bli ett momsregistreringsnummer anges Sveriges landskod SE innan första siffran, och avslutas med 01.  SE9XXXXXXXXXX01 ",
+        venueVatidHelper:
+          "Ett momsregistreringsnummer eller VAT-nummer (internationellt) är ett nummer som bygger på organisationsnumret. För att organisationsnumret ska bli ett momsregistreringsnummer anges Sveriges landskod SE innan första siffran, och avslutas med 01.  SE9XXXXXXXXXX01 ",
         description: "Beskrivning",
         primaryEmail: "Primär mailadress",
       },
@@ -187,13 +188,14 @@ export const SE = {
     hero: {
       mainSlogan: "Digitala klipp- eller presentkort. Kom igång direkt!",
       promoText:
-        "Gör klipp- och presentkortshanteringen enkel. Pranzo erbjuder en enkel och lättanvänd lösning för att skapa, sälja och administrera lunch- och presentkort",
-      walletsPromoText: "Koppla dina kort till Apple- och Google Plånbok eller skriv ut dem på plastkort. Du väljer det som passar dig och dina kunder.",
+        "Gör det enkelt att handla hos dig. Pranzo erbjuder en enkel och lättanvänd lösning för att skapa, sälja och administrera digitala klipp- och presentkort",
+      walletsPromoText:
+        "Koppla dina kort till Apple- och Google Plånbok eller skriv ut dem på plastkort. Du väljer det som passar dig och dina kunder.",
       subSlogan:
         "Du kan vara igång inom 10 minuter. Inget krångel eller dyra avgifter.",
       buttonText: "Kom igång!",
       ctaText:
-        "Det finns ingen förskottsavgift för att registrera dig. Vi debiterar dig endast om du faktiskt drar nytta av Pranzo-plattformen med en startavgift på 450 kr och 13kr per utfärdat kort.",
+        "Kom igång snabbt, enkelt och billigt. Vi debiterar dig endast om du faktiskt drar nytta av Pranzo-plattformen med en startavgift på 450 kr och 13kr per utfärdat kort.",
     },
     sellingPoints: {
       benefits: "Fördelar",
@@ -205,7 +207,7 @@ export const SE = {
       right: {
         header: "Lojala kunder",
         content:
-          "Belöna dina lojala lunchgäster med möjligheten att köpa ett lunchkort som ger dem ett rabatterat pris samtidigt som du drar nytta av ökade och stabila intäkter.",
+          "Belöna dina lojala kunder med möjligheten att köpa ett klippkort som ger dem ett rabatterat pris samtidigt som du drar nytta av ökade och stabila intäkter.",
       },
       middle: {
         header: "Mobilt",
