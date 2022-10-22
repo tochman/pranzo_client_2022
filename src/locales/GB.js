@@ -145,6 +145,8 @@ export const GB = {
       edit: { heading: "Edit your venue" },
       formElements: {
         venueName: "Name",
+        venueVatid: "VAT number",
+        venueVatidHelper: "A VAT registration number or VAT number (international) is a number based on the organization number. For the organization number to become a VAT registration number, enter Sweden's country code SE before the first digit, and end with 01. SE9XXXXXXXXX01",
         description: "Description",
         primaryEmail: "Primary email",
       },

@@ -146,6 +146,8 @@ export const SE = {
       edit: { heading: "Redigera företag" },
       formElements: {
         venueName: "Namn",
+        venueVatid: "Momsregistreringsnummer",
+        venueVatidHelper: "Ett momsregistreringsnummer eller VAT-nummer (internationellt) är ett nummer som bygger på organisationsnumret. För att organisationsnumret ska bli ett momsregistreringsnummer anges Sveriges landskod SE innan första siffran, och avslutas med 01.  SE9XXXXXXXXXX01 ",
         description: "Beskrivning",
         primaryEmail: "Primär mailadress",
       },

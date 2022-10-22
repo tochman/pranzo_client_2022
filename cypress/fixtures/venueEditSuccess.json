@@ -2,6 +2,7 @@
   "vendor": {
     "id": 100,
     "name": "StarBugs",
+    "vat_id": "SE999999999901",
     "description": "A corporate chain with no charm....",
     "primary_email": "info@starbugs.io",
     "affiliates": [

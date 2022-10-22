@@ -15,19 +15,20 @@ describe("Vendor can setup a Venue", () => {
     beforeEach(() => {
       cy.intercept("POST", "**/api/validate_user", {
         fixture: "emailOk.json",
-      }).as('checkEmail')
+      }).as("checkEmail");
       cy.intercept("POST", "**/api/vendors", {
         fixture: "venueCreateSuccess.json",
       }).as("venueCreate");
       cy.getCy("name").type("The Other Place");
+      cy.getCy("vat_id").type("SE999999999901");
       cy.getCy("description").type("A friendly neighbourhood restaurant");
       cy.getCy("email").type("info@theotherplace.io");
-      cy.get('body').click()
-      cy.wait(1000)
+      cy.get("body").click();
+      cy.wait(1000);
       cy.getCy("submit").click();
     });
 
-    it('is expected to make a call to API and check email', () => {
+    it("is expected to make a call to API and check email", () => {
       cy.wait("@checkEmail").its("request.method").should("eql", "POST");
     });
 
@@ -57,34 +58,37 @@ describe("Vendor can setup a Venue", () => {
       cy.location("pathname").should("eq", "/dashboard");
     });
 
-    it('is expected to display vendor information', () => {
-      cy.getCy('venue-info').should('contain.text', 'The Other Place')
+    it("is expected to display vendor information", () => {
+      cy.getCy("venue-info").should("contain.text", "The Other Place");
     });
   });
 
-  context('using an email that is taken', () => {
+  context("using an email that is taken", () => {
     beforeEach(() => {
       cy.intercept("POST", "**/api/validate_user", {
         fixture: "emailConflict.json",
-      }).as('checkEmail')
+      }).as("checkEmail");
       cy.intercept("POST", "**/api/vendors", {
         fixture: "venueCreateSuccess.json",
       }).as("venueCreate");
       cy.getCy("name").type("The Other Place");
+      cy.getCy("vat_id").type("SE999999999901");
       cy.getCy("description").type("A friendly neighbourhood restaurant");
       cy.getCy("email").type("info@theotherplace.io");
-      cy.get('body').click()
+      cy.get("body").click();
       // cy.getCy("submit").click(); // still not sure about this
     });
 
-    it('is expected to make a call to API and check email', () => {
+    it("is expected to make a call to API and check email", () => {
       cy.wait("@checkEmail").its("request.method").should("eql", "POST");
     });
 
-    it('is expected to display error message', () => {
-      cy.get('body').should('contain.text', 'This email needs to be unique, please use another one....')
+    it("is expected to display error message", () => {
+      cy.get("body").should(
+        "contain.text",
+        "This email needs to be unique, please use another one...."
+      );
     });
-
   });
 
   context("on Network Error", () => {
@@ -94,11 +98,12 @@ describe("Vendor can setup a Venue", () => {
       });
       cy.intercept("POST", "**/api/validate_user", {
         fixture: "emailOk.json",
-      }).as('checkEmail')
+      }).as("checkEmail");
       cy.intercept("POST", "**/api/vendors", { statusCode: 500 }).as(
         "vendorCreateError"
       );
       cy.getCy("name").type("The Other Place");
+      cy.getCy("vat_id").type("SE999999999901");
       cy.getCy("description").type("A friendly neighbourhood restaurant");
       cy.getCy("email").type("info@theotherplace.io");
       cy.getCy("submit").click();

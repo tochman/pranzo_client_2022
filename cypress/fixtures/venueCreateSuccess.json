@@ -2,6 +2,7 @@
   "vendor": {
     "id": 100,
     "name": "The Other Place",
+    "vat_id": "SE999999999901",
     "description": "A friendly neighbourhood restaurant",
     "primary_email": "info@theotherplace.io",
     "affiliates": [

@@ -4,6 +4,7 @@ import {
   FormErrorMessage,
   FormControl,
   FormLabel,
+  FormHelperText,
   Heading,
   Input,
   Textarea,
@@ -93,21 +94,36 @@ const VenueSetup = () => {
                 {errors.name && errors.name.message}
               </FormErrorMessage>
             </FormControl>
+            <FormControl isInvalid={errors.vat_id}>
+              <FormLabel htmlFor="vat_id">
+                {t("venue.formElements.venueVatid")}
+              </FormLabel>
+              <Input
+                defaultValue={(edit || vendor) && vendor.vat_id}
+                data-cy="vat_id"
+                id="vat_id"
+                {...register("vat_id", {
+                  required: t("forms.messages.required"),
+                  minLength: {
+                    value: 4,
+                    message: t("forms.messages.minLength", { length: 4 }),
+                  },
+                })}
+              />
+              <FormErrorMessage>
+                {errors.vat_id && errors.vat_id.message}
+              </FormErrorMessage>
+              <FormHelperText>{t("venue.formElements.venueVatidHelper")}</FormHelperText>
+            </FormControl>
             <FormControl isInvalid={errors.description}>
               <FormLabel htmlFor="description">
-                {t("venue.formElements.description")}
+                {t("venue.formElements.description")} (optional)
               </FormLabel>
               <Textarea
                 data-cy="description"
                 defaultValue={(edit || vendor) && vendor.description}
                 id="description"
-                {...register("description", {
-                  required: t("forms.messages.required"),
-                  minLength: {
-                    value: 20,
-                    message: t("forms.messages.minLength", { length: 20 }),
-                  },
-                })}
+                {...register("description")}
               />
               <FormErrorMessage>
                 {errors.description && errors.description.message}
