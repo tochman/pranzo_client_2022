@@ -105,7 +105,7 @@ const VenueSetup = () => {
                 {...register("vat_id", {
                   required: t("forms.messages.required"),
                   pattern: {
-                    value: /^[a-zA-Z]{2}[0-9]{6}$/,
+                    value: /^[a-zA-Z]{2}[0-9]{12}$/,
                     message: t("forms.messages.invalidVat"),
                   },
                   minLength: {
