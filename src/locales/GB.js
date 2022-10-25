@@ -75,6 +75,7 @@ export const GB = {
     },
     forms: {
       elements: {
+        optional: "(optional)",
         create: "Create",
         submit: "Submit",
         email: "Email",
@@ -134,6 +135,7 @@ export const GB = {
         required: "This field is required.",
         minLength: "Minimum length should be {{length}}",
         invalidEmail: "This is an invalid email....",
+        invalidVat: "You entered the VAT number in an invalid format.",
         submitNumber: "Please submit a number",
         notUnique: "This email needs to be unique, please use another one....",
         userNotFound:
@@ -146,7 +148,7 @@ export const GB = {
       formElements: {
         venueName: "Name",
         venueVatid: "VAT number",
-        venueVatidHelper: "A VAT registration number or VAT number (international) is a number based on the organization number. For the organization number to become a VAT registration number, enter Sweden's country code SE before the first digit, and end with 01. SE9XXXXXXXXX01",
+        venueVatidHelper: "A VAT registration number or VAT number (international) is a number based on the organization number. For the organization number to become a VAT registration number, enter Sweden's country code SE before the first digit, and end with 01. SEXXXXXXXXX01",
         description: "Description",
         primaryEmail: "Primary email",
       },

@@ -91,6 +91,32 @@ describe("Vendor can setup a Venue", () => {
     });
   });
 
+  context('VAT number validation', () => {
+    beforeEach(() => {
+      cy.authenticateUser({
+        name: "John Doe",
+      });
+      cy.intercept("POST", "**/api/validate_user", {
+        fixture: "emailOk.json",
+      }).as("checkEmail");
+      cy.intercept("POST", "**/api/vendors", { statusCode: 500 }).as(
+        "vendorCreateError"
+      );
+      cy.getCy("name").type("The Other Place");
+      cy.getCy("vat_id").type("999999-9999");
+      cy.getCy("description").type("A friendly neighbourhood restaurant");
+      cy.getCy("email").type("info@theotherplace.io");
+      cy.getCy("submit").click();
+    });
+
+    it("is expected to display an error message", () => {
+      cy.get("body").should(
+        "contain.text",
+        "You entered the VAT number in an invalid format."
+      );
+    });
+  });
+
   context("on Network Error", () => {
     beforeEach(() => {
       cy.authenticateUser({
