@@ -5,6 +5,7 @@
     "vat_id": "SE999999999901",
     "description": "A friendly neighbourhood restaurant",
     "primary_email": "info@theotherplace.io",
+    "legal_name": "The Other Place Inc.",
     "affiliates": [
       {
         "id": 79,

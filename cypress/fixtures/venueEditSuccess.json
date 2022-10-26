@@ -5,6 +5,7 @@
     "vat_id": "SE999999999901",
     "description": "A corporate chain with no charm....",
     "primary_email": "info@starbugs.io",
+    "legal_name": "The Other Place Inc.",
     "affiliates": [
       {
         "id": 79,

@@ -76,6 +76,7 @@ export const SE = {
     },
     forms: {
       elements: {
+        optional: "(frivillig)",
         create: "Skapa",
         submit: "Skicka",
         email: "Mailadress",
@@ -135,6 +136,7 @@ export const SE = {
         minLength: "Kortaste tillåtna längd är {{length}} tecken.",
         invalidEmail: "Det här är en ogiltig adress",
         submitNumber: "Var god ange ett nummer.",
+        invalidVat: "Du angav momsnumret i ett ogiltigt format.",
         notUnique: "Den här e-postadressen används redan, välj en annan...",
         userNotFound:
           "Vi kunde inte hitta någon användare med den här mailadressen. Kontrollera din information...",
@@ -148,7 +150,7 @@ export const SE = {
         venueName: "Namn",
         venueVatid: "Momsregistreringsnummer",
         venueVatidHelper:
-          "Ett momsregistreringsnummer eller VAT-nummer (internationellt) är ett nummer som bygger på organisationsnumret. För att organisationsnumret ska bli ett momsregistreringsnummer anges Sveriges landskod SE innan första siffran, och avslutas med 01.  SE9XXXXXXXXXX01 ",
+          "Ett momsregistreringsnummer eller VAT-nummer (internationellt) är ett nummer som bygger på organisationsnumret. För att organisationsnumret ska bli ett momsregistreringsnummer anges Sveriges landskod SE innan första siffran, och avslutas med 01.  SEXXXXXXXXXX01 ",
         description: "Beskrivning",
         primaryEmail: "Primär mailadress",
       },

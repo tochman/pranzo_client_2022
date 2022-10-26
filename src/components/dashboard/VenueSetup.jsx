@@ -104,6 +104,10 @@ const VenueSetup = () => {
                 id="vat_id"
                 {...register("vat_id", {
                   required: t("forms.messages.required"),
+                  pattern: {
+                    value: /^[a-zA-Z]{2}[0-9]{12}$/,
+                    message: t("forms.messages.invalidVat"),
+                  },
                   minLength: {
                     value: 4,
                     message: t("forms.messages.minLength", { length: 4 }),
@@ -117,7 +121,7 @@ const VenueSetup = () => {
             </FormControl>
             <FormControl isInvalid={errors.description}>
               <FormLabel htmlFor="description">
-                {t("venue.formElements.description")} (optional)
+                {t("venue.formElements.description")} {t("forms.elements.optional")}
               </FormLabel>
               <Textarea
                 data-cy="description"
