@@ -29,7 +29,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setCurrentUser, setVendor, setVouchers, endSession } =
+export const { setCurrentUser, setVenue, setVouchers, endSession } =
   userSlice.actions;
 
 export default userSlice.reducer;

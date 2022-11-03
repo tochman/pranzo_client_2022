@@ -10,7 +10,8 @@
     "cy:open": "cypress open --e2e -b chrome",
     "cy:run": "cypress run --e2e -b chrome",
     "cypress": "start-test dev 5173 cy:open",
-    "cypress:ci": "start-test dev 5173 cy:run"
+    "cypress:ci": "start-test dev 5173 cy:run",
+    "cypress:install": "cypress install"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.9",
