@@ -1,3 +1,5 @@
+import 'cypress-file-upload';
+
 Cypress.Commands.add("getCy", (identifier) => {
   cy.get(`[data-cy=${identifier}]`);
 });

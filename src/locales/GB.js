@@ -78,6 +78,8 @@ export const GB = {
         optional: "(optional)",
         create: "Create",
         submit: "Submit",
+        logotype: "Logotype",
+        logotypePlaceholder: "Add your logotype",
         email: "Email",
         mobilePass: "Add digital card?",
         pdfCard: "Add PDF card?",

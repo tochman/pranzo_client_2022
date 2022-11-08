@@ -18,8 +18,11 @@ import snakecasekeys from "snakecase-keys";
 import { setupVenue, editVenue } from "../../state/features/vendors";
 import { emailRegex } from "../../state/utilities/utilities";
 import { auth } from "../../state/utilities/authConfig";
-
+import FileUpload from "./templates/FileUpload";
+import { toBase64 } from "../../modules/ImageEncoder";
+import { useRef } from "react";
 const VenueSetup = () => {
+  const inputRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -32,6 +35,7 @@ const VenueSetup = () => {
     setError,
     clearErrors,
     getFieldState,
+    control,
     formState: { errors, isSubmitting, isValid },
   } = useForm({
     criteriaMode: "all",
@@ -39,7 +43,9 @@ const VenueSetup = () => {
 
   const primaryEmailState = getFieldState("primaryEmail");
 
-  const handleFormSubmit = (data) => {
+  const handleFormSubmit = async (data) => {
+    data.logotype = await toBase64(data.logotype[0]);
+    debugger;
     const params = snakecasekeys(data);
     if (edit) {
       dispatch(editVenue({ ...params, id: vendor.id }));
@@ -117,11 +123,14 @@ const VenueSetup = () => {
               <FormErrorMessage>
                 {errors.vat_id && errors.vat_id.message}
               </FormErrorMessage>
-              <FormHelperText>{t("venue.formElements.venueVatidHelper")}</FormHelperText>
+              <FormHelperText>
+                {t("venue.formElements.venueVatidHelper")}
+              </FormHelperText>
             </FormControl>
             <FormControl isInvalid={errors.description}>
               <FormLabel htmlFor="description">
-                {t("venue.formElements.description")} {t("forms.elements.optional")}
+                {t("venue.formElements.description")}{" "}
+                {t("forms.elements.optional")}
               </FormLabel>
               <Textarea
                 data-cy="description"
@@ -154,6 +163,35 @@ const VenueSetup = () => {
                 {errors.primaryEmail && errors.primaryEmail.message}
               </FormErrorMessage>
             </FormControl>
+            <FormControl>
+              <FormLabel>{t("forms.elements.logotype")}</FormLabel>
+              <input
+                data-cy="logotype"
+                type="file"
+                accept={"image/*"}
+                onChage={()=> {debugger}}
+                ref={inputRef}
+                style={{ display: "none" }}
+                {...register("logotype")}
+              />
+              <Input
+                placeholder={"Your file ..."}
+                onClick={() => inputRef.current.click()}
+                // onChange={(e) => {}}
+                readOnly={true}
+                // value={(value && value.name) || ""}
+              />
+              <FormHelperText>Attach any related documents.</FormHelperText>
+            </FormControl>
+            {/* <FileUpload
+              name="logotype"
+              acceptedFileTypes="image/*"
+              isRequired={true}
+              placeholder={t("forms.elements.logotypePlaceholder")}
+              control={control}
+            >
+              {t("forms.elements.logotype")}
+            </FileUpload> */}
             <Button
               mt={4}
               colorScheme="teal"
