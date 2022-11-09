@@ -36,28 +36,33 @@ const App = () => {
   return (
     <Box height={"100vh"} w={"100vw"}>
       <Navigation />
-      <Routes>
-        <Route path="/" element={<Landing />} />
+      <Box paddingBottom={"50px"}>
+        <Routes>
+          <Route path="/" element={<Landing />} />
 
-        <Route element={<ProtectedRoute />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/venue/setup" element={<VenueSetup />} />
-          <Route path="/dashboard/venue" element={<VenueView />} />
-          <Route path="/dashboard/vouchers" element={<Vouchers />} />
-          <Route
-            path="/dashboard/vouchers/create"
-            element={<VouchersCreate />}
-          />
-          <Route
-            path="/dashboard/venue/affiliate/add"
-            element={<AffiliateSetup />}
-          />
-          <Route path="/dashboard/reports/create" element={<ReportCreate />} />
-        </Route>
-        <Route path="/join-pranzo" element={<PranzoProcess />} />
-        <Route path="/auth/sign-up" element={<SignUp />} />
-        <Route path="/auth/sign-in" element={<SignIn />} />
-      </Routes>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/venue/setup" element={<VenueSetup />} />
+            <Route path="/dashboard/venue" element={<VenueView />} />
+            <Route path="/dashboard/vouchers" element={<Vouchers />} />
+            <Route
+              path="/dashboard/vouchers/create"
+              element={<VouchersCreate />}
+            />
+            <Route
+              path="/dashboard/venue/affiliate/add"
+              element={<AffiliateSetup />}
+            />
+            <Route
+              path="/dashboard/reports/create"
+              element={<ReportCreate />}
+            />
+          </Route>
+          <Route path="/join-pranzo" element={<PranzoProcess />} />
+          <Route path="/auth/sign-up" element={<SignUp />} />
+          <Route path="/auth/sign-in" element={<SignIn />} />
+        </Routes>
+      </Box>
       <Footer />
     </Box>
   );

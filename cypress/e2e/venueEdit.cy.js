@@ -39,7 +39,7 @@ describe("Venue edit", () => {
           .type("A corporate chain with no charm....");
         cy.getCy("email").clear().type("info@starbugs.io");
         cy.getCy("logotype").attachFile("dummy.jpeg");
-        cy.getCy("submit").click({force: true});
+        cy.getCy("submit").click({ force: true });
       });
 
       it("is expected to make a network call on submit", () => {
@@ -53,11 +53,11 @@ describe("Venue edit", () => {
 
       it("is expected to include form data as params", () => {
         cy.wait("@venueEdit").then(({ request }) => {
-          expect(request.body.name).to.eql("StarBugs");
-          expect(request.body.description).to.eql(
+          expect(request.body.vendor.name).to.eql("StarBugs");
+          expect(request.body.vendor.description).to.eql(
             "A corporate chain with no charm...."
           );
-          expect(request.body.primary_email).to.eql("info@starbugs.io");
+          expect(request.body.vendor.primary_email).to.eql("info@starbugs.io");
         });
       });
 

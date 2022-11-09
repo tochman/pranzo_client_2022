@@ -25,7 +25,7 @@ describe("Vendor can setup a Venue", () => {
       cy.getCy("email").type("info@theotherplace.io");
       cy.get("body").click();
       cy.wait(1000);
-      cy.getCy("submit").click();
+      cy.getCy("submit").click({ force: true });
     });
 
     it("is expected to make a call to API and check email", () => {
@@ -38,8 +38,8 @@ describe("Vendor can setup a Venue", () => {
 
     it("is expected to include form data as params", () => {
       cy.wait("@venueCreate").then(({ request }) => {
-        expect(request.body.name).to.eql("The Other Place");
-        expect(request.body.description).to.eql(
+        expect(request.body.vendor.name).to.eql("The Other Place");
+        expect(request.body.vendor.description).to.eql(
           "A friendly neighbourhood restaurant"
         );
         expect(request.body.primary_email).to.eql("info@theotherplace.io");
@@ -76,7 +76,7 @@ describe("Vendor can setup a Venue", () => {
       cy.getCy("description").type("A friendly neighbourhood restaurant");
       cy.getCy("email").type("info@theotherplace.io");
       cy.get("body").click();
-      // cy.getCy("submit").click(); // still not sure about this
+      cy.getCy("submit").click({ force: true }); // still not sure about this
     });
 
     it("is expected to make a call to API and check email", () => {
@@ -91,7 +91,7 @@ describe("Vendor can setup a Venue", () => {
     });
   });
 
-  context('VAT number validation', () => {
+  context("VAT number validation", () => {
     beforeEach(() => {
       cy.authenticateUser({
         name: "John Doe",
@@ -106,7 +106,7 @@ describe("Vendor can setup a Venue", () => {
       cy.getCy("vat_id").type("999999-9999");
       cy.getCy("description").type("A friendly neighbourhood restaurant");
       cy.getCy("email").type("info@theotherplace.io");
-      cy.getCy("submit").click();
+      cy.getCy("submit").click({ force: true });
     });
 
     it("is expected to display an error message", () => {

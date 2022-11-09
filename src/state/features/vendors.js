@@ -8,7 +8,7 @@ export const setupVenue = createAsyncThunk(
     try {
       const response = await auth.privateRoute("/api/vendors", {
         method: "POST",
-        data: data,
+        data: { vendor: data },
       });
       dispatch({ type: "user/setVenue", payload: response.data.vendor });
     } catch (error) {
@@ -26,7 +26,7 @@ export const editVenue = createAsyncThunk(
     try {
       const response = await auth.privateRoute(`/api/vendors/${data.id}`, {
         method: "PUT",
-        data: data,
+        data: { vendor: data },
       });
       dispatch({ type: "user/setVenue", payload: response.data.vendor });
     } catch (error) {
