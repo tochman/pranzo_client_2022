@@ -42,7 +42,7 @@ describe("Vendor can setup a Venue", () => {
         expect(request.body.vendor.description).to.eql(
           "A friendly neighbourhood restaurant"
         );
-        expect(request.body.primary_email).to.eql("info@theotherplace.io");
+        expect(request.body.vendor.primary_email).to.eql("info@theotherplace.io");
       });
     });
 
