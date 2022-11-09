@@ -44,7 +44,7 @@ const VenueView = () => {
               </Box>
               <Button
                 onClick={() =>
-                  navigate("/dashboard/venue/setup", { state: { edit: true } })
+                  navigate("/dashboard/venue/setup", { state: { edit: true }})
                 }
                 data-cy="venue-edit-button"
                 variant={"outline"}

@@ -12,6 +12,7 @@ import {
   Textarea,
   Stack,
   Icon,
+  Image,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,14 +24,8 @@ import { emailRegex } from "../../state/utilities/utilities";
 import { auth } from "../../state/utilities/authConfig";
 import { FiImage } from "react-icons/fi";
 import { toBase64 } from "../../modules/ImageEncoder";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 const VenueSetup = () => {
-  const inputRef = useRef(null);
-  // useEffect(() => {
-  //   const el2 = inputRef.current;
-  //   debugger;
-  //   console.log("from useEffect" + el2); // 👈️ element here
-  // }, []);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -43,16 +38,22 @@ const VenueSetup = () => {
     setError,
     clearErrors,
     getFieldState,
-    getValues,
+    setValue,
     formState: { errors, isSubmitting, isValid },
   } = useForm({
     criteriaMode: "all",
   });
 
+  const [file, setFile] = useState({ name: "", content: "" });
+  const inputRef = useRef();
+  let hiddenInputField;
+  useEffect(() => {
+    hiddenInputField = inputRef.current.children.logotype;
+    console.log(hiddenInputField); // 👈️ element here
+  }, []);
   const primaryEmailState = getFieldState("primaryEmail");
 
   const handleFormSubmit = async (data) => {
-    data.logotype = await toBase64(data.logotype[0]);
     const params = snakecasekeys(data);
     if (edit) {
       dispatch(editVenue({ ...params, id: vendor.id }));
@@ -79,6 +80,12 @@ const VenueSetup = () => {
     }
   };
 
+  const changedFile = async (event) => {
+    const name = event.target.files[0].name;
+    const base64 = await toBase64(event.target.files[0]);
+    setValue("logotype", base64);
+    setFile({ name: name, content: base64 });
+  };
   return (
     <Stack minH={"80vh"} direction={{ base: "column", md: "row" }} m={1}>
       <Flex p={8} flex={1} align={"top"} justify={"left"}>
@@ -174,33 +181,31 @@ const VenueSetup = () => {
             </FormControl>
             <FormControl>
               <FormLabel>{t("forms.elements.logotype")}</FormLabel>
-              <InputGroup>
+              <InputGroup ref={inputRef}>
                 <InputLeftElement pointerEvents="none">
                   <Icon as={FiImage} />
                 </InputLeftElement>
                 <input
                   data-cy="logotype"
                   type="file"
-                  id="logotype"
+                  name="logotype"
                   accept={"image/*"}
-                  onChange={() => {
-                    debugger;
-                  }}
-                  ref={(el) => (inputRef.current = el)}
+                  onInputCapture={changedFile}
                   style={{ display: "none" }}
                   {...register("logotype")}
                 />
                 <Input
+                  data-cy="logotypeFake"
                   placeholder={t("forms.elements.logotypePlaceholder")}
-                  // onClick={() => inputRef.current.click()}
-                  onClick={() => document.getElementById("logotype").click()}
+                  onClick={() => inputRef.current.children.logotype.click()}
                   readOnly={true}
-                  value={
-                    getValues("logotype") && getValues("logotype")[0]?.name
-                  }
+                  value={file && file.name}
                 />
               </InputGroup>
             </FormControl>
+            {file && (
+              <Image src={file.content} width={"200px"} height={"auto"} paddingTop={5} />
+            )}
             <Button
               mt={4}
               colorScheme="teal"
