@@ -63,17 +63,19 @@ const VenueSetup = () => {
   };
 
   const checkEmail = async (email) => {
-    const response = await auth.privateRoute("/api/validate_user", {
-      method: "POST",
-      data: { uid: email },
-    });
-    if (response.data.message === "conflict") {
-      setError("primaryEmail", {
-        message: t("forms.messages.notUnique"),
-        shouldFocus: true,
+    if (!edit) {
+      const response = await auth.privateRoute("/api/validate_user", {
+        method: "POST",
+        data: { uid: email },
       });
-    } else {
-      clearErrors("primaryEmail");
+      if (response.data.message === "conflict") {
+        setError("primaryEmail", {
+          message: t("forms.messages.notUnique"),
+          shouldFocus: true,
+        });
+      } else {
+        clearErrors("primaryEmail");
+      }
     }
   };
 
