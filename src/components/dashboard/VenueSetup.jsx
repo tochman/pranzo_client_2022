@@ -6,9 +6,13 @@ import {
   FormLabel,
   FormHelperText,
   Heading,
+  InputGroup,
+  InputLeftElement,
   Input,
   Textarea,
   Stack,
+  Icon,
+  Image,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,7 +22,9 @@ import snakecasekeys from "snakecase-keys";
 import { setupVenue, editVenue } from "../../state/features/vendors";
 import { emailRegex } from "../../state/utilities/utilities";
 import { auth } from "../../state/utilities/authConfig";
-
+import { FiImage } from "react-icons/fi";
+import { toBase64 } from "../../modules/ImageEncoder";
+import { useRef, useEffect, useState } from "react";
 const VenueSetup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,14 +38,22 @@ const VenueSetup = () => {
     setError,
     clearErrors,
     getFieldState,
+    setValue,
     formState: { errors, isSubmitting, isValid },
   } = useForm({
     criteriaMode: "all",
   });
 
+  const [file, setFile] = useState({ name: "", content: "" });
+  const inputRef = useRef();
+  let hiddenInputField;
+  useEffect(() => {
+    hiddenInputField = inputRef.current.children.logotype;
+    console.log(hiddenInputField); // 👈️ element here
+  }, []);
   const primaryEmailState = getFieldState("primaryEmail");
 
-  const handleFormSubmit = (data) => {
+  const handleFormSubmit = async (data) => {
     const params = snakecasekeys(data);
     if (edit) {
       dispatch(editVenue({ ...params, id: vendor.id }));
@@ -50,20 +64,28 @@ const VenueSetup = () => {
   };
 
   const checkEmail = async (email) => {
-    const response = await auth.privateRoute("/api/validate_user", {
-      method: "POST",
-      data: { uid: email },
-    });
-    if (response.data.message === "conflict") {
-      setError("primaryEmail", {
-        message: t("forms.messages.notUnique"),
-        shouldFocus: true,
+    if (!edit) {
+      const response = await auth.privateRoute("/api/validate_user", {
+        method: "POST",
+        data: { uid: email },
       });
-    } else {
-      clearErrors("primaryEmail");
+      if (response.data.message === "conflict") {
+        setError("primaryEmail", {
+          message: t("forms.messages.notUnique"),
+          shouldFocus: true,
+        });
+      } else {
+        clearErrors("primaryEmail");
+      }
     }
   };
 
+  const changedFile = async (event) => {
+    const name = event.target.files[0].name;
+    const base64 = await toBase64(event.target.files[0]);
+    setValue("logotype", base64);
+    setFile({ name: name, content: base64 });
+  };
   return (
     <Stack minH={"80vh"} direction={{ base: "column", md: "row" }} m={1}>
       <Flex p={8} flex={1} align={"top"} justify={"left"}>
@@ -117,11 +139,14 @@ const VenueSetup = () => {
               <FormErrorMessage>
                 {errors.vat_id && errors.vat_id.message}
               </FormErrorMessage>
-              <FormHelperText>{t("venue.formElements.venueVatidHelper")}</FormHelperText>
+              <FormHelperText>
+                {t("venue.formElements.venueVatidHelper")}
+              </FormHelperText>
             </FormControl>
             <FormControl isInvalid={errors.description}>
               <FormLabel htmlFor="description">
-                {t("venue.formElements.description")} {t("forms.elements.optional")}
+                {t("venue.formElements.description")}{" "}
+                {t("forms.elements.optional")}
               </FormLabel>
               <Textarea
                 data-cy="description"
@@ -154,6 +179,33 @@ const VenueSetup = () => {
                 {errors.primaryEmail && errors.primaryEmail.message}
               </FormErrorMessage>
             </FormControl>
+            <FormControl>
+              <FormLabel>{t("forms.elements.logotype")}</FormLabel>
+              <InputGroup ref={inputRef}>
+                <InputLeftElement pointerEvents="none">
+                  <Icon as={FiImage} />
+                </InputLeftElement>
+                <input
+                  data-cy="logotype"
+                  type="file"
+                  name="logotype"
+                  accept={"image/*"}
+                  onInputCapture={changedFile}
+                  style={{ display: "none" }}
+                  {...register("logotype")}
+                />
+                <Input
+                  data-cy="logotypeFake"
+                  placeholder={t("forms.elements.logotypePlaceholder")}
+                  onClick={() => inputRef.current.children.logotype.click()}
+                  readOnly={true}
+                  value={file && file.name}
+                />
+              </InputGroup>
+            </FormControl>
+            {file && (
+              <Image src={file.content} width={"200px"} height={"auto"} paddingTop={5} />
+            )}
             <Button
               mt={4}
               colorScheme="teal"

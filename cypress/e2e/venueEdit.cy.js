@@ -8,7 +8,7 @@ describe("Venue edit", () => {
       });
       cy.intercept("POST", "**/api/validate_user", {
         fixture: "emailOk.json",
-      }).as('checkEmail')
+      }).as("checkEmail");
       cy.applicationState().invoke("dispatch", {
         type: "user/setVenue",
         payload: fixture.vendor,
@@ -38,12 +38,18 @@ describe("Venue edit", () => {
           .clear()
           .type("A corporate chain with no charm....");
         cy.getCy("email").clear().type("info@starbugs.io");
-        cy.getCy("submit").click();
+        cy.getCy("logotype").attachFile("dummy.jpeg");
+        cy.getCy("submit").click({force: true});
       });
 
       it("is expected to make a network call on submit", () => {
         cy.wait("@venueEdit").its("request.method").should("eql", "PUT");
       });
+
+      // This won't work with the current way of attaching the image in Cypress
+      // it.only("is expected to set file name in fake input", () => {
+      //   cy.getCy("logotypeFake").should('have.value', 'dummy.jpeg')
+      // });
 
       it("is expected to include form data as params", () => {
         cy.wait("@venueEdit").then(({ request }) => {

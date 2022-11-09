@@ -79,6 +79,8 @@ export const SE = {
         optional: "(frivillig)",
         create: "Skapa",
         submit: "Skicka",
+        logotype: "Logotyp",
+        logotypePlaceholder: "Lägg till din logotyp",
         email: "Mailadress",
         mobilePass: "Skapa digitalt kort?",
         pdfCard: "Skapa PDF?",
