@@ -23,9 +23,14 @@ import { emailRegex } from "../../state/utilities/utilities";
 import { auth } from "../../state/utilities/authConfig";
 import { FiImage } from "react-icons/fi";
 import { toBase64 } from "../../modules/ImageEncoder";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 const VenueSetup = () => {
-  const inputRef = useRef();
+  const inputRef = useRef(null);
+  // useEffect(() => {
+  //   const el2 = inputRef.current;
+  //   debugger;
+  //   console.log("from useEffect" + el2); // 👈️ element here
+  // }, []);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -174,15 +179,19 @@ const VenueSetup = () => {
                 <input
                   data-cy="logotype"
                   type="file"
+                  id="logotype"
                   accept={"image/*"}
-                  ref={inputRef}
+                  onChange={() => {
+                    debugger;
+                  }}
+                  ref={(el) => (inputRef.current = el)}
                   style={{ display: "none" }}
-  
                   {...register("logotype")}
                 />
                 <Input
                   placeholder={t("forms.elements.logotypePlaceholder")}
-                  onClick={() => inputRef.current.click()}
+                  // onClick={() => inputRef.current.click()}
+                  onClick={() => document.getElementById("logotype").click()}
                   readOnly={true}
                   value={
                     getValues("logotype") && getValues("logotype")[0]?.name

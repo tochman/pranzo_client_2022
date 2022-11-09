@@ -39,7 +39,7 @@ describe("Venue edit", () => {
           .type("A corporate chain with no charm....");
         cy.getCy("email").clear().type("info@starbugs.io");
         cy.getCy("logotype").attachFile("dummy.jpeg");
-        cy.getCy("submit").click({force: true});
+        // cy.getCy("submit").click({force: true});
       });
 
       it.only("is expected to make a network call on submit", () => {
