@@ -3,6 +3,7 @@
     "id": 100,
     "name": "StarBugs",
     "vat_id": "SE999999999901",
+    "logotype": "https://source.unsplash.com/random/?logo",
     "description": "A corporate chain with no charm....",
     "primary_email": "info@starbugs.io",
     "legal_name": "The Other Place Inc.",

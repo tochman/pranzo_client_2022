@@ -1,4 +1,12 @@
-import { Box, Text, Stack, Flex, Button, Heading } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Stack,
+  Flex,
+  Button,
+  Heading,
+  Image,
+} from "@chakra-ui/react";
 import Card from "./templates/Card";
 import CardHeader from "./templates/CardHeader";
 import CardBody from "./templates/CardBody";
@@ -27,13 +35,17 @@ const VenueView = () => {
                 <Heading as="h2" size={"lg"}>
                   {t("dashboard.headings.myVenue")}
                 </Heading>
+                <Image
+                  src={vendor.logotype}
+                  width={"200px"}
+                  height={"auto"}
+                  paddingTop={5}
+                />
                 <CardHeader mt={4}>
                   <Text fontSize="lg" fontWeight="bold">
                     {vendor.name}
                   </Text>
-                  <Text fontSize="lg" >
-                    {vendor.legal_name}
-                  </Text>
+                  <Text fontSize="lg">{vendor.legal_name}</Text>
                   <Text fontSize={"small"} fontWeight="bold">
                     {t("venue.formElements.primaryEmail") + ": "}
                     <Box as="span" fontWeight="normal">
@@ -44,7 +56,7 @@ const VenueView = () => {
               </Box>
               <Button
                 onClick={() =>
-                  navigate("/dashboard/venue/setup", { state: { edit: true }})
+                  navigate("/dashboard/venue/setup", { state: { edit: true } })
                 }
                 data-cy="venue-edit-button"
                 variant={"outline"}

@@ -28,6 +28,7 @@ beforeEach(() => {
 beforeEach(() => {
   cy.intercept("?restaurant", { fixture: "dummy.jpeg" });
   cy.intercept("?avatar", { fixture: "dummy.jpeg" });
+  cy.intercept("?logo", { fixture: "bocado_logo_color.png" });
 });
 
 afterEach(() => {
