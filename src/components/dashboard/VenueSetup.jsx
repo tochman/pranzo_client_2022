@@ -20,7 +20,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import snakecasekeys from "snakecase-keys";
 import { setupVenue, editVenue } from "../../state/features/vendors";
-import { emailRegex } from "../../state/utilities/utilities";
+import { emailRegex, toastMessage } from "../../state/utilities/utilities";
 import { auth } from "../../state/utilities/authConfig";
 import { FiImage } from "react-icons/fi";
 import { toBase64 } from "../../modules/ImageEncoder";
@@ -44,7 +44,7 @@ const VenueSetup = () => {
     criteriaMode: "all",
   });
 
-  const [file, setFile] = useState({ name: "", content: "" });
+  const [file, setFile] = useState();
   const inputRef = useRef();
   let hiddenInputField;
   useEffect(() => {
@@ -82,9 +82,13 @@ const VenueSetup = () => {
 
   const changedFile = async (event) => {
     const name = event.target.files[0].name;
-    const base64 = await toBase64(event.target.files[0]);
-    setValue("logotype", base64);
-    setFile({ name: name, content: base64 });
+    try {
+      const base64 = await toBase64(event.target.files[0]);
+      setValue("logotype", base64);
+      setFile({ name: name, content: base64 });
+    } catch (error) {
+      toastMessage([error])
+    }
   };
   return (
     <Stack minH={"80vh"} direction={{ base: "column", md: "row" }} m={1}>
@@ -190,7 +194,7 @@ const VenueSetup = () => {
                   type="file"
                   name="logotype"
                   accept={"image/*"}
-                  onInputCapture={changedFile}
+                  onInput={changedFile}
                   style={{ display: "none" }}
                   {...register("logotype")}
                 />
@@ -204,7 +208,12 @@ const VenueSetup = () => {
               </InputGroup>
             </FormControl>
             {file && (
-              <Image src={file.content} width={"200px"} height={"auto"} paddingTop={5} />
+              <Image
+                src={file.content}
+                width={"200px"}
+                height={"auto"}
+                paddingTop={5}
+              />
             )}
             <Button
               mt={4}
@@ -212,7 +221,7 @@ const VenueSetup = () => {
               isLoading={isSubmitting}
               type="submit"
               data-cy="submit"
-              disabled={primaryEmailState.error}
+              disabled={!file}
             >
               {t("forms.elements.submit")}
             </Button>

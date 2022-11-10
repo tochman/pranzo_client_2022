@@ -38,11 +38,14 @@ describe("Venue edit", () => {
           .clear()
           .type("A corporate chain with no charm....");
         cy.getCy("email").clear().type("info@starbugs.io");
-        cy.getCy("logotype").attachFile("dummy.jpeg");
+        cy.getCy("logotype").selectFile("cypress/fixtures/bjorsjoas_logo_old_black.png", {
+          force: true,
+        });
+        cy.wait(500)
         cy.getCy("submit").click({ force: true });
       });
 
-      it("is expected to make a network call on submit", () => {
+      it.only("is expected to make a network call on submit", () => {
         cy.wait("@venueEdit").its("request.method").should("eql", "PUT");
       });
 
