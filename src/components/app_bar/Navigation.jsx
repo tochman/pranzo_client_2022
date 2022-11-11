@@ -157,8 +157,12 @@ const Navigation = () => {
                 data-cy="user-avatar"
               >
                 <Avatar
-                  size={"sm"}
-                  src={"https://source.unsplash.com/random/?avatar"}
+                  size="sm"
+                  backgroundColor={'#d53f8c'}
+                  color={'white'}
+                  name={currentUser.name}
+                  cursor="pointer"
+                  src={currentUser.avatar && currentUser.avatar}
                 />
               </MenuButton>
               <MenuList>

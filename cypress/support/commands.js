@@ -18,3 +18,13 @@ Cypress.Commands.add("authenticateUser", (options) => {
     payload: { ...defaultSettings, ...options },
   });
 });
+
+Cypress.Commands.add('authenticateWithTokenAndVisit', () => {
+  cy.intercept("GET", "**/auth/validate_token**", {
+    fixture: "authenticatedUser.json",
+  }).as("validateTokenCall");
+  cy.visit("/");
+  const values =
+    '{"access-token":"pCTtJ6i-ZQOigaeRc8XuhQ", "uid":"user@mail.com"}';
+  cy.setLocalStorage("auth-storage", values);
+})
