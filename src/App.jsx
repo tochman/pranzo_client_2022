@@ -18,6 +18,7 @@ import { validateUserByToken } from "./state/features/authentication";
 import { getHeaders } from "./state/utilities/authConfig";
 import AffiliateSetup from "./components/dashboard/AffiliateSetup";
 import ReportCreate from "./components/dashboard/ReportCreate";
+import Profile from "./components/user/Profile";
 
 const App = () => {
   const { authenticated } = useSelector((state) => state.user);
@@ -57,6 +58,7 @@ const App = () => {
               path="/dashboard/reports/create"
               element={<ReportCreate />}
             />
+            <Route path="/user" element={<Profile />} />
           </Route>
           <Route path="/join-pranzo" element={<PranzoProcess />} />
           <Route path="/auth/sign-up" element={<SignUp />} />

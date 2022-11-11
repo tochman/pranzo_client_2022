@@ -166,6 +166,7 @@ const Navigation = () => {
                   <MenuItem
                     data-cy="user-name"
                     style={{ outline: "none", borderColor: "transparent" }}
+                    onClick={() => navigate("/user")}
                   >
                     <FiUser />
                     <Box pl={2}>{currentUser.name}</Box>
