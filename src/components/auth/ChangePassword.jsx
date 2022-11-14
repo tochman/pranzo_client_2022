@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { changePassword } from "../../state/features/authentication";
 
-const ChangePassword = () => {
+const ChangePassword = ({setShowResetForm}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { authenticated } = useSelector((state) => state.user);
@@ -27,7 +27,9 @@ const ChangePassword = () => {
 
 
   const handleFormSubmission = (data) => {
-    dispatch(changePassword(data));
+    dispatch(changePassword(data)).then(resp => {
+      setShowResetForm(!resp.payload)
+    });
   };
 
   return (

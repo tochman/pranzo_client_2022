@@ -186,6 +186,7 @@ export const GB = {
         currentPassword: "Current password",
         newPassword: "New password",
         newPasswordConfirmation: "Confirm new password",
+        successMessage: "Your password was successfully changed"
       },
     },
     appBar: {

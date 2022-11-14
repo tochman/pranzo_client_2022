@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toastMessage } from "../utilities/utilities";
 import { auth, getHeaders } from "../utilities/authConfig";
 import { endSession, setVenue, setVouchers } from "./userSlice";
+import i18n from "../../i18n";
 
 const storeVendorData = createAsyncThunk(
   "vendor/storeVendorData",
@@ -55,9 +56,13 @@ export const changePassword = createAsyncThunk(
         params.newPassword,
         params.newPasswordConfirmation
       );
-      dispatch({ type: "user/setCurrentUser", payload: response.data });
+
+      dispatch({ type: "user/setCurrentUser", payload: response.data.data });
+      toastMessage([i18n.t('authentication.changePassword.successMessage')], (status =  "success"))
+      return true
     } catch (error) {
       toastMessage(error.response.data.errors.full_messages);
+      return false
     }
   }
 );
