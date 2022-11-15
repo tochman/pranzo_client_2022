@@ -26,5 +26,13 @@ describe("User profile", () => {
         .its("request.method")
         .should("eql", "PUT");
     });
+
+    it("is expected to include form data as params", () => {
+      cy.wait("@passwordResetRequest").then(({ request }) => {
+        expect(request.body.current_password).to.eql("current_password");
+        expect(request.body.password).to.eql("new_password");
+        expect(request.body.password_confirmation).to.eql("new_password");
+      });
+    });
   });
 });
