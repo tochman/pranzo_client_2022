@@ -8,7 +8,7 @@ describe("User profile", () => {
     cy.getCy("user-name").click();
   });
 
-  it("", () => {
+  it("is expected to navigate to profile path", () => {
     cy.location("pathname").should("eq", "/user");
   });
 

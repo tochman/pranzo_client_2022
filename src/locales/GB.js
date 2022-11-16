@@ -188,6 +188,12 @@ export const GB = {
         newPasswordConfirmation: "Confirm new password",
         successMessage: "Your password was successfully changed"
       },
+      resetPassword: {
+        text: 'Forgot your password? ',
+        link: 'Click here.',
+        header: "Request new password",
+        subHeader: "If you have forgotten your password, you can request a new one. An email with a instructions will be sent to you."
+      }
     },
     appBar: {
       signIn: "Sign In",

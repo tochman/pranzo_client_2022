@@ -66,6 +66,8 @@ export const changePassword = createAsyncThunk(
     }
   }
 );
+
+
 export const validateUserByToken = createAsyncThunk(
   "user/validateUserByToken",
   async (undefined, { dispatch }) => {
