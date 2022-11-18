@@ -150,7 +150,8 @@ export const GB = {
       formElements: {
         venueName: "Name",
         venueVatid: "VAT number",
-        venueVatidHelper: "A VAT registration number or VAT number (international) is a number based on the organization number. For the organization number to become a VAT registration number, enter Sweden's country code SE before the first digit, and end with 01. SEXXXXXXXXX01",
+        venueVatidHelper:
+          "A VAT registration number or VAT number (international) is a number based on the organization number. For the organization number to become a VAT registration number, enter Sweden's country code SE before the first digit, and end with 01. SEXXXXXXXXX01",
         description: "Description",
         primaryEmail: "Primary email",
       },
@@ -179,6 +180,12 @@ export const GB = {
         email: "Your email",
         password: "Password",
         passwordConfirmation: "Confirm your password",
+      },
+      changePassword: {
+        header: "Change your password",
+        currentPassword: "Current password",
+        newPassword: "New password",
+        newPasswordConfirmation: "Confirm new password",
       },
     },
     appBar: {

@@ -45,6 +45,22 @@ export const signInUser = createAsyncThunk(
     }
   }
 );
+
+export const changePassword = createAsyncThunk(
+  "user/changePassword",
+  async (params, { dispatch }) => {
+    try {
+      const response = await auth.changePassword(
+        params.currentPassword,
+        params.newPassword,
+        params.newPasswordConfirmation
+      );
+      dispatch({ type: "user/setCurrentUser", payload: response.data });
+    } catch (error) {
+      toastMessage(error.response.data.errors.full_messages);
+    }
+  }
+);
 export const validateUserByToken = createAsyncThunk(
   "user/validateUserByToken",
   async (undefined, { dispatch }) => {
