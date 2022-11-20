@@ -10,17 +10,14 @@ import {
   Stack,
   Image,
 } from "@chakra-ui/react";
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { resetPassword } from "../../state/features/authentication";
 import { emailRegex } from "../../state/utilities/utilities";
-
 const ResetPassword = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { authenticated } = useSelector((state) => state.user);
   const { t } = useTranslation();
   const {
@@ -28,12 +25,14 @@ const ResetPassword = () => {
     register,
     formState: { errors, isSubmitting },
   } = useForm();
-  useEffect(() => {
-    authenticated && navigate("/");
-  }, [authenticated]);
+  const navigate = useNavigate();
 
   const handleFormSubmission = (data) => {
-    dispatch(signInUser(data));
+    dispatch(resetPassword(data)).then((resp) => {
+      if (resp.meta.requestStatus === "fulfilled") {
+        navigate('/auth/sign-in')
+      }
+    });
   };
 
   return (
@@ -43,9 +42,7 @@ const ResetPassword = () => {
           <Heading fontSize={"2xl"}>
             {t("authentication.resetPassword.header")}
           </Heading>
-          <Text>
-          {t("authentication.resetPassword.subHeader")}
-          </Text>
+          <Text>{t("authentication.resetPassword.subHeader")}</Text>
           <form
             data-cy="sign-in-form"
             onSubmit={handleSubmit(handleFormSubmission)}
@@ -73,7 +70,6 @@ const ResetPassword = () => {
                 {errors.email && errors.email.message}
               </FormErrorMessage>
             </FormControl>
-
 
             <Stack spacing={6} mt={5}>
               <Button

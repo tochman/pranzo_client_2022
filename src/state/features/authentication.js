@@ -67,6 +67,19 @@ export const changePassword = createAsyncThunk(
   }
 );
 
+export const resetPassword = createAsyncThunk(
+  "user/resetPassword",
+  async (params) => {
+    const redirectUrl = import.meta.env.PROD ? 'https://pranzo.se/auth/change-password' : 'http://localhost:3000/auth/change-password'
+    try {
+      const response = await auth.resetPassword(params.email, redirectUrl)
+      toastMessage([response.data.message], (status =  "success"));
+    } catch (error) {
+      toastMessage(error.response.data.errors.full_messages);
+      return false
+    }
+  }
+)
 
 export const validateUserByToken = createAsyncThunk(
   "user/validateUserByToken",
