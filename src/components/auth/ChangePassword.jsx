@@ -11,10 +11,9 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { changePassword } from "../../state/features/authentication";
-
-const ChangePassword = ({setShowResetForm}) => {
+const ChangePassword = ({ setShowResetForm }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { authenticated } = useSelector((state) => state.user);
@@ -24,42 +23,58 @@ const ChangePassword = ({setShowResetForm}) => {
     register,
     formState: { errors, isSubmitting },
   } = useForm();
-
-
+  const { resetToken } = useParams();
   const handleFormSubmission = (data) => {
-    dispatch(changePassword(data)).then(resp => {
-      setShowResetForm(!resp.payload)
+    dispatch(changePassword(data)).then((resp) => {
+      setShowResetForm(!resp.payload);
     });
   };
 
   return (
     <Stack spacing={4} w={"full"} maxW={"md"}>
-      <Heading fontSize={"2xl"}>{t("authentication.changePassword.header")}</Heading>
+      <Heading fontSize={"2xl"}>
+        { resetToken ? t("authentication.resetPassword.formHeader") : t("authentication.changePassword.header")} 
+      </Heading>
       <form
         data-cy="sign-in-form"
         onSubmit={handleSubmit(handleFormSubmission)}
       >
-        <FormControl isInvalid={errors.email}>
-          <FormLabel>{t("authentication.changePassword.currentPassword")}</FormLabel>
+        {resetToken && (
           <Input
-            name="currentPassword"
-            data-cy="current-password-field"
-            type="password"
-            autocomplete="password"
-            {...register("currentPassword", {
-              required: t("forms.messages.required"),
-              minLength: {
-                value: 4,
-                message: t("forms.messages.minLength", { length: 4 }),
-              },
-            })}
+            data-cy="reset-token"
+            type={"hidden"}
+            id="resetToken"
+            {...register("resetToken", { value: resetToken })}
           />
-          <FormErrorMessage>
-            {errors.currentPassword && errors.currentPassword.message}
-          </FormErrorMessage>
-        </FormControl>
+        )}
+
+        {!resetToken && (
+          <FormControl isInvalid={errors.email}>
+            <FormLabel>
+              {t("authentication.changePassword.currentPassword")}
+            </FormLabel>
+            <Input
+              name="currentPassword"
+              data-cy="current-password-field"
+              type="password"
+              autocomplete="password"
+              {...register("currentPassword", {
+                required: t("forms.messages.required"),
+                minLength: {
+                  value: 4,
+                  message: t("forms.messages.minLength", { length: 4 }),
+                },
+              })}
+            />
+            <FormErrorMessage>
+              {errors.currentPassword && errors.currentPassword.message}
+            </FormErrorMessage>
+          </FormControl>
+        )}
         <FormControl isInvalid={errors.password}>
-          <FormLabel>{t("authentication.changePassword.newPassword")}</FormLabel>
+          <FormLabel>
+            {t("authentication.changePassword.newPassword")}
+          </FormLabel>
           <Input
             name="newPassword"
             data-cy="new-password-field"

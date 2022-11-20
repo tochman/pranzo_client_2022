@@ -58,4 +58,16 @@ describe("Reset Password process", () => {
       });
     });
   });
+
+  context.only('clicking the link with rest token', () => {
+    
+    beforeEach(() => {
+      cy.visit('/auth/change-password/12345')
+    });
+
+    it('is expected to create hidden field', () => {
+      cy.getCy('reset-token').should('exist')
+    });
+
+  });
 });

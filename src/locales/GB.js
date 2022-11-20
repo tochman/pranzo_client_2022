@@ -192,6 +192,7 @@ export const GB = {
         text: 'Forgot your password? ',
         link: 'Click here.',
         header: "Request new password",
+        formHeader: "Choose new password",
         subHeader: "If you have forgotten your password, you can request a new one. An email with a instructions will be sent to you."
       }
     },
