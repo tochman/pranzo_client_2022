@@ -59,7 +59,7 @@ describe("Reset Password process", () => {
     });
   });
 
-  context.only('clicking the link with rest token', () => {
+  context('clicking the link with rest token', () => {
     
     beforeEach(() => {
       cy.visit('/auth/change-password/12345')
@@ -68,6 +68,10 @@ describe("Reset Password process", () => {
     it('is expected to create hidden field', () => {
       cy.getCy('reset-token').should('exist')
     });
+
+    it('is expected to use a wrapper around the ui', () => {
+      cy.getCy('reset-password-wrapper').should('exist')
+    }); 
 
   });
 });

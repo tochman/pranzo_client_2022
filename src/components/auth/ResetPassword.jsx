@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { resetPassword } from "../../state/features/authentication";
 import { emailRegex } from "../../state/utilities/utilities";
+
 const ResetPassword = () => {
   const dispatch = useDispatch();
   const { authenticated } = useSelector((state) => state.user);
@@ -29,8 +30,8 @@ const ResetPassword = () => {
 
   const handleFormSubmission = (data) => {
     dispatch(resetPassword(data)).then((resp) => {
-      if (resp.meta.requestStatus === "fulfilled") {
-        navigate('/auth/sign-in')
+      if (resp.meta.requestStatus === "fulfilled" && resp.payload) {
+        navigate("/auth/sign-in");
       }
     });
   };
