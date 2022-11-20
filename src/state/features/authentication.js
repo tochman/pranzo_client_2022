@@ -75,7 +75,7 @@ export const resetPassword = createAsyncThunk(
       const response = await auth.resetPassword(params.email, redirectUrl)
       toastMessage([response.data.message], (status =  "success"));
     } catch (error) {
-      toastMessage(error.response.data.errors.full_messages);
+      toastMessage(error.response.data.errors);
       return false
     }
   }

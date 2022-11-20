@@ -1,8 +1,6 @@
 describe("Reset Password process", () => {
   beforeEach(() => {
-    cy.intercept("POST", "**/auth/password", {
-      fixture: "passwordResetRequestSuccess.json",
-    }).as("passwordResetRequest");
+
     cy.visit("/auth/sign-in");
   });
 
@@ -15,8 +13,11 @@ describe("Reset Password process", () => {
       cy.location("pathname").should("eq", "/auth/reset-password");
     });
 
-    describe("submitting the form", () => {
+    describe("submitting the form with an existing user", () => {
       beforeEach(() => {
+        cy.intercept("POST", "**/auth/password", {
+          fixture: "passwordResetRequestSuccess.json",
+        }).as("passwordResetRequest");
         cy.getCy("email").type("kalle@random.com");
         cy.getCy("submit").click();
       });
@@ -36,6 +37,24 @@ describe("Reset Password process", () => {
 
       it("is expected to redirect to sign-in view", () => {
         cy.location("pathname").should("eq", "/auth/sign-in");
+      });
+    });
+
+    describe("submitting the form with a nonexisting user", () => {
+      beforeEach(() => {
+        cy.intercept("POST", "**/auth/password", {
+          fixture: "passwordResetRequestError.json", statusCode: 404,
+        }).as("passwordResetRequestError");
+        cy.getCy("email").type("kalle@random.com");
+        cy.getCy("submit").click();
+      });
+
+      it('is expected to display a message', () => {
+        cy.get("body").should("contain.text", "Kunde inte hitta användaren med email 'nonexistent@random.com'.");
+      });
+
+      it("is expected to redirect to sign-in view", () => {
+        cy.location("pathname").should("eq", "/auth/reset-password");
       });
     });
   });
