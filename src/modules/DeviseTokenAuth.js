@@ -64,7 +64,7 @@ class DeviseTokenAuth {
     axios
       .get(this.signInUrl)
       .then((response) => {
-yarn.lock        console.log(`Connection success: `);
+        console.log(`Connection success: `);
         console.table(response.data);
       })
       .catch((error) => {
