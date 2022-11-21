@@ -188,6 +188,13 @@ export const SE = {
         newPassword: "Nytt löseord",
         newPasswordConfirmation: "Bekräfta nytt lösenord",
       },
+      resetPassword: {
+        text: 'Glömt lösenord? ',
+        link: 'Klicka här.',
+        header: "Begär nytt lösenord",
+        formHeader: "Välj ditt lösenord",
+        subHeader: "Om du har glömt ditt lösenord, kan du begära ett nytt. Ett mail med instruktioner kommer att skickas till dig."
+      }
     },
     appBar: {
       signIn: "Logga in",
