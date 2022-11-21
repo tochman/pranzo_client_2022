@@ -19,6 +19,9 @@ import { getHeaders } from "./state/utilities/authConfig";
 import AffiliateSetup from "./components/dashboard/AffiliateSetup";
 import ReportCreate from "./components/dashboard/ReportCreate";
 import Profile from "./components/user/Profile";
+import ResetPassword from "./components/auth/ResetPassword";
+import ChangePassword from "./components/auth/ChangePassword";
+
 
 const App = () => {
   const { authenticated } = useSelector((state) => state.user);
@@ -63,6 +66,8 @@ const App = () => {
           <Route path="/join-pranzo" element={<PranzoProcess />} />
           <Route path="/auth/sign-up" element={<SignUp />} />
           <Route path="/auth/sign-in" element={<SignIn />} />
+          <Route path="/auth/reset-password" element={<ResetPassword />} />
+          <Route path="/auth/change-password/:resetToken" element={<ChangePassword />} />
         </Routes>
       </Box>
       <Footer />

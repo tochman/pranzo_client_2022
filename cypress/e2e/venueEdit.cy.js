@@ -45,7 +45,7 @@ describe("Venue edit", () => {
         cy.getCy("submit").click({ force: true });
       });
 
-      it.only("is expected to make a network call on submit", () => {
+      it("is expected to make a network call on submit", () => {
         cy.wait("@venueEdit").its("request.method").should("eql", "PUT");
       });
 

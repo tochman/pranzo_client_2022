@@ -182,6 +182,12 @@ export const SE = {
         password: "Lösenord",
         passwordConfirmation: "Bekräfta ditt lösenord",
       },
+      changePassword: {
+        header: "Ändra lösenord",
+        currentPassword: "Nuvarande lösenord",
+        newPassword: "Nytt löseord",
+        newPasswordConfirmation: "Bekräfta nytt lösenord",
+      },
     },
     appBar: {
       signIn: "Logga in",

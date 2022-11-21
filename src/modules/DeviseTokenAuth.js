@@ -205,6 +205,29 @@ class DeviseTokenAuth {
     });
   }
 
+  resetPasswordWithToken(token, newPassword, newPasswordConfirmation) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const resetPasswordResponse = await axios.put(
+          `${this.apiAuthUrl}/password`,
+          {
+            reset_password_token: token,
+            password: newPassword,
+            password_confirmation: newPasswordConfirmation,
+          },
+          {
+            headers: { ...this.session },
+          }
+        );
+        this.debugIfActive(resetPasswordResponse);
+        resolve(resetPasswordResponse);
+      } catch (err) {
+        this.debugIfActive(err.response);
+        reject(err);
+      }
+    });
+  }
+
   resetPassword(email, redirectUrl) {
     return new Promise(async (resolve, reject) => {
       try {
