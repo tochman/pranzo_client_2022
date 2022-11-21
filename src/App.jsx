@@ -67,7 +67,7 @@ const App = () => {
           <Route path="/auth/sign-up" element={<SignUp />} />
           <Route path="/auth/sign-in" element={<SignIn />} />
           <Route path="/auth/reset-password" element={<ResetPassword />} />
-          <Route path="/auth/change-password/:resetToken" element={<ChangePassword />} />
+          <Route path="/auth/change-password" element={<ChangePassword />} />
         </Routes>
       </Box>
       <Footer />

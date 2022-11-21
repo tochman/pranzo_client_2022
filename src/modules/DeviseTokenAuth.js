@@ -220,6 +220,7 @@ class DeviseTokenAuth {
           }
         );
         this.debugIfActive(resetPasswordResponse);
+        this.setSession(resetPasswordResponse.headers);
         resolve(resetPasswordResponse);
       } catch (err) {
         this.debugIfActive(err.response);

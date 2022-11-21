@@ -8,12 +8,16 @@ import {
   Input,
   Stack,
 } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { changePassword, resetPassword } from "../../state/features/authentication";
+import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
+import {
+  changePassword,
+  resetPassword,
+} from "../../state/features/authentication";
+import { auth } from "../../state/utilities/authConfig";
 
 const ConditionalWrapper = ({ condition, wrapper, children }) => {
   return condition ? wrapper(children) : children;
@@ -22,19 +26,36 @@ const ConditionalWrapper = ({ condition, wrapper, children }) => {
 const ChangePassword = ({ setShowResetForm }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { authenticated } = useSelector((state) => state.user);
   const { t } = useTranslation();
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
   } = useForm();
-  const { resetToken } = useParams();
+  let [resetToken, setResetToken] = useState({});
+  // access-token=AVentiKzhU_zPsSgHD-Mjw&client=gx26GiPIZtUsR3z1LNXQIA&client_id=gx26GiPIZtUsR3z1LNXQIA&config=default&expiry=1670276329&reset_password=true&token=AVentiKzhU_zPsSgHD-Mjw&uid=thomas%2Bfake%40craftacademy.se
+  const location = useLocation();
+  var queryParamsToObject = (string) => {
+    const obj = {};
+    string
+      .replace(/\?/g, "")
+      .replace(/([^=&]+)=([^&]*)/g, function (m, key, value) {
+        obj[decodeURIComponent(key)] = decodeURIComponent(value);
+      });
+    return obj;
+  };
+
+  useEffect(() => {
+    const params = queryParamsToObject(location.search);
+    async () => (await auth.setSession(params))()
+    setResetToken(params.token)
+  }, []);
+
   const handleFormSubmission = (data) => {
     if (resetToken) {
-      dispatch(resetPassword(data)).then(resp => {
-        navigate('/auth/sign-in')
-      })
+      dispatch(resetPassword(data)).then((resp) => {
+        navigate("/auth/sign-in");
+      });
     } else {
       dispatch(changePassword(data)).then((resp) => {
         setShowResetForm(!resp.payload);
@@ -42,7 +63,11 @@ const ChangePassword = ({ setShowResetForm }) => {
     }
   };
   const wrapperElements = (children) => (
-    <Stack minH={"100vh"} direction={{ base: "column", md: "row" }} data-cy="reset-password-wrapper">
+    <Stack
+      minH={"100vh"}
+      direction={{ base: "column", md: "row" }}
+      data-cy="reset-password-wrapper"
+    >
       <Flex p={8} flex={1} align={"center"} justify={"center"}>
         {children}
       </Flex>
