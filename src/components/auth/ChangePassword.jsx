@@ -38,7 +38,7 @@ const ChangePassword = ({ setShowResetForm }) => {
 
   useEffect(() => {
     const params = queryParamsToObject(location.search);
-    async () => (await auth.setSession(params))()
+    async () => (await auth.validateToken(params))()
     setResetToken(params.token)
   }, []);
 

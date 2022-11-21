@@ -34,8 +34,8 @@ export const SE = {
       },
       content: {
         stats: {
-          issuedVouchers: "Utfärdade Lunchkort",
-          salesVouchers: "Försäljning Lunchkort",
+          issuedVouchers: "Utfärdade Klippkort",
+          salesVouchers: "Försäljning Klippkort",
           issuedGiftCards: "Utfärdade Presentkort",
           salesGiftCards: "Försäljning Presentkort",
         },
@@ -201,7 +201,7 @@ export const SE = {
       signUp: "Registrera",
       nothingToSeeHere: "Registrera ett konto för att komma åt funktioner.",
     },
-    footer: { slogan: "Lunchkort och presentkort på ett enklare sätt" },
+    footer: { slogan: "Klippkort och presentkort på ett enklare sätt" },
     hero: {
       mainSlogan: "Digitala klipp- eller presentkort. Kom igång direkt!",
       promoText:
