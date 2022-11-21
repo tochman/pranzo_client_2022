@@ -32,6 +32,16 @@ export const pluck = (array, key) => {
 };
 
 export const getWindowSize = () => {
-  const {innerWidth, innerHeight} = window;
-  return {innerWidth, innerHeight};
-}
+  const { innerWidth, innerHeight } = window;
+  return { innerWidth, innerHeight };
+};
+
+export const queryParamsToObject = (string) => {
+  const obj = {};
+  string
+    .replace(/\?/g, "")
+    .replace(/([^=&]+)=([^&]*)/g, function (m, key, value) {
+      obj[decodeURIComponent(key)] = decodeURIComponent(value);
+    });
+  return obj;
+};

@@ -11,13 +11,14 @@ import {
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   changePassword,
   resetPassword,
 } from "../../state/features/authentication";
 import { auth } from "../../state/utilities/authConfig";
+import { queryParamsToObject } from "../../state/utilities/utilities";
 
 const ConditionalWrapper = ({ condition, wrapper, children }) => {
   return condition ? wrapper(children) : children;
@@ -32,18 +33,8 @@ const ChangePassword = ({ setShowResetForm }) => {
     register,
     formState: { errors, isSubmitting },
   } = useForm();
-  let [resetToken, setResetToken] = useState({});
-  // access-token=AVentiKzhU_zPsSgHD-Mjw&client=gx26GiPIZtUsR3z1LNXQIA&client_id=gx26GiPIZtUsR3z1LNXQIA&config=default&expiry=1670276329&reset_password=true&token=AVentiKzhU_zPsSgHD-Mjw&uid=thomas%2Bfake%40craftacademy.se
+  const [resetToken, setResetToken] = useState();
   const location = useLocation();
-  var queryParamsToObject = (string) => {
-    const obj = {};
-    string
-      .replace(/\?/g, "")
-      .replace(/([^=&]+)=([^&]*)/g, function (m, key, value) {
-        obj[decodeURIComponent(key)] = decodeURIComponent(value);
-      });
-    return obj;
-  };
 
   useEffect(() => {
     const params = queryParamsToObject(location.search);
