@@ -64,7 +64,7 @@ class DeviseTokenAuth {
     axios
       .get(this.signInUrl)
       .then((response) => {
-        console.log(`Connection success: `);
+yarn.lock        console.log(`Connection success: `);
         console.table(response.data);
       })
       .catch((error) => {
@@ -200,6 +200,29 @@ class DeviseTokenAuth {
         if (err.response.headers["access-token"]) {
           this.setSession(err.response.headers);
         }
+        reject(err);
+      }
+    });
+  }
+
+  resetPasswordWithToken(token, newPassword, newPasswordConfirmation) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const resetPasswordResponse = await axios.put(
+          `${this.apiAuthUrl}/password`,
+          {
+            reset_password_token: token,
+            password: newPassword,
+            password_confirmation: newPasswordConfirmation,
+          },
+          {
+            headers: { ...this.session },
+          }
+        );
+        this.debugIfActive(resetPasswordResponse);
+        resolve(resetPasswordResponse);
+      } catch (err) {
+        this.debugIfActive(err.response);
         reject(err);
       }
     });

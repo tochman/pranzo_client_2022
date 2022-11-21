@@ -1,6 +1,5 @@
 describe("Reset Password process", () => {
   beforeEach(() => {
-
     cy.visit("/auth/sign-in");
   });
 
@@ -72,6 +71,36 @@ describe("Reset Password process", () => {
     it('is expected to use a wrapper around the ui', () => {
       cy.getCy('reset-password-wrapper').should('exist')
     }); 
+
+    describe.only('submitting the form', () => {
+
+      beforeEach(() => {
+        cy.intercept("PUT", "**/auth/password", { fixture: "resetPasswordSuccess.json" }).as(
+          "passwordReset"
+        );
+        cy.getCy("new-password-field").type("new_password");
+        cy.getCy("new-password-confirmation-field").type("new_password");
+        cy.getCy("change-password-submit").click();
+      });
+
+      it("is expected to make a put request to api", () => {
+        cy.wait("@passwordReset")
+          .its("request.method")
+          .should("eql", "PUT");
+      });
+
+      it("is expected to navigate to sign-in path", () => {
+        cy.location("pathname").should("eq", "/auth/sign-in");
+      });
+
+      it("is expected to display success message", () => {
+        cy.get("body").should(
+          "contain.text",
+          "Ditt lösenord har ändrats"
+        );
+      });
+      
+    });
 
   });
 });

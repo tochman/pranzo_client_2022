@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { changePassword } from "../../state/features/authentication";
+import { changePassword, resetPassword } from "../../state/features/authentication";
 
 const ConditionalWrapper = ({ condition, wrapper, children }) => {
   return condition ? wrapper(children) : children;
@@ -31,9 +31,15 @@ const ChangePassword = ({ setShowResetForm }) => {
   } = useForm();
   const { resetToken } = useParams();
   const handleFormSubmission = (data) => {
-    dispatch(changePassword(data)).then((resp) => {
-      setShowResetForm(!resp.payload);
-    });
+    if (resetToken) {
+      dispatch(resetPassword(data)).then(resp => {
+        navigate('/auth/sign-in')
+      })
+    } else {
+      dispatch(changePassword(data)).then((resp) => {
+        setShowResetForm(!resp.payload);
+      });
+    }
   };
   const wrapperElements = (children) => (
     <Stack minH={"100vh"} direction={{ base: "column", md: "row" }} data-cy="reset-password-wrapper">

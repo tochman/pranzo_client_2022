@@ -58,11 +58,31 @@ export const changePassword = createAsyncThunk(
       );
 
       dispatch({ type: "user/setCurrentUser", payload: response.data.data });
-      toastMessage([i18n.t('authentication.changePassword.successMessage')], (status =  "success"))
-      return true
+      toastMessage(
+        [i18n.t("authentication.changePassword.successMessage")],
+        (status = "success")
+      );
+      return true;
     } catch (error) {
       toastMessage(error.response.data.errors.full_messages);
-      return false
+      return false;
+    }
+  }
+);
+
+export const resetPasswordRequest = createAsyncThunk(
+  "user/resetPasswordRequest",
+  async (params) => {
+    const redirectUrl = import.meta.env.PROD
+      ? "https://pranzo.se/auth/change-password"
+      : "http://localhost:3000/auth/change-password";
+    try {
+      const response = await auth.resetPassword(params.email, redirectUrl);
+      toastMessage([response.data.message], (status = "success"));
+      return true;
+    } catch (error) {
+      toastMessage(error.response.data.errors);
+      return false;
     }
   }
 );
@@ -70,17 +90,20 @@ export const changePassword = createAsyncThunk(
 export const resetPassword = createAsyncThunk(
   "user/resetPassword",
   async (params) => {
-    const redirectUrl = import.meta.env.PROD ? 'https://pranzo.se/auth/change-password' : 'http://localhost:3000/auth/change-password'
     try {
-      const response = await auth.resetPassword(params.email, redirectUrl)
-      toastMessage([response.data.message], (status =  "success"));
-      return true
+      const response = await auth.resetPasswordWithToken(
+        params.resetToken,
+        params.newPassword,
+        params.newPasswordConfirmation
+      );
+      toastMessage([response.data.message], (status = "success"));
+      return true;
     } catch (error) {
       toastMessage(error.response.data.errors);
-      return false
+      return false;
     }
   }
-)
+);
 
 export const validateUserByToken = createAsyncThunk(
   "user/validateUserByToken",

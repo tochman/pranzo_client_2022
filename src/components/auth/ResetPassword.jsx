@@ -14,7 +14,7 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { resetPassword } from "../../state/features/authentication";
+import { resetPasswordRequest } from "../../state/features/authentication";
 import { emailRegex } from "../../state/utilities/utilities";
 
 const ResetPassword = () => {
@@ -29,7 +29,7 @@ const ResetPassword = () => {
   const navigate = useNavigate();
 
   const handleFormSubmission = (data) => {
-    dispatch(resetPassword(data)).then((resp) => {
+    dispatch(resetPasswordRequest(data)).then((resp) => {
       if (resp.meta.requestStatus === "fulfilled" && resp.payload) {
         navigate("/auth/sign-in");
       }

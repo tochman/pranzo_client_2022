@@ -1,7 +1,7 @@
 describe("User profile", () => {
   beforeEach(() => {
-    cy.intercept("PUT", "**/auth", { fixture: "resetPasswordRequest.json" }).as(
-      "passwordResetRequest"
+    cy.intercept("PUT", "**/auth", { fixture: "changePasswordRequest.json" }).as(
+      "passwordChangeRequest"
     );
     cy.authenticateWithTokenAndVisit();
     cy.getCy("user-avatar").click();
@@ -22,13 +22,13 @@ describe("User profile", () => {
     });
 
     it("is expected to make a put request to api", () => {
-      cy.wait("@passwordResetRequest")
+      cy.wait("@passwordChangeRequest")
         .its("request.method")
         .should("eql", "PUT");
     });
 
     it("is expected to include form data as params", () => {
-      cy.wait("@passwordResetRequest").then(({ request }) => {
+      cy.wait("@passwordChangeRequest").then(({ request }) => {
         expect(request.body.current_password).to.eql("current_password");
         expect(request.body.password).to.eql("new_password");
         expect(request.body.password_confirmation).to.eql("new_password");
