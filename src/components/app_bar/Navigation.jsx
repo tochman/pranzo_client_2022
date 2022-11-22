@@ -188,7 +188,7 @@ const Navigation = () => {
                     style={{ outline: "none", borderColor: "transparent" }}
                   >
                     <FiLogOut />
-                    <Box pl={2}>Log out</Box>
+                    <Box pl={2}>{t("appBar.logOut")}</Box>
                   </MenuItem>
                 </HStack>
               </MenuList>

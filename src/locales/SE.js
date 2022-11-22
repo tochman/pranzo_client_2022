@@ -200,6 +200,7 @@ export const SE = {
       signIn: "Logga in",
       signUp: "Registrera",
       nothingToSeeHere: "Registrera ett konto för att komma åt funktioner.",
+      logOut: 'Logga ut'
     },
     footer: { slogan: "Klippkort och presentkort på ett enklare sätt" },
     hero: {

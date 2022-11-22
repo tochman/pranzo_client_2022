@@ -200,6 +200,7 @@ export const GB = {
       signIn: "Sign In",
       signUp: "Sign Up",
       nothingToSeeHere: "Please register to access features",
+      logOut: 'Log out'
     },
     footer: { slogan: "Voucher And Gift Card Management Made Easy" },
     hero: {
