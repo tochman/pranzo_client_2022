@@ -32,7 +32,7 @@ describe("Vendor can setup a Venue", () => {
       cy.wait("@checkEmail").its("request.method").should("eql", "POST");
     });
 
-    it("is expected to make a network call on submit", () => {
+    it.only("is expected to make a network call on submit", () => {
       cy.wait("@venueCreate").its("request.method").should("eql", "POST");
     });
 

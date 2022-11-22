@@ -55,6 +55,7 @@ const VenueSetup = () => {
 
   const handleFormSubmit = async (data) => {
     const params = snakecasekeys(data);
+    debugger
     if (edit) {
       dispatch(editVenue({ ...params, id: vendor.id }));
     } else {
@@ -221,7 +222,6 @@ const VenueSetup = () => {
               isLoading={isSubmitting}
               type="submit"
               data-cy="submit"
-              disabled={!file}
             >
               {t("forms.elements.submit")}
             </Button>
