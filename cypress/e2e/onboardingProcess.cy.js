@@ -1,4 +1,4 @@
-describe('Onboarding process', () => {
+describe('NOT-IN-USE', () => {
 // This testfile is used for visual development only
 // Not relevant for actual testing and excluded from all.cy.js
   beforeEach(() => {

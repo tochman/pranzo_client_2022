@@ -129,13 +129,15 @@ const Vouchers = () => {
                   : voucher.value + " st"}
               </Td>
             </Hide>
-            <Td>{voucher.variant === "cash"
-                  ? voucher.current_value.toLocaleString(currentLng, {
-                      style: "currency",
-                      currency: "SEK",
-                      maximumSignificantDigits: 2,
-                    })
-                  : voucher.current_value + " st"}</Td>
+            <Td>
+              {voucher.variant === "cash"
+                ? voucher.current_value.toLocaleString(currentLng, {
+                    style: "currency",
+                    currency: "SEK",
+                    maximumSignificantDigits: 2,
+                  })
+                : voucher.current_value + " st"}
+            </Td>
             <Td>
               <Icon
                 as={ChevronDownIcon}
@@ -151,7 +153,10 @@ const Vouchers = () => {
               <Collapse in={isOpen[voucher.code]} animateOpacity>
                 <VStack m={{ base: 2 }} spacing={4}>
                   {voucher.vendor && (
-                    <Text as={"small"}>{t("dashboard.content.vouchers.labels.issuer")} {voucher.vendor.name}</Text>
+                    <Text as={"small"}>
+                      {t("dashboard.content.vouchers.labels.issuer")}{" "}
+                      {voucher.vendor.name}
+                    </Text>
                   )}
                   {voucher.active ? (
                     <>
@@ -181,7 +186,6 @@ const Vouchers = () => {
                       variant="outline"
                       colorScheme="pink"
                       size="sm"
-                      // This click needs to trigger the activation
                       onClick={() => toggleModal(voucher)}
                     >
                       {t("dashboard.content.vouchers.labels.activate")}

@@ -80,7 +80,6 @@ describe("Creating a transaction", () => {
         cy.getCy("Dqbnc").click({ force: true });
       });
 
-
       it("is expected to reveal transaction details for voucher", () => {
         cy.get("[data-cy=Dqbnc-table]>table>tbody>tr")
           .children("td")
@@ -91,9 +90,7 @@ describe("Creating a transaction", () => {
         cy.get("[data-cy=Dqbnc-table]>table>tbody>tr")
           .children("td")
           .first()
-          .should("contain.text", "September 29, 2022")
-          // .next()
-          // .should("contain.text", "Amount: SEK 250"); // Commenting this out for now
+          .should("contain.text", "September 29, 2022");
       });
     });
   });

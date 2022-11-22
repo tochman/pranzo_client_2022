@@ -38,12 +38,8 @@ const ChangePassword = ({ setShowResetForm }) => {
 
   useEffect(() => {
     async function setHeaders(data) {
-      // debugger
-      // await localStorage.setItem("auth-storage", JSON.stringify(data))
       await auth.setSession(data);
-      console.log(auth.tokenHeaders())
       setResetToken(params.token);
-
     }
     const params = queryParamsToObject(location.search);
     setHeaders(params)

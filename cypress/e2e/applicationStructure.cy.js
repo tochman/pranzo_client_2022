@@ -32,7 +32,6 @@ describe("Application stucture", () => {
     it("restricted for a visitor - redirecting to /auth/sign-in", () => {
       cy.visit("/dashboard");
       cy.location("pathname").should("eq", "/auth/sign-in");
-      // cy.get("body").should("contain.text", "Please log in or register first.");
     });
   });
 
