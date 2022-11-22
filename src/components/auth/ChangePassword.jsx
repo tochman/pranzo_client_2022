@@ -37,15 +37,22 @@ const ChangePassword = ({ setShowResetForm }) => {
   const location = useLocation();
 
   useEffect(() => {
+    async function setHeaders(data) {
+      // debugger
+      // await localStorage.setItem("auth-storage", JSON.stringify(data))
+      await auth.setSession(data);
+      console.log(auth.tokenHeaders())
+      setResetToken(params.token);
+
+    }
     const params = queryParamsToObject(location.search);
-    async () => (await auth.validateToken(params))()
-    setResetToken(params.token)
+    setHeaders(params)
   }, []);
 
   const handleFormSubmission = (data) => {
     if (resetToken) {
       dispatch(resetPassword(data)).then((resp) => {
-        navigate("/auth/sign-in");
+        navigate("/dashboard");
       });
     } else {
       dispatch(changePassword(data)).then((resp) => {
