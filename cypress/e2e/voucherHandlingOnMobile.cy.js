@@ -73,6 +73,7 @@ describe("MOBILE: Vouchers view", () => {
     context("Inactive voucher", () => {
       beforeEach(() => {
         cy.viewport("iphone-x");
+        cy.getCy('voucher-status').click()
         cy.getCy("CXuny").trigger("click");
       });
 

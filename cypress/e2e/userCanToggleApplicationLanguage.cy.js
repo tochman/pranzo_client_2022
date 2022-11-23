@@ -7,7 +7,7 @@ describe("User can toggle application language", () => {
     it("is expected to change application language to SWEDISH", () => {
       cy.get("[data-cy=flag]").click();
       cy.get("[data-cy=footer]").within(() => {
-        cy.contains("Lunchkort och presentkort på ett enklare sätt").should(
+        cy.contains("Klippkort och presentkort på ett enklare sätt").should(
           "exist"
         );
       });
