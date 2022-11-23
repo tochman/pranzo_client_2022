@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
 export const notifySlack = createAsyncThunk(
   "users/notifySlack",
 
@@ -12,15 +11,11 @@ export const notifySlack = createAsyncThunk(
       username: data.name,
     };
     const token = import.meta.env.VITE_SLACK_TOKEN;
-    await axios.post(
-      `https://hooks.slack.com/services/${token}`,
-      payload //,
-      // {
-      //   headers: {
-      //     "Content-Type": "application/x-www-form-urlencoded",
-      //   },
-      // }
-    );
+    await axios.post(`https://hooks.slack.com/services/${token}`, payload, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
     // debugger
     // let payload
     // if (data.formSubmission) {
