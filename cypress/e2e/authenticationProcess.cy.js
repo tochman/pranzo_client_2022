@@ -4,7 +4,7 @@ describe("Authentication:", () => {
     cy.intercept("POST", "**/hooks.slack.com/services/**", {
       body: { message: "ok" },
       statusCode: 200,
-    });
+    }).as('slackHook');
   });
 
   describe("logging out from the application", () => {
@@ -113,6 +113,10 @@ describe("Authentication:", () => {
         cy.wait("@signUp").its("request.method").should("eql", "POST");
       });
 
+      it.only("is expected to make a network call on submit", () => {
+        cy.wait("@slackHook").its("request.method").should("eql", "POST");
+      });
+
       it("is expected to include form data as params", () => {
         cy.wait("@signUp").then(({ request }) => {
           expect(request.body.name).to.eql("Random Guy");
@@ -122,7 +126,7 @@ describe("Authentication:", () => {
         });
       });
 
-      it.only("is expected to store currentUser in application state", () => {
+      it("is expected to store currentUser in application state", () => {
         cy.wait("@signUp");
         cy.window()
           .pipe((window) => window.store.getState().user.currentUser)

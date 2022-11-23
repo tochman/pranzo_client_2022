@@ -1,8 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toastMessage } from "../utilities/utilities";
 import { auth, getHeaders } from "../utilities/authConfig";
-import { endSession, setVenue, setVouchers } from "./userSlice";
+import { endSession, setVenue, setVouchers, setCurrentUser } from "./userSlice";
 import i18n from "../../i18n";
+import { notifySlack } from "./notifications";
+import axios from "axios";
 
 const storeVendorData = createAsyncThunk(
   "vendor/storeVendorData",
@@ -25,20 +27,8 @@ export const registerUser = createAsyncThunk(
   async (data, { dispatch }) => {
     try {
       const response = await auth.signUp(data);
-      // dispatch(
-      //   notifySlack({
-      //     formSubmission: false,
-      //     actionType: "registration",
-      //     user: response.data.user.data,
-      //   })
-      //   ).then(resp =>{
-      //   debugger
-
-      // })
-      dispatch({ type: "user/setCurrentUser", payload: response.data }).then(resp =>{
-        debugger
-
-      })
+      dispatch(notifySlack(data));
+      dispatch(setCurrentUser(response.data));
     } catch (error) {
       toastMessage(error.response.data.errors.full_messages);
     }
