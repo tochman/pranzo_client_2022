@@ -47,15 +47,13 @@ const VenueSetup = () => {
   const [file, setFile] = useState();
   const inputRef = useRef();
   let hiddenInputField;
-  useEffect(() => {
-    hiddenInputField = inputRef.current.children.logotype;
-    console.log(hiddenInputField); // 👈️ element here
-  }, []);
   const primaryEmailState = getFieldState("primaryEmail");
+  useEffect(() => {
+    setError("primaryEmail", { shouldFocus: false });
+  }, []);
 
   const handleFormSubmit = async (data) => {
     const params = snakecasekeys(data);
-    debugger
     if (edit) {
       dispatch(editVenue({ ...params, id: vendor.id }));
     } else {
@@ -88,7 +86,7 @@ const VenueSetup = () => {
       setValue("logotype", base64);
       setFile({ name: name, content: base64 });
     } catch (error) {
-      toastMessage([error])
+      toastMessage([error]);
     }
   };
   return (
@@ -222,6 +220,7 @@ const VenueSetup = () => {
               isLoading={isSubmitting}
               type="submit"
               data-cy="submit"
+              disabled={primaryEmailState.error}
             >
               {t("forms.elements.submit")}
             </Button>

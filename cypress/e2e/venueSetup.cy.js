@@ -75,8 +75,8 @@ describe("Vendor can setup a Venue", () => {
       cy.getCy("vat_id").type("SE999999999901");
       cy.getCy("description").type("A friendly neighbourhood restaurant");
       cy.getCy("email").type("info@theotherplace.io");
-      cy.get("body").click();
-      cy.getCy("submit").click({ force: true }); // still not sure about this
+      cy.get("body").click(); // clicking away from the field
+      // cy.getCy("submit").click({ force: true }); // still not sure about this
     });
 
     it("is expected to make a call to API and check email", () => {
@@ -84,10 +84,12 @@ describe("Vendor can setup a Venue", () => {
     });
 
     it("is expected to display error message", () => {
-      cy.get("body").should(
-        "contain.text",
-        "This email needs to be unique, please use another one...."
-      );
+      cy.wait("@checkEmail").then(()=> {
+        cy.get("body").should(
+          "contain.text",
+          "This email needs to be unique, please use another one...."
+        );
+      })
     });
   });
 
@@ -106,6 +108,9 @@ describe("Vendor can setup a Venue", () => {
       cy.getCy("vat_id").type("999999-9999");
       cy.getCy("description").type("A friendly neighbourhood restaurant");
       cy.getCy("email").type("info@theotherplace.io");
+      cy.get("body").click(); // clicking away from the field
+
+      cy.wait('@checkEmail')
       cy.getCy("submit").click({ force: true });
     });
 
@@ -132,6 +137,9 @@ describe("Vendor can setup a Venue", () => {
       cy.getCy("vat_id").type("SE999999999901");
       cy.getCy("description").type("A friendly neighbourhood restaurant");
       cy.getCy("email").type("info@theotherplace.io");
+      cy.get("body").click(); // clicking away from the field
+
+      cy.wait('@checkEmail')
       cy.getCy("submit").click();
     });
 
