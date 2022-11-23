@@ -41,7 +41,7 @@ describe("Vouchers: create a batch", () => {
   describe("Submitting the form", () => {
     beforeEach(() => {
       cy.intercept("GET", "**/api/vendors/**/vouchers", {
-        fixture: "vouchersIndexUpdatedAfterCreate",
+        fixture: "vouchersIndexUpdatedAfterCreatingServings",
       });
       cy.getCy("amount").type(10);
       cy.getCy("variant").select("servings");
