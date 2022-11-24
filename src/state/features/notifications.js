@@ -7,8 +7,16 @@ export const notifySlack = createAsyncThunk(
   async (data) => {
     const payload = {
       icon_emoji: ":green_circle:",
-      message: `${data.name} just registered with Pranzo.se`,
       username: data.name,
+      blocks: [
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: `${data.name} just registered with Pranzo.se`,
+          }
+        }
+      ]
     };
     const token = import.meta.env.VITE_SLACK_TOKEN;
     await axios.post(`https://hooks.slack.com/services/${token}`, payload, {
