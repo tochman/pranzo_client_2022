@@ -26,7 +26,7 @@ export const registerUser = createAsyncThunk(
   async (data, { dispatch }) => {
     try {
       const response = await auth.signUp(data);
-      dispatch(notifySlack(response.data.data, "register"));
+      dispatch(notifySlack({ data: response.data.data, action: "registered" }));
       dispatch(setCurrentUser(response.data.data));
     } catch (error) {
       toastMessage(error.response.data.errors.full_messages);
@@ -42,7 +42,7 @@ export const signInUser = createAsyncThunk(
       if (response.data.vendor_id) {
         dispatch(storeVendorData({ vendor_id: response.data.vendor_id }));
       }
-      dispatch(notifySlack(response.data, "log in"));
+      dispatch(notifySlack({ data: response.data, action: "logged in" }));
       dispatch({ type: "user/setCurrentUser", payload: response.data });
     } catch (error) {
       toastMessage(error.response.data.errors);
