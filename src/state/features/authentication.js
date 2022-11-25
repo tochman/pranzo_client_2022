@@ -27,8 +27,8 @@ export const registerUser = createAsyncThunk(
   async (data, { dispatch }) => {
     try {
       const response = await auth.signUp(data);
-      dispatch(notifySlack(response.data));
-      dispatch(setCurrentUser(response.data));
+      dispatch(notifySlack(response.data.data));
+      dispatch(setCurrentUser(response.data.data));
     } catch (error) {
       toastMessage(error.response.data.errors.full_messages);
     }
