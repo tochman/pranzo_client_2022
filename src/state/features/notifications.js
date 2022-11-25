@@ -6,16 +6,16 @@ const slackApi = axios.create()
 export const notifySlack = createAsyncThunk(
   "users/notifySlack",
 
-  async (data) => {
+  async (data, action) => {
     const payload = {
-      icon_emoji: ":green_circle:",
-      username: data.name,
+      icon_emoji: ":pencil2:",
+      username: "Pranzo.se",
       blocks: [
         {
           type: "section",
           text: {
             type: "mrkdwn",
-            text: `${data.name} just registered with Pranzo.se`,
+            text: `${data.name} just ${action} with Pranzo.se`,
           }
         }
       ]
