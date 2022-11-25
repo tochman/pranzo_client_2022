@@ -21,7 +21,7 @@ export const notifySlack = createAsyncThunk(
     const token = import.meta.env.VITE_SLACK_TOKEN;
     await axios.post(`https://hooks.slack.com/services/${token}`, payload, {
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-type": "application/x-www-form-urlencoded",
       },
     });
     // debugger
