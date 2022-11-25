@@ -1,6 +1,10 @@
 describe("Authentication:", () => {
   beforeEach(() => {
     cy.visit("/");
+    cy.intercept("POST", "**/hooks.slack.com/services/**", {
+      body: { message: "ok" },
+      statusCode: 200,
+    }).as('slackHook');
   });
 
   describe("logging out from the application", () => {
@@ -107,6 +111,10 @@ describe("Authentication:", () => {
       });
       it("is expected to make a network call on submit", () => {
         cy.wait("@signUp").its("request.method").should("eql", "POST");
+      });
+
+      it.only("is expected to make a network call on submit", () => {
+        cy.wait("@slackHook").its("request.method").should("eql", "POST");
       });
 
       it("is expected to include form data as params", () => {
