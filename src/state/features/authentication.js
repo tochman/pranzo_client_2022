@@ -43,7 +43,7 @@ export const signInUser = createAsyncThunk(
         dispatch(storeVendorData({ vendor_id: response.data.vendor_id }));
       }
       dispatch(notifySlack({ data: response.data, action: "logged in" }));
-      dispatch({ type: "user/setCurrentUser", payload: response.data });
+      dispatch(setCurrentUser(response.data));
     } catch (error) {
       toastMessage(error.response.data.errors);
     }

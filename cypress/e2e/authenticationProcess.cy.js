@@ -1,7 +1,7 @@
 describe("Authentication:", () => {
   beforeEach(() => {
     cy.visit("/");
-    cy.intercept("POST", "**/hooks.slack.com/services/**", {
+    cy.intercept("POST", "https://hooks.slack.com/services/**", {
       body: { message: "ok" },
       statusCode: 200,
     }).as("slackHook");
@@ -117,7 +117,7 @@ describe("Authentication:", () => {
         cy.wait("@slackHook").its("request.method").should("eql", "POST");
       });
 
-      it.only("is expected to include message in request params", () => {
+      it("is expected to include message in request params", () => {
         cy.wait("@slackHook").then(({ request }) => {
           const expectedBody = '{"icon_emoji":":pencil2:","username":"Pranzo.se","blocks":[{"type":"section","text":{"type":"mrkdwn","text":"Kalle Andersson just registered with Pranzo.se"}}]}'
           expect(request.body).to.eql(expectedBody)
