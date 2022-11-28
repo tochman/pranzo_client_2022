@@ -119,7 +119,6 @@ const SignIn = () => {
         <Image
           alt={"Login Image"}
           objectFit={"cover"}
-          // src={"https://source.unsplash.com/random/?restaurant"}
           src={LandingImage}
         />
       </Flex>

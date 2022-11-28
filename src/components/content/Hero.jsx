@@ -45,9 +45,7 @@ const Hero = () => {
           align={"center"}
           w={"100%"}
           h={{ base: "100%", sm: "400px", lg: "500px" }}
-          alt={"Example Project"}
           objectFit={"cover"}
-          //src={"https://source.unsplash.com/random/?restaurant"}
           src={LandingImage}
         />
       </Flex>

@@ -23,7 +23,6 @@ const LargeQuote = () => {
       </Text>
       <Box textAlign={"center"}>
         <Avatar
-          src={"https://source.unsplash.com/random/?face"}
           alt={"John Doe"}
           mb={2}
         />
