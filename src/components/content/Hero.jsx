@@ -2,6 +2,8 @@ import { Flex, Heading, Image, Stack, Text } from "@chakra-ui/react";
 import Logo from "./Logo";
 import { useTranslation } from "react-i18next";
 import WalletBanner from "./WalletBanner";
+import LandingImage from "../../assets/restaurant.jpeg";
+
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -45,7 +47,8 @@ const Hero = () => {
           h={{ base: "100%", sm: "400px", lg: "500px" }}
           alt={"Example Project"}
           objectFit={"cover"}
-          src={"https://source.unsplash.com/random/?restaurant"}
+          //src={"https://source.unsplash.com/random/?restaurant"}
+          src={LandingImage}
         />
       </Flex>
     </Stack>

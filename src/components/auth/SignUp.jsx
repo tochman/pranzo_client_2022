@@ -16,6 +16,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../state/features/authentication";
 import { emailRegex } from "../../state/utilities/utilities";
+import LandingImage from "../../assets/restaurant.jpeg";
+
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -152,7 +154,8 @@ const SignUp = () => {
         <Image
           alt={"Login Image"}
           objectFit={"cover"}
-          src={"https://source.unsplash.com/random/?restaurant"}
+          //src={"https://source.unsplash.com/random/?restaurant"}
+          src={LandingImage}
         />
       </Flex>
     </Stack>
