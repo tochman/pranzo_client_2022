@@ -10,8 +10,6 @@ beforeEach(() => {
 });
 
 beforeEach(() => {
-  cy.intercept("?restaurant", { fixture: "dummy.jpeg" });
-  cy.intercept("?avatar", { fixture: "dummy.jpeg" });
   cy.intercept("?logo", { fixture: "bocado_logo_color.png" });
   cy.intercept("POST", "https://hooks.slack.com/services/**", {
     body: { message: "ok" },
