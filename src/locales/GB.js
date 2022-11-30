@@ -206,7 +206,7 @@ export const GB = {
     hero: {
       mainSlogan: "Simplify your sales - Increase your revenue",
       promoText:
-        "Making voucher and gift card management easy. Pranzo offers a simple and easy-to-use solution for creating, selling and administering pre-paid lunch- or gift cards.",
+        "Making voucher and gift card management easy. Pranzo is a web-based platform designed to help businesses manage gift cards, boost customer retention and create loyalty programs. The system allows businesses to easily create and customize gift cards, track gift card sales, and monitor card balances. It also has features to help businesses build loyalty by offering rewards and incentives to customers who purchase and use the cards. Additionally, the system provides detailed analytics and reporting capabilities to help businesses track and analyze customer spending habits and make informed decisions about their gift card strategy.",
       subSlogan: "Low start-up fee and no subscriptions costs. Pay as you go!",
       walletsPromoText: "Connect your cards to Apple and Google Wallet.",
       buttonText: "Get started",
