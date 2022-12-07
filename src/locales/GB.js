@@ -186,29 +186,34 @@ export const GB = {
         currentPassword: "Current password",
         newPassword: "New password",
         newPasswordConfirmation: "Confirm new password",
-        successMessage: "Your password was successfully changed"
+        successMessage: "Your password was successfully changed",
       },
       resetPassword: {
-        text: 'Forgot your password? ',
-        link: 'Click here.',
+        text: "Forgot your password? ",
+        link: "Click here.",
         header: "Request new password",
         formHeader: "Choose new password",
-        subHeader: "If you have forgotten your password, you can request a new one. An email with a instructions will be sent to you."
-      }
+        subHeader:
+          "If you have forgotten your password, you can request a new one. An email with a instructions will be sent to you.",
+      },
     },
     appBar: {
       signIn: "Sign In",
       signUp: "Sign Up",
       nothingToSeeHere: "Please register to access features",
-      logOut: 'Log out'
+      logOut: "Log out",
     },
-    footer: { slogan: "Voucher And Gift Card Management Made Easy" },
+    footer: {
+      slogan: "Voucher And Gift Card Management Made Easy",
+      slogan2:
+        "Making voucher and gift card management easy. Pranzo is a web-based platform designed to help businesses manage gift cards, boost customer retention and create loyalty programs. The system allows businesses to easily create and customize gift cards, track gift card sales, and monitor card balances. It also has features to help businesses build loyalty by offering rewards and incentives to customers who purchase and use the cards. Additionally, the system provides detailed analytics and reporting capabilities to help businesses track and analyze customer spending habits and make informed decisions about their gift card strategy.",
+    },
     hero: {
       mainSlogan: "Simplify your sales - Increase your revenue",
       promoText:
-        "Making voucher and gift card management easy. Pranzo is a web-based platform designed to help businesses manage gift cards, boost customer retention and create loyalty programs. The system allows businesses to easily create and customize gift cards, track gift card sales, and monitor card balances. It also has features to help businesses build loyalty by offering rewards and incentives to customers who purchase and use the cards. Additionally, the system provides detailed analytics and reporting capabilities to help businesses track and analyze customer spending habits and make informed decisions about their gift card strategy.",
+        "Making voucher and gift card management easy. Pranzo is a web-based platform designed to help businesses manage gift cards, boost customer retention and create loyalty programs. ",
       subSlogan: "Low start-up fee and no subscriptions costs. Pay as you go!",
-      walletsPromoText: "Connect your cards to Apple and Google Wallet.",
+      walletsPromoText: "Connect your cards to Apple and Google Wallet or print them on credit-card sized cards. Get started in less than 10 minutes.",
       buttonText: "Get started",
       ctaText:
         "There's no upfront fee to register. We will charge you only if you actually benefit from the Pranzo plattform with a one time set-up fee of €45 and €1 per issued voucher.",

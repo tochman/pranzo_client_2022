@@ -11,7 +11,7 @@ const Hero = () => {
   return (
     <Stack
       data-cy="hero-section"
-      minH={"50vh"}
+      // minH={"50vh"}
       direction={{ base: "column", md: "row" }}
     >
       <Flex
@@ -19,7 +19,7 @@ const Hero = () => {
         flex={1}
         align={"center"}
         justify={"center"}
-        h={{ base: "100%", sm: "400px", lg: "500px" }}
+        // h={{ base: "100%", sm: "400px", lg: "500px" }}
       >
         <Stack spacing={6} w={"full"} maxW={"lg"}>
           <Logo width={"250px"} />

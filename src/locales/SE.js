@@ -189,24 +189,29 @@ export const SE = {
         newPasswordConfirmation: "Bekräfta nytt lösenord",
       },
       resetPassword: {
-        text: 'Glömt lösenord? ',
-        link: 'Klicka här.',
+        text: "Glömt lösenord? ",
+        link: "Klicka här.",
         header: "Begär nytt lösenord",
         formHeader: "Välj ditt lösenord",
-        subHeader: "Om du har glömt ditt lösenord, kan du begära ett nytt. Ett mail med instruktioner kommer att skickas till dig."
-      }
+        subHeader:
+          "Om du har glömt ditt lösenord, kan du begära ett nytt. Ett mail med instruktioner kommer att skickas till dig.",
+      },
     },
     appBar: {
       signIn: "Logga in",
       signUp: "Registrera",
       nothingToSeeHere: "Registrera ett konto för att komma åt funktioner.",
-      logOut: 'Logga ut'
+      logOut: "Logga ut",
     },
-    footer: { slogan: "Klippkort och presentkort på ett enklare sätt" },
+    footer: {
+      slogan: "Klippkort och presentkort på ett enklare sätt",
+      slogan2:
+        "Gör klipp- och presentkortshanteringen enkel. Pranzo är en webbaserad plattform designad för att hjälpa företag att hantera presentkort, öka kundbehållningen och skapa lojalitetsprogram. Systemet tillåter företag att enkelt skapa och anpassa presentkort, spåra försäljning av presentkort och övervaka kortsaldon. Den har också funktioner som hjälper företag att bygga lojalitet genom att erbjuda belöningar och incitament till kunder som köper och använder korten. Dessutom tillhandahåller systemet detaljerad analys och rapporteringsfunktioner för att hjälpa företag att spåra och analysera kunders utgiftsvanor och fatta välgrundade beslut om deras presentkortsstrategi.",
+    },
     hero: {
       mainSlogan: "Digitala klipp- eller presentkort. Kom igång direkt!",
       promoText:
-        "Gör det enkelt att handla hos dig. Pranzo erbjuder en enkel och lättanvänd lösning för att skapa, sälja och administrera digitala klipp- och presentkort",
+        "Gör klipp- och presentkortshanteringen enkel. Pranzo är en webbaserad plattform designad för att hjälpa företag att hantera presentkort, öka kundbehållningen och skapa lojalitetsprogram.",
       walletsPromoText:
         "Koppla dina kort till Apple- och Google Plånbok eller skriv ut dem på plastkort. Du väljer det som passar dig och dina kunder.",
       subSlogan:

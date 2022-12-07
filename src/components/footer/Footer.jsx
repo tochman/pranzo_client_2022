@@ -63,9 +63,6 @@ const Footer = () => {
           {...disclosureProps}
           animateOpacity
         >
-          <Center>
-            <Text fontSize="sm">{t("footer.slogan")}</Text>
-          </Center>
           <Stack direction={"row"} spacing={3} justify={"center"}>
             <Box h="16px">
               {i18n.language === "GB" ? (
@@ -88,6 +85,12 @@ const Footer = () => {
               <FiMoon style={{ cursor: "pointer" }} onClick={toggleColorMode} />
             </Box>
           </Stack>
+          <Center>
+            <Text fontSize="sm">{t("footer.slogan")}</Text>
+          </Center>
+          <Center>
+            <Text fontSize="10px">{t("footer.slogan2")}</Text>
+          </Center>
         </Collapse>
       </Container>
     </Box>
