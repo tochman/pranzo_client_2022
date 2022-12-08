@@ -11,7 +11,7 @@ export const GB = {
           label: "Setup your venue",
           subLabel: "Add a venue to your profile",
           subLabelLong:
-            "You have to go through some more setup and configuration before you can issue cards and vouchers.",
+            "You have to go through some more setup and configuration before you can issue cards.",
         },
         editVenue: {
           label: "Edit your venue",
@@ -21,10 +21,10 @@ export const GB = {
           label: "Venue details",
           subLabel: "Detailed view of your venue",
         },
-        vouchers: "Vouchers",
+        vouchers: "Cards",
         viewAndManage: {
           label: "View & manage",
-          subLabel: "Manage your vouchers and cards.",
+          subLabel: "Manage your cards.",
         },
         create: {
           label: "Create",
@@ -120,7 +120,7 @@ export const GB = {
           pages: "Page {{page}} of {{pagesTotal}}",
           selectReportVariant: "Choose type of report",
           variantHelper:
-            "You can choose daily reports for the last 2 days, but also reports with weekly or monthly statis. ",
+            "You can choose daily reports for the last 2 days, but also reports with weekly or monthly statistics.",
           loading: "Loading preview",
           loadingError: "Could not load the preview. Please try again.",
           variants: {
@@ -204,19 +204,19 @@ export const GB = {
       logOut: "Log out",
     },
     footer: {
-      slogan: "Voucher And Gift Card Management Made Easy",
+      slogan: "Stamp Card And Gift Card Management Made Easy",
       slogan2:
-        "Making voucher and gift card management easy. Pranzo is a web-based platform designed to help businesses manage gift cards, boost customer retention and create loyalty programs. The system allows businesses to easily create and customize gift cards, track gift card sales, and monitor card balances. It also has features to help businesses build loyalty by offering rewards and incentives to customers who purchase and use the cards. Additionally, the system provides detailed analytics and reporting capabilities to help businesses track and analyze customer spending habits and make informed decisions about their gift card strategy.",
+        "Making stamp card and gift card management easy. Pranzo is a web-based platform designed to help businesses manage gift cards, boost customer retention and create loyalty programs. The system allows businesses to easily create and customize gift cards, track gift card sales, and monitor card balances. It also has features to help businesses build loyalty by offering rewards and incentives to customers who purchase and use the cards. Additionally, the system provides detailed analytics and reporting capabilities to help businesses track and analyze customer spending habits and make informed decisions about their gift card strategy.",
     },
     hero: {
       mainSlogan: "Simplify your sales - Increase your revenue",
       promoText:
-        "Making voucher and gift card management easy. Pranzo is a web-based platform designed to help businesses manage gift cards, boost customer retention and create loyalty programs. ",
+        "Making stamp card and gift card management easy. Pranzo is a web-based platform designed to help businesses manage gift cards, boost customer retention and create loyalty programs. ",
       subSlogan: "Low start-up fee and no subscriptions costs. Pay as you go!",
       walletsPromoText: "Connect your cards to Apple and Google Wallet or print them on credit-card sized cards. Get started in less than 10 minutes.",
       buttonText: "Get started",
       ctaText:
-        "There's no upfront fee to register. We will charge you only if you actually benefit from the Pranzo plattform with a one time set-up fee of €45 and €1 per issued voucher.",
+        "There's no upfront fee to register. We will charge you only if you actually benefit from the Pranzo plattform with a one time set-up fee of €45 and €1 per issued card.",
     },
     sellingPoints: {
       benefits: "Benefits",

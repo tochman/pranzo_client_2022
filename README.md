@@ -1,5 +1,5 @@
 ## Pranzo Client
-Application for Users (Vendors) of the Pranzo Voucher and Gift Card Management platform. See https://pranzo.se for production implementation.
+Application for Users (Vendors) of the Pranzo Stamp Card and Gift Card Management platform. See https://pranzo.se for production implementation.
 
 
 ### Technology
