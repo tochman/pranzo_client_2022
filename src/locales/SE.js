@@ -34,10 +34,10 @@ export const SE = {
       },
       content: {
         stats: {
-          issuedVouchers: "Utfärdade Klippkort",
-          salesVouchers: "Försäljning Klippkort",
-          issuedGiftCards: "Utfärdade Presentkort",
-          salesGiftCards: "Försäljning Presentkort",
+          issuedVouchers: "Utfärdade stämpelkort",
+          salesVouchers: "Försäljning stämpelkort",
+          issuedGiftCards: "Utfärdade presentkort",
+          salesGiftCards: "Försäljning presentkort",
         },
         charts: {
           salesOverviewNumbers: "Försäljning (antal)",
@@ -204,14 +204,14 @@ export const SE = {
       logOut: "Logga ut",
     },
     footer: {
-      slogan: "Klippkort och presentkort på ett enklare sätt",
+      slogan: "Stämpelkort och presentkort på ett enklare sätt",
       slogan2:
-        "Gör klipp- och presentkortshanteringen enkel. Pranzo är en webbaserad plattform designad för att hjälpa företag att hantera presentkort, öka kundbehållningen och skapa lojalitetsprogram. Systemet tillåter företag att enkelt skapa och anpassa presentkort, spåra försäljning av presentkort och övervaka kortsaldon. Den har också funktioner som hjälper företag att bygga lojalitet genom att erbjuda belöningar och incitament till kunder som köper och använder korten. Dessutom tillhandahåller systemet detaljerad analys och rapporteringsfunktioner för att hjälpa företag att spåra och analysera kunders utgiftsvanor och fatta välgrundade beslut om deras presentkortsstrategi.",
+        "Gör stämpel- och presentkortshanteringen enkel. Pranzo är en webbaserad plattform designad för att hjälpa företag att hantera presentkort, öka kundbehållningen och skapa lojalitetsprogram. Systemet tillåter företag att enkelt skapa och anpassa presentkort, spåra försäljning av presentkort och övervaka kortsaldon. Den har också funktioner som hjälper företag att bygga lojalitet genom att erbjuda belöningar och incitament till kunder som köper och använder korten. Dessutom tillhandahåller systemet detaljerad analys och rapporteringsfunktioner för att hjälpa företag att spåra och analysera kunders utgiftsvanor och fatta välgrundade beslut om deras presentkortsstrategi.",
     },
     hero: {
-      mainSlogan: "Digitala klipp- eller presentkort. Kom igång direkt!",
+      mainSlogan: "Digitala stämpel- eller presentkort. Kom igång direkt!",
       promoText:
-        "Gör klipp- och presentkortshanteringen enkel. Pranzo är en webbaserad plattform designad för att hjälpa företag att hantera presentkort, öka kundbehållningen och skapa lojalitetsprogram.",
+        "Gör stämpel- och presentkortshanteringen enkel. Pranzo är en webbaserad plattform designad för att hjälpa företag att hantera presentkort, öka kundbehållningen och skapa lojalitetsprogram.",
       walletsPromoText:
         "Koppla dina kort till Apple- och Google Plånbok eller skriv ut dem på plastkort. Du väljer det som passar dig och dina kunder.",
       subSlogan:
@@ -230,7 +230,7 @@ export const SE = {
       right: {
         header: "Lojala kunder",
         content:
-          "Belöna dina lojala kunder med möjligheten att köpa ett klippkort som ger dem ett rabatterat pris samtidigt som du drar nytta av ökade och stabila intäkter.",
+          "Belöna dina lojala kunder med möjligheten att köpa ett stämpelkort som ger dem ett rabatterat pris samtidigt som du drar nytta av ökade och stabila intäkter.",
       },
       middle: {
         header: "Mobilt",
