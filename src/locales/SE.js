@@ -235,10 +235,10 @@ export const SE = {
       middle: {
         header: "Mobilt",
         content:
-          "Vad är det enda som dina gäster (nästan) alltid har i fickan? Borde inte dina erbjudanden finnas där också? PRANZO-kort levereras direkt till dina gästers mobiltelefon.",
+          "Vad är det enda som dina gäster (nästan) alltid har i fickan? Mobiltelefonen! Borde inte dina erbjudanden finnas där också? PRANZO-kort levereras direkt till dina gästers mobiltelefon. Ingen separat app behövs!",
       },
       left: {
-        header: "Ta kontrol",
+        header: "Statistik",
         content:
           "Med Pranzo blir din rapportering och ekonomistyrning mer hanterbar, vilket ger dig en enkel överblick över försäljning och insikter om effektiviteten i din uppsökande verksamhet och marknadsföring.",
       },

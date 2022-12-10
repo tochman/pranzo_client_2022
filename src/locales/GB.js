@@ -231,12 +231,12 @@ export const GB = {
           "Reward your loyal lunch guests with the opportunity to buy a lunch-card that gives them a discounted price while you benefit from increased and steady revenue.",
       },
       middle: {
-        header: "Mobile friendly",
+        header: "User friendly",
         content:
-          "What is the one thing that your guests (almost) always have in their pockets? Shouldn't your offers be there too? PRANZO cards are delivered directly to your guests' mobile phones.",
+          "What is the one thing that your guests (almost) always have in their pockets? Probably a smart phone! Shouldn't your offers be there too? PRANZO cards are delivered directly to your guests' mobile phones. No need for a special app to be downloaded by the user.",
       },
       left: {
-        header: "Take control",
+        header: "Reporting",
         content:
           "With Pranzo, your reporting and financial control becomes more manageable, giving you an easy overview of sales and insights into effectiveness of your outreach and marketing.",
       },
