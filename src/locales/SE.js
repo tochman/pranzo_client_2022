@@ -222,15 +222,15 @@ export const SE = {
     },
     sellingPoints: {
       benefits: "Fördelar",
-      subSlogan: "Minska manuell hantering",
+      subSlogan: "Minska manuell hantering. PRANZO använder QR-koder för att identifera vilka erbjudanden din kund kan ta del av och uppdaterar saldon i realtid.",
       pranzoExperience: {
         header: "Kom igång med Pranzo",
         subHeader: "Vi håller det enkelt.",
       },
       right: {
-        header: "Lojala kunder",
+        header: "Framtidssäkrat",
         content:
-          "Belöna dina lojala kunder med möjligheten att köpa ett stämpelkort som ger dem ett rabatterat pris samtidigt som du drar nytta av ökade och stabila intäkter.",
+          "Pappers- eller plastkort och kuponger är föråldrade. Tvinga inte dina kunder att behöva leta fram sina stämpel- eller presentkort och ta upp onödig tid i kassan. Allt som din kund behöver är en smart phone.",
       },
       middle: {
         header: "Mobilt",

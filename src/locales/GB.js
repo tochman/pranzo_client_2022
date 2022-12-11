@@ -220,15 +220,15 @@ export const GB = {
     },
     sellingPoints: {
       benefits: "Benefits",
-      subSlogan: "Let's move away from manual work",
+      subSlogan: "Reduce manual processing. PRANZO uses QR codes to identify which offers your customer can take advantage of and updates balances in real time.",
       pranzoExperience: {
         header: "The Pranzo Experience",
         subHeader: "We keep it simple, for your benefit.",
       },
       right: {
-        header: "Customer Loyalty",
+        header: "Future proof",
         content:
-          "Reward your loyal lunch guests with the opportunity to buy a lunch-card that gives them a discounted price while you benefit from increased and steady revenue.",
+          "Paper or plastic cards and coupons are obsolete. Don't force your customers to have to find their stamp or gift cards and take up unnecessary time at the checkout. All your customer needs is a smart phone.",
       },
       middle: {
         header: "User friendly",
