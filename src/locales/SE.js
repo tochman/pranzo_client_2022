@@ -206,7 +206,7 @@ export const SE = {
     footer: {
       slogan: "Stämpelkort och presentkort på ett enklare sätt",
       slogan2:
-        "Gör stämpel- och presentkortshanteringen enkel. Pranzo är en webbaserad plattform designad för att hjälpa företag att hantera presentkort, öka kundbehållningen och skapa lojalitetsprogram. Systemet tillåter företag att enkelt skapa och anpassa presentkort, spåra försäljning av presentkort och övervaka kortsaldon. Den har också funktioner som hjälper företag att bygga lojalitet genom att erbjuda belöningar och incitament till kunder som köper och använder korten. Dessutom tillhandahåller systemet detaljerad analys och rapporteringsfunktioner för att hjälpa företag att spåra och analysera kunders utgiftsvanor och fatta välgrundade beslut om deras presentkortsstrategi.",
+        "Gör stämpel- och presentkortshanteringen enkel. Pranzo är en webbaserad plattform designad för att hjälpa företag att hantera stämpelkor eller presentkort, öka kundbehållningen och skapa lojalitetsprogram. Systemet tillåter företag att enkelt skapa och anpassa presentkort, spåra försäljning av presentkort och övervaka kortsaldon. Den har också funktioner som hjälper företag att bygga lojalitet genom att erbjuda belöningar och incitament till kunder som köper och använder korten. Dessutom tillhandahåller systemet detaljerad analys och rapporteringsfunktioner för att hjälpa företag att spåra och analysera kunders utgiftsvanor och fatta välgrundade beslut om deras presentkortsstrategi.",
     },
     hero: {
       mainSlogan: "Digitala stämpel- eller presentkort. Kom igång direkt!",

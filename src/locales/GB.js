@@ -206,12 +206,12 @@ export const GB = {
     footer: {
       slogan: "Stamp Card And Gift Card Management Made Easy",
       slogan2:
-        "Making stamp card and gift card management easy. Pranzo is a web-based platform designed to help businesses manage gift cards, boost customer retention and create loyalty programs. The system allows businesses to easily create and customize gift cards, track gift card sales, and monitor card balances. It also has features to help businesses build loyalty by offering rewards and incentives to customers who purchase and use the cards. Additionally, the system provides detailed analytics and reporting capabilities to help businesses track and analyze customer spending habits and make informed decisions about their gift card strategy.",
+        "Making stamp card and gift card management easy. Pranzo is a web-based platform designed to help businesses manage stamp or gift cards, boost customer retention and create loyalty programs. The system allows businesses to easily create and customize gift cards, track gift card sales, and monitor card balances. It also has features to help businesses build loyalty by offering rewards and incentives to customers who purchase and use the cards. Additionally, the system provides detailed analytics and reporting capabilities to help businesses track and analyze customer spending habits and make informed decisions about their gift card strategy.",
     },
     hero: {
       mainSlogan: "Simplify your sales - Increase your revenue",
       promoText:
-        "Making stamp card and gift card management easy. Pranzo is a web-based platform designed to help businesses manage gift cards, boost customer retention and create loyalty programs. ",
+        "Making stamp card and gift card management easy. Pranzo is a web-based platform designed to help businesses stamp or manage gift cards, boost customer retention and create loyalty programs. ",
       subSlogan: "Low start-up fee and no subscriptions costs. Pay as you go!",
       walletsPromoText: "Connect your cards to Apple and Google Wallet or print them on credit-card sized cards. Get started in less than 10 minutes.",
       buttonText: "Get started",
