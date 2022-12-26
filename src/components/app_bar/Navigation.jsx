@@ -172,8 +172,8 @@ const Navigation = () => {
                     style={{ outline: "none", borderColor: "transparent" }}
                     onClick={() => navigate("/user")}
                   >
-                    <FiUser />
                     <Box pl={2}>{currentUser.name}</Box>
+                    <FiUser />
                   </MenuItem>
                 </HStack>
 

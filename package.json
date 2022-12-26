@@ -22,6 +22,7 @@
     "@jimengio/qrcode-popup": "^0.2.8",
     "@react-pdf-viewer/core": "^3.7.0",
     "@reduxjs/toolkit": "^1.8.5",
+    "@use-cookie-consent/react": "^0.3.7",
     "apexcharts": "^3.35.5",
     "axios": "^0.27.2",
     "framer-motion": "^6",

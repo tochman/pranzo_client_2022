@@ -1687,6 +1687,20 @@
   dependencies:
     "@types/node" "*"
 
+"@use-cookie-consent/core@^0.3.6":
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/@use-cookie-consent/core/-/core-0.3.6.tgz#5de64fc57b33cab9bb86ed71a85e926b210c77bb"
+  integrity sha512-fFDqPzJIr83Z2pJ5rCsi996BB+tYhdkNnyNzA9Dxp8Jpxn/QJyJ3TiIIAxqxutkEHc3IkcWBGWf7CKwwYRv5gw==
+  dependencies:
+    js-cookie "^2"
+
+"@use-cookie-consent/react@^0.3.7":
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/@use-cookie-consent/react/-/react-0.3.7.tgz#adb6dc3a30dad56ec6ccd7019eff487a9ade1860"
+  integrity sha512-IcxOJuprgWlOuED/ILFRFPxqLUV4bNOeyvM+tfpR8rlm+xUTa44ZCwTxA1BPXOpMBd0xYXDzhShn0Hl5n0jUAQ==
+  dependencies:
+    "@use-cookie-consent/core" "^0.3.6"
+
 "@vitejs/plugin-react@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-react/-/plugin-react-2.1.0.tgz#4c99df15e71d2630601bd3018093bdc787d40e55"
@@ -3756,6 +3770,11 @@ jpeg-js@^0.4.1:
   version "0.4.4"
   resolved "https://registry.yarnpkg.com/jpeg-js/-/jpeg-js-0.4.4.tgz#a9f1c6f1f9f0fa80cdb3484ed9635054d28936aa"
   integrity sha512-WZzeDOEtTOBK4Mdsar0IqEU5sMr3vSV2RqkAIzUEV2BHnUfKGyswWFPFwK5EeDo93K3FohSHbLAjj0s1Wzd+dg==
+
+js-cookie@^2:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-2.2.1.tgz#69e106dc5d5806894562902aa5baec3744e9b2b8"
+  integrity sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
