@@ -17,11 +17,14 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import Logo from "../content/Logo";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useCookieConsentContext } from "@use-cookie-consent/react";
+import CookieBanner from "./CookieBanner";
 
 const Footer = () => {
   const { t, i18n } = useTranslation();
   const { toggleColorMode } = useColorMode();
   const { isOpen, getDisclosureProps, getButtonProps } = useDisclosure();
+  const { consent } = useCookieConsentContext();
   const navigate = useNavigate();
   const buttonProps = getButtonProps();
   const disclosureProps = getDisclosureProps();
@@ -35,6 +38,7 @@ const Footer = () => {
       left="0"
       width={"100vw"}
     >
+      {!consent.persistent && <CookieBanner />}
       <Container
         maxW={"8xl"}
         py={4}
