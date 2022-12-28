@@ -1,5 +1,11 @@
 export const GB = {
   translation: {
+    gdpr: {
+      mainHeader: "We value your privacy",
+      mainMessage: "By clicking \"Accept All\" you agree to the storage of cookies on your device to improve site navigation, analyze site usage and assist in our marketing efforts.",
+      acceptAll: "Accept all",
+      rejectAll: "Reject all"
+    },
     dashboard: {
       headings: {
         myVenue: "My venue",

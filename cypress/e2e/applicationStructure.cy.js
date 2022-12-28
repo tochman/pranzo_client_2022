@@ -1,5 +1,5 @@
 describe("Application stucture", () => {
-  it.only("is expected to have a root path", () => {
+  it("is expected to have a root path", () => {
     cy.visit("/");
     cy.location("pathname").should("eq", "/");
   });

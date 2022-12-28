@@ -7,6 +7,7 @@ import {
   AlertIcon,
 } from "@chakra-ui/react";
 import { useCookieConsentContext } from "@use-cookie-consent/react";
+import { useTranslation } from "react-i18next";
 import Content from "../elements/Content";
 
 const CookieBanner = () => {
@@ -19,13 +20,8 @@ const CookieBanner = () => {
       <AlertIcon />
       <Stack spacing={2} direction={{ base: "column", md: "row" }}>
         <Box>
-          <Heading size={"md"}>Vi bryr oss om din integritet</Heading>
-          <Content size="sm">
-            Genom att klicka på "Acceptera alla" samtycker du till lagring av
-            cookies på din enhet för att förbättra navigeringen på webbplatsen,
-            analysera webbplatsens användning och bistå i våra
-            marknadsföringsinsatser.{" "}
-          </Content>
+          <Heading size={"md"}>{t("gdpr.mainHeader")}</Heading>
+          <Content size="sm">{t("gdpr.mainMessage")}</Content>
         </Box>
         <Stack
           direction={{ base: "row", md: "column" }}
@@ -37,7 +33,7 @@ const CookieBanner = () => {
             variant="solid"
             onClick={acceptAllCookies}
           >
-            Acceptera alla
+            {t("gdpr.acceptAll")}
           </Button>
           <Button
             size={"sm"}
@@ -45,7 +41,7 @@ const CookieBanner = () => {
             variant="outline"
             onClick={declineAllCookies}
           >
-            Avvisa alla
+            {t("gdpr.rejectAll")}
           </Button>
         </Stack>
       </Stack>
