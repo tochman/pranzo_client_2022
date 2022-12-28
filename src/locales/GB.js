@@ -8,7 +8,10 @@ export const GB = {
     },
     titles: {
       register: "PRANZO - Create an account",
-      authenticate: "PRANZO - Log in"
+      authenticate: "PRANZO - Log in",
+      resetPassword: "PRANZO - Reset password",
+      changePassword: "PRANZO - Change password"
+
     },
     dashboard: {
       headings: {

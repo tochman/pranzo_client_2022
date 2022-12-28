@@ -8,7 +8,9 @@ export const SE = {
     },
     titles: {
       register: "PRANZO - Skapa ett konto",
-      authenticate: "PRANZO - Logga in"
+      authenticate: "PRANZO - Logga in",
+      resetPassword: "PRANZO - Återställ lösenord",
+      changePassword: "PRANZO - Ändra lösenord"
     },
     dashboard: {
       headings: {
