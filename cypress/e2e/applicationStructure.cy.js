@@ -4,14 +4,16 @@ describe("Application stucture", () => {
     cy.location("pathname").should("eq", "/");
   });
 
-  it("is expected to have a /auth/sign-in path", () => {
+  it.only("is expected to have a /auth/sign-in path", () => {
     cy.visit("/auth/sign-in");
     cy.location("pathname").should("eq", "/auth/sign-in");
+    cy.title().should('eql', 'PRANZO - Log in')
   });
 
   it("is expected to have a /auth/sign-up path", () => {
     cy.visit("/auth/sign-up");
     cy.location("pathname").should("eq", "/auth/sign-up");
+    cy.title().should('eql', 'PRANZO - Create an account')
   });
 
   it('is expected to have a /join-pranzo path', () => {

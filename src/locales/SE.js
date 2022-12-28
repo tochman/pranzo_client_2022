@@ -6,6 +6,10 @@ export const SE = {
       acceptAll: "Acceptera alla",
       rejectAll: "Avvisa alla"
     },
+    titles: {
+      register: "PRANZO - Skapa ett konto",
+      authenticate: "PRANZO - Logga in"
+    },
     dashboard: {
       headings: {
         myVenue: "Mitt företag",

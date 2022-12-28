@@ -6,6 +6,10 @@ export const GB = {
       acceptAll: "Accept all",
       rejectAll: "Reject all"
     },
+    titles: {
+      register: "PRANZO - Create an account",
+      authenticate: "PRANZO - Log in"
+    },
     dashboard: {
       headings: {
         myVenue: "My venue",
