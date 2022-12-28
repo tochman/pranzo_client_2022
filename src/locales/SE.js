@@ -1,5 +1,11 @@
 export const SE = {
   translation: {
+    gdpr: {
+      mainHeader: "Vi bryr oss om din integritet",
+      mainMessage: "Genom att klicka på \"Acceptera alla\" samtycker du till lagring av cookies på din enhet för att förbättra navigeringen på webbplatsen, analysera webbplatsens användning och bistå i våra marknadsföringsinsatser.",
+      acceptAll: "Acceptera alla",
+      rejectAll: "Avvisa alla"
+    },
     dashboard: {
       headings: {
         myVenue: "Mitt företag",

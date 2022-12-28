@@ -1,4 +1,5 @@
-import 'cypress-file-upload';
+import "cypress-file-upload";
+import "./cookieCommands";
 
 Cypress.Commands.add("getCy", (identifier) => {
   cy.get(`[data-cy=${identifier}]`);
@@ -19,7 +20,7 @@ Cypress.Commands.add("authenticateUser", (options) => {
   });
 });
 
-Cypress.Commands.add('authenticateWithTokenAndVisit', () => {
+Cypress.Commands.add("authenticateWithTokenAndVisit", () => {
   cy.intercept("GET", "**/auth/validate_token**", {
     fixture: "authenticatedUser.json",
   }).as("validateTokenCall");
@@ -27,4 +28,4 @@ Cypress.Commands.add('authenticateWithTokenAndVisit', () => {
   const values =
     '{"access-token":"pCTtJ6i-ZQOigaeRc8XuhQ", "uid":"user@mail.com"}';
   cy.setLocalStorage("auth-storage", values);
-})
+});
