@@ -82,7 +82,7 @@ const TestimonialAvatar = ({ src, name, title, component }) => {
   );
 };
 
-export default function SellingPoints() {
+const SellingPoints = () => {
   const { t } = useTranslation();
 
   return (
@@ -133,4 +133,6 @@ export default function SellingPoints() {
       </Container>
     </Box>
   );
-}
+};
+
+export default SellingPoints;
