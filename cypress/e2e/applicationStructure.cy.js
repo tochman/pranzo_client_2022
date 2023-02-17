@@ -4,7 +4,7 @@ describe("Application stucture", () => {
     cy.location("pathname").should("eq", "/");
   });
 
-  it.only("is expected to have a /auth/sign-in path", () => {
+  it("is expected to have a /auth/sign-in path", () => {
     cy.visit("/auth/sign-in");
     cy.location("pathname").should("eq", "/auth/sign-in");
     cy.title().should('eql', 'PRANZO - Log in')

@@ -18,6 +18,7 @@ describe("Authentication:", () => {
     it("is expected to show SignUp button in AppBar", () => {
       cy.getCy("sign-up-button").should("exist").and("be.visible");
     });
+
     it("is expected to show SignIn button in AppBar", () => {
       cy.getCy("sign-in-button").should("exist").and("be.visible");
     });
