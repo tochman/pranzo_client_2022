@@ -4,20 +4,42 @@ describe("Application stucture", () => {
     cy.location("pathname").should("eq", "/");
   });
 
+  it("is calling navigate", () => {
+    cy.visit("/");
+    cy.window().then((win) => {
+      debugger;
+      cy.spy(win.App.prototype, "navigate");
+    });
+    cy.fixture("venueCreateSuccess").then((fixture) => {
+      cy.authenticateUser({
+        ...fixture.vendor.users[1],
+        vendor: fixture.vendor,
+      });
+      cy.applicationState().invoke("dispatch", {
+        type: "user/setVenue",
+        payload: fixture.vendor,
+      });
+    });
+
+    cy.window().then((win) => {
+      expect(win.App.prototype.navigate).to.have.been.called;
+    });
+  });
+
   it("is expected to have a /auth/sign-in path", () => {
     cy.visit("/auth/sign-in");
     cy.location("pathname").should("eq", "/auth/sign-in");
-    cy.title().should('eql', 'PRANZO - Log in')
+    cy.title().should("eql", "PRANZO - Log in");
   });
 
   it("is expected to have a /auth/sign-up path", () => {
     cy.visit("/auth/sign-up");
     cy.location("pathname").should("eq", "/auth/sign-up");
-    cy.title().should('eql', 'PRANZO - Create an account')
+    cy.title().should("eql", "PRANZO - Create an account");
   });
 
-  it('is expected to have a /join-pranzo path', () => {
-    cy.visit('/join-pranzo')
+  it("is expected to have a /join-pranzo path", () => {
+    cy.visit("/join-pranzo");
     cy.location("pathname").should("eq", "/join-pranzo");
   });
 
@@ -52,7 +74,7 @@ describe("Application stucture", () => {
       });
     });
 
-    it("is expected to display menue items", () => {
+    it("is expected to display menu items", () => {
       cy.getCy("my-venue").should("exist").and("be.visible");
       cy.getCy("vouchers").should("exist").and("be.visible"); //refactor to it's own it block?
     });
@@ -89,8 +111,8 @@ describe("Application stucture", () => {
       cy.getCy("my-venue").should("exist").and("be.visible");
     });
 
-    it('is expected to hide Vouchers menue item', () => {
-      cy.getCy("vouchers").should("not.exist")
+    it("is expected to hide Vouchers menue item", () => {
+      cy.getCy("vouchers").should("not.exist");
     });
 
     context("pull down contains menu items", () => {
@@ -181,8 +203,8 @@ describe("Application stucture", () => {
       cy.getCy("my-venue-mobile").should("exist").and("be.visible");
     });
 
-    it('is expected to hide Vouchers menue item', () => {
-      cy.getCy("vouchers-mobile").should("not.exist")
+    it("is expected to hide Vouchers menue item", () => {
+      cy.getCy("vouchers-mobile").should("not.exist");
     });
 
     context("pull down contains menu items", () => {
@@ -201,5 +223,4 @@ describe("Application stucture", () => {
       });
     });
   });
-
 });

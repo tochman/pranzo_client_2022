@@ -6,7 +6,19 @@ Cypress.Commands.add("getCy", (identifier) => {
 });
 
 Cypress.Commands.add("applicationState", () => {
-  cy.window().its("store");
+  cy.window().its("store").invoke("getState");
+});
+
+Cypress.Commands.add("currentUserState", () => {
+  cy.applicationState().its("user.currentUser");
+});
+
+Cypress.Commands.add("vendorState", () => {
+  cy.applicationState().its("user.vendor");
+});
+
+Cypress.Commands.add("vouchersState", () => {
+  cy.applicationState().its("user.vouchers");
 });
 
 Cypress.Commands.add("authenticateUser", (options) => {

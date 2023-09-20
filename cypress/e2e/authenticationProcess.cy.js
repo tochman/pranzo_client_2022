@@ -59,7 +59,7 @@ describe("Authentication:", () => {
         cy.getCy("sign-in-button").should("not.exist");
       });
 
-      it("is exprected to display currentUser´s name", () => {
+      it("is expected to display currentUser´s name", () => {
         cy.getCy("user-avatar").click();
         cy.getCy("user-name")
           .should("contain.text", "Kalle Andersson")
@@ -77,7 +77,7 @@ describe("Authentication:", () => {
       it("is expected to hide SignIn button in AppBar", () => {
         cy.getCy("sign-in-button").should("not.exist");
       });
-      it("is exprected to display currentUser´s name", () => {
+      it("is expected to display currentUser´s name", () => {
         cy.getCy("user-avatar").click();
         cy.getCy("user-name")
           .should("contain.text", "John Doe")
@@ -86,7 +86,7 @@ describe("Authentication:", () => {
     });
   });
 
-  describe("by navigating to SINGN-UP, ", () => {
+  describe("by navigating to SIGN-UP, ", () => {
     beforeEach("- ACTIONS intercept calls, navigate --", () => {
       cy.getCy("sign-up-button").click();
     });
