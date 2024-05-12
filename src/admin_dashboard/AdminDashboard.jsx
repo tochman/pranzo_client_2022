@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Header, Text } from "@chakra-ui/react";
+import { Box, Heading, Text } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 
 
@@ -8,7 +8,7 @@ const AdminDashboard = () => {
   return (
 
     <Box>
-      <Header>ADMIN</Header>
+      <Heading>ADMIN</Heading>
       <Text>{currentUser.name}</Text>
     </Box>
   );
