@@ -6,13 +6,13 @@ describe("Vouchers view", () => {
         ...fixture.vendor.users[1],
         vendor: fixture.vendor,
       });
-      cy.applicationState().invoke("dispatch", {
+      cy.applicationStore().invoke("dispatch", {
         type: "user/setVenue",
         payload: fixture.vendor,
       });
     });
     cy.fixture("vouchersIndex").then((fixture) => {
-      cy.applicationState().invoke("dispatch", {
+      cy.applicationStore().invoke("dispatch", {
         type: "user/setVouchers",
         payload: fixture.vouchers,
       });
@@ -107,7 +107,7 @@ describe("Vouchers view", () => {
     context("and NOT finding a voucher", () => {
       beforeEach(() => {
         cy.fixture("vouchersIndexWithout(izBgW)").then((fixture) => {
-          cy.applicationState().invoke("dispatch", {
+          cy.applicationStore().invoke("dispatch", {
             type: "user/setVouchers",
             payload: fixture.vouchers,
           });

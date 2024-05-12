@@ -21,10 +21,10 @@ import ReportCreate from "./components/dashboard/ReportCreate";
 import Profile from "./components/user/Profile";
 import ResetPassword from "./components/auth/ResetPassword";
 import ChangePassword from "./components/auth/ChangePassword";
-
+import AdminDashboard from "./admin_dashboard/AdminDashboard";
 
 const App = () => {
-  const { authenticated } = useSelector((state) => state.user);
+  const { authenticated, currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -34,8 +34,17 @@ const App = () => {
   }, [getHeaders]);
 
   useEffect(() => {
-    authenticated && navigate("/dashboard");
-  }, [authenticated]);
+    if (authenticated) {
+      navigate("/dashboard");
+    }
+  }, [authenticated, navigate]);
+
+  // New useEffect for admin role check
+  useEffect(() => {
+    if (authenticated && currentUser?.role === "admin") {
+      navigate("/admin");
+    }
+  }, [authenticated, currentUser, navigate]);
 
   return (
     <Box height={"100vh"} w={"100vw"}>
@@ -62,6 +71,7 @@ const App = () => {
               element={<ReportCreate />}
             />
             <Route path="/user" element={<Profile />} />
+            <Route path="/admin" element={<AdminDashboard />} />
           </Route>
           <Route path="/join-pranzo" element={<PranzoProcess />} />
           <Route path="/auth/sign-up" element={<SignUp />} />

@@ -9,13 +9,13 @@ describe("Creating a transaction", () => {
     cy.setLocalStorage("auth-storage", values);
 
     cy.fixture("venueCreateSuccess").then((fixture) => {
-      cy.applicationState().invoke("dispatch", {
+      cy.applicationStore().invoke("dispatch", {
         type: "user/setVenue",
         payload: fixture.vendor,
       });
     });
     cy.fixture("vouchersIndex").then((fixture) => {
-      cy.applicationState().invoke("dispatch", {
+      cy.applicationStore().invoke("dispatch", {
         type: "user/setVouchers",
         payload: fixture.vouchers,
       });
@@ -98,7 +98,7 @@ describe("Creating a transaction", () => {
   describe("depleted card", () => {
     beforeEach(() => {
       cy.fixture("vouchersIndexWithDepletedCashAndServings").then((fixture) => {
-        cy.applicationState().invoke("dispatch", {
+        cy.applicationStore().invoke("dispatch", {
           type: "user/setVouchers",
           payload: fixture.vouchers,
         });

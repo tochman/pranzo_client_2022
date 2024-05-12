@@ -9,7 +9,7 @@ describe("Venue edit", () => {
       cy.intercept("POST", "**/api/validate_user", {
         fixture: "emailOk.json",
       }).as("checkEmail");
-      cy.applicationState().invoke("dispatch", {
+      cy.applicationStore().invoke("dispatch", {
         type: "user/setVenue",
         payload: fixture.vendor,
       });

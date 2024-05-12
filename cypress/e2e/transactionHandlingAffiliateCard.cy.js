@@ -9,13 +9,13 @@ describe("Creating a transaction on affiliate voucher", () => {
     cy.setLocalStorage("auth-storage", values);
 
     cy.fixture("venueCreateSuccess").then((fixture) => {
-      cy.applicationState().invoke("dispatch", {
+      cy.applicationStore().invoke("dispatch", {
         type: "user/setVenue",
         payload: fixture.vendor,
       });
     });
     cy.fixture("vouchersIndex").then((fixture) => {
-      cy.applicationState().invoke("dispatch", {
+      cy.applicationStore().invoke("dispatch", {
         type: "user/setVouchers",
         payload: fixture.vouchers,
       });
