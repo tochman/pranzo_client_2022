@@ -33,15 +33,15 @@ const App = () => {
     authHeaders.uid && dispatch(validateUserByToken());
   }, [getHeaders]);
 
-  useEffect(() => {
-    if (authenticated) {
-      navigate("/dashboard");
-    }
-  }, [authenticated, navigate]);
+  // useEffect(() => {
+  //   if (authenticated) {
+  //     navigate("/dashboard");
+  //   }
+  // }, [authenticated, navigate]);
 
   // New useEffect for admin role check
   useEffect(() => {
-    if (authenticated && currentUser?.role === "admin") {
+    if ( currentUser?.role === "admin") {
       navigate("/admin");
     }
   }, [authenticated, currentUser, navigate]);

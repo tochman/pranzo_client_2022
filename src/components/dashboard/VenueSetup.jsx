@@ -24,7 +24,8 @@ import { emailRegex, toastMessage } from "../../state/utilities/utilities";
 import { auth } from "../../state/utilities/authConfig";
 import { FiImage } from "react-icons/fi";
 import { toBase64 } from "../../modules/ImageEncoder";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
+
 const VenueSetup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -48,12 +49,12 @@ const VenueSetup = () => {
   const inputRef = useRef();
   let hiddenInputField;
   const primaryEmailState = getFieldState("primaryEmail");
-  useEffect(() => {
-    setError("primaryEmail", { shouldFocus: false });
-  }, []);
 
   const handleFormSubmit = async (data) => {
     const params = snakecasekeys(data);
+    if (!file && !edit) {
+      delete params.logotype;
+    }
     if (edit) {
       dispatch(editVenue({ ...params, id: vendor.id }));
     } else {
@@ -89,6 +90,7 @@ const VenueSetup = () => {
       toastMessage([error]);
     }
   };
+
   return (
     <Stack minH={"80vh"} direction={{ base: "column", md: "row" }} m={1}>
       <Flex p={8} flex={1} align={"top"} justify={"left"}>
@@ -182,7 +184,7 @@ const VenueSetup = () => {
                 {errors.primaryEmail && errors.primaryEmail.message}
               </FormErrorMessage>
             </FormControl>
-            <FormControl>
+            <FormControl isInvalid={!edit && errors.logotype}>
               <FormLabel>{t("forms.elements.logotype")}</FormLabel>
               <InputGroup ref={inputRef}>
                 <InputLeftElement pointerEvents="none">
@@ -195,7 +197,9 @@ const VenueSetup = () => {
                   accept={"image/*"}
                   onInput={changedFile}
                   style={{ display: "none" }}
-                  {...register("logotype")}
+                  {...register("logotype", {
+                    required: !edit && t("forms.messages.required"),
+                  })}
                 />
                 <Input
                   data-cy="logotypeFake"
@@ -205,6 +209,11 @@ const VenueSetup = () => {
                   value={file && file.name}
                 />
               </InputGroup>
+              {!edit && (
+                <FormErrorMessage>
+                  {errors.logotype && errors.logotype.message}
+                </FormErrorMessage>
+              )}
             </FormControl>
             {file && (
               <Image
@@ -232,3 +241,4 @@ const VenueSetup = () => {
 };
 
 export default VenueSetup;
+
