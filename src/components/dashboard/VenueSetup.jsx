@@ -14,6 +14,7 @@ import {
   Icon,
   Image,
   Text,
+  Skeleton,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -108,6 +109,8 @@ const VenueSetup = () => {
     }
   };
 
+  const isLoading = vatStatus === 'loading';
+
   return (
     <>
       <Helmet>
@@ -122,141 +125,157 @@ const VenueSetup = () => {
                 : t("venue.setup.heading")}
             </Heading>
             <form onSubmit={handleSubmit(handleFormSubmit)}>
-              <FormControl isInvalid={errors.name}>
-                <FormLabel htmlFor="name">
-                  {t("venue.formElements.venueName")}
-                </FormLabel>
-                <Input
-                  defaultValue={(edit || vendor) && vendor.name}
-                  data-cy="name"
-                  id="name"
-                  {...register("name", {
-                    required: t("forms.messages.required"),
-                    minLength: {
-                      value: 4,
-                      message: t("forms.messages.minLength", { length: 4 }),
-                    },
-                  })}
-                />
-                <FormErrorMessage>
-                  {errors.name && errors.name.message}
-                </FormErrorMessage>
-              </FormControl>
-              <FormControl isInvalid={errors.vat_id}>
-                <FormLabel htmlFor="vat_id">
-                  {t("venue.formElements.venueOrganizationNumber")}
-                </FormLabel>
-                <Input
-                  defaultValue={(edit || vendor) && vendor.vat_id}
-                  data-cy="vat_id"
-                  id="vat_id"
-                  {...register("vat_id", {
-                    required: t("forms.messages.required"),
-                    pattern: {
-                      value: /^[0-9]{6}-[0-9]{4}$/,
-                      message: t("forms.messages.invalidVat"),
-                    },
-                    minLength: {
-                      value: 11,
-                      message: t("forms.messages.minLength", { length: 11 }),
-                    },
-                  })}
-                  onChange={handleVatChange}
-                />
-                <FormErrorMessage>
-                  {errors.vat_id && errors.vat_id.message}
-                </FormErrorMessage>
-                <FormHelperText>
-                  {t("venue.formElements.venueOrganizationNumberHelper")}
-                </FormHelperText>
-              </FormControl>
+              <Skeleton isLoaded={!isLoading}>
+                <FormControl isInvalid={errors.name}>
+                  <FormLabel htmlFor="name">
+                    {t("venue.formElements.venueName")}
+                  </FormLabel>
+                  <Input
+                    defaultValue={(edit || vendor) && vendor.name}
+                    data-cy="name"
+                    id="name"
+                    isDisabled={isLoading}
+                    {...register("name", {
+                      required: t("forms.messages.required"),
+                      minLength: {
+                        value: 4,
+                        message: t("forms.messages.minLength", { length: 4 }),
+                      },
+                    })}
+                  />
+                  <FormErrorMessage>
+                    {errors.name && errors.name.message}
+                  </FormErrorMessage>
+                </FormControl>
+              </Skeleton>
+              <Skeleton isLoaded={!isLoading}>
+                <FormControl isInvalid={errors.vat_id}>
+                  <FormLabel htmlFor="vat_id">
+                    {t("venue.formElements.venueVatid")}
+                  </FormLabel>
+                  <Input
+                    defaultValue={(edit || vendor) && vendor.vat_id}
+                    data-cy="vat_id"
+                    id="vat_id"
+                    isDisabled={isLoading}
+                    {...register("vat_id", {
+                      required: t("forms.messages.required"),
+                      pattern: {
+                        value: /^[0-9]{6}-[0-9]{4}$/,
+                        message: t("forms.messages.invalidVat"),
+                      },
+                      minLength: {
+                        value: 11,
+                        message: t("forms.messages.minLength", { length: 11 }),
+                      },
+                    })}
+                    onChange={handleVatChange}
+                  />
+                  <FormErrorMessage>
+                    {errors.vat_id && errors.vat_id.message}
+                  </FormErrorMessage>
+                  <FormHelperText>
+                    {t("venue.formElements.venueVatidHelper")}
+                  </FormHelperText>
+                </FormControl>
+              </Skeleton>
               {vatStatus === 'loading' && (
                 <Text mt={2} color="blue.500">
-                  {t('venue.formElements.venueVatValidationInProgress')}
+                  Checking...
                 </Text>
               )}
               {vatStatus === 'succeeded' && (
                 <>
                   <Text mt={2} color="green.500">
-                    {`${t("venue.formElements.venueLegalName")}: ${legalName}`}
+                    {`Legal Name: ${legalName}`}
                   </Text>
                   <Text mt={2} color="green.500">
-                    {`${t("venue.formElements.venueVatId")}: ${vatNumber}`}
+                    {`VAT Number: ${vatNumber}`}
                   </Text>
                 </>
               )}
               {vatStatus === 'failed' && (
                 <Text mt={2} color="red.500">
-                  {t('venue.formElements.venueVatValidationError')}
+                  Failed to validate VAT number.
                 </Text>
               )}
-              <FormControl isInvalid={errors.description}>
-                <FormLabel htmlFor="description">
-                  {t("venue.formElements.description")}{" "}
-                  {t("forms.elements.optional")}
-                </FormLabel>
-                <Textarea
-                  data-cy="description"
-                  defaultValue={(edit || vendor) && vendor.description}
-                  id="description"
-                  {...register("description")}
-                />
-                <FormErrorMessage>
-                  {errors.description && errors.description.message}
-                </FormErrorMessage>
-              </FormControl>
-              <FormControl isInvalid={errors.primaryEmail}>
-                <FormLabel htmlFor="primaryEmail">
-                  {t("venue.formElements.primaryEmail")}
-                </FormLabel>
-                <Input
-                  data-cy="email"
-                  defaultValue={(edit || vendor) && vendor.primary_email}
-                  id="primaryEmail"
-                  {...register("primaryEmail", {
-                    pattern: {
-                      value: emailRegex,
-                      message: t("forms.messages.invalidEmail"),
-                    },
-                    required: t("forms.messages.required"),
-                  })}
-                  onBlur={(event) => checkEmail(event.target.value)}
-                />
-                <FormErrorMessage>
-                  {errors.primaryEmail && errors.primaryEmail.message}
-                </FormErrorMessage>
-              </FormControl>
-              <FormControl isInvalid={!edit && errors.logotype}>
-                <FormLabel>{t("forms.elements.logotype")}</FormLabel>
-                <InputGroup ref={inputRef}>
-                  <InputLeftElement pointerEvents="none">
-                    <Icon as={FiImage} />
-                  </InputLeftElement>
-                  <input
-                    data-cy="logotype"
-                    type="file"
-                    name="logotype"
-                    accept={"image/*"}
-                    onInput={changedFile}
-                    style={{ display: "none" }}
-                    {...register("logotype", {
-                      required: !edit && t("forms.messages.required"),
-                    })}
+              <Skeleton isLoaded={!isLoading}>
+                <FormControl isInvalid={errors.description}>
+                  <FormLabel htmlFor="description">
+                    {t("venue.formElements.description")}{" "}
+                    {t("forms.elements.optional")}
+                  </FormLabel>
+                  <Textarea
+                    data-cy="description"
+                    defaultValue={(edit || vendor) && vendor.description}
+                    id="description"
+                    isDisabled={isLoading}
+                    {...register("description")}
                   />
-                  <Input
-                    data-cy="logotypeFake"
-                    placeholder={t("forms.elements.logotypePlaceholder")}
-                    onClick={() => inputRef.current.children.logotype.click()}
-                    readOnly={true}
-                    value={file && file.name}
-                  />
-                </InputGroup>
-                {!edit && (
                   <FormErrorMessage>
-                    {errors.logotype && errors.logotype.message}
+                    {errors.description && errors.description.message}
                   </FormErrorMessage>
-                )}
-              </FormControl>
+                </FormControl>
+              </Skeleton>
+              <Skeleton isLoaded={!isLoading}>
+                <FormControl isInvalid={errors.primaryEmail}>
+                  <FormLabel htmlFor="primaryEmail">
+                    {t("venue.formElements.primaryEmail")}
+                  </FormLabel>
+                  <Input
+                    data-cy="email"
+                    defaultValue={(edit || vendor) && vendor.primary_email}
+                    id="primaryEmail"
+                    isDisabled={isLoading}
+                    {...register("primaryEmail", {
+                      pattern: {
+                        value: emailRegex,
+                        message: t("forms.messages.invalidEmail"),
+                      },
+                      required: t("forms.messages.required"),
+                    })}
+                    onBlur={(event) => checkEmail(event.target.value)}
+                  />
+                  <FormErrorMessage>
+                    {errors.primaryEmail && errors.primaryEmail.message}
+                  </FormErrorMessage>
+                </FormControl>
+              </Skeleton>
+              <Skeleton isLoaded={!isLoading}>
+                <FormControl isInvalid={!edit && errors.logotype}>
+                  <FormLabel>{t("forms.elements.logotype")}</FormLabel>
+                  <InputGroup ref={inputRef}>
+                    <InputLeftElement pointerEvents="none">
+                      <Icon as={FiImage} />
+                    </InputLeftElement>
+                    <input
+                      data-cy="logotype"
+                      type="file"
+                      name="logotype"
+                      accept={"image/*"}
+                      onInput={changedFile}
+                      style={{ display: "none" }}
+                      isDisabled={isLoading}
+                      {...register("logotype", {
+                        required: !edit && t("forms.messages.required"),
+                      })}
+                    />
+                    <Input
+                      data-cy="logotypeFake"
+                      placeholder={t("forms.elements.logotypePlaceholder")}
+                      onClick={() => inputRef.current.children.logotype.click()}
+                      readOnly={true}
+                      value={file && file.name}
+                      isDisabled={isLoading}
+                    />
+                  </InputGroup>
+                  {!edit && (
+                    <FormErrorMessage>
+                      {errors.logotype && errors.logotype.message}
+                    </FormErrorMessage>
+                  )}
+                </FormControl>
+              </Skeleton>
               {file && (
                 <Image
                   src={file.content}
@@ -265,16 +284,18 @@ const VenueSetup = () => {
                   paddingTop={5}
                 />
               )}
-              <Button
-                mt={4}
-                colorScheme="teal"
-                isLoading={isSubmitting}
-                type="submit"
-                data-cy="submit"
-                disabled={primaryEmailState.error}
-              >
-                {t("forms.elements.submit")}
-              </Button>
+              <Skeleton isLoaded={!isLoading}>
+                <Button
+                  mt={4}
+                  colorScheme="teal"
+                  isLoading={isSubmitting}
+                  type="submit"
+                  data-cy="submit"
+                  isDisabled={primaryEmailState.error || isLoading}
+                >
+                  {t("forms.elements.submit")}
+                </Button>
+              </Skeleton>
               <input type="hidden" {...register("legal_name")} value={legalName} />
               <input type="hidden" {...register("vat_number")} value={vatNumber} />
             </form>
