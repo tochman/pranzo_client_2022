@@ -151,7 +151,7 @@ const VenueSetup = () => {
               <Skeleton isLoaded={!isLoading}>
                 <FormControl isInvalid={errors.vat_id}>
                   <FormLabel htmlFor="vat_id">
-                    {t("venue.formElements.venueVatid")}
+                    {t("venue.formElements.venueOrganizationNumber")}
                   </FormLabel>
                   <Input
                     defaultValue={(edit || vendor) && vendor.vat_id}
@@ -175,28 +175,28 @@ const VenueSetup = () => {
                     {errors.vat_id && errors.vat_id.message}
                   </FormErrorMessage>
                   <FormHelperText>
-                    {t("venue.formElements.venueVatidHelper")}
+                    {t("venue.formElements.venueOrganizationNumberHelper")}
                   </FormHelperText>
                 </FormControl>
               </Skeleton>
               {vatStatus === 'loading' && (
                 <Text mt={2} color="blue.500">
-                  Checking...
+                  {t('venue.formElements.venueVatValidationInProgress')}
                 </Text>
               )}
               {vatStatus === 'succeeded' && (
                 <>
                   <Text mt={2} color="green.500">
-                    {`Legal Name: ${legalName}`}
+                    {`${t("venue.formElements.venueLegalName")}: ${legalName}`}
                   </Text>
                   <Text mt={2} color="green.500">
-                    {`VAT Number: ${vatNumber}`}
+                    {`${t("venue.formElements.venueVatId")}: ${vatNumber}`}
                   </Text>
                 </>
               )}
               {vatStatus === 'failed' && (
                 <Text mt={2} color="red.500">
-                  Failed to validate VAT number.
+                  {t('venue.formElements.venueVatValidationError')}
                 </Text>
               )}
               <Skeleton isLoaded={!isLoading}>
