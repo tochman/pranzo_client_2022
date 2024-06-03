@@ -2,15 +2,16 @@ export const SE = {
   translation: {
     gdpr: {
       mainHeader: "Vi bryr oss om din integritet",
-      mainMessage: "Genom att klicka på \"Acceptera alla\" samtycker du till lagring av cookies på din enhet för att förbättra navigeringen på webbplatsen, analysera webbplatsens användning och bistå i våra marknadsföringsinsatser.",
+      mainMessage:
+        'Genom att klicka på "Acceptera alla" samtycker du till lagring av cookies på din enhet för att förbättra navigeringen på webbplatsen, analysera webbplatsens användning och bistå i våra marknadsföringsinsatser.',
       acceptAll: "Acceptera alla",
-      rejectAll: "Avvisa alla"
+      rejectAll: "Avvisa alla",
     },
     titles: {
       register: "PRANZO - Skapa ett konto",
       authenticate: "PRANZO - Logga in",
       resetPassword: "PRANZO - Återställ lösenord",
-      changePassword: "PRANZO - Ändra lösenord"
+      changePassword: "PRANZO - Ändra lösenord",
     },
     dashboard: {
       headings: {
@@ -161,10 +162,15 @@ export const SE = {
       setup: { heading: "Skapa företag" },
       edit: { heading: "Redigera företag" },
       formElements: {
-        venueName: "Namn",
-        venueVatid: "Momsregistreringsnummer",
+        venueName: "Företagsnamn",
+        venueLegalName: "Registrerat företagsnamn",
+        venueOrganizationNumber: "Organizationsnummer",
+        venueVatId: "Momsregistreringsnummer",
+        venueOrganizationNumberHelper: "Anges i format: xxxxxx-xxxx",
         venueVatidHelper:
           "Ett momsregistreringsnummer eller VAT-nummer (internationellt) är ett nummer som bygger på organisationsnumret. För att organisationsnumret ska bli ett momsregistreringsnummer anges Sveriges landskod SE innan första siffran, och avslutas med 01.  SEXXXXXXXXXX01 ",
+        venueVatValidationError: "Kunde inte validera momsregistreringsnummer",
+        venueVatValidationInProgress: "Kontrollerar...",
         description: "Beskrivning",
         primaryEmail: "Primär mailadress",
       },
@@ -234,7 +240,8 @@ export const SE = {
     },
     sellingPoints: {
       benefits: "Fördelar",
-      subSlogan: "Minska manuell hantering. PRANZO använder QR-koder för att identifera vilka erbjudanden din kund kan ta del av och uppdaterar saldon i realtid.",
+      subSlogan:
+        "Minska manuell hantering. PRANZO använder QR-koder för att identifera vilka erbjudanden din kund kan ta del av och uppdaterar saldon i realtid.",
       pranzoExperience: {
         header: "Kom igång med Pranzo",
         subHeader: "Vi håller det enkelt.",

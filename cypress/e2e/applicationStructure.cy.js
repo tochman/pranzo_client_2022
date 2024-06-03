@@ -7,7 +7,6 @@ describe("Application stucture", () => {
   it("is calling navigate", () => {
     cy.visit("/");
     cy.window().then((win) => {
-      debugger;
       cy.spy(win.App.prototype, "navigate");
     });
     cy.fixture("venueCreateSuccess").then((fixture) => {

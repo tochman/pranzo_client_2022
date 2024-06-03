@@ -2,16 +2,16 @@ export const GB = {
   translation: {
     gdpr: {
       mainHeader: "We value your privacy",
-      mainMessage: "By clicking \"Accept All\" you agree to the storage of cookies on your device to improve site navigation, analyze site usage and assist in our marketing efforts.",
+      mainMessage:
+        'By clicking "Accept All" you agree to the storage of cookies on your device to improve site navigation, analyze site usage and assist in our marketing efforts.',
       acceptAll: "Accept all",
-      rejectAll: "Reject all"
+      rejectAll: "Reject all",
     },
     titles: {
       register: "PRANZO - Create an account",
       authenticate: "PRANZO - Log in",
       resetPassword: "PRANZO - Reset password",
-      changePassword: "PRANZO - Change password"
-
+      changePassword: "PRANZO - Change password",
     },
     dashboard: {
       headings: {
@@ -161,10 +161,15 @@ export const GB = {
       setup: { heading: "Set up your venue" },
       edit: { heading: "Edit your venue" },
       formElements: {
-        venueName: "Name",
-        venueVatid: "VAT number",
+        venueName: "Company name",
+        venueLegalName: "Legal company name",
+        venueOrganizationNumber: "Organization number",
+        venueVatId: "VAT number",
+        venueOrganizationNumberHelper: "Please use format: xxxxxx-xxxx",
         venueVatidHelper:
           "A VAT registration number or VAT number (international) is a number based on the organization number. For the organization number to become a VAT registration number, enter Sweden's country code SE before the first digit, and end with 01. SEXXXXXXXXX01",
+        venueVatValidationError: "Failed to validate VAT number.",
+        venueVatValidationInProgress: "Please wait...",
         description: "Description",
         primaryEmail: "Primary email",
       },
@@ -226,14 +231,16 @@ export const GB = {
       promoText:
         "Pranzo enables businesses to create, issue and manage loyalty and reward cards online to optimize the customer experience.",
       subSlogan: "Low start-up fee and no subscriptions costs. Pay as you go!",
-      walletsPromoText: "Connect your cards to Apple and Google Wallet or print them on credit-card sized cards. Get started in less than 10 minutes.",
+      walletsPromoText:
+        "Connect your cards to Apple and Google Wallet or print them on credit-card sized cards. Get started in less than 10 minutes.",
       buttonText: "Get started",
       ctaText:
         "There's no upfront fee to register. We will charge you only if you actually benefit from the Pranzo plattform with a one time set-up fee of €45 and €1 per issued card.",
     },
     sellingPoints: {
       benefits: "Benefits",
-      subSlogan: "Reduce manual processing. PRANZO uses QR codes to identify which offers your customer can take advantage of and updates balances in real time.",
+      subSlogan:
+        "Reduce manual processing. PRANZO uses QR codes to identify which offers your customer can take advantage of and updates balances in real time.",
       pranzoExperience: {
         header: "The Pranzo Experience",
         subHeader: "We keep it simple, for your benefit.",
@@ -270,7 +277,7 @@ export const GB = {
           name: "Victoria Pickleton",
           title: "",
         },
-      }
+      },
     },
   },
 };

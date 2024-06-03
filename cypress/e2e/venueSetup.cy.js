@@ -1,9 +1,10 @@
 describe("Vendor can setup a Venue", () => {
   beforeEach(() => {
-    cy.visit("/dashboard");
-    cy.authenticateUser({
-      name: "John Doe",
-    });
+    cy.intercept("GET", "**/api/vat_data**", {
+      fixture: "vatValidationSuccess.json",
+    }).as("vatValidationCall");
+    cy.authenticateWithTokenAndVisit("/dashboard");
+
     cy.getCy("my-venue").trigger("mouseover");
     cy.getCy("venue-setup").click();
     cy.get("body").click();
@@ -20,15 +21,16 @@ describe("Vendor can setup a Venue", () => {
         fixture: "venueCreateSuccess.json",
       }).as("venueCreate");
       cy.getCy("name").type("The Other Place");
-      cy.getCy("vat_id").type("SE999999999901");
+      cy.getCy("vat_id").type("999999-9999");
       cy.getCy("description").type("A friendly neighbourhood restaurant");
       cy.getCy("email").type("info@theotherplace.io");
+      cy.get('[data-cy="logotype"]').attachFile("bocado_logo_color.png");
       cy.get("body").click();
       cy.wait(1000);
       cy.getCy("submit").click({ force: true });
     });
 
-    it("is expected to make a call to API and check email", () => {
+    it.only("is expected to make a call to API and check email", () => {
       cy.wait("@checkEmail").its("request.method").should("eql", "POST");
     });
 
@@ -42,7 +44,9 @@ describe("Vendor can setup a Venue", () => {
         expect(request.body.vendor.description).to.eql(
           "A friendly neighbourhood restaurant"
         );
-        expect(request.body.vendor.primary_email).to.eql("info@theotherplace.io");
+        expect(request.body.vendor.primary_email).to.eql(
+          "info@theotherplace.io"
+        );
       });
     });
 
@@ -84,12 +88,12 @@ describe("Vendor can setup a Venue", () => {
     });
 
     it("is expected to display error message", () => {
-      cy.wait("@checkEmail").then(()=> {
+      cy.wait("@checkEmail").then(() => {
         cy.get("body").should(
           "contain.text",
           "This email needs to be unique, please use another one...."
         );
-      })
+      });
     });
   });
 
@@ -110,7 +114,7 @@ describe("Vendor can setup a Venue", () => {
       cy.getCy("email").type("info@theotherplace.io");
       cy.get("body").click(); // clicking away from the field
 
-      cy.wait('@checkEmail')
+      cy.wait("@checkEmail");
       cy.getCy("submit").click({ force: true });
     });
 
@@ -139,7 +143,7 @@ describe("Vendor can setup a Venue", () => {
       cy.getCy("email").type("info@theotherplace.io");
       cy.get("body").click(); // clicking away from the field
 
-      cy.wait('@checkEmail')
+      cy.wait("@checkEmail");
       cy.getCy("submit").click();
     });
 

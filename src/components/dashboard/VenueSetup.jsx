@@ -13,6 +13,7 @@ import {
   Stack,
   Icon,
   Image,
+  Text,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,8 +25,9 @@ import { emailRegex, toastMessage } from "../../state/utilities/utilities";
 import { auth } from "../../state/utilities/authConfig";
 import { FiImage } from "react-icons/fi";
 import { toBase64 } from "../../modules/ImageEncoder";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { validateVat } from "../../state/features/vatSlice"; // Import the VAT validation action
 
 const VenueSetup = () => {
   const dispatch = useDispatch();
@@ -33,6 +35,7 @@ const VenueSetup = () => {
   const { state } = useLocation();
   const { edit } = state || false;
   const { vendor } = useSelector((state) => state.user);
+  const { vatNumber, legalName, status: vatStatus } = useSelector((state) => state.vatData); // VAT slice state
   const { t } = useTranslation();
   const {
     handleSubmit,
@@ -51,8 +54,14 @@ const VenueSetup = () => {
   let hiddenInputField;
   const primaryEmailState = getFieldState("primaryEmail");
 
+  useEffect(() => {
+    if (legalName) {
+      setValue("name", legalName);
+    }
+  }, [legalName, setValue]);
+
   const handleFormSubmit = async (data) => {
-    const params = snakecasekeys(data);
+    const params = snakecasekeys({ ...data, vat_id: vatNumber, name: legalName });
     if (!file && !edit) {
       delete params.logotype;
     }
@@ -92,6 +101,13 @@ const VenueSetup = () => {
     }
   };
 
+  const handleVatChange = (event) => {
+    const vatNumber = event.target.value;
+    if (vatNumber.length === 11 && /^[0-9]{6}-[0-9]{4}$/.test(vatNumber)) {
+      dispatch(validateVat(vatNumber.replace('-', '')));
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -128,7 +144,7 @@ const VenueSetup = () => {
               </FormControl>
               <FormControl isInvalid={errors.vat_id}>
                 <FormLabel htmlFor="vat_id">
-                  {t("venue.formElements.venueVatid")}
+                  {t("venue.formElements.venueOrganizationNumber")}
                 </FormLabel>
                 <Input
                   defaultValue={(edit || vendor) && vendor.vat_id}
@@ -137,22 +153,43 @@ const VenueSetup = () => {
                   {...register("vat_id", {
                     required: t("forms.messages.required"),
                     pattern: {
-                      value: /^[a-zA-Z]{2}[0-9]{12}$/,
+                      value: /^[0-9]{6}-[0-9]{4}$/,
                       message: t("forms.messages.invalidVat"),
                     },
                     minLength: {
-                      value: 4,
-                      message: t("forms.messages.minLength", { length: 4 }),
+                      value: 11,
+                      message: t("forms.messages.minLength", { length: 11 }),
                     },
                   })}
+                  onChange={handleVatChange}
                 />
                 <FormErrorMessage>
                   {errors.vat_id && errors.vat_id.message}
                 </FormErrorMessage>
-                <FormHelperText>
+                {/* <FormHelperText>
                   {t("venue.formElements.venueVatidHelper")}
-                </FormHelperText>
+                </FormHelperText> */}
               </FormControl>
+              {vatStatus === 'loading' && (
+                <Text mt={2} color="blue.500">
+                  {t('venue.formElements.venueVatValidationInProgress')}
+                </Text>
+              )}
+              {vatStatus === 'succeeded' && (
+                <>
+                  <Text mt={2} color="green.500">
+                    {`${t("venue.formElements.venueLegalName")}: ${legalName}`}
+                  </Text>
+                  <Text mt={2} color="green.500">
+                    {`${t("venue.formElements.venueVatId")}: ${vatNumber}`}
+                  </Text>
+                </>
+              )}
+              {vatStatus === 'failed' && (
+                <Text mt={2} color="red.500">
+                  {t('venue.formElements.venueVatValidationError')}
+                </Text>
+              )}
               <FormControl isInvalid={errors.description}>
                 <FormLabel htmlFor="description">
                   {t("venue.formElements.description")}{" "}
@@ -238,6 +275,8 @@ const VenueSetup = () => {
               >
                 {t("forms.elements.submit")}
               </Button>
+              <input type="hidden" {...register("legal_name")} value={legalName} />
+              <input type="hidden" {...register("vat_number")} value={vatNumber} />
             </form>
           </Stack>
         </Flex>

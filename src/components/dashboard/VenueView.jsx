@@ -43,10 +43,14 @@ const VenueView = () => {
                 />
                 <CardHeader mt={4}>
                   <Text fontSize="lg" fontWeight="bold">
+                    {t("venue.formElements.venueName") + ": "}
                     {vendor.name}
                   </Text>
-                  <Text fontSize="lg">{vendor.legal_name}</Text>
-                  <Text fontSize={"small"} fontWeight="bold">
+                  <Text fontSize="small" fontWeight="bold">
+                    {t("venue.formElements.venueLegalName") + ": "}
+                    {vendor.legal_name}
+                  </Text>
+                  <Text fontSize={"small"}>
                     {t("venue.formElements.primaryEmail") + ": "}
                     <Box as="span" fontWeight="normal">
                       {vendor.primary_email}
