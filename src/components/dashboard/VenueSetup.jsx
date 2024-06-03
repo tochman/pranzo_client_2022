@@ -166,9 +166,9 @@ const VenueSetup = () => {
                 <FormErrorMessage>
                   {errors.vat_id && errors.vat_id.message}
                 </FormErrorMessage>
-                {/* <FormHelperText>
-                  {t("venue.formElements.venueVatidHelper")}
-                </FormHelperText> */}
+                <FormHelperText>
+                  {t("venue.formElements.venueOrganizationNumberHelper")}
+                </FormHelperText>
               </FormControl>
               {vatStatus === 'loading' && (
                 <Text mt={2} color="blue.500">
