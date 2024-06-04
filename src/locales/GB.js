@@ -57,7 +57,7 @@ export const GB = {
         },
         vouchers: {
           create: {
-            createFormHeading: "Create vouchers for inventory",
+            createFormHeading: "Add vouchers for inventory",
           },
           table: {
             code: "Code",
