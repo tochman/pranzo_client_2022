@@ -173,6 +173,8 @@ export const SE = {
         venueVatValidationInProgress: "Kontrollerar...",
         description: "Beskrivning",
         primaryEmail: "Primär mailadress",
+        logoErrorInstruction: "Vänligen kontrollera bildens storlek. Bredden ska vara mellan 1100 och 2000 pixlar och höjden ska vara mellan 300 och 800 pixlar.",
+
       },
       user: { heading: "Användare" },
       affiliate: {

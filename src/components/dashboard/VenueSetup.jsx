@@ -36,28 +36,15 @@ const VenueSetup = () => {
   const { state } = useLocation();
   const { edit } = state || false;
   const { vendor } = useSelector((state) => state.user);
-  const {
-    vatNumber,
-    legalName,
-    status: vatStatus,
-  } = useSelector((state) => state.vatData); // VAT slice state
+  const { vatNumber, legalName, status: vatStatus } = useSelector((state) => state.vatData); // VAT slice state
   const { t } = useTranslation();
-  const [orgId, setOrgId] = useState();
-  const {
-    handleSubmit,
-    register,
-    setError,
-    clearErrors,
-    getFieldState,
-    setValue,
-    formState: { errors, isSubmitting, isValid },
-  } = useForm({
+  const [orgId, setOrgId] = useState(vendor?.org_id || "");
+  const { handleSubmit, register, setError, clearErrors, getFieldState, setValue, formState: { errors, isSubmitting } } = useForm({
     criteriaMode: "all",
   });
 
   const [file, setFile] = useState();
   const inputRef = useRef();
-  let hiddenInputField;
   const primaryEmailState = getFieldState("primaryEmail");
 
   useEffect(() => {
@@ -67,11 +54,7 @@ const VenueSetup = () => {
   }, [legalName, setValue]);
 
   const handleFormSubmit = async (data) => {
-    const params = snakecasekeys({
-      ...data,
-      vat_id: vatNumber,
-      name: legalName,
-    });
+    const params = snakecasekeys({ ...data, vat_id: vatNumber, name: legalName });
     if (!file && !edit) {
       delete params.logotype;
     }
@@ -113,7 +96,7 @@ const VenueSetup = () => {
 
   const handleVatChange = (event) => {
     const vatNumber = event.target.value;
-    setOrgId(name);
+    setOrgId(vatNumber);
     if (vatNumber.length === 11 && /^[0-9]{6}-[0-9]{4}$/.test(vatNumber)) {
       dispatch(validateVat(vatNumber.replace("-", "")));
     }
@@ -159,12 +142,12 @@ const VenueSetup = () => {
                 </FormControl>
               </Skeleton>
               <Skeleton isLoaded={!isLoading}>
-                <FormControl isInvalid={errors.vat_id}>
+                <FormControl isInvalid={errors.org_id}>
                   <FormLabel htmlFor="org_id">
                     {t("venue.formElements.venueOrganizationNumber")}
                   </FormLabel>
                   <Input
-                    defaultValue={(edit || vendor) && orgId}
+                    value={orgId}
                     data-cy="org_id"
                     id="org_id"
                     isDisabled={isLoading}
@@ -181,7 +164,7 @@ const VenueSetup = () => {
                     onChange={handleVatChange}
                   />
                   <FormErrorMessage>
-                    {errors.vat_id && errors.vat_id.message}
+                    {errors.org_id && errors.org_id.message}
                   </FormErrorMessage>
                   <FormHelperText>
                     {t("venue.formElements.venueOrganizationNumberHelper")}
