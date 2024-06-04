@@ -21,7 +21,7 @@ describe("Vendor can setup a Venue", () => {
         fixture: "venueCreateSuccess.json",
       }).as("venueCreate");
       cy.getCy("name").type("The Other Place");
-      cy.getCy("vat_id").type("999999-9999");
+      cy.getCy("org_id").type("999999-9999");
       cy.getCy("description").type("A friendly neighbourhood restaurant");
       cy.getCy("email").type("info@theotherplace.io");
       cy.get('[data-cy="logotype"]').attachFile("bocado_logo_color.png");

@@ -36,8 +36,13 @@ const VenueSetup = () => {
   const { state } = useLocation();
   const { edit } = state || false;
   const { vendor } = useSelector((state) => state.user);
-  const { vatNumber, legalName, status: vatStatus } = useSelector((state) => state.vatData); // VAT slice state
+  const {
+    vatNumber,
+    legalName,
+    status: vatStatus,
+  } = useSelector((state) => state.vatData); // VAT slice state
   const { t } = useTranslation();
+  const [orgId, setOrgId] = useState();
   const {
     handleSubmit,
     register,
@@ -62,7 +67,11 @@ const VenueSetup = () => {
   }, [legalName, setValue]);
 
   const handleFormSubmit = async (data) => {
-    const params = snakecasekeys({ ...data, vat_id: vatNumber, name: legalName });
+    const params = snakecasekeys({
+      ...data,
+      vat_id: vatNumber,
+      name: legalName,
+    });
     if (!file && !edit) {
       delete params.logotype;
     }
@@ -104,12 +113,13 @@ const VenueSetup = () => {
 
   const handleVatChange = (event) => {
     const vatNumber = event.target.value;
+    setOrgId(name);
     if (vatNumber.length === 11 && /^[0-9]{6}-[0-9]{4}$/.test(vatNumber)) {
-      dispatch(validateVat(vatNumber.replace('-', '')));
+      dispatch(validateVat(vatNumber.replace("-", "")));
     }
   };
 
-  const isLoading = vatStatus === 'loading';
+  const isLoading = vatStatus === "loading";
 
   return (
     <>
@@ -150,16 +160,15 @@ const VenueSetup = () => {
               </Skeleton>
               <Skeleton isLoaded={!isLoading}>
                 <FormControl isInvalid={errors.vat_id}>
-                  <FormLabel htmlFor="vat_id">
+                  <FormLabel htmlFor="org_id">
                     {t("venue.formElements.venueOrganizationNumber")}
                   </FormLabel>
                   <Input
-                    defaultValue={(edit || vendor) && vendor.vat_id}
-                    data-cy="vat_id"
-                    id="vat_id"
+                    defaultValue={(edit || vendor) && orgId}
+                    data-cy="org_id"
+                    id="org_id"
                     isDisabled={isLoading}
-                    {...register("vat_id", {
-                      required: t("forms.messages.required"),
+                    {...register("org_id", {
                       pattern: {
                         value: /^[0-9]{6}-[0-9]{4}$/,
                         message: t("forms.messages.invalidVat"),
@@ -179,12 +188,12 @@ const VenueSetup = () => {
                   </FormHelperText>
                 </FormControl>
               </Skeleton>
-              {vatStatus === 'loading' && (
+              {vatStatus === "loading" && (
                 <Text mt={2} color="blue.500">
-                  {t('venue.formElements.venueVatValidationInProgress')}
+                  {t("venue.formElements.venueVatValidationInProgress")}
                 </Text>
               )}
-              {vatStatus === 'succeeded' && (
+              {vatStatus === "succeeded" && (
                 <>
                   <Text mt={2} color="green.500">
                     {`${t("venue.formElements.venueLegalName")}: ${legalName}`}
@@ -194,9 +203,9 @@ const VenueSetup = () => {
                   </Text>
                 </>
               )}
-              {vatStatus === 'failed' && (
+              {vatStatus === "failed" && (
                 <Text mt={2} color="red.500">
-                  {t('venue.formElements.venueVatValidationError')}
+                  {t("venue.formElements.venueVatValidationError")}
                 </Text>
               )}
               <Skeleton isLoaded={!isLoading}>
@@ -296,8 +305,16 @@ const VenueSetup = () => {
                   {t("forms.elements.submit")}
                 </Button>
               </Skeleton>
-              <input type="hidden" {...register("legal_name")} value={legalName} />
-              <input type="hidden" {...register("vat_number")} value={vatNumber} />
+              <input
+                type="hidden"
+                {...register("legal_name")}
+                value={legalName}
+              />
+              <input
+                type="hidden"
+                {...register("vat_number")}
+                value={vatNumber}
+              />
             </form>
           </Stack>
         </Flex>
