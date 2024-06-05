@@ -70,7 +70,11 @@ const VenueSetup = () => {
     if (orgId) {
       setValue("org_id", orgId);
     }
-  }, [legalName, vatNumber, orgId, setValue]);
+    if (vendor?.logotype) {
+      setFile({ name: "Existing Image", content: vendor.logotype });
+      setValue("logotype", vendor.logotype, { shouldValidate: true });
+    }
+  }, [legalName, vatNumber, orgId, vendor, setValue]);
 
   const handleFormSubmit = async (data) => {
     const params = snakecasekeys({
@@ -113,12 +117,11 @@ const VenueSetup = () => {
   };
 
   const changedFile = async (event) => {
-    const file = event.target.files[0];
-    const name = file.name;
+    const name = event.target.files[0].name;
     try {
-      const base64 = await toBase64(file);
-      setValue("logotype", base64); // Ensure form value is updated
-      setFile({ name, content: base64 });
+      const base64 = await toBase64(event.target.files[0]);
+      setValue("logotype", base64, { shouldValidate: true });
+      setFile({ name: name, content: base64 });
     } catch (error) {
       toastMessage([error]);
     }
