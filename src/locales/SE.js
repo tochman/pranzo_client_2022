@@ -164,7 +164,7 @@ export const SE = {
       formElements: {
         venueName: "Företagsnamn",
         venueLegalName: "Registrerat företagsnamn",
-        venueOrganizationNumber: "Organizationsnummer",
+        venueOrganizationNumber: "Organisationsnummer",
         venueVatId: "Momsregistreringsnummer",
         venueOrganizationNumberHelper: "Anges i format: xxxxxx-xxxx",
         venueVatidHelper:

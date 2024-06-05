@@ -127,6 +127,7 @@ const VenueSetup = () => {
   const handleVatChange = (event) => {
     const vatNumber = event.target.value;
     setOrgId(vatNumber);
+    setValue("org_id", vatNumber);
     if (vatNumber.length === 11 && /^[0-9]{6}-[0-9]{4}$/.test(vatNumber)) {
       dispatch(validateVat(vatNumber.replace("-", "")));
     }
@@ -241,7 +242,6 @@ const VenueSetup = () => {
                 </FormControl>
               </Skeleton>
               <Divider p={1} />
-
               <Skeleton isLoaded={!isLoading}>
                 <FormControl isInvalid={errors.primaryEmail}>
                   <FormLabel htmlFor="primaryEmail">
@@ -267,7 +267,6 @@ const VenueSetup = () => {
                 </FormControl>
               </Skeleton>
               <Divider p={1} />
-
               <Skeleton isLoaded={!isLoading}>
                 <FormControl isInvalid={!edit && errors.logotype}>
                   <FormLabel>{t("forms.elements.logotype")}</FormLabel>
@@ -283,7 +282,6 @@ const VenueSetup = () => {
                       onInput={changedFile}
                       style={{ display: "none" }}
                       isDisabled={isLoading}
-                      // Use setValue to update the form value on file change
                       {...register("logotype", {
                         required: !edit && t("forms.messages.required"),
                       })}
@@ -308,7 +306,6 @@ const VenueSetup = () => {
                   )}
                 </FormControl>
               </Skeleton>
-
               {file && (
                 <Image
                   src={file.content}
@@ -318,7 +315,6 @@ const VenueSetup = () => {
                 />
               )}
               <Divider p={1} />
-
               <Skeleton isLoaded={!isLoading}>
                 <Button
                   mt={4}
