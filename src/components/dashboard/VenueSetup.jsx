@@ -319,7 +319,7 @@ const VenueSetup = () => {
               />
               <input
                 type="hidden"
-                {...register("vat_number")}
+                {...register("vat_id")}
                 value={vatNumber}
               />
             </form>
