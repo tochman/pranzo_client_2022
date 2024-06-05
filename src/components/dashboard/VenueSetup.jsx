@@ -75,17 +75,23 @@ const VenueSetup = () => {
   const handleFormSubmit = async (data) => {
     const params = snakecasekeys({
       ...data,
-      vat_id: vatNumber,
-      name: legalName,
     });
+
+    // Include the logotype data if it's set
+    if (file) {
+      params.logotype = file.content;
+    }
+
     if (!file && !edit) {
       delete params.logotype;
     }
+
     if (edit) {
       dispatch(editVenue({ ...params, id: vendor.id }));
     } else {
       dispatch(setupVenue(params));
     }
+
     navigate("/dashboard");
   };
 
@@ -107,11 +113,12 @@ const VenueSetup = () => {
   };
 
   const changedFile = async (event) => {
-    const name = event.target.files[0].name;
+    const file = event.target.files[0];
+    const name = file.name;
     try {
-      const base64 = await toBase64(event.target.files[0]);
-      setValue("logotype", base64);
-      setFile({ name: name, content: base64 });
+      const base64 = await toBase64(file);
+      setValue("logotype", base64); // Ensure form value is updated
+      setFile({ name, content: base64 });
     } catch (error) {
       toastMessage([error]);
     }
@@ -276,6 +283,7 @@ const VenueSetup = () => {
                       onInput={changedFile}
                       style={{ display: "none" }}
                       isDisabled={isLoading}
+                      // Use setValue to update the form value on file change
                       {...register("logotype", {
                         required: !edit && t("forms.messages.required"),
                       })}
@@ -283,9 +291,13 @@ const VenueSetup = () => {
                     <Input
                       data-cy="logotypeFake"
                       placeholder={t("forms.elements.logotypePlaceholder")}
-                      onClick={() => inputRef.current.children.logotype.click()}
+                      onClick={() =>
+                        inputRef.current
+                          .querySelector('input[name="logotype"]')
+                          .click()
+                      }
                       readOnly={true}
-                      value={file && file.name}
+                      value={file?.name || ""}
                       isDisabled={isLoading}
                     />
                   </InputGroup>
@@ -296,6 +308,7 @@ const VenueSetup = () => {
                   )}
                 </FormControl>
               </Skeleton>
+
               {file && (
                 <Image
                   src={file.content}
