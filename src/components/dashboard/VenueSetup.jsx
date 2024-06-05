@@ -15,6 +15,7 @@ import {
   Image,
   Text,
   Skeleton,
+  Divider,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,10 +37,22 @@ const VenueSetup = () => {
   const { state } = useLocation();
   const { edit } = state || false;
   const { vendor } = useSelector((state) => state.user);
-  const { vatNumber, legalName, status: vatStatus } = useSelector((state) => state.vatData); // VAT slice state
+  const {
+    vatNumber,
+    legalName,
+    status: vatStatus,
+  } = useSelector((state) => state.vatData); // VAT slice state
   const { t } = useTranslation();
   const [orgId, setOrgId] = useState(vendor?.org_id || "");
-  const { handleSubmit, register, setError, clearErrors, getFieldState, setValue, formState: { errors, isSubmitting } } = useForm({
+  const {
+    handleSubmit,
+    register,
+    setError,
+    clearErrors,
+    getFieldState,
+    setValue,
+    formState: { errors, isSubmitting },
+  } = useForm({
     criteriaMode: "all",
   });
 
@@ -54,7 +67,11 @@ const VenueSetup = () => {
   }, [legalName, setValue]);
 
   const handleFormSubmit = async (data) => {
-    const params = snakecasekeys({ ...data, vat_id: vatNumber, name: legalName });
+    const params = snakecasekeys({
+      ...data,
+      vat_id: vatNumber,
+      name: legalName,
+    });
     if (!file && !edit) {
       delete params.logotype;
     }
@@ -141,8 +158,9 @@ const VenueSetup = () => {
                   </FormErrorMessage>
                 </FormControl>
               </Skeleton>
-              <Skeleton isLoaded={!isLoading}>
-                <FormControl isInvalid={errors.org_id}>
+              <Divider p={1} />
+              <FormControl isInvalid={errors.org_id}>
+                <Skeleton isLoaded={!isLoading}>
                   <FormLabel htmlFor="org_id">
                     {t("venue.formElements.venueOrganizationNumber")}
                   </FormLabel>
@@ -166,11 +184,11 @@ const VenueSetup = () => {
                   <FormErrorMessage>
                     {errors.org_id && errors.org_id.message}
                   </FormErrorMessage>
-                  <FormHelperText>
-                    {t("venue.formElements.venueOrganizationNumberHelper")}
-                  </FormHelperText>
-                </FormControl>
-              </Skeleton>
+                </Skeleton>
+                <FormHelperText>
+                  {t("venue.formElements.venueOrganizationNumberHelper")}
+                </FormHelperText>
+              </FormControl>
               {vatStatus === "loading" && (
                 <Text mt={2} color="blue.500">
                   {t("venue.formElements.venueVatValidationInProgress")}
@@ -209,6 +227,8 @@ const VenueSetup = () => {
                   </FormErrorMessage>
                 </FormControl>
               </Skeleton>
+              <Divider p={1} />
+
               <Skeleton isLoaded={!isLoading}>
                 <FormControl isInvalid={errors.primaryEmail}>
                   <FormLabel htmlFor="primaryEmail">
@@ -233,6 +253,8 @@ const VenueSetup = () => {
                   </FormErrorMessage>
                 </FormControl>
               </Skeleton>
+              <Divider p={1} />
+
               <Skeleton isLoaded={!isLoading}>
                 <FormControl isInvalid={!edit && errors.logotype}>
                   <FormLabel>{t("forms.elements.logotype")}</FormLabel>
@@ -276,6 +298,8 @@ const VenueSetup = () => {
                   paddingTop={5}
                 />
               )}
+              <Divider p={1} />
+
               <Skeleton isLoaded={!isLoading}>
                 <Button
                   mt={4}
