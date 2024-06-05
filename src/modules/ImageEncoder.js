@@ -20,8 +20,7 @@ export const getHeightAndWidthFromDataUrl = (dataURL) =>
         const aspectRatio = dimensions.width / dimensions.height;
         if (
           inRange(dimensions.width, 400, 2000) &&
-          inRange(dimensions.height, 90, 800) &&
-          inRange(aspectRatio, 1.5, 3.5)
+          inRange(dimensions.height, 90, 800) 
         ) {
           resolve(reader.result);
         } else {
