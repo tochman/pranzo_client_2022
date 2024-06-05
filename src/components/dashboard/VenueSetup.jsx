@@ -64,7 +64,13 @@ const VenueSetup = () => {
     if (legalName) {
       setValue("name", legalName);
     }
-  }, [legalName, setValue]);
+    if (vatNumber) {
+      setValue("vat_id", vatNumber);
+    }
+    if (orgId) {
+      setValue("org_id", orgId);
+    }
+  }, [legalName, vatNumber, orgId, setValue]);
 
   const handleFormSubmit = async (data) => {
     const params = snakecasekeys({
@@ -317,11 +323,7 @@ const VenueSetup = () => {
                 {...register("legal_name")}
                 value={legalName}
               />
-              <input
-                type="hidden"
-                {...register("vat_id")}
-                value={vatNumber}
-              />
+              <input type="hidden" {...register("vat_id")} value={vatNumber} />
             </form>
           </Stack>
         </Flex>
