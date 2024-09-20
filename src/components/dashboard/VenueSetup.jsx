@@ -120,8 +120,25 @@ const VenueSetup = () => {
     const file = event.target.files[0];
     if (!file) return;
 
+    const { t } = useTranslation(); // Use i18n for translation
+
+    // Validate file format
+    const allowedFileTypes = ["image/png", "image/jpeg", "image/gif"];
+    if (!allowedFileTypes.includes(file.type)) {
+      setError("logotype", {
+        type: "manual",
+        message:
+          t("venue.formElements.invalidFileType") ||
+          "Invalid file type. Only PNG, JPEG, and GIF are allowed.",
+      });
+      return;
+    }
+
     try {
+      // Convert file to base64 and check dimensions
       const base64 = await toBase64(file);
+
+      // Set logotype value and file object
       setValue("logotype", base64, { shouldValidate: true });
       setFile({ name: file.name, content: base64 });
       clearErrors("logotype");
