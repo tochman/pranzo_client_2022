@@ -117,13 +117,19 @@ const VenueSetup = () => {
   };
 
   const changedFile = async (event) => {
-    const name = event.target.files[0].name;
+    const file = event.target.files[0];
+    if (!file) return;
+
     try {
-      const base64 = await toBase64(event.target.files[0]);
+      const base64 = await toBase64(file);
       setValue("logotype", base64, { shouldValidate: true });
-      setFile({ name: name, content: base64 });
+      setFile({ name: file.name, content: base64 });
+      clearErrors("logotype");
     } catch (error) {
-      toastMessage([error]);
+      setError("logotype", {
+        type: "manual",
+        message: error,
+      });
     }
   };
 
@@ -271,42 +277,34 @@ const VenueSetup = () => {
               </Skeleton>
               <Divider p={1} />
               <Skeleton isLoaded={!isLoading}>
-                <FormControl isInvalid={!edit && errors.logotype}>
+                <FormControl isInvalid={errors.logotype}>
                   <FormLabel>{t("forms.elements.logotype")}</FormLabel>
-                  <InputGroup ref={inputRef}>
+                  <InputGroup>
                     <InputLeftElement pointerEvents="none">
                       <Icon as={FiImage} />
                     </InputLeftElement>
                     <input
-                      data-cy="logotype"
                       type="file"
                       name="logotype"
-                      accept={"image/*"}
-                      onInput={changedFile}
+                      accept="image/*"
+                      onChange={changedFile}
                       style={{ display: "none" }}
-                      isDisabled={isLoading}
-                      {...register("logotype", {
-                        required: !edit && t("forms.messages.required"),
-                      })}
+                      ref={inputRef} // Use inputRef directly here
                     />
                     <Input
-                      data-cy="logotypeFake"
                       placeholder={t("forms.elements.logotypePlaceholder")}
+                      data-cy="logotype"
                       onClick={() =>
-                        inputRef.current
-                          .querySelector('input[name="logotype"]')
-                          .click()
-                      }
-                      readOnly={true}
+                        inputRef.current && inputRef.current.click()
+                      } // Trigger file input click
+                      readOnly
                       value={file?.name || ""}
                       isDisabled={isLoading}
                     />
                   </InputGroup>
-                  {!edit && (
-                    <FormErrorMessage>
-                      {errors.logotype && errors.logotype.message}
-                    </FormErrorMessage>
-                  )}
+                  <FormErrorMessage>
+                    {errors.logotype && errors.logotype.message}
+                  </FormErrorMessage>
                 </FormControl>
               </Skeleton>
               {file && (
