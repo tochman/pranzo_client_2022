@@ -11,11 +11,11 @@ export const getHeightAndWidthFromDataUrl = (dataURL) =>
     img.src = dataURL;
   });
 export const toBase64 = (file) =>
-  new Promise((resolve, reject) => {
+  new Promise(async (resolve, reject) => {
     const maxFileSize = 5 * 1024 * 1024; // Allow up to 5MB
     const maxImageWidth = 3000; // Maximum width for logos
     const maxImageHeight = 2000; // Maximum height for logos
-
+    await i18n.init();
     if (file.size > maxFileSize) {
       reject(
         i18n.t("venue.formElements.fileSizeExceedsLimit") ||
