@@ -173,6 +173,9 @@ export const SE = {
         venueVatValidationInProgress: "Kontrollerar...",
         description: "Beskrivning",
         primaryEmail: "Primär mailadress",
+        fileSizeExceedsLimit: "File size exceeds limit",
+        imageDimensionsTooLarge: "Image dimensions too large",
+        fileReadError: "File read error",
         logoErrorInstruction: "Vänligen kontrollera bildens storlek. Bredden ska vara mellan 1100 och 2000 pixlar och höjden ska vara mellan 300 och 800 pixlar.",
 
       },

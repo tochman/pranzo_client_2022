@@ -172,6 +172,9 @@ export const GB = {
         venueVatValidationInProgress: "Please wait...",
         description: "Description",
         primaryEmail: "Primary email",
+        fileSizeExceedsLimit: "File size exceeds limit",
+        imageDimensionsTooLarge: "Image dimensions too large",
+        fileReadError: "File read error",
         logoErrorInstruction: "Please check your image size. The width should be between 1100 and 2000 pixels and the height should be between 300 and 800 pixels.",
 
       },

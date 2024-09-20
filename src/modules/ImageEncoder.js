@@ -1,4 +1,3 @@
-import { inRange } from "lodash";
 import i18n from "../i18n";
 export const getHeightAndWidthFromDataUrl = (dataURL) =>
   new Promise((resolve) => {
@@ -13,14 +12,13 @@ export const getHeightAndWidthFromDataUrl = (dataURL) =>
   });
 export const toBase64 = (file) =>
   new Promise((resolve, reject) => {
-    const { t } = i18n.t; 
     const maxFileSize = 5 * 1024 * 1024; // Allow up to 5MB
     const maxImageWidth = 3000; // Maximum width for logos
     const maxImageHeight = 2000; // Maximum height for logos
 
     if (file.size > maxFileSize) {
       reject(
-        t("venue.formElements.fileSizeExceedsLimit") ||
+        i18n.t("venue.formElements.fileSizeExceedsLimit") ||
           "File size exceeds the maximum limit of 5 MB."
       );
       return;
@@ -37,7 +35,7 @@ export const toBase64 = (file) =>
           resolve(dataURL);
         } else {
           reject(
-            t("venue.formElements.imageDimensionsTooLarge") ||
+            i18n.t("venue.formElements.imageDimensionsTooLarge") ||
               `Image dimensions are too large. Maximum allowed size is ${maxImageWidth}x${maxImageHeight} pixels.`
           );
         }
@@ -45,7 +43,7 @@ export const toBase64 = (file) =>
 
       img.onerror = () =>
         reject(
-          t("venue.formElements.imageLoadError") ||
+          i18n.t("venue.formElements.imageLoadError") ||
             "Failed to load image. The file may be corrupted or not a valid image."
         );
       img.src = dataURL;
@@ -53,7 +51,7 @@ export const toBase64 = (file) =>
 
     reader.onerror = () =>
       reject(
-        t("venue.formElements.fileReadError") || "Failed to read the file."
+        i18n.t("venue.formElements.fileReadError") || "Failed to read the file."
       );
     reader.readAsDataURL(file);
   });
