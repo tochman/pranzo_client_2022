@@ -120,7 +120,6 @@ const VenueSetup = () => {
     const file = event.target.files[0];
     if (!file) return;
 
-    const { t } = useTranslation(); // Use i18n for translation
 
     // Validate file format
     const allowedFileTypes = ["image/png", "image/jpeg", "image/gif"];
